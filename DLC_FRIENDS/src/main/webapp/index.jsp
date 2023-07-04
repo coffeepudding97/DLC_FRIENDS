@@ -10,9 +10,13 @@
 <body>
 hello world
 <<<<<<< HEAD
+<<<<<<< HEAD
 +#1 kimhomin test
 #2-GJ
 test-#3 yunjeong
+=======
+hihi
+>>>>>>> refs/remotes/origin/#4-sangjin
 <%
 DBManager.getConnection();
 %>
