@@ -9,8 +9,9 @@
 </head>
 <body>
 hello world
-
 +#1 kimhomin test
+#2-GJ
+
 <%
 DBManager.getConnection();
 %>
