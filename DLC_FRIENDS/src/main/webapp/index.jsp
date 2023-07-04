@@ -9,6 +9,7 @@
 </head>
 <body>
 hello world
+hihi
 <%
 DBManager.getConnection();
 %>
