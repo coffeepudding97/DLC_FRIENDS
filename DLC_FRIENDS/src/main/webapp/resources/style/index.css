@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+li {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+a {
+	text-decoration: none;
+	color:black;
+}
+
+#wrap {
+	background-color:#1B262C;
+}
+
+#main-section {
+	width:1440px;
+	margin:0 auto;
+}
+
+
+/* 메인 게시판 */
+.main_table_wrap {
+	width:1200px;
+	margin:0 auto;
+	padding-top:100px;
+	padding-bottom:100px;
+}
+.main_table {
+	display:flex;
+	flex-direction:column;
+	background-color:#31313c;
+}
+.main_table ul {
+	display:flex;
+	flex-direction: row;
+}
+.main_table ul li {
+	color:white;
+	width:100%;
+	border:1px solid black;
+}
+
+/* 글쓰기버튼 */
+.write {
+	display:flex;
+	justify-content:flex-end;
+}
+.write a {
+	background-color:white;
+	padding:5px;
+	border:1px solid black;
+}
