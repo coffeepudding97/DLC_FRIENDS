@@ -9,9 +9,10 @@
 <body>
 	<div id="root">
 		<section id="main-section">
-			<form method="post" action="">
+			<form method="post" action="PostWrite">
 				<div id="div-title">
 					<input type="text" id="title" name="title" placeholder="제목" autofocus>
+					<input type="text" id="user_id" name="user_id" placeholder="아이디">
 				</div>
 				<div id="div-gametitle">
 					<select id="gametitle" name="gametitle">
@@ -28,14 +29,14 @@
 				<div id="div-meeting">
 					<input type="number" id="recruitment-max" name="recruitment-max" min="2" step="1" value="2">
 					<input type="datetime-local" id="meettime" name="meettime">
-					<input type="datetime-local" id="leavertime" name="leavetime">
+					<input type="datetime-local" id="leavetime" name="leavetime">
 				</div>
 				<div id="div-content">
 					<input type="text" id="content" name="content" placeholder="내용">
 				</div>
-				
+				<input type="submit" value="작성">
 			</form>
-			<button onclick="location.href='post.jsp'">작성</button>
+			<%-- <button onclick="location.href='post.jsp'">작성</button> --%>
 		</section>
 	</div>
 </body>
