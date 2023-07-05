@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Modify</title>
+<link rel="stylesheet" href="../resources/style/profile.css">
 </head>
 <body>
 	<div id="root">
@@ -13,18 +14,19 @@
 
 			<section id="main-section">
 				<!-- 상단 프로필 부분 -->
-				<div>
+				<div id="top">
 					<!-- 왼쪽 프로필 -->
 					<div>
 						<!-- 이미지 -->
-						<img alt="" src="">
+						<img src="../resources/images/user.png" alt="프로필사진" width="30px"
+						height="30px">
 						<!-- 유저 이름 -->
 						<input type="text" id="name" name="name" placeholder="이름입력"
 							autofocus>
 					</div>
 
 					<!-- 중앙 메세지 -->
-					<div>
+					<div id="profile_center">
 						<!-- 태그 -->
 						<div></div>
 
@@ -35,46 +37,22 @@
 						<div></div>
 
 					</div>
-					<!-- 오른쪽 버튼 -->
-					<div>
-						<button>내 정보 수정</button>
-						<button>DM</button>
-					</div>
 
 				</div>
 
 				<!-- 하단 -->
-				<div>
-					<!-- 왼쪽 -->
-					<div>
-						<!-- 왼쪽 상단 '게시글' -->
-						<div>
-							<table>
-								<thead></thead>
-								<tr>
-									<td></td>
-								</tr>
-							</table>
-						</div>
-
-						<!-- 왼쪽 하단 '댓글' -->
-						<div>
-							<div>
-								<table>
-									<thead></thead>
-									<tr>
-										<td></td>
-									</tr>
-								</table>
-							</div>
-
-						</div>
+				<div id="bottom">
+					<!-- 왼쪽 수정부분 -->
+					<div id="left_modify">
+						<!-- 아이디 -->
+						<!-- 기존 비밀번호 -->
+						<!-- 새로운 비밀번호 -->
+						<!-- 생년월일 -->
 					</div>
-
-					<!-- 오른쪽 -->
-					<div>
-						<!-- 오른쪽 상단, 최근파티원 -->
-						<div></div>
+					
+					<!-- 오른쪽 완료버튼 -->
+					<div id="right_btn">
+						<button>수정 완료</button>
 					</div>
 				</div>
 			</section>
