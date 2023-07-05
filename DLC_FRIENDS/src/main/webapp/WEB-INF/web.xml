@@ -9,4 +9,47 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  
+  <!-- 글쓰기 -->
+	<servlet>
+		<servlet-name>PostFormAction</servlet-name>
+		<servlet-class>controller.PostFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PostFormAction</servlet-name>
+		<url-pattern>/PostWrite</url-pattern>
+	</servlet-mapping>
+	<!-- 글읽기 -->
+	<servlet>
+		<servlet-name>ReadPostFormAction</servlet-name>
+		<servlet-class>controller.ReadPostFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReadPostFormAction</servlet-name>
+		<url-pattern>/PostRead</url-pattern>
+	</servlet-mapping>
+	
+	<!-- =============================================== -->
+	
+	<!-- 글읽기 -->
+	<servlet>
+		<servlet-name>post</servlet-name>
+		<jsp-file>/post.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>post</servlet-name>
+		<url-pattern>/post</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 글쓰기 -->
+	<servlet>
+		<servlet-name>write</servlet-name>
+		<jsp-file>/write.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>write</servlet-name>
+		<url-pattern>/write</url-pattern>
+	</servlet-mapping>
 </web-app>

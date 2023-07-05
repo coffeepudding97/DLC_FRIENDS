@@ -1,31 +1,49 @@
+<%@page import="java.sql.Timestamp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 	<div id="root">
 		<section id="main-section">
 			<div id=div-postinfo>
-				<span><strong>롤 플레 이상 숫가락 구함</strong></span>
-				<span>2023-07-04 22:24</span>
+				<!--
+				pageScope. 
+				requestScope. 
+				sessionScope. 
+				applicationScope. 
+				 -->
+				<span><strong>${post.title}</strong></span>
+				<span>time : ${requestScope.post.createdTime }</span>
 				<hr/>
-				<p>gitjae</p>
-				<span>리그오브레전드</span>
-				<span>1</span><span>/</span><span>2</span>
-				<span>2023-07-07 12:00</span>
-				<span>2023-07-07 12:30</span>
+				<p>${post.userId }</p>
+				<span>${post.gameTitle }</span>
+				<span>1</span><span>/</span><span>${post.recruitMax }></span>
+				<span>${post.meetTime }</span>
+				<span>${post.leaveTime }</span>
 				<br/>
-				<p>팀운이 안좋아서 브론즈인데 실력은 골1급임</p>
+				<p>${post.content }</p>
 			</div>
 			<div id=div-join>
 				<h1>참가자</h1>
 				<ul id=join>
-					<li><button><img src="#"><span>gitjae</span></button></li>
-					<li><button><span>+</span></button></li>
+					<c:forEach var="i" begin="0" end="${post.recruitMax }">
+						<c:choose>
+							<c:when test="${i == 0 }">
+								<li><button><img src="#"><span>${post.userId }</span></button></li>
+							</c:when>
+							<c:otherwise>
+								<li><button><span>+</span></button></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					
 				</ul>
 			</div>
 			<div id="div-comment">
