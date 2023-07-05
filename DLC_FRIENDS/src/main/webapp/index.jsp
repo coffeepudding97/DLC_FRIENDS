@@ -11,12 +11,19 @@
 hello world
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 +#1 kimhomin test
 #2-GJ
 test-#3 yunjeong
 =======
 hihi
 >>>>>>> refs/remotes/origin/#4-sangjin
+=======
+#2-GJ
+=======
+test-#3 yunjeong
+>>>>>>> refs/remotes/origin/#3-YunJeong
+>>>>>>> refs/remotes/origin/#2-GJ
 <%
 DBManager.getConnection();
 %>
