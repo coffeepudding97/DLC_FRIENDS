@@ -19,6 +19,7 @@
 				sessionScope. 
 				applicationScope. 
 				 -->
+				<span id="postNo" name="postNo" value="${requestScope.post.postNo }"></span>
 				<span><strong>${post.title}</strong></span>
 				<span>time : ${requestScope.post.createdTime }</span>
 				<hr/>
@@ -70,7 +71,7 @@
 				</ul>
 				<%--아래 post.userID 나중에 로그인한 유저 id로 바꾸기 --%>
 				<span>${requestScope.post.userId }</span>
-				<form method="post" action="">
+				<form method="post" action="/comment">
 					<input type="text" id="input-comment">
 					<input type="submit" value="작성">
 				</form>

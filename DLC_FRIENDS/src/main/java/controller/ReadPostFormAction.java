@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.comment.Comment;
 import model.comment.CommentDao;
+import model.comment.CommentResponseDto;
 import model.party.Party;
 import model.party.PartyDao;
 import model.party.PartyRequestDto;
@@ -80,7 +81,7 @@ public class ReadPostFormAction extends HttpServlet {
 			
 			PartyRequestDto partyDto = new PartyRequestDto(postNo, userIds);
 			
-			ArrayList<Comment> cmtList = commentDao.getCommentsByPostNo(postNo);
+			ArrayList<CommentResponseDto> cmtList = commentDao.getCommentsByPostNo(postNo);
 			
 			request.setAttribute("post", postDto);
 			request.setAttribute("party", partyDto);

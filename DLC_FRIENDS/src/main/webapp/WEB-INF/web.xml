@@ -18,6 +18,15 @@
 		<servlet-name>ProfileFormAction</servlet-name>
 		<url-pattern>/profile</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CommentFormAction</servlet-name>
+		<servlet-class>controller.CommentFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommentFormAction</servlet-name>
+		<url-pattern>/comment</url-pattern>
+	</servlet-mapping>
   
   <!-- 글쓰기 -->
 	<servlet>

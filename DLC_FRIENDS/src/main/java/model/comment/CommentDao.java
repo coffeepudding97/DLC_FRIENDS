@@ -67,9 +67,9 @@ public class CommentDao {
 		}
 	}
 	
-	public ArrayList<Comment> getCommentsByPostNo(int postNo) {
-		ArrayList<Comment> cmtList = new ArrayList<Comment>();
-		Comment cmt = null;
+	public ArrayList<CommentResponseDto> getCommentsByPostNo(int postNo) {
+		ArrayList<CommentResponseDto> cmtList = new ArrayList<CommentResponseDto>();
+		CommentResponseDto cmt = null;
 		
 		this.conn = DBManager.getConnection();
 		
@@ -96,7 +96,7 @@ public class CommentDao {
 					createdTime = this.rs.getTimestamp("created_time");
 					rpNo = this.rs.getInt("reply_no");
 					
-					cmt = new Comment(cmtNo, userId, content, createdTime, rpNo);
+					cmt = new CommentResponseDto(cmtNo, userId, content, createdTime, rpNo);
 					
 					cmtList.add(cmt);
 				}
