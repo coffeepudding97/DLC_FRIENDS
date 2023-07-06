@@ -31,7 +31,40 @@ DBManager.getConnection();
 				</li>
 				<li>
 					<ul class="table_content">
-						<li></li>
+						<li>1</li>
+						<li>오버워치</li>
+						<li>플레1 경쟁전 같이 할분</li>
+						<li>커피푸딩</li>
+						<li>11:11</li>
+						<li>1/5</li>
+						<li>18</li>
+					</ul>
+				</li>
+				<li>
+					<ul class="table_content">
+						<li>2</li>
+						<li>오버워치</li>
+						<li>플레1 경쟁전 같이 할분</li>
+						<li>커피푸딩</li>
+						<li>11:11</li>
+						<li>1/5</li>
+						<li>18</li>
+					</ul>
+				</li>
+				<li>
+					<ul class="table_content">
+						<li>3</li>
+						<li>오버워치</li>
+						<li>플레1 경쟁전 같이 할분</li>
+						<li>커피푸딩</li>
+						<li>11:11</li>
+						<li>1/5</li>
+						<li>18</li>
+					</ul>
+				</li>
+				<li>
+					<ul class="table_content">
+						<li>4</li>
 						<li>오버워치</li>
 						<li>플레1 경쟁전 같이 할분</li>
 						<li>커피푸딩</li>
@@ -43,7 +76,7 @@ DBManager.getConnection();
 			</ul>
 		</div>
 		<div class=write>
-			<a href="#">글쓰기</a>
+			<a href="views/postWrite.jsp">글쓰기</a>
 		</div>
 	</section>
 	</div>

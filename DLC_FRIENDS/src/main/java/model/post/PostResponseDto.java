@@ -14,6 +14,17 @@ public class PostResponseDto {
 	private String content;
 	private int viewCount;
 	
+	//IndexDao 생성자
+	public PostResponseDto(int postNo, String gameTitle, String title, String userId, int recruitMax, Timestamp createdTime ,int viewCount) {
+		this.postNo = postNo;
+		this.gameTitle = gameTitle;
+		this.title = title;
+		this.userId = userId;
+		this.recruitMax = recruitMax;
+		this.createdTime = createdTime;
+		this.viewCount = viewCount;
+	}
+	
 	public PostResponseDto(int postNo, String userId, String title, String gameTitle, int recruitMax,
 			Timestamp createdTime, Timestamp meetTime, Timestamp leaveTime, String content, int viewCount) {
 		super();

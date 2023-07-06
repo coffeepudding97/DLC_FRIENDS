@@ -1,12 +1,10 @@
 @charset "UTF-8";
 
-ul {
+body {
 	margin:0;
-	padding:0;
-	list-style:none;
 }
 
-li {
+ul, li {
 	margin:0;
 	padding:0;
 	list-style:none;
@@ -47,6 +45,10 @@ a {
 	color:white;
 	width:100%;
 	border:1px solid black;
+}
+
+.main_table .table_title li {
+	text-align:center;
 }
 
 /* 글쓰기버튼 */
