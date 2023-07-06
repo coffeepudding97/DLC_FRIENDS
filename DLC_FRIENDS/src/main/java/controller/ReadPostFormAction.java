@@ -35,7 +35,7 @@ public class ReadPostFormAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-int postNo = Integer.parseInt(request.getParameter("post_no"));
+		int postNo = Integer.parseInt(request.getParameter("post_no"));
 		
 		PostDao postDao = PostDao.getInstance();
 		

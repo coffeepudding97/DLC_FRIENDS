@@ -24,7 +24,7 @@
 				<hr/>
 				<p>${post.userId }</p>
 				<span>${post.gameTitle }</span>
-				<span>1</span><span>/</span><span>${post.recruitMax }></span>
+				<span>1</span><span>/</span><span>${post.recruitMax }</span>
 				<span>${post.meetTime }</span>
 				<span>${post.leaveTime }</span>
 				<br/>
@@ -33,7 +33,7 @@
 			<div id=div-join>
 				<h1>참가자</h1>
 				<ul id=join>
-					<c:forEach var="i" begin="0" end="${post.recruitMax }">
+					<c:forEach var="i" begin="0" end="${post.recruitMax-1 }">
 						<c:choose>
 							<c:when test="${i == 0 }">
 								<li><button><img src="#"><span>${post.userId }</span></button></li>

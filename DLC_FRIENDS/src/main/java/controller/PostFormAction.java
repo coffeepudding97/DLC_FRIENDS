@@ -42,7 +42,7 @@ public class PostFormAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 		
-request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		
 		String title = request.getParameter("title");
 		String user_id = request.getParameter("user_id");
