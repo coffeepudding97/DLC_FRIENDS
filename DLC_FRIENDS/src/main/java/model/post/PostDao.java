@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import model.user.User;
 import util.DBManager;
@@ -163,5 +164,37 @@ public class PostDao {
 		
 		
 		return post;
+	}
+	
+	// 선택된 프로필 유저의 id값을 받아, 그 유저가 작성한 게시글 받아오는 기능
+	public ArrayList<Post> getPostByUserId(String id) {
+		ArrayList<Post> postList = new ArrayList<>();
+		Post post = null;
+		
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "SELECT title, game_title FROM post WHERE user_id=?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setString(1, id);
+				
+				this.rs = this.pstmt.executeQuery();
+				
+				while(this.rs.next()) {
+					String title = this.rs.getString(1);
+					String gameTitle = this.rs.getString(2);
+					
+					post = new Post(title, gameTitle);
+					postList.add(post);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(this.conn, this.pstmt, this.rs);
+			}
+		}
+		return postList;
 	}
 }

@@ -1,3 +1,5 @@
+<%@page import="model.post.Post"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.profile.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -56,6 +58,7 @@
 				<div id="bottom_left">
 					<!-- 왼쪽 상단 '게시글' -->
 					<div>
+					<!-- 
 						<table>
 							<thead>* 작성한 게시글
 							</thead>
@@ -69,6 +72,17 @@
 								<td>It Takes Two / 같이 하실 분 구해요</td>
 							</tr>
 						</table>
+					-->
+
+						<table>
+							<thead>* 작성한 게시글</thead>
+							<c:forEach items="${postList}" var="post">
+								<tr>
+									<td>${post.title} / ${post.gameTitle}</td>
+								</tr>
+							</c:forEach>
+						</table>
+
 					</div>
 					<br>
 
