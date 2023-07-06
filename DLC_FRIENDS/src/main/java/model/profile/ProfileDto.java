@@ -1,39 +1,49 @@
 package model.profile;
 
+import java.sql.Blob;
+
 public class ProfileDto {
 	private String id;
-	private String nickname;
-	private String intro;
+	private Blob profileImg;
+	private String info;
 	
-	public ProfileDto(String id, String nickname, String intro) {
-		super();
-		this.id = id;
-		this.nickname = nickname;
-		this.intro = intro;
-	}
-
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getNickname() {
-		return nickname;
+	public Blob getProfileImg() {
+		return profileImg;
 	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setProfileImg(Blob profileImg) {
+		this.profileImg = profileImg;
 	}
-
-	public String getIntro() {
-		return intro;
+	public String getInfo() {
+		return info;
 	}
-
-	public void setIntro(String intro) {
-		this.intro = intro;
+	public void setInfo(String info) {
+		this.info = info;
 	}
+	
+	
+	
+	public ProfileDto(String id, String info) {
+		super();
+		this.id = id;
+		this.info = info;
+	}
+	
+	
+	public ProfileDto(String id) {
+		super();
+		this.id = id;
+	}
+	
+	@Override
+	public String toString() {
+		return "ProfileDto [id=" + id + ", info=" + info + "]";
+	}
+	
 	
 }

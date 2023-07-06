@@ -10,23 +10,60 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
+  <!-- 유저 프로필 부분 -->
   	<servlet>
 		<servlet-name>ProfileFormAction</servlet-name>
 		<servlet-class>controller.ProfileFormAction</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProfileFormAction</servlet-name>
+		<url-pattern>/ProfileForm</url-pattern>
+	</servlet-mapping>
+
+	
+  	<servlet>
+		<servlet-name>MemberInfoModify</servlet-name>
+		<servlet-class>controller.MemberInfoModify</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberInfoModify</servlet-name>
+		<url-pattern>/memberInfoModify</url-pattern>
+	</servlet-mapping>
+	
+	<!-- jsp -->
+	<servlet>
+		<servlet-name>profile</servlet-name>
+		<jsp-file>/views/profile.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>profile</servlet-name>
 		<url-pattern>/profile</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>CommentFormAction</servlet-name>
+	<servlet-name>CommentFormAction</servlet-name>
 		<servlet-class>controller.CommentFormAction</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CommentFormAction</servlet-name>
 		<url-pattern>/comment</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>testInput</servlet-name>
+		<jsp-file>/testInput.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>testInput</servlet-name>
+		<url-pattern>/testInput</url-pattern>
+	</servlet-mapping>
+	
+	
+  
+  <!--  ==========  -->
+
   
   <!-- 글쓰기 -->
 	<servlet>

@@ -1,3 +1,4 @@
+<%@page import="model.profile.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,10 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>User Profile</title>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="../resources/style/profile.css">
 </head>
 <body>
+<%
+	Profile profile = (Profile) request.getAttribute("profile");
+%>
 	<div id="root">
+		<h1><%= profile.getId() %>님의 마이페이지</h1>
 		<header></header>
 
 		<section id="main-section">
@@ -16,20 +22,22 @@
 			<div id="top">
 				<!-- 왼쪽 프로필 -->
 				<div id="profile_left">
-					<!-- 이미지 --> 
+					<!-- 이미지 -->
 					<img src="../resources/images/user.png" alt="프로필사진" width="30px"
 						height="30px">
 					<!-- 유저 이름 -->
-					<p>User</p>
+					<p><%= profile.getId() %></p>
 				</div>
 
 				<!-- 중앙 메세지 -->
 				<div id="profile_center">
 					<!-- 태그 -->
 					<div>#리그오브레전드 #배틀그라운드 #It Takes Two</div>
-
+					
+					<br>
 					<!-- 소개글 -->
-					<div>같이 게임해요~</div>
+					<div><%= profile.getInfo() %></div>
+					<br>
 
 					<!-- 유저평가(신고) 태그 -->
 					<div>#욕설 #게임방해</div>
@@ -41,7 +49,6 @@
 				</div>
 
 			</div>
-			<br>
 
 			<!-- 하단 -->
 			<div id="bottom">
@@ -97,8 +104,6 @@
 						</ul>
 					</div>
 				</div>
-
-
 
 			</div>
 		</section>
