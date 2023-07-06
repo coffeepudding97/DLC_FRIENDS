@@ -9,7 +9,7 @@
 <body>
 	<div id="root">
 		<section id="main-section">
-			<form method="post" action="WritePost">
+			<form method="post" action="/WritePost">
 				<div id="div-title">
 					<input type="text" id="title" name="title" placeholder="제목" autofocus>
 					<input type="text" id="user_id" name="user_id" placeholder="아이디">

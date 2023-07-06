@@ -26,7 +26,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>PostFormAction</servlet-name>
-		<url-pattern>/views/WritePost</url-pattern>
+		<url-pattern>/WritePost</url-pattern>
 	</servlet-mapping>
 	<!-- 글읽기 -->
 	<servlet>

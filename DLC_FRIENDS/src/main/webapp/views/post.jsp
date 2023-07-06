@@ -49,20 +49,31 @@
 			<div id="div-comment">
 				<h1>댓글</h1>
 				<ul id=ul-comment>
-					<li>
-						<p><strong>homin</strong></p>
-						<p>인성 수준... 브론즈가 플레 구하네</p>
-						<p>2023-07-04 22:32</p>
-					</li>
-					<li>
-						<p><strong>gitjae</strong></p>
-						<p>님 왜 시비임?</p>
-						<p>2023-07-04 22:38</p>
-					</li>
+					<c:forEach items="${requestScope.cmtList }" var="cmt">
+						<c:choose>
+							<c:when test="${cmt.rpNo == 0 }">
+								<li>
+									<p><strong style="color:orange;">${cmt.userId }</strong></p>
+									<p>${cmt.content }</p>
+									<p>${cmt.createdTime }</p>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li>
+									<p><strong style="color:blue;">${cmt.userId }</strong></p>
+									<p>${cmt.content }</p>
+									<p>${cmt.createdTime }</p>
+								</li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 				</ul>
-				<span>gitjae</span>
-				<input type="text" id="input-comment">
-				<button onclick="" id="btn-comment">작성</button>
+				<%--아래 post.userID 나중에 로그인한 유저 id로 바꾸기 --%>
+				<span>${requestScope.post.userId }</span>
+				<form method="post" action="">
+					<input type="text" id="input-comment">
+					<input type="submit" value="작성">
+				</form>
 			</div>
 		</section>
 	</div>

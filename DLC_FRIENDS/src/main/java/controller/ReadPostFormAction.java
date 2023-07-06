@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.comment.Comment;
+import model.comment.CommentDao;
 import model.party.Party;
 import model.party.PartyDao;
 import model.party.PartyRequestDto;
@@ -68,8 +70,8 @@ public class ReadPostFormAction extends HttpServlet {
 //			request.setAttribute("content", content);
 			
 			PostResponseDto postDto = new PostResponseDto(postNo, userId, title, gameTitle, recruitMax, createdTime, meetTime, leaveTime, content, 0);
-			
 			PartyDao partyDao = PartyDao.getInstance();
+			CommentDao commentDao = CommentDao.getInstance();
 			
 			Party party = partyDao.getPartyByPostNo(postNo);
 			
@@ -78,8 +80,13 @@ public class ReadPostFormAction extends HttpServlet {
 			
 			PartyRequestDto partyDto = new PartyRequestDto(postNo, userIds);
 			
+			ArrayList<Comment> cmtList = commentDao.getCommentsByPostNo(postNo);
+			
 			request.setAttribute("post", postDto);
 			request.setAttribute("party", partyDto);
+			request.setAttribute("cmtList", cmtList);
+			System.out.println("cmtlist(0) " + cmtList.get(0).getUserId());
+			
 			url = "post";
 		}
 		
