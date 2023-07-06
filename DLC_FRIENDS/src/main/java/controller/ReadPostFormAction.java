@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.party.Party;
+import model.party.PartyDao;
+import model.party.PartyRequestDto;
 import model.post.Post;
 import model.post.PostDao;
 import model.post.PostRequestDto;
@@ -65,7 +69,17 @@ public class ReadPostFormAction extends HttpServlet {
 			
 			PostResponseDto postDto = new PostResponseDto(postNo, userId, title, gameTitle, recruitMax, createdTime, meetTime, leaveTime, content, 0);
 			
+			PartyDao partyDao = PartyDao.getInstance();
+			
+			Party party = partyDao.getPartyByPostNo(postNo);
+			
+			int partyNo = party.getPartyNo();
+			ArrayList<String> userIds = party.getUserIds();
+			
+			PartyRequestDto partyDto = new PartyRequestDto(postNo, userIds);
+			
 			request.setAttribute("post", postDto);
+			request.setAttribute("party", partyDto);
 			url = "post";
 		}
 		

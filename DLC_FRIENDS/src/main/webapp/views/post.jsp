@@ -35,8 +35,8 @@
 				<ul id=join>
 					<c:forEach var="i" begin="0" end="${post.recruitMax-1 }">
 						<c:choose>
-							<c:when test="${i == 0 }">
-								<li><button><img src="#"><span>${post.userId }</span></button></li>
+							<c:when test="${i < requestScope.party.userIds.size() }">
+								<li><button><img src="#"><span>${requestScope.party.userIds.get(i) }</span></button></li>
 							</c:when>
 							<c:otherwise>
 								<li><button><span>+</span></button></li>
