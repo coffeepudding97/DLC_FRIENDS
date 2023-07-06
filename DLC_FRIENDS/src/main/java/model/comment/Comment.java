@@ -16,6 +16,13 @@ public class Comment {
 		this.createdTime = createdTime;
 		this.rpNo = rpNo;
 	}
+	
+	public Comment(String content, Timestamp createdTime) {
+		super();
+		this.content = content;
+		this.createdTime = createdTime;
+	}
+
 	public int getCmtNo() {
 		return cmtNo;
 	}
@@ -45,6 +52,12 @@ public class Comment {
 	}
 	public void setRpNo(int rpNo) {
 		this.rpNo = rpNo;
+	}
+
+	@Override
+	public String toString() {
+		return "Comment [cmtNo=" + cmtNo + ", userId=" + userId + ", content=" + content + ", createdTime="
+				+ createdTime + ", rpNo=" + rpNo + "]";
 	}
 	
 	

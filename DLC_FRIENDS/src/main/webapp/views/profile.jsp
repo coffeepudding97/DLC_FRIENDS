@@ -88,19 +88,16 @@
 
 					<!-- 왼쪽 하단 '댓글' -->
 					<div>
+					<!-- 
 						<table>
 							<thead>* 작성한 댓글
-							</thead>
-							<tr>
-								<td>댓글1</td>
-							</tr>
-							<tr>
-								<td>댓글2</td>
-							</tr>
-							<tr>
-								<td>댓글3</td>
-							</tr>
+							<c:forEach items="${commentList}" var="post">
+								<tr>
+									<td>${comment.content}    ${comment.createdTime}</td>
+								</tr>
+							</c:forEach>
 						</table>
+					-->
 					</div>
 				</div>
 				<!-- 오른쪽 -->

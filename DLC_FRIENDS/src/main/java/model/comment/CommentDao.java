@@ -111,4 +111,35 @@ public class CommentDao {
 		
 		return cmtList;
 	}
+	
+	public ArrayList<Comment> getCommentsByUserId(String id){
+		ArrayList<Comment> commentList = new ArrayList<>();
+		Comment comment = null;
+		
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "SELECT content, created_time FROM comment WHERE user_id=?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setString(1, id);
+				
+				this.rs = this.pstmt.executeQuery();
+				
+				while(this.rs.next()) {
+					String content = this.rs.getString(1);
+					Timestamp createdTime = this.rs.getTimestamp(2);
+					
+					comment = new Comment(content, createdTime);
+					commentList.add(comment);
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				DBManager.close(this.conn, this.pstmt, this.rs);
+			}
+		}
+		return commentList;
+	}
 }
