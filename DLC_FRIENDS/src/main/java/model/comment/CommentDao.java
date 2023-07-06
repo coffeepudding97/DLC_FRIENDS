@@ -19,9 +19,11 @@ public class CommentDao {
 		return instance;
 	}
 	
-	public void createComment(CommentRequestDto cmtDto, int postNo) {
+	public boolean createComment(CommentRequestDto cmtDto, int postNo) {
 		String userId = cmtDto.getUserId();
 		String content = cmtDto.getContent();
+		
+		boolean check = true;
 		
 		this.conn = DBManager.getConnection();
 		if(this.conn!=null) {
@@ -36,10 +38,15 @@ public class CommentDao {
 				this.pstmt.execute();
 			} catch (Exception e) {
 				e.printStackTrace();
+				check = false;
 			} finally {
 				DBManager.close(conn, pstmt);
 			}
+		} else {
+			check = false;
 		}
+		
+		return check;
 	}
 	
 	public void createReply(CommentRequestDto cmtDto, int postNo) {
@@ -110,5 +117,31 @@ public class CommentDao {
 		}
 		
 		return cmtList;
+	}
+	
+	public boolean deleteCommentByCmtNo(int cmtNo) {
+		this.conn = DBManager.getConnection();
+		
+		boolean check = true;
+		
+		if(this.conn != null) {
+			String sql = "DELETE FROM comment WHERE comment_no=?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setInt(1, cmtNo);
+				
+				this.pstmt.execute();
+			} catch (Exception e) {
+				e.printStackTrace();
+				check = false;
+			} finally {
+				DBManager.close(conn, pstmt);
+			}
+		} else {
+			check = false;
+		}
+		
+		return check;
 	}
 }

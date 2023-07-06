@@ -19,7 +19,8 @@
 				sessionScope. 
 				applicationScope. 
 				 -->
-				<span id="postNo" name="postNo" value="${requestScope.post.postNo }"></span>
+				 <h1>post_no : ${param.post_no }</h1>
+				 
 				<span><strong>${post.title}</strong></span>
 				<span>time : ${requestScope.post.createdTime }</span>
 				<hr/>
@@ -57,22 +58,31 @@
 									<p><strong style="color:orange;">${cmt.userId }</strong></p>
 									<p>${cmt.content }</p>
 									<p>${cmt.createdTime }</p>
-								</li>
 							</c:when>
 							<c:otherwise>
 								<li>
 									<p><strong style="color:blue;">${cmt.userId }</strong></p>
 									<p>${cmt.content }</p>
 									<p>${cmt.createdTime }</p>
-								</li>
 							</c:otherwise>
 						</c:choose>
+						<c:choose>
+							<c:when test="${requestScope.post.userId == cmt.userId }">
+								<form method="post" action="/deleteCmt">
+									<input type="hidden" name="cmtNo" value="${cmt.cmtNo }">
+									<input type="submit" value="삭제">
+								</form>
+							</c:when>
+						</c:choose>
+						</li>
 					</c:forEach>
 				</ul>
 				<%--아래 post.userID 나중에 로그인한 유저 id로 바꾸기 --%>
 				<span>${requestScope.post.userId }</span>
 				<form method="post" action="/comment">
-					<input type="text" id="input-comment">
+					<input type="hidden" id="postNo" name="postNo" value="${param.post_no }">
+					<input type="hidden" id="userId" name="userId" value="${requestScope.post.userId }">
+					<input type="text" id="comment" name="comment">
 					<input type="submit" value="작성">
 				</form>
 			</div>

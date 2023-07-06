@@ -27,6 +27,15 @@
 		<servlet-name>CommentFormAction</servlet-name>
 		<url-pattern>/comment</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DeleteCommentFormAction</servlet-name>
+		<servlet-class>controller.DeleteCommentFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteCommentFormAction</servlet-name>
+		<url-pattern>/deleteCmt</url-pattern>
+	</servlet-mapping>
   
   <!-- 글쓰기 -->
 	<servlet>
