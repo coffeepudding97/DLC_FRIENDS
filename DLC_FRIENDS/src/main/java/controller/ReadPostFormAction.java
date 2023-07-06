@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.comment.Comment;
+import model.comment.CommentDao;
+import model.comment.CommentResponseDto;
+import model.party.Party;
+import model.party.PartyDao;
+import model.party.PartyRequestDto;
 import model.post.Post;
 import model.post.PostDao;
 import model.post.PostRequestDto;
@@ -35,7 +42,7 @@ public class ReadPostFormAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-int postNo = Integer.parseInt(request.getParameter("post_no"));
+		int postNo = Integer.parseInt(request.getParameter("post_no"));
 		
 		PostDao postDao = PostDao.getInstance();
 		
@@ -64,8 +71,23 @@ int postNo = Integer.parseInt(request.getParameter("post_no"));
 //			request.setAttribute("content", content);
 			
 			PostResponseDto postDto = new PostResponseDto(postNo, userId, title, gameTitle, recruitMax, createdTime, meetTime, leaveTime, content, 0);
+			PartyDao partyDao = PartyDao.getInstance();
+			CommentDao commentDao = CommentDao.getInstance();
+			
+			Party party = partyDao.getPartyByPostNo(postNo);
+			
+			int partyNo = party.getPartyNo();
+			ArrayList<String> userIds = party.getUserIds();
+			
+			PartyRequestDto partyDto = new PartyRequestDto(postNo, userIds);
+			
+			ArrayList<CommentResponseDto> cmtList = commentDao.getCommentsByPostNo(postNo);
 			
 			request.setAttribute("post", postDto);
+			request.setAttribute("party", partyDto);
+			request.setAttribute("cmtList", cmtList);
+			System.out.println("cmtlist(0) " + cmtList.get(0).getUserId());
+			
 			url = "post";
 		}
 		

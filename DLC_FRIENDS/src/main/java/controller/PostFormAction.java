@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.party.Party;
+import model.party.PartyDao;
+import model.party.PartyRequestDto;
 import model.post.PostDao;
 import model.post.PostRequestDto;
 
@@ -42,7 +46,7 @@ public class PostFormAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 		
-request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		
 		String title = request.getParameter("title");
 		String user_id = request.getParameter("user_id");
@@ -63,13 +67,17 @@ request.setCharacterEncoding("UTF-8");
 		System.out.println(post.getTitle());
 		
 		PostDao postDao = PostDao.getInstance();
-		boolean result = postDao.createPost(post);
+		int createdPostNo = postDao.createPost(post);
 		
-		String url = "";
+		boolean result = false;
 		
-		if(result) {url = "index";}
-		else {
-			url = "post";
+		if(createdPostNo != 0) {
+			ArrayList<String> userIds = new ArrayList<String>();
+			userIds.add(user_id);
+			PartyRequestDto party = new PartyRequestDto(createdPostNo, userIds);
+			
+			PartyDao partyDao = PartyDao.getInstance();
+			result = partyDao.createParty(party, createdPostNo);
 		}
 	}
 

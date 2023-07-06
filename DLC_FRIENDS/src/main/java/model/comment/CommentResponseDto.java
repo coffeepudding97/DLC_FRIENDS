@@ -2,13 +2,13 @@ package model.comment;
 
 import java.sql.Timestamp;
 
-public class Comment {
+public class CommentResponseDto {
 	private int cmtNo;
 	private String userId;
 	private String content;
 	private Timestamp createdTime;
 	private int rpNo;
-	public Comment(int cmtNo, String userId, String content, Timestamp createdTime, int rpNo) {
+	public CommentResponseDto(int cmtNo, String userId, String content, Timestamp createdTime, int rpNo) {
 		super();
 		this.cmtNo = cmtNo;
 		this.userId = userId;
@@ -46,6 +46,7 @@ public class Comment {
 	public void setRpNo(int rpNo) {
 		this.rpNo = rpNo;
 	}
+	
 	
 	
 }

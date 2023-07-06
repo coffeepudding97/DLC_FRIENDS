@@ -19,12 +19,13 @@
 				sessionScope. 
 				applicationScope. 
 				 -->
+				<span id="postNo" name="postNo" value="${requestScope.post.postNo }"></span>
 				<span><strong>${post.title}</strong></span>
 				<span>time : ${requestScope.post.createdTime }</span>
 				<hr/>
 				<p>${post.userId }</p>
 				<span>${post.gameTitle }</span>
-				<span>1</span><span>/</span><span>${post.recruitMax }></span>
+				<span>1</span><span>/</span><span>${post.recruitMax }</span>
 				<span>${post.meetTime }</span>
 				<span>${post.leaveTime }</span>
 				<br/>
@@ -33,10 +34,10 @@
 			<div id=div-join>
 				<h1>참가자</h1>
 				<ul id=join>
-					<c:forEach var="i" begin="0" end="${post.recruitMax }">
+					<c:forEach var="i" begin="0" end="${post.recruitMax-1 }">
 						<c:choose>
-							<c:when test="${i == 0 }">
-								<li><button><img src="#"><span>${post.userId }</span></button></li>
+							<c:when test="${i < requestScope.party.userIds.size() }">
+								<li><button><img src="#"><span>${requestScope.party.userIds.get(i) }</span></button></li>
 							</c:when>
 							<c:otherwise>
 								<li><button><span>+</span></button></li>
@@ -49,20 +50,31 @@
 			<div id="div-comment">
 				<h1>댓글</h1>
 				<ul id=ul-comment>
-					<li>
-						<p><strong>homin</strong></p>
-						<p>인성 수준... 브론즈가 플레 구하네</p>
-						<p>2023-07-04 22:32</p>
-					</li>
-					<li>
-						<p><strong>gitjae</strong></p>
-						<p>님 왜 시비임?</p>
-						<p>2023-07-04 22:38</p>
-					</li>
+					<c:forEach items="${requestScope.cmtList }" var="cmt">
+						<c:choose>
+							<c:when test="${cmt.rpNo == 0 }">
+								<li>
+									<p><strong style="color:orange;">${cmt.userId }</strong></p>
+									<p>${cmt.content }</p>
+									<p>${cmt.createdTime }</p>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li>
+									<p><strong style="color:blue;">${cmt.userId }</strong></p>
+									<p>${cmt.content }</p>
+									<p>${cmt.createdTime }</p>
+								</li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 				</ul>
-				<span>gitjae</span>
-				<input type="text" id="input-comment">
-				<button onclick="" id="btn-comment">작성</button>
+				<%--아래 post.userID 나중에 로그인한 유저 id로 바꾸기 --%>
+				<span>${requestScope.post.userId }</span>
+				<form method="post" action="/comment">
+					<input type="text" id="input-comment">
+					<input type="submit" value="작성">
+				</form>
 			</div>
 		</section>
 	</div>

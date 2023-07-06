@@ -18,6 +18,15 @@
 		<servlet-name>ProfileFormAction</servlet-name>
 		<url-pattern>/profile</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CommentFormAction</servlet-name>
+		<servlet-class>controller.CommentFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommentFormAction</servlet-name>
+		<url-pattern>/comment</url-pattern>
+	</servlet-mapping>
   
   <!-- 글쓰기 -->
 	<servlet>
@@ -26,7 +35,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>PostFormAction</servlet-name>
-		<url-pattern>/PostWrite</url-pattern>
+		<url-pattern>/WritePost</url-pattern>
 	</servlet-mapping>
 	<!-- 글읽기 -->
 	<servlet>
@@ -43,7 +52,7 @@
 	<!-- 글읽기 -->
 	<servlet>
 		<servlet-name>post</servlet-name>
-		<jsp-file>/post.jsp</jsp-file>
+		<jsp-file>/views/post.jsp</jsp-file>
 	</servlet>
 
 	<servlet-mapping>
@@ -53,12 +62,22 @@
 	
 	<!-- 글쓰기 -->
 	<servlet>
-		<servlet-name>write</servlet-name>
-		<jsp-file>/write.jsp</jsp-file>
+		<servlet-name>postWrite</servlet-name>
+		<jsp-file>/views/postWrite.jsp</jsp-file>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>write</servlet-name>
-		<url-pattern>/write</url-pattern>
+		<servlet-name>postWrite</servlet-name>
+		<url-pattern>/postWrite</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>dbtestGJ</servlet-name>
+		<jsp-file>/views/dbtestGJ.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dbtestGJ</servlet-name>
+		<url-pattern>/dbtestGJ</url-pattern>
 	</servlet-mapping>
 </web-app>

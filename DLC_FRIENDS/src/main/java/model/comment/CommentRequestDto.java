@@ -2,20 +2,13 @@ package model.comment;
 
 import java.sql.Timestamp;
 
-public class Comment {
+public class CommentRequestDto {
 	private int cmtNo;
 	private String userId;
 	private String content;
 	private Timestamp createdTime;
 	private int rpNo;
-	public Comment(int cmtNo, String userId, String content, Timestamp createdTime, int rpNo) {
-		super();
-		this.cmtNo = cmtNo;
-		this.userId = userId;
-		this.content = content;
-		this.createdTime = createdTime;
-		this.rpNo = rpNo;
-	}
+	
 	public int getCmtNo() {
 		return cmtNo;
 	}

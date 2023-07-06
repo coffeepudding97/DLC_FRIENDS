@@ -15,6 +15,10 @@ public class DBManager {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
+			/*String url = "jdbc:mysql://localhost:3306/db?serverTimeZone=UTC";
+			String username = "root";
+			String password = "my1234";*/
+			
 			conn = DriverManager.getConnection(url, username, password);
 			System.out.println("database 연동 성공");
 		} catch(Exception e) {
