@@ -45,7 +45,7 @@ public class DeleteCommentFormAction extends HttpServlet {
 		
 		CommentDao cmtDao = CommentDao.getInstance();
 		boolean result = cmtDao.deleteCommentByCmtNo(cmtNo);
-		System.out.println(result);
+		response.getWriter().append(result + "");
 	}
 
 }

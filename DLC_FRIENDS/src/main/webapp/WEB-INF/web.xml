@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>DLC_FRIENDS</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-  </welcome-file-list>
-  
-  	<servlet>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>DLC_FRIENDS</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
+
+	<!-- page module -->
+	<servlet>
+		<servlet-name>header</servlet-name>
+		<jsp-file>/header.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>header</servlet-name>
+		<url-pattern>/header</url-pattern>
+	</servlet-mapping>
+	
+	<!-- servlet -->
+
+	<servlet>
 		<servlet-name>ProfileFormAction</servlet-name>
 		<servlet-class>controller.ProfileFormAction</servlet-class>
 	</servlet>
@@ -18,7 +33,7 @@
 		<servlet-name>ProfileFormAction</servlet-name>
 		<url-pattern>/profile</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>CommentFormAction</servlet-name>
 		<servlet-class>controller.CommentFormAction</servlet-class>
@@ -27,7 +42,7 @@
 		<servlet-name>CommentFormAction</servlet-name>
 		<url-pattern>/comment</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>DeleteCommentFormAction</servlet-name>
 		<servlet-class>controller.DeleteCommentFormAction</servlet-class>
@@ -36,8 +51,8 @@
 		<servlet-name>DeleteCommentFormAction</servlet-name>
 		<url-pattern>/deleteCmt</url-pattern>
 	</servlet-mapping>
-  
-  <!-- 글쓰기 -->
+
+	<!-- 글쓰기 -->
 	<servlet>
 		<servlet-name>PostFormAction</servlet-name>
 		<servlet-class>controller.PostFormAction</servlet-class>
@@ -55,9 +70,9 @@
 		<servlet-name>ReadPostFormAction</servlet-name>
 		<url-pattern>/PostRead</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- =============================================== -->
-	
+
 	<!-- 글읽기 -->
 	<servlet>
 		<servlet-name>post</servlet-name>
@@ -68,7 +83,7 @@
 		<servlet-name>post</servlet-name>
 		<url-pattern>/post</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- 글쓰기 -->
 	<servlet>
 		<servlet-name>postWrite</servlet-name>
@@ -79,7 +94,7 @@
 		<servlet-name>postWrite</servlet-name>
 		<url-pattern>/postWrite</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>dbtestGJ</servlet-name>
 		<jsp-file>/views/dbtestGJ.jsp</jsp-file>
