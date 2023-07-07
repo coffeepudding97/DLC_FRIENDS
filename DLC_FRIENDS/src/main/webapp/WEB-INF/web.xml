@@ -54,7 +54,6 @@
 		<servlet-name>testInput</servlet-name>
 		<jsp-file>/testInput.jsp</jsp-file>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>testInput</servlet-name>
 		<url-pattern>/testInput</url-pattern>
@@ -62,8 +61,14 @@
 	
 	
   
-  <!--  ==========  -->
-
+	<servlet>
+		<servlet-name>DeleteCommentFormAction</servlet-name>
+		<servlet-class>controller.DeleteCommentFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteCommentFormAction</servlet-name>
+		<url-pattern>/deleteCmt</url-pattern>
+	</servlet-mapping>
   
   <!-- 글쓰기 -->
 	<servlet>

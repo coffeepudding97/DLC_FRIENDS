@@ -86,7 +86,6 @@ public class ReadPostFormAction extends HttpServlet {
 			request.setAttribute("post", postDto);
 			request.setAttribute("party", partyDto);
 			request.setAttribute("cmtList", cmtList);
-			System.out.println("cmtlist(0) " + cmtList.get(0).getUserId());
 			
 			url = "post";
 		}

@@ -9,6 +9,11 @@ public class CommentRequestDto {
 	private Timestamp createdTime;
 	private int rpNo;
 	
+	public CommentRequestDto(String userId, String content) {
+		super();
+		this.userId = userId;
+		this.content = content;
+	}
 	public int getCmtNo() {
 		return cmtNo;
 	}
