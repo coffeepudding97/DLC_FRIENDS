@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: sans-serif;
+    background: linear-gradient(#172235, #3a536f);
+}
+
+.wrap{
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.join_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 650px;
+    height: 600px;
+    padding: 40px;
+    background: linear-gradient(#1B262C, #0F4C75);
+    box-shadow: 0 15px 25px rgba(0, 0, 0,.6);
+    border-radius: 10px;                                                                                    
+}
+
+.join_wrap h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.signup_Box {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    min-width: 50px;
+    padding: 0 10px 0 45px;
+}
+
+.join_wrap .signup_input {
+    width: 80%;
+    padding: 10px 0;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+    background-color: #6e7071;
+}
+
+.signup_label {
+    position: absolute;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 18px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+    ;
+}
+
+.join_wrap .signup_input:focus ~ label,
+.join_wrap .signup_input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+}
+
+.signup_btn {
+    position: relative;
+    background: linear-gradient(90deg, #3282B8 0%, #0F4C75 100%);
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: inherit;
+    text-align: center;
+    cursor: pointer;
+}
+
+.signup_btn a:hover{  
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+}
+
+/* .join_wrap a span{
+    position: absolute;
+    display: block;
+} */
+
+.decide{
+    color: red;
+    display: none;
+}

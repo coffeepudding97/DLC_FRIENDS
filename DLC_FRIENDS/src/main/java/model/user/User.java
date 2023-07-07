@@ -1,20 +1,20 @@
 package model.user;
 
-import java.security.Timestamp;
+import java.sql.Date;
 
 public class User {
 	private String id;
 	private String pw;
-	private String nickname;
+	private String nickName;
 	private String email;
-	private Timestamp birthday;
+	private Date birthday;
 	
-	public User(String id, String pw, String nickname, String email, Timestamp birthday) {
+	public User(String id, String pw, String nickName, String email, Date birth) {
 		this.id = id;
 		this.pw = pw;
-		this.nickname = nickname;
+		this.nickName = nickName;
 		this.email = email;
-		this.birthday = birthday;
+		this.birthday = birth;
 	}
 
 	public String getId() {
@@ -26,20 +26,20 @@ public class User {
 	}
 
 	public String getNickname() {
-		return nickname;
+		return nickName;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public Timestamp getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("id: %s\npw: %s\nnickname: %s\nemail: %s\nbirthday: %s", this.id, this.pw, this.nickname, this.email, this.birthday);
+		return String.format("id: %s\npw: %s\nnickname: %s\nemail: %s\nbirthday: %s", this.id, this.pw, this.nickName, this.email, this.birthday);
 	}
 	
 	
