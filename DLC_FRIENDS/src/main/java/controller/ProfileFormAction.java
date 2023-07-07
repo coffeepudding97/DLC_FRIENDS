@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSession;
 
+import model.comment.Comment;
+import model.comment.CommentDao;
+import model.post.Post;
+import model.post.PostDao;
+import model.post.PostResponseDto;
 import model.profile.Profile;
 import model.profile.ProfileDao;
 import model.profile.ProfileDto;
@@ -35,6 +41,7 @@ public class ProfileFormAction extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		ProfileDto profileDto = null;
+		PostResponseDto postDto = null;
 
 		String id = request.getParameter("id");
 		System.out.println("id : " + id);
@@ -43,9 +50,21 @@ public class ProfileFormAction extends HttpServlet {
 		
 		ProfileDao profileDao = ProfileDao.getInstance();
 		Profile profile = profileDao.getUserProfile(id);
-		System.out.println("?>" + profile);
+
+		PostDao postDao = PostDao.getInstance();
+		ArrayList<Post> postList = postDao.getPostByUserId(id); 
+		
+		CommentDao commentDao = CommentDao.getInstance();
+		ArrayList<Comment> commentList = commentDao.getCommentsByUserId(id);
+
+		
+		System.out.println("profile>" + profile);
+		System.out.println("postList>" + postList);
+		System.out.println("postList>" + commentList);
 		
 		request.setAttribute("profile", profile);
+		request.setAttribute("postList", postList);
+		request.setAttribute("commentList", commentList);
 		
 		String url = "/";
 		

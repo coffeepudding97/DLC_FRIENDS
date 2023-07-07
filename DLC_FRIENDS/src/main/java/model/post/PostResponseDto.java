@@ -40,6 +40,12 @@ public class PostResponseDto {
 		this.viewCount = viewCount;
 	}
 	
+	public PostResponseDto(String title, String gameTitle) {
+		super();
+		this.title = title;
+		this.gameTitle = gameTitle;
+	}
+
 	public int getPostNo() {
 		return postNo;
 	}
@@ -100,8 +106,7 @@ public class PostResponseDto {
 	public void setViewCount(int viewCount) {
 		this.viewCount = viewCount;
 	}
-	
-	
+
 	
 	
 	

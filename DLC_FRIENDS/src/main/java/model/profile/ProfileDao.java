@@ -85,24 +85,12 @@ public class ProfileDao {
 					Blob profileImg = this.rs.getBlob(3);
 					String info = this.rs.getString(4);
 					
-//					if(title.equals(null)) {
-//						title = "";
-//					}
-//					if(content.equals(null)) {
-//						content = "";
-//					}
-					
 					profile = new Profile(id, profileImg, info);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				try {
-					this.pstmt.close();
-					conn.close();
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+				DBManager.close(this.conn, this.pstmt, this.rs);
 			}
 		}
 		return profile;

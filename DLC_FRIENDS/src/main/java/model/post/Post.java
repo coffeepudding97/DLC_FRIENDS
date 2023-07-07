@@ -43,6 +43,12 @@ public class Post {
 		this.content = content;
 		this.viewCount = viewCount;
 	}
+	
+	public Post(String title, String gameTitle) {
+		super();
+		this.title = title;
+		this.gameTitle = gameTitle;
+	}
 
 	public int getPostNo() {
 		return postNo;
@@ -123,7 +129,14 @@ public class Post {
 	public void setViewCount(int viewCount) {
 		this.viewCount = viewCount;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "Post [postNo=" + postNo + ", userId=" + userId + ", title=" + title + ", gameTitle=" + gameTitle
+				+ ", recruitMax=" + recruitMax + ", createdTime=" + createdTime + ", meetTime=" + meetTime
+				+ ", leaveTime=" + leaveTime + ", content=" + content + ", viewCount=" + viewCount + "]";
+	}
+	
+	
 
 }
