@@ -12,21 +12,22 @@ import model.post.Post;
 import model.post.PostResponseDto;
 import util.DBManager;
 
-public class IndexDao {
+public class mainTableDao {
 	
 	//	 연동 준비
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	private IndexDao() {};
-	private static IndexDao instance = new IndexDao();
-	public static IndexDao getInstance() {
+	private mainTableDao() {};
+	private static mainTableDao instance = new mainTableDao();
+	public static mainTableDao getInstance() {
 		return instance;
 	}
 	
-	public ArrayList<PostResponseDto> getPostNo() {
-		ArrayList<PostResponseDto> list = new ArrayList<PostResponseDto>();
+	//게시판 불러오기 -> list return
+	public ArrayList<mainTable> getPostAll() {
+		ArrayList<mainTable> list = new ArrayList<mainTable>();
 		
 		//데이터베이스 연동
 		this.conn=DBManager.getConnection();
@@ -40,17 +41,17 @@ public class IndexDao {
 				this.rs = this.pstmt.executeQuery();
 				
 				while(this.rs.next()) {
-					int postNo = this.rs.getInt(0);
-					String gameTitle = this.rs.getString(4);
-					String title = this.rs.getString(2);
-					String userId = this.rs.getString(1);
-					int recruitMax = this.rs.getInt(5);
-					Timestamp createdTime = this.rs.getTimestamp(6);
+					int postNo = this.rs.getInt(1);
+					String userId = this.rs.getString(2);
+					String title = this.rs.getString(3);
+					String gameTitle = this.rs.getString(5);
+					int recruitMax = this.rs.getInt(6);
+					Timestamp createdTime = this.rs.getTimestamp(7);
 					int viewCount = this.rs.getInt(10);
 					
-					PostResponseDto post = new PostResponseDto(postNo, gameTitle, title, userId, recruitMax, createdTime ,viewCount);
-					list.add(post);
+					mainTable mt= new mainTable(postNo, gameTitle, title, userId, recruitMax, createdTime, viewCount);
 					
+					list.add(mt);
 				}
 			}catch(SQLException e) {
 				e.printStackTrace();
@@ -62,9 +63,8 @@ public class IndexDao {
 		return list;
 	}
 	
-
 	
-
+	
 	
 	
 }

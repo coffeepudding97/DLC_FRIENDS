@@ -10,6 +10,19 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
+  
+  <!--인덱스 게시판 부분 -->
+ <servlet>
+   	<servlet-name>mainTableAction</servlet-name>
+   	<servlet-class>controller.mainTableAction</servlet-class>
+   </servlet>
+   <servlet-mapping>
+   	<servlet-name>mainTableAction</servlet-name>
+   	<url-pattern>/mainTableAction</url-pattern>
+   </servlet-mapping>
+
+  
+  
   <!-- 유저 프로필 부분 -->
   	<servlet>
 		<servlet-name>ProfileFormAction</servlet-name>
@@ -58,8 +71,6 @@
 		<servlet-name>testInput</servlet-name>
 		<url-pattern>/testInput</url-pattern>
 	</servlet-mapping>
-	
-	
   
 	<servlet>
 		<servlet-name>DeleteCommentFormAction</servlet-name>
