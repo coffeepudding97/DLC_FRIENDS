@@ -50,8 +50,7 @@ public class CommentFormAction extends HttpServlet {
 		CommentDao cmtDao = CommentDao.getInstance();
 		
 		boolean result = cmtDao.createComment(cmtDto, postNo);
-		
-		System.out.println("cmt result : " + result);
+		response.getWriter().append(result + "");
 	}
 
 }

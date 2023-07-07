@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 
 </head>
+<c:import url="header"></c:import>
 <body>
 	<div id="root">
 		<section id="main-section">
@@ -18,9 +19,9 @@
 				requestScope. 
 				sessionScope. 
 				applicationScope. 
-				 -->
-				 <h1>post_no : ${param.post_no }</h1>
-				 
+				-->
+				<h1>post_no : ${param.post_no }</h1>
+				
 				<span><strong>${post.title}</strong></span>
 				<span>time : ${requestScope.post.createdTime }</span>
 				<hr/>
@@ -68,9 +69,11 @@
 						</c:choose>
 						<c:choose>
 							<c:when test="${requestScope.post.userId == cmt.userId }">
-								<form method="post" action="/deleteCmt">
-									<input type="hidden" name="cmtNo" value="${cmt.cmtNo }">
-									<input type="submit" value="삭제">
+								<%-- <form method="post" action="/deleteCmt"> --%>
+								<form>
+									<input type="hidden" class="cmtNo" name="cmtNo" value="${cmt.cmtNo }">
+									<%-- <input type="submit" value="삭제"> --%>
+									<input type="button" value="삭제" onclick="delete_comment(this)">
 								</form>
 							</c:when>
 						</c:choose>
@@ -79,14 +82,15 @@
 				</ul>
 				<%--아래 post.userID 나중에 로그인한 유저 id로 바꾸기 --%>
 				<span>${requestScope.post.userId }</span>
-				<form method="post" action="/comment">
+				<form>
 					<input type="hidden" id="postNo" name="postNo" value="${param.post_no }">
 					<input type="hidden" id="userId" name="userId" value="${requestScope.post.userId }">
 					<input type="text" id="comment" name="comment">
-					<input type="submit" value="작성">
+					<input type="button" value="작성" onclick="post_comment()">
 				</form>
 			</div>
 		</section>
 	</div>
+	<script src="../resources/script/post_api.js"></script>
 </body>
 </html>
