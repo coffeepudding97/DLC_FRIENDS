@@ -5,15 +5,16 @@ import java.sql.Blob;
 public class Profile {
 	// profile_no, user_id, profile_img, info, title, content
 	private String id;
-	private Blob profileImg;
+//	private Blob profileImg;
+	private String imageHtml;
 	private String info;
 	
 	
 	
-	public Profile(String id, Blob profileImg, String info) {
+	public Profile(String id, String imageHtml, String info) {
 		super();
 		this.id = id;
-		this.profileImg = profileImg;
+		this.imageHtml = imageHtml;
 		this.info = info;
 	}
 	
@@ -34,8 +35,8 @@ public class Profile {
 	public String getId() {
 		return id;
 	}
-	public Blob getProfileImg() {
-		return profileImg;
+	public String getProfileImg() {
+		return imageHtml;
 	}
 	public String getInfo() {
 		return info;
@@ -44,7 +45,7 @@ public class Profile {
 
 	@Override
 	public String toString() {
-		return "Profile [id=" + id + ", profileImg=" + profileImg + ", info=" + info + "]";
+		return "Profile [id=" + id + ", imageHtml=" + imageHtml + ", info=" + info + "]";
 	}
 	
 	
