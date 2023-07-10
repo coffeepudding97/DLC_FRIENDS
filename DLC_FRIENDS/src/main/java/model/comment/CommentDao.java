@@ -119,7 +119,25 @@ public class CommentDao {
 		return cmtList;
 	}
 	
-
+	public void deleteAllCommentByPostNo(int postNo) {
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "DELETE FROM comment WHERE post_no = ?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setInt(1, postNo);
+				this.pstmt.execute();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt, rs);
+			}
+		}
+	}
+	
 	public boolean deleteCommentByCmtNo(int cmtNo) {
 		this.conn = DBManager.getConnection();
 		

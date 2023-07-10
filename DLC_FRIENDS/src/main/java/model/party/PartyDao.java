@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import model.post.PostDao;
 import model.profile.Profile;
+import model.profile.ProfileDao;
 import util.DBManager;
 
 public class PartyDao {
@@ -72,13 +73,22 @@ public class PartyDao {
 				
 				int partyNo = 0;
 				ArrayList<String> userIds = new ArrayList<String>();
+				ArrayList<String> imageHtmls = new ArrayList<String>();
+				ProfileDao profileDao = ProfileDao.getInstance();
 				
 				while(this.rs.next()) {
 					partyNo = this.rs.getInt(1);
-					userIds.add(this.rs.getString(3));
+					String userId = this.rs.getString(3);
+					userIds.add(userId);
+					
+					Profile profile = profileDao.getUserProfile(userId);
+					imageHtmls.add(profile.getProfileImg());
 				}
 				
-				party = new Party(partyNo, postNo, userIds);
+				//party = new Party(partyNo, postNo, userIds);
+				party = new Party(partyNo, postNo, userIds, imageHtmls);
+				
+				
 			} catch (Exception e) {
 				// TODO: handle exception
 			} finally {
@@ -90,12 +100,57 @@ public class PartyDao {
 	}
 	
 	// 로그인 기능 환성 후 작성
-	public void join() {
-		
+	public void join(int postNo, String userId) {
+		this.conn = DBManager.getConnection();
+		if(this.conn!=null) {
+			String sql = "INSERT INTO party_member(post_no, user_id) values(?, ?)";
+
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setInt(1, postNo);
+				this.pstmt.setString(2, userId);
+				this.pstmt.execute();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt);
+			}
+		}
 	}
 	
-	public void leave() {
-		
+	public void leave(int postNo, String userId) {
+		this.conn = DBManager.getConnection();
+		if(this.conn!=null) {
+			String sql = "DELETE FROM party_member WHERE post_no = ? AND user_id = ?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setInt(1, postNo);
+				this.pstmt.setString(2, userId);
+				this.pstmt.execute();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt);
+			}
+		}
 	}
 	
+	public void deletePartyByPostNo(int postNo) {
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn!= null) {
+			String sql = "DELETE FROM party_member WHERE post_no = ?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setInt(1, postNo);
+				this.pstmt.execute();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt);
+			}
+		}
+	}
 }

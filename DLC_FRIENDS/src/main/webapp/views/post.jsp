@@ -11,6 +11,7 @@
 </head>
 <c:import url="header"></c:import>
 <body>
+	<script src="../resources/script/post_api.js"></script>
 	<div id="root">
 		<section id="main-section">
 			<div id=div-postinfo>
@@ -24,8 +25,12 @@
 				
 				<span><strong>${post.title}</strong></span>
 				<span>time : ${requestScope.post.createdTime }</span>
+				<span>조회수 : ${requestScope.post.viewCount }</span>
 				<hr/>
-				<p>${post.userId }</p>
+				<span>${post.userId }</span>
+				<button onclick="">수정</button>
+				<button onclick="">삭제</button>
+				<br/>
 				<span>${post.gameTitle }</span>
 				<span>1</span><span>/</span><span>${post.recruitMax }</span>
 				<span>${post.meetTime }</span>
@@ -39,10 +44,10 @@
 					<c:forEach var="i" begin="0" end="${post.recruitMax-1 }">
 						<c:choose>
 							<c:when test="${i < requestScope.party.userIds.size() }">
-								<li><button><img src="#"><span>${requestScope.party.userIds.get(i) }</span></button></li>
+								<li><button onclick="profileClick(this)">${requestScope.profileDtos.get(i).imageHtml }<span class="memberId">${requestScope.profileDtos.get(i).id }</span></button></li>
 							</c:when>
 							<c:otherwise>
-								<li><button><span>+</span></button></li>
+								<li><button onclick="blankClick(this)"><span class="memberId">+</span></button></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -91,6 +96,7 @@
 			</div>
 		</section>
 	</div>
-	<script src="../resources/script/post_api.js"></script>
+	
+	
 </body>
 </html>

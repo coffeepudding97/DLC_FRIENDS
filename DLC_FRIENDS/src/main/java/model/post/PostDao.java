@@ -99,6 +99,25 @@ public class PostDao {
 		return check;
 	}
 	
+	public void deletePostByPostNo(int postNo) {
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn!=null) {
+			String sql = "DELETE FROM post WHERE post_no = ?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setInt(1, postNo);
+				this.pstmt.execute();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt);
+			}
+		}
+	}
+	
 	public String getUserIdByPostNo(int postNo) {
 		String userId = null;
 		
@@ -154,6 +173,8 @@ public class PostDao {
 					
 					post = new Post(postNo, userId, title, gameTitle, recruitMax, createdTime,
 							meetTime, leaveTime, content, viewCount);
+					
+					
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -164,6 +185,39 @@ public class PostDao {
 		
 		
 		return post;
+	}
+	
+	public void increaseViewCount(int postNo) {
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn!=null) {
+			String sql = "SELECT view_count FROM post WHERE post_no = ?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setInt(1, postNo);
+				this.rs = this.pstmt.executeQuery();
+				
+				if(this.rs.next()){
+					int viewCount = this.rs.getInt("view_count");
+					System.out.println("조회수:" + viewCount);
+					
+					sql = "UPDATE post SET view_count = ? where post_no = ?";
+					
+					this.pstmt = this.conn.prepareStatement(sql);
+					this.pstmt.setInt(1, viewCount+1);
+					this.pstmt.setInt(2, postNo);
+					
+					this.pstmt.execute();
+				}				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt, rs);
+			}
+			
+		}
 	}
 	
 	// 선택된 프로필 유저의 id값을 받아, 그 유저가 작성한 게시글 받아오는 기능
