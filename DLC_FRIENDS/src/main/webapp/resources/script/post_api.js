@@ -73,3 +73,58 @@ function append_comment(list) {
 
 	})
 }
+
+function profileClick(button){
+	const postNo = $('#postNo').val();
+	const userId = $('#userId').val();
+	const btn = $(button);
+	const memberId = btn.text();
+	
+	if(userId === memberId){
+		$.ajax({
+			"method":"POST",
+			"url":`http://localhost:8080//PartyLeaveAction?postNo=${postNo}&userId=${userId}`
+		}).done(party => {
+			btn.empty();
+			btn.append(`<span class="memberId">+</span>`);
+			btn.removeAttr("onclick");
+			btn.attr("onclick", "blankClick(this)");
+		})
+	} else{
+		alert("프로필");
+	}
+}
+
+function blankClick(button){
+	const postNo = $('#postNo').val();
+	const userId = $('#userId').val();
+	let res = false;
+	
+	
+	
+	$('.memberId').each(
+		function(){
+			if($(this).text() === userId){
+				res = true;
+				return false;
+			}
+		}
+	);
+	
+	if(!res){
+		$.ajax({
+			"method":"POST",
+			"url":`http://localhost:8080/PartyJoinAction?postNo=${postNo}&userId=${userId}`,
+			"dataType":"json"
+		}).done(profile => {
+			$(button).empty();
+			$(button).append(`${profile.profileImg}<span class="memberId">${profile.id }</span>`);
+			$(button).removeAttr("onclick");
+			$(button).attr("onclick", "profileClick(this)");
+		})
+		
+		
+	} else {
+		alert("이미 참가한 유저");
+	}
+}

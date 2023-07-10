@@ -4,7 +4,8 @@ import java.sql.Blob;
 
 public class ProfileDto {
 	private String id;
-	private Blob profileImg;
+//	private Blob profileImg;
+	private String imageHtml;
 	private String info;
 	
 	public String getId() {
@@ -12,12 +13,6 @@ public class ProfileDto {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public Blob getProfileImg() {
-		return profileImg;
-	}
-	public void setProfileImg(Blob profileImg) {
-		this.profileImg = profileImg;
 	}
 	public String getInfo() {
 		return info;
@@ -28,6 +23,18 @@ public class ProfileDto {
 	
 	
 	
+	public String getImageHtml() {
+		return imageHtml;
+	}
+	public void setImageHtml(String imageHtml) {
+		this.imageHtml = imageHtml;
+	}
+	public ProfileDto(String id, String imageHtml, String info) {
+		super();
+		this.id = id;
+		this.imageHtml = imageHtml;
+		this.info = info;
+	}
 	public ProfileDto(String id, String info) {
 		super();
 		this.id = id;

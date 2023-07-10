@@ -69,6 +69,46 @@ public class ProfileDao {
 		return profile;
 	}
 	
+	public ArrayList<ProfileDto> getProfileDtosByUserIds(ArrayList<String> userIds, int postNo) {
+		ArrayList<ProfileDto> profileDtos = new ArrayList<ProfileDto>();
+		
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "SELECT * FROM profile WHERE user_id=?";
+			
+			try {
+				for(String id : userIds) {
+					this.pstmt = this.conn.prepareStatement(sql);
+					// profile_no, user_id, profile_img, info
+					this.pstmt.setString(1, id);
+					//this.pstmt.setInt(2, postNo);
+					
+					this.rs = this.pstmt.executeQuery();
+					
+					if(this.rs.next()) {
+//						Blob profileImg = this.rs.getBlob(3);
+						String userId = this.rs.getString("user_id");
+						InputStream inputStream = rs.getBinaryStream("profile_img");
+						Path outputPath = Path.of("output.png");
+						Files.copy(inputStream, outputPath, StandardCopyOption.REPLACE_EXISTING);
+						
+						String base64Image = encodeImageToBase64(outputPath);
+						String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
+						String info = this.rs.getString("info");
+						
+						profileDtos.add(new ProfileDto(userId, imageHtml, info));
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(this.conn, this.pstmt, this.rs);
+			}
+		}
+		return profileDtos;
+	}
+	
     private static String encodeImageToBase64(Path imagePath) throws IOException {
         byte[] imageBytes = Files.readAllBytes(imagePath);
         return Base64.getEncoder().encodeToString(imageBytes);
