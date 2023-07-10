@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="./CSS/signup.css"/>
+<link rel="stylesheet" href="../resources/style/join.css"/>
 <title>Insert title here</title>
 </head>
 <body>
