@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.index.mainTable;
-import model.index.mainTableDao;
+import model.main.mainTable;
+import model.main.mainTableDao;
 import model.post.PostResponseDto;
 
 /**
