@@ -5,6 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Base64;
+
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+import model.user.UserRequestDto;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -47,15 +53,15 @@ public class ProfileDao {
 				this.rs = this.pstmt.executeQuery();
 				
 				if(this.rs.next()) {
-//					Blob profileImg = this.rs.getBlob(3);
-					InputStream inputStream = rs.getBinaryStream(3);
+					InputStream inputStream = this.rs.getBinaryStream(3);
 					Path outputPath = Path.of("output.png");
 					Files.copy(inputStream, outputPath, StandardCopyOption.REPLACE_EXISTING);
 					
+					// 프로필 이미지 변환 및 base64 인코딩
 					String base64Image = encodeImageToBase64(outputPath);
 					String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
 					
-					
+					// 프로필 정보 읽어오기
 					String info = this.rs.getString(4);
 					
 					profile = new Profile(id, imageHtml, info);
@@ -112,5 +118,66 @@ public class ProfileDao {
     private static String encodeImageToBase64(Path imagePath) throws IOException {
         byte[] imageBytes = Files.readAllBytes(imagePath);
         return Base64.getEncoder().encodeToString(imageBytes);
+    }
+    
+    // 사진 수정
+    public boolean upload(String id, Part inputImage,InputStream inputStream) {
+    	Connection conn = DBManager.getConnection();
+    	
+    	if(conn != null) {
+    		String sql = "UPDATE profile SET profile_img=? WHERE user_id=?";
+    		
+    		try {
+    			this.pstmt = conn.prepareStatement(sql);
+    			this.pstmt.setBinaryStream(1, inputImage.getInputStream(), inputImage.getSize());
+    			this.pstmt.setString(2, id);
+    			
+    			this.pstmt.execute();
+    			System.out.println("DB 업로드 성공");
+    			return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("DB 업로드 실패");
+			} finally {
+				DBManager.close(conn, pstmt);
+			}
+    	}
+    	return false;
+    }
+    
+    public boolean updateUser(UserRequestDto userDto, String password) {
+    	this.conn = DBManager.getConnection();
+    	boolean result = false;
+    	
+    	if(this.conn != null && userDto.getPassword() != null) {
+    		// 변경할 비밀번호를 입력했을 때
+    		if(userDto.getPassword() != "") {
+    			String sql = "UPDATE user SET pw=? WHERE user_id=? AND pw=?";
+    			
+    			try {
+					this.pstmt = this.conn.prepareStatement(sql);
+					
+					this.pstmt.setString(1, userDto.getPassword());
+					this.pstmt.setString(2, userDto.getId());
+					this.pstmt.setString(3, password);
+					
+	                int affectedRows = this.pstmt.executeUpdate();
+
+	                if (affectedRows > 0) {
+	                    System.out.println("비밀번호 변경에 성공했습니다.");
+	                    System.out.println("개수: " + affectedRows);
+	                    result = true;
+	                } else {
+	                    System.out.println("비밀번호가 일치하지 않아 변경에 실패했습니다.");
+	                    result = false;
+	                }
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					DBManager.close(this.conn, this.pstmt);
+				}
+    		}
+    	}
+    	return result;
     }
 }

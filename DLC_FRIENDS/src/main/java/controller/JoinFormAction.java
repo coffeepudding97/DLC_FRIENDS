@@ -46,31 +46,34 @@ public class JoinFormAction extends HttpServlet {
 		String password = request.getParameter("password");
 		String nickName = request.getParameter("nickName");
 		String email = request.getParameter("email");
-		int bd = Integer.parseInt(request.getParameter("birth"));
-		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-		java.util.Date jbirth = null;
-		try {
-			jbirth = format.parse(Integer.toString(bd));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Date birth = new Date(jbirth.getTime());
+		int birth = Integer.parseInt(request.getParameter("birth"));
 		
+		UserDao userDao = UserDao.getInstance();
+		
+		boolean duplId = userDao.duplIdCheck(id);
+		boolean duplNick = userDao.duplNickname(nickName);
 		boolean result = false;
 		
-		if(birth !=null) {
-			UserRequestDto user = new UserRequestDto(id, password, nickName, email, birth);
+		if(!duplId) {
+			System.out.println("아이디 중복없음");
 			
-			UserDao userDao = UserDao.getInstance();
+			if(!duplNick) {
+				System.out.println("닉네임 중복없음");
+				
+				UserRequestDto user = new UserRequestDto(id, password, nickName, email, birth);
+				result = userDao.createUser(user);
+				
+			}else {
+				System.out.println("닉네임 중복있음");
+				response.sendRedirect("join");
+			}
 			
-			result = userDao.createUser(user);
-		} else {
-			System.out.println("birth null");
+		}else{
+			System.out.println("아이디 중복있음");
+			response.sendRedirect("join");
 		}
 		
-		
-		System.out.println(result);
+		System.out.println("결과: " + result);
 	}
 
 }

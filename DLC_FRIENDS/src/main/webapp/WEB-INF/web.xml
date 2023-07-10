@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>DLC_FRIENDS</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-  </welcome-file-list>
-  
-  	<servlet>
-  		<servlet-name>JoinFormAction</servlet-name>
-  		<servlet-class>controller.JoinFormAction</servlet-class>
-  	</servlet>
-  	<servlet-mapping>
-  		<servlet-name>JoinFormAction</servlet-name>
-  		<url-pattern>/joinForm</url-pattern>
-  	</servlet-mapping>
-  	
-  		<!--인덱스 게시판 부분 -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>DLC_FRIENDS</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>JoinFormAction</servlet-name>
+		<servlet-class>controller.JoinFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JoinFormAction</servlet-name>
+		<url-pattern>/joinForm</url-pattern>
+	</servlet-mapping>
+
+	<!--인덱스 게시판 부분 -->
 	<servlet>
 		<servlet-name>MainTableAction</servlet-name>
 		<servlet-class>controller.MainTableAction</servlet-class>
@@ -48,23 +51,15 @@
 		<url-pattern>/footer</url-pattern>
 	</servlet-mapping>
   
-  	<servlet>
+
+
+	<servlet>
 		<servlet-name>ProfileFormAction</servlet-name>
 		<servlet-class>controller.ProfileFormAction</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProfileFormAction</servlet-name>
 		<url-pattern>/ProfileForm</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>MemberInfoModify</servlet-name>
-		<servlet-class>controller.MemberInfoModify</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>MemberInfoModify</servlet-name>
-		<url-pattern>/memberInfoModify</url-pattern>
 	</servlet-mapping>
 
 	<!-- jsp -->
@@ -96,6 +91,50 @@
 		<url-pattern>/testInput</url-pattern>
 	</servlet-mapping>
 
+	<!-- memberInfoModidy -->
+
+	<servlet>
+		<servlet-name>UploadImage</servlet-name>
+		<servlet-class>controller.UploadImage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UploadImage</servlet-name>
+		<url-pattern>/uploadImage</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MemberInfoModify</servlet-name>
+		<servlet-class>controller.MemberInfoModifyAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberInfoModify</servlet-name>
+		<url-pattern>/memberInfoModify</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>profileUpdate</servlet-name>
+		<jsp-file>/views/memberInfoModify.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>profileUpdate</servlet-name>
+		<url-pattern>/profileUpdate</url-pattern>
+	</servlet-mapping>
+	
+	<!-- ================ -->
+	
+	<!-- LoginFormAction -->
+	
+	<servlet>
+		<servlet-name>LoginFormAction</servlet-name>
+		<servlet-class>controller.LoginFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginFormAction</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	
+	<!-- ================ -->
+	
 	<servlet>
 		<servlet-name>DeleteCommentFormAction</servlet-name>
 		<servlet-class>controller.DeleteCommentFormAction</servlet-class>
@@ -175,7 +214,7 @@
 		<servlet-name>dbtestGJ</servlet-name>
 		<url-pattern>/dbtestGJ</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>join</servlet-name>
 		<jsp-file>/views/join.jsp</jsp-file>
@@ -185,6 +224,6 @@
 		<servlet-name>join</servlet-name>
 		<url-pattern>/join</url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 </web-app>
