@@ -46,7 +46,7 @@ public class ProfileFormAction extends HttpServlet {
 		String id = request.getParameter("id");
 		System.out.println("id : " + id);
 		
-		profileDto = new ProfileDto(id);
+//		profileDto = new ProfileDto(id);
 		
 		ProfileDao profileDao = ProfileDao.getInstance();
 		Profile profile = profileDao.getUserProfile(id);
@@ -69,7 +69,7 @@ public class ProfileFormAction extends HttpServlet {
 		String url = "/";
 		
 		if(profile != null) {
-			System.out.println("들어옴");
+			session.setAttribute("log", id);
 			url = "profile";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);

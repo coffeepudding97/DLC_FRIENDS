@@ -8,58 +8,97 @@
 <link rel="stylesheet" href="../resources/style/profile.css">
 </head>
 <body>
+	<%
+	String id = session.getAttribute("log").toString();
+	%>
+
+
 	<div id="root">
-		<form method="POST" action="">
-			<header></header>
+		<jsp:include page="header"></jsp:include>
+		<div>
+			<h1><%=id%>님의 프로필 수정
+			</h1>
+		</div>
 
-			<section id="main-section">
-				<!-- 상단 프로필 부분 -->
-				<div id="top">
-					<!-- 왼쪽 프로필 -->
+		<section id="main-section">
+			<!-- 상단 프로필 부분 -->
+			<div id="top">
+				<!-- 왼쪽 프로필 -->
+				<div>
+					<!-- 이미지 -->
+
+					<form action="/uploadImage" method="post"
+						enctype="multipart/form-data">
+						<input type="file" name="input_image"> <input
+							type="submit" value="Upload Image">
+					</form>
+
+					<!-- * 유저 이름 -->
+					<!-- 
 					<div>
-						<!-- 이미지 -->
-						<img src="../resources/images/user.png" alt="프로필사진" width="30px"
-						height="30px">
-						<!-- 유저 이름 -->
-						<input type="text" id="name" name="name" placeholder="이름입력"
-							autofocus>
+						<input type="text" id="nickname" name="nickname"
+							placeholder="아이디 or 닉네임 입력">
 					</div>
+					 -->
+				</div>
 
-					<!-- 중앙 메세지 -->
-					<div id="profile_center">
-						<!-- 태그 -->
-						<div></div>
+				<!-- 중앙 메세지 -->
+				<div id="profile_center">
+					<!-- 태그 -->
+					<div></div>
 
-						<!-- 소개글 -->
-						<div></div>
+					<!-- 소개글 -->
+					<div></div>
 
-						<!-- 유저평가(신고) 태그 -->
-						<div></div>
-
-					</div>
+					<!-- 유저평가(신고) 태그 -->
+					<div></div>
 
 				</div>
 
-				<!-- 하단 -->
+			</div>
+
+			<!-- 하단 -->
+			<form method="POST" action="/memberInfoModify">
 				<div id="bottom">
 					<!-- 왼쪽 수정부분 -->
 					<div id="left_modify">
 						<!-- 아이디 -->
+						<div>
+							<input type="text" id="id" name="id" value="${sessionScope.log }"
+								readonly>
+						</div>
 						<!-- 기존 비밀번호 -->
+						<div>
+							<input type="password" name="password" placeholder="기존 비밀번호">
+						</div>
 						<!-- 새로운 비밀번호 -->
-						<!-- 생년월일 -->
+						<div>
+							<input type="text" id="newPw" name="newPw"
+								placeholder="새 비밀번호">
+						</div>
+						<!-- * 생년월일 -->
+						<!-- 
+						<div>
+							<input type="text" id="birthday" name="birthday"
+								value="${requestScope.birthday }" readonly>
+						</div>
+						 -->
 					</div>
-					
+
 					<!-- 오른쪽 완료버튼 -->
 					<div id="right_btn">
-						<button>수정 완료</button>
+						<input type="button" id="submit-btn" onclick="modify(form)" value="회원정보 수정완료">
 					</div>
+					
+					<button onclick="test(this)">테스트</button>
 				</div>
-			</section>
+			</form>
 
-			<footer></footer>
+		</section>
 
-		</form>
+		<footer></footer>
+
 	</div>
+	<script src="../resources/script/profile.js"></script>
 </body>
 </html>

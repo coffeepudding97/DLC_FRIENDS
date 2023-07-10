@@ -35,7 +35,46 @@ public class UserDao {
 	// ㄴ Read
 	// ㄴ Update (Update 테이블명 SET 컬럼명1=값1, 컬럼명2=값2 ... WHERE 기본키=값3 AND 비밀번호=값4)
 	// ㄴ Delete (DELETE FROM 테이블명 WHERE 기본키=값1)
-
+	
+	
+	// 아이디 중복체크(true: 중복있음)
+	public boolean duplIdCheck(String id) {
+		User result = getUserById(id);
+		if(result != null)
+			return true;
+		
+		return false;
+	}
+	
+	// 닉네임 중복체크 (true: 중복있음)
+	public boolean duplNickname(String nickname) {
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "SELECT nickname FROM user where nickname= ?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setString(1, nickname);
+				
+				this.rs = this.pstmt.executeQuery();
+				
+				if(this.rs.next()) {
+					int count = rs.getInt(1);
+					if(count > 0)
+						return true;
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(this.conn, this.pstmt);
+			}
+		}
+		return false;
+	}
+	
+	// 유저 생성
 	public boolean createUser(UserRequestDto userDto) {
 		User result = getUserById(userDto.getId());
 		if (result != null)
@@ -45,77 +84,55 @@ public class UserDao {
 		String password = userDto.getPassword();
 		String nickName = userDto.getNickname();
 		String email = userDto.getEmail();
-		Date birth = userDto.getBirthday(); // date
+		int birth = userDto.getBirthday(); // date
+		
+		boolean isSuccess = false;
 
-		boolean check = true;
-
-		if (id != null && password != null && nickName != null && birth != null) {
+		if(id != null && password != null && nickName != null && birth != 0) {
 			this.conn = DBManager.getConnection();
-			if (this.conn != null) {
-				String sql = "INSERT INTO user VALUES(?, ?, ?, ?, ?)";
-// id, pw, nick, email, birth
+			if(this.conn != null) {
+				String userInsertSql = "INSERT INTO user VALUES(?, ?, ?, ?, DATE(?))";
+				String profileInsertSql = "INSERT INTO profile(user_id, profile_img, info) VALUES(?, null, '소개글을 입력해주세요.');";
+				
 				try {
-					this.pstmt = this.conn.prepareStatement(sql);
+					// 트랜잭션 시작
+					conn.setAutoCommit(false);
+					
+					// 회원정보 저장
+					this.pstmt = this.conn.prepareStatement(userInsertSql);
 					this.pstmt.setString(1, id);
 					this.pstmt.setString(2, password);
 					this.pstmt.setString(3, nickName);
 					this.pstmt.setString(4, email);
-					this.pstmt.setDate(5, (java.sql.Date) birth);
+					this.pstmt.setInt(5, birth);
+					this.pstmt.executeUpdate();
 
-					this.pstmt.execute();
-
+					// 프로필 정보 저장
+					this.pstmt = this.conn.prepareStatement(profileInsertSql);
+					this.pstmt.setString(1, id);
+					pstmt.executeUpdate();
+					
+					// 트랜잭션 커밋
+					conn.commit();
+					isSuccess = true;
+					
 				} catch (Exception e) {
 					e.printStackTrace();
-					check = false;
+					isSuccess = false;
+					try {
+						// 트랜지션 롤백
+						this.conn.rollback();
+						
+					} catch (SQLException sqle) {
+						sqle.printStackTrace();
+					}
 				} finally {
 					DBManager.close(this.conn, this.pstmt);
 				}
-			} else {
-				check = false;
 			}
-		} else {
-			check = false;
 		}
-		return check;
+		return isSuccess;
 	}
-
-	/*public ArrayList<User> getUserAll() {
-		ArrayList<User> list = new ArrayList<User>();
-
-		// 1. 데이터 베이스 연동
-		this.conn = DBManager.getConnection();
-
-		if (this.conn != null) {
-			// 2. 연동된 DB에 execute할 SQL쿼리를 문자열로 작성
-			String sql = "SELECT * FROM user";
-
-			try {
-				// 3. 쿼리를 객체에 담아 날릴 준비
-				this.pstmt = this.conn.prepareStatement(sql);
-
-				// 4. 쿼리 실행 execute -> 반환 받은 ResultSet 을 초기화
-				this.rs = this.pstmt.executeQuery();
-
-				// 5. ResultSet의 행 읽기
-				while (this.rs.next()) {
-					String id = this.rs.getString(1);
-					String password = this.rs.getString(2);
-					String nickName = this.rs.getString(3);
-					String email = this.rs.getString(4);
-					Date birth = this.rs.getDate(5);
-
-					User user = new User(id, password, email, nickName, birth);
-					list.add(user);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				DBManager.close(this.conn, this.pstmt, this.rs);
-			}
-		}
-
-		return list;
-	}*/
 
 	public User getUserById(String id) {
 		User user = null;
@@ -140,7 +157,8 @@ public class UserDao {
 					user = new User(id, password, nickname, email, birth);
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+//				e.printStackTrace();
+				return null;
 			} finally {
 				DBManager.close(this.conn, this.pstmt, this.rs);
 			}
@@ -148,74 +166,4 @@ public class UserDao {
 
 		return user;
 	}
-
-	/*public void updateUser(UserRequestDto userDto, String password) {
-		this.conn = DBManager.getConnection();
-
-		if (this.conn != null && userDto.getId() != null && userDto.getPassword() != null
-				&& userDto.getEmail() != null) {
-			if (userDto.getPassword() != "") {
-				String sql = "UPDATE user SET password=?, email=? WHERE id=? AND password=?";
-
-				try {
-					this.pstmt = this.conn.prepareStatement(sql);
-					this.pstmt.setString(1, userDto.getId());
-					this.pstmt.setString(2, userDto.getPassword());
-					this.pstmt.setString(3, userDto.getEmail());
-					this.pstmt.setString(4, password);
-
-					this.pstmt.execute();
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					DBManager.close(this.conn, this.pstmt);
-				}
-			} else {
-				String sql = "UPDATE user SET email=? WHERE id=? AND password=?";
-
-				try {
-					this.pstmt = this.conn.prepareStatement(sql);
-					this.pstmt.setString(1, userDto.getEmail());
-					this.pstmt.setString(2, userDto.getId());
-					this.pstmt.setString(3, password);
-
-					this.pstmt.execute();
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					DBManager.close(this.conn, this.pstmt);
-				}
-			}
-		}
-	}
-
-	public boolean deleteUserById(String id, String password) {
-		this.conn = DBManager.getConnection();
-
-		boolean check = true;
-
-		if (this.conn != null) {
-			String sql = "DELETE FROM user WHERE id=? AND password=?";
-
-			try {
-				this.pstmt = this.conn.prepareStatement(sql);
-				this.pstmt.setString(1, id);
-				this.pstmt.setString(2, password);
-
-				this.pstmt.execute();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				check = false;
-			} finally {
-				DBManager.close(this.conn, this.pstmt);
-			}
-		} else {
-			check = false;
-		}
-		return check;
-	}
-*/
 }

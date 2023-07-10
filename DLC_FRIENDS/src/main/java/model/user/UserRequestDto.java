@@ -7,9 +7,9 @@ public class UserRequestDto {
 	private String password;
 	private String nickName;
 	private String email;
-	private Date birthday;
+	private int birthday;
 	
-	public UserRequestDto(String id, String password, String nickname, String email, Date birthday) {
+	public UserRequestDto(String id, String password, String nickname, String email, int birthday) {
 		this.id = id;
 		this.password = password;
 		this.nickName = nickname;
@@ -44,13 +44,21 @@ public class UserRequestDto {
 	}
 
 
-	public Date getBirthday() {
+	public int getBirthday() {
 		return birthday;
 	}
 
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(int birthday) {
 		this.birthday = birthday;
+	}
+
+
+	// memberInfoModifyAction.java에서 사용
+	public UserRequestDto(String id, String password) {
+		super();
+		this.id = id;
+		this.password = password;
 	}
 
 	
