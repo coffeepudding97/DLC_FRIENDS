@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.main.mainTable;
-import model.main.mainTableDao;
+import model.main.MainTable;
+import model.main.MainTableDao;
 import model.post.PostResponseDto;
 
 /**
  * Servlet implementation class mainTableAction
  */
-public class mainTableAction extends HttpServlet {
+public class MainTableAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public mainTableAction() {
+    public MainTableAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,14 +33,13 @@ public class mainTableAction extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//HttpSession session = request.getSession();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		MainTableDao MaintableDao = MainTableDao.getInstance();
+		ArrayList<MainTable> mainList = MaintableDao.getPostAll();
+		request.setAttribute("mainList", mainList);
 		
-		mainTableDao maintableDao = mainTableDao.getInstance();
-		ArrayList<mainTable> mainList = maintableDao.getPostAll();
-		
-		System.out.println(mainList);
+		request.getRequestDispatcher("index").forward(request, response);
 	}
 
 }

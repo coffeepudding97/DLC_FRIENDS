@@ -12,22 +12,22 @@ import model.post.Post;
 import model.post.PostResponseDto;
 import util.DBManager;
 
-public class mainTableDao {
+public class MainTableDao {
 	
 	//	 연동 준비
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	private mainTableDao() {};
-	private static mainTableDao instance = new mainTableDao();
-	public static mainTableDao getInstance() {
+	private MainTableDao() {};
+	private static MainTableDao instance = new MainTableDao();
+	public static MainTableDao getInstance() {
 		return instance;
 	}
 	
 	//게시판 불러오기 -> list return
-	public ArrayList<mainTable> getPostAll() {
-		ArrayList<mainTable> list = new ArrayList<mainTable>();
+	public ArrayList<MainTable> getPostAll() {
+		ArrayList<MainTable> list = new ArrayList<MainTable>();
 		
 		//데이터베이스 연동
 		this.conn=DBManager.getConnection();
@@ -49,7 +49,7 @@ public class mainTableDao {
 					Timestamp createdTime = this.rs.getTimestamp(7);
 					int viewCount = this.rs.getInt(10);
 					
-					mainTable mt= new mainTable(postNo, gameTitle, title, userId, recruitMax, createdTime, viewCount);
+					MainTable mt= new MainTable(postNo, gameTitle, title, userId, recruitMax, createdTime, viewCount);
 					
 					list.add(mt);
 				}
@@ -62,6 +62,7 @@ public class mainTableDao {
 		}
 		return list;
 	}
+	
 	
 	
 	

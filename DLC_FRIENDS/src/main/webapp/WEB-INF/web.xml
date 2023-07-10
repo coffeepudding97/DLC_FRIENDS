@@ -21,12 +21,12 @@
   	
   		<!--인덱스 게시판 부분 -->
 	<servlet>
-		<servlet-name>mainTableAction</servlet-name>
-		<servlet-class>controller.mainTableAction</servlet-class>
+		<servlet-name>MainTableAction</servlet-name>
+		<servlet-class>controller.MainTableAction</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>mainTableAction</servlet-name>
-		<url-pattern>/mainTableAction</url-pattern>
+		<servlet-name>MainTableAction</servlet-name>
+		<url-pattern>/main</url-pattern>
 	</servlet-mapping>
 
 	<!-- page module -->
@@ -37,6 +37,15 @@
 	<servlet-mapping>
 		<servlet-name>header</servlet-name>
 		<url-pattern>/header</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>footer</servlet-name>
+		<jsp-file>/footer.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>footer</servlet-name>
+		<url-pattern>/footer</url-pattern>
 	</servlet-mapping>
   
   	<servlet>
@@ -94,6 +103,24 @@
 	<servlet-mapping>
 		<servlet-name>DeleteCommentFormAction</servlet-name>
 		<url-pattern>/deleteCmt</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MainView</servlet-name>
+		<jsp-file>/views/main.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MainView</servlet-name>
+		<url-pattern>/MainView</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>index</servlet-name>
+		<jsp-file>/index.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>index</servlet-name>
+		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
 
 	<!-- 글쓰기 -->

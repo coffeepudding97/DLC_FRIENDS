@@ -2,7 +2,7 @@ package model.main;
 
 import java.sql.Timestamp;
 
-public class mainTableDto {
+public class MainTableDto {
 	int postNo;
 	String gameTitle;
 	String title;

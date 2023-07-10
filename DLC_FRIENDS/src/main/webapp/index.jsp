@@ -1,5 +1,3 @@
-
-<%@ page import="model.index.mainTableDao" %>
 <%@ page import="java.util.ArrayList" %>
 <%@page import="util.DBManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,5 +16,8 @@
 	<jsp:include page ="views/main.jsp"></jsp:include>
 	<jsp:include page="footer.jsp"></jsp:include>
 </div>
+<script>
+
+</script>
 </body>
 </html>

@@ -1,7 +1,15 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
 body {
 	margin:0;
+	font-family: 'Pretendard-Regular';
 }
 
 ul, li {
@@ -16,18 +24,18 @@ a {
 }
 
 #wrap {
-	background-color:#1B262C;
+	background: linear-gradient(#172235, #3a536f);
 }
 
 #main-section {
-	width:1440px;
+	max-width:1440px;
 	margin:0 auto;
 }
 
 
 /* 메인 게시판 */
 .main_table_wrap {
-	width:1200px;
+	max-width:1200px;
 	margin:0 auto;
 	padding-top:100px;
 	padding-bottom:100px;
@@ -37,19 +45,60 @@ a {
 	flex-direction:column;
 	background-color:#31313c;
 }
+
 .main_table ul {
 	display:flex;
 	flex-direction: row;
 }
 .main_table ul li {
-	color:white;
 	width:100%;
-	border:1px solid black;
+	color:white;
+	border:1px solid #282830;
+	border-bottom:none;
 }
+.main_table ul li:last-child {
+	border-bottom:1px solid #282830;
+}
+
 
 .main_table .table_title li {
 	text-align:center;
+	font-size:8px;
+	padding: 5px 0;
 }
+.main_table .table_title li:first-child {
+	width:50%;
+}
+.main_table .table_title li:nth-child(3) {
+	width:200%;
+}
+
+.main_table .table_title li:last-child {
+	width:50%;
+}
+
+
+.main_table .table_content li {
+	text-align:center;
+	font-size:15px;
+	padding: 30px 0;
+}
+
+.main_table .table_content li:first-child {
+	width:50%;
+}
+
+.main_table .table_content li:nth-child(3) {
+	width:200%;
+}
+
+.main_table .table_content li:last-child {
+	width:50%;
+}
+
+
+
+
 
 /* 글쓰기버튼 */
 .write {

@@ -15,13 +15,13 @@
 			<div class=header_wrap>
 			<div class=header_top_wrap>
 					<div class =header_top>
-					<a href="#">DLC_FRIENDS</a>
+					<a href="main">DLC_FRIENDS</a>
 					<a href="#">로그인</a>
 					</div>
 			</div>
 			<div class=header_bottom_wrap>
 				<div class=header_bottom>
-					<a href="#" class="on">친구찾기</a> <a href="#">신고게시판</a> <a href="#">클랜찾기</a>
+					<a href="main" class="on">친구찾기</a> <a href="#">신고게시판</a> <a href="#">클랜찾기</a>
 				</div>
 				</div>
 			</div>

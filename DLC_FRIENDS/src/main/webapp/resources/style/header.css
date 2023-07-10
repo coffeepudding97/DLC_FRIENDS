@@ -1,6 +1,13 @@
 @charset "UTF-8";
-nav {
 
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+nav {
 	margin: 0 auto;
 }
 
@@ -10,7 +17,7 @@ nav {
 }
 
 .header_top_wrap {
-	background-color:#3282B8;
+	background-color:#172235;
 	display:flex;
 	justify-content: center;
 }
@@ -22,12 +29,13 @@ nav {
 
 
 .header_wrap a {
+	font-family: 'Pretendard-Regular';
 	padding:10px;
 	color:white;
 }
 
 .header_bottom_wrap {
-	background-color:#0F4C75;
+	background-color:#db0442;
 	display:flex;
 	justify-content: center;
 }
