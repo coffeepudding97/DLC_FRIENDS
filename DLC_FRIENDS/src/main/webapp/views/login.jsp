@@ -4,29 +4,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<link rel="stylesheet" href="../resources/style/login.css">
+<!-- <script src="../resources/js/login.js"></script> -->
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="root">
-	<section id="main-section">
 	<div class="login_container">
-        <h2>Login</h2>
-        <form method="post" acrion="url" id="login_form">
+        <h1>Login</h1>
+        <form onsubmit="return loginChk()" method="post" action="/login">
         <div class="login-box">
-            <input type="text" name="id" id="id" placeholder="아이디"  value maxlength="20" autocapitalize="off" required="">
-            <label>Username</label>
+            <input type="text" name="id" id="id" maxlength="30" autocapitalize="off" required="required">
+            <span class="login_span">아이디</span>
         </div>
         <div class="login-box">
-            <input type="password" name="" required="">
-            <label>Password</label>
+            <input type="password" name="password" id="password" maxlength="30" autocapitalize="off">
+            <span class="login_span">비밀번호</span>
         </div>
-        <div class="login_button" type="submit" value="Login">로그인</div>
+        <button id="login_button" type="button" value="login" onclick="loginChk(form)">로그인</button>
     </form>
-    <div class="signup_link">
-        <a href="signup.html" type="button">회원가입</a>
+    <div class="login_signup">
+        DLC.FRIENDS가 처음이신가요?
+        <span class="login__signup_link">   
+            <button class="join_button" id="join_button" type="button" onclick="join.jsp()">회원가입</button>
+        </span>
     </div>
-    </div>
-    </section>
     </div>
 </body>
 </html>
