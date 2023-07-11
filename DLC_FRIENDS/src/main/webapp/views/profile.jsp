@@ -47,7 +47,7 @@
 				</div>
 				<!-- 오른쪽 버튼 -->
 				<div id="profile_right">
-					<c:if test="${sessionScope.id == profile.getId()}">
+					<c:if test="${sessionScope.log == profile.id}">
 						<div>
 	  						<a href="profileUpdate">내 정보 수정</a>
 						</div>
