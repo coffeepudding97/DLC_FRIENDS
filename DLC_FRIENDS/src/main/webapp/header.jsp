@@ -19,8 +19,6 @@
 					<div class = "logo_wrap">
 					<a href="main"><img src="http://localhost:8080/resources/images/main_logo.png"></a>
 					</div>
-					<a href="#">로그인</a>
-					<a href="/main">DLC_FRIENDS</a>
 					
 					<c:choose>
 						<c:when test="${empty sessionScope.log }">

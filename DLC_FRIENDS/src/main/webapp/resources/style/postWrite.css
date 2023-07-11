@@ -1,25 +1,112 @@
 @charset "UTF-8";
+h2 {
+	color:white;
+	font-size:16px;
+}
+
+button {
+	background: #fff;
+}
 
 #root {
 	 background: linear-gradient(#172235, #3a536f);
 }
 
 form {
-	    padding:100px;
+	    padding: 150px 100px 200px 100px;
+	    display:flex;
+	    align-items:center;
+	    justify-content: center;
 }
 
 .write-wrap {
 	display:flex;
     flex-direction: column;
     padding:100px;
-    background: #0f213f;
+    background: #313141;
+    max-width:1200px;
 }
+
 
 #div-title {
 	display:flex;
 	flex-direction: column;
 }
+
 #div-title input {
 	padding: 10px 0;
 	margin: 5px 0;
 }
+
+#div-gametitle {
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top:20px;
+}
+
+#div-gametitle select {
+	height:22px;
+}
+
+#div-meeting {
+	display:flex;
+	flex-direction:column;
+}
+
+.member_cnt {
+	display:flex;
+}
+
+.member_cnt input {
+	margin-left:30px;
+	width:30px;
+	margin: 10px 0 10px 30px;
+}
+
+.create_time {
+	display:flex;
+	justify-content: space-between;
+}
+
+.create_time input {
+	margin:10px;
+}
+
+.end_time {
+	display:flex;
+	justify-content: space-between;
+}
+
+.end_time input {
+	margin:10px;
+}
+
+
+#div-content {
+	padding: 15px 0;
+}
+
+#div-content input {
+	width:380px;
+	height:150px;
+}
+
+#div-submit {
+	padding:10px;
+	display:flex;
+	justify-content:center;
+}
+
+#div-submit input {
+	border:0;
+	width:150px;
+	padding:10px 0;
+}
+#div-submit input:hover {
+		background:#db0442;
+		color:white;
+}
+
+
+

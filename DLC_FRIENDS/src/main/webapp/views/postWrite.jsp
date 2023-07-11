@@ -32,14 +32,23 @@
 					<button id="favor3" value="발로란트">발로란트</button>
 				</div>
 				<div id="div-meeting">
-					<input type="number" id="recruitment-max" name="recruitment-max" min="2" step="1" value="2">
-					<input type="datetime-local" id="meettime" name="meettime">
-					<input type="datetime-local" id="leavetime" name="leavetime">
+					<div class="member_cnt">
+					<h2>참여인원</h2>
+					<input type="number" id="recruitment-max" name="recruitment-max" min="2" step="1" value="2">					
+					</div>
+					<div class="create_time">
+					<h2>모집시작시간</h2><input type="datetime-local" id="meettime" name="meettime">
+					</div>
+					<div class="end_time">
+					<h2>모집종료시간</h2><input type="datetime-local" id="leavetime" name="leavetime">
+					</div>
 				</div>
 				<div id="div-content">
 					<input type="text" id="content" name="content" placeholder="내용">
 				</div>
+				<div id="div-submit">
 				<input type="submit" value="작성">
+				</div>
 				</div>
 			</form>
 			<%-- <button onclick="location.href='post.jsp'">작성</button> --%>
