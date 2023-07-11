@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,22 @@
 					<a href="main"><img src="http://localhost:8080/resources/images/main_logo.png"></a>
 					</div>
 					<a href="#">로그인</a>
+					<a href="/main">DLC_FRIENDS</a>
+					
+					<c:choose>
+						<c:when test="${empty sessionScope.log }">
+							<a href="/login">로그인</a>
+						</c:when>
+						<c:otherwise>
+							<form method="POST" action="/ProfileForm" style="display:inline;">
+								<input type="hidden" name="id" value="${sessionScope.log}" />
+      							<input type="submit" value="마이 페이지" />
+      						</form>
+      						<a href="/logoutAction">로그아웃</a>
+						</c:otherwise>
+					</c:choose>
+					
+					
 					</div>
 			</div>
 			<div class=header_bottom_wrap>

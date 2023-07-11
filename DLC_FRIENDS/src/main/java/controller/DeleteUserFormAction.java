@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.user.User;
 import model.user.UserDao;
 
 /**
- * Servlet implementation class LoginFormAction
+ * Servlet implementation class DeleteUserFormAction
  */
-public class LoginFormAction extends HttpServlet {
+public class DeleteUserFormAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginFormAction() {
+    public DeleteUserFormAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,30 +28,29 @@ public class LoginFormAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		String id = request.getParameter("id");
+//		String password = request.getParameter("password");
+		System.out.println("-----");
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("log");
+		System.out.println("아이디: "+id);
+		
+		UserDao userDao = UserDao.getInstance();
+		boolean result = userDao.deleteUserById(id, "qwer1234");
+		
+		String url = "deleteUser";
+		if(result) {
+			request.getSession().removeAttribute("log");
+			url = "/";
+		}
+		response.sendRedirect(url);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		request.setCharacterEncoding("UTF-8");
-		
-		String id = request.getParameter("id");
-		String password = request.getParameter("password");
-		
-		UserDao userDao = UserDao.getInstance();
-		User user = userDao.getUserById(id);
-		
-		String url = "/login";
-		if(user != null && user.getPw().equals(password)) {
-			url = "/";
-			System.out.println(user);
-			session.setAttribute("log", id);
-		}
-		response.sendRedirect(url);
-	}
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//
+//	}
 
 }

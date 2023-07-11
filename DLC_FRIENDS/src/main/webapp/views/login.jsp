@@ -12,7 +12,7 @@
 <body>
 	<div class="login_container">
         <h2>Login</h2>
-        <form onsubmit="return loginChk()" method="post" action="/login">
+        <form onsubmit="return loginChk()" method="post" action="/loginFormAction">
 	        <div class="login-box">
 	            <input type="text" name="id" id="id" placeholder="아이디" maxlength="30" autocapitalize="off">
 	        </div>
@@ -24,7 +24,8 @@
 	    <div class="login_signup">
 	        DLC.FRIENDS가 처음이신가요?
 	        <span class="login__signup_link">   
-	            <button class="join_button" id="join_button" type="button" onclick="join.jsp()">회원가입</a></button>
+	        	<a href="/join">회원가입</a>
+	            <!-- <button class="join_button" id="join_button" type="button" onclick="join.jsp()">회원가입</a></button>  -->
 	        </span>
 	    </div>
     </div>
