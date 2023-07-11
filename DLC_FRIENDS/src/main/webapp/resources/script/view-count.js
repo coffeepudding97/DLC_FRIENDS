@@ -15,3 +15,25 @@ function readPost(ul){
 		location.href = `/PostRead?post_no=${post_no}`;			
 	}
 }
+
+$(document).ready(function(){
+	$.ajax({
+		"method":"GET",
+		"url":`http://localhost:8080/main`
+	}).done(list => {
+		$('#lines').empty();
+		list.forEach(post =>{
+			$('#lines').append(`
+				<ul class="table_content" onclick="readPost(this)">
+					<li name="post_no" value="${post.postNo }">${post.postNo}</li>
+					<li>${post.gameTitle}</li>
+					<li>${post.title}</li>
+					<li>${post.userId}</li>
+					<li>${post.createdTime}</li>
+					<li>${post.recruitMax}</li>
+					<li>${post.viewCount}</li>
+				</ul>
+			`)
+		})
+	})
+})

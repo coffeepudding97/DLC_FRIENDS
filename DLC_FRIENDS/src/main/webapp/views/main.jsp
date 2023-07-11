@@ -19,7 +19,7 @@
 						<li>조회수</li>
 					</ul>
 				</li>
-				<li>
+				<li id="lines">
 					<c:forEach items="${mainList}" var="post">
 						<ul class="table_content" onclick="readPost(this)">
 							<li name="post_no" value="${post.postNo }">${post.postNo}</li>

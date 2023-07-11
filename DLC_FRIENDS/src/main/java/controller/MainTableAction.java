@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+
 import model.main.MainTable;
 import model.main.MainTableDao;
 import model.post.PostResponseDto;
@@ -35,11 +37,14 @@ public class MainTableAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json; charset=utf-8");
 		MainTableDao MaintableDao = MainTableDao.getInstance();
 		ArrayList<MainTable> mainList = MaintableDao.getPostAll();
-		request.setAttribute("mainList", mainList);
+		//request.setAttribute("mainList", mainList);
 		
-		request.getRequestDispatcher("index").forward(request, response);
+		//request.getRequestDispatcher("index").forward(request, response);
+		JSONArray list = new JSONArray(mainList);
+		response.getWriter().append(list.toString());
 	}
 
 }
