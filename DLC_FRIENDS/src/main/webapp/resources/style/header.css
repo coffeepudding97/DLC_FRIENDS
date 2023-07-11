@@ -7,6 +7,24 @@
     font-style: normal;
 }
 
+
+body {
+	margin:0;
+	font-family: 'Pretendard-Regular';
+}
+
+ul, li {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+a {
+	text-decoration: none;
+	color:black;
+}
+
+
 nav {
 	margin: 0 auto;
 }
@@ -32,6 +50,19 @@ nav {
 	font-family: 'Pretendard-Regular';
 	padding:10px;
 	color:white;
+}
+
+
+/* 헤더 */
+.logo_wrap {
+	padding-top: 10px;
+	padding-bottom:5px;
+}
+.logo_wrap a {
+	width:100%;
+}
+.logo_wrap a img {
+	width:150px;
 }
 
 .header_bottom_wrap {

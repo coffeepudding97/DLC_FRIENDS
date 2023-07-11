@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import model.comment.CommentDao;
+import model.party.PartyDao;
 import model.user.User;
 import util.DBManager;
 
@@ -99,10 +101,81 @@ public class PostDao {
 		return check;
 	}
 	
-	public void deletePostByPostNo(int postNo) {
-		this.conn = DBManager.getConnection();
+	public boolean updatePost(PostRequestDto postDto, int postNo) {
+		String title = postDto.getTitle();
+		String gameTitle = postDto.getGameTitle();
+		int recruitMax = postDto.getRecruitMax();
+		Timestamp meetTime = postDto.getMeetTime();
+		Timestamp leaveTime = postDto.getLeaveTime();
+		String content = postDto.getContent();
 		
-		if(this.conn!=null) {
+		boolean check = true;
+		
+		if(title!=null && gameTitle!=null && recruitMax>1 && meetTime!=null && leaveTime!=null) {
+			this.conn = DBManager.getConnection();
+			if(this.conn!=null) {
+				if(!content.equals("")) {
+					String sql = "UPDATE post SET title=?, content=?, game_title=?, recruitment_max=?, meet_time=?, leave_time=?  WHERE post_no = ?";
+					
+					try {
+						
+						this.pstmt = this.conn.prepareStatement(sql);
+						this.pstmt.setString(1, title);
+						this.pstmt.setString(2, content);
+						this.pstmt.setString(3, gameTitle);
+						this.pstmt.setInt(4, recruitMax);
+						this.pstmt.setTimestamp(5, meetTime);
+						this.pstmt.setTimestamp(6, leaveTime);
+						this.pstmt.setInt(7, postNo);
+						
+						this.pstmt.execute();
+					} catch (Exception e) {
+						e.printStackTrace();
+						check = false;
+					} finally {
+						DBManager.close(conn, pstmt);
+					}
+				} else {
+					String sql = "UPDATE post SET title=?, game_title=?, recruitment_max=?, meet_time=?, leave_time=?  WHERE post_no = ?";
+					
+					try {
+						this.pstmt = this.conn.prepareStatement(sql);
+						this.pstmt.setString(1, title);
+						this.pstmt.setString(2, gameTitle);
+						this.pstmt.setInt(3, recruitMax);
+						this.pstmt.setTimestamp(4, meetTime);
+						this.pstmt.setTimestamp(5, leaveTime);
+						this.pstmt.setInt(6, postNo);
+						
+						this.pstmt.execute();
+
+					} catch (Exception e) {
+						e.printStackTrace();
+						check = false;
+					} finally {
+						DBManager.close(conn, pstmt);
+					}
+				}
+			} else {
+				check = false;
+			}
+		} else {
+			check = false;
+		}
+		
+		return check;
+	}
+	
+	public boolean deletePostByPostNo(int postNo) {
+		this.conn = DBManager.getConnection();
+		PartyDao partyDao = PartyDao.getInstance();
+		CommentDao commentDao = CommentDao.getInstance();
+		
+		boolean delParty = partyDao.deletePartyByPostNo(postNo);
+		boolean delCmts = commentDao.deleteCommentsByPostNo(postNo);
+		boolean check = true;
+		
+		if(this.conn!=null && delParty && delCmts) {
 			String sql = "DELETE FROM post WHERE post_no = ?";
 			
 			try {
@@ -112,10 +185,15 @@ public class PostDao {
 				
 			} catch (Exception e) {
 				e.printStackTrace();
+				check = false;
 			} finally {
 				DBManager.close(conn, pstmt);
 			}
+		} else {
+			check = false;
 		}
+		
+		return check;
 	}
 	
 	public String getUserIdByPostNo(int postNo) {

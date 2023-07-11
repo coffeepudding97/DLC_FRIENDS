@@ -20,7 +20,6 @@ public class DBManager {
 			String password = "my1234";*/
 			
 			conn = DriverManager.getConnection(url, username, password);
-			System.out.println("database 연동 성공");
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("database 연동 실패");

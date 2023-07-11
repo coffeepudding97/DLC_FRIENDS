@@ -12,6 +12,18 @@ public class PostRequestDto {
 	Timestamp leaveTime;
 	String content;
 	
+	
+	public PostRequestDto(String title, String gameTitle, int recruitMax, Timestamp meetTime, Timestamp leaveTime,
+			String content) {
+		super();
+		this.title = title;
+		this.gameTitle = gameTitle;
+		this.recruitMax = recruitMax;
+		this.meetTime = meetTime;
+		this.leaveTime = leaveTime;
+		this.content = content;
+	}
+
 	public PostRequestDto(String title, String user_id, String gameTitle, int recruitMax, Timestamp meetTime, Timestamp leaveTime) {
 		super();
 		this.title = title;

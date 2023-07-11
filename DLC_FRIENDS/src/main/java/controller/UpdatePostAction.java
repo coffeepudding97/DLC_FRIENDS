@@ -7,21 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.comment.CommentDao;
-import model.party.PartyDao;
+import model.post.Post;
 import model.post.PostDao;
+import model.post.PostResponseDto;
 
 /**
- * Servlet implementation class DeletePostFormAction
+ * Servlet implementation class UpdatePostAction
  */
-@WebServlet("/DeletePostFormAction")
-public class DeletePostFormAction extends HttpServlet {
+@WebServlet("/UpdatePostAction")
+public class UpdatePostAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeletePostFormAction() {
+    public UpdatePostAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +31,7 @@ public class DeletePostFormAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -40,14 +40,17 @@ public class DeletePostFormAction extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		
 		PostDao postDao = PostDao.getInstance();
 		
-		boolean result = postDao.deletePostByPostNo(postNo);
+		Post post = postDao.getPostByPostNo(postNo);
 		
-		response.getWriter().append(result + "");
+		request.setAttribute("post", post);
+		
+		String url = "postUpdate";
+		
+		request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }

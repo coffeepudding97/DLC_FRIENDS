@@ -1,23 +1,22 @@
+<%@page import="java.sql.Timestamp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/style/header.css">
-<link rel="stylesheet" href="../resources/style/footer.css">
-<link rel="stylesheet" href="../resources/style/postWrite.css">
 </head>
 <body>
-<jsp:include page="../header"></jsp:include>
 	<div id="root">
 		<section id="main-section">
-			<form method="post" action="/WritePost">
-			<div class="write-wrap">
+			<form method="post" action="/UpdatePostFormAction">
+				<input type="hidden" name="postNo" value="${requestScope.post.postNo }">
 				<div id="div-title">
-					<input type="text" id="title" name="title" placeholder="제목" autofocus>
-					<input type="text" id="user_id" name="user_id" placeholder="아이디">
+					<input type="text" id="title" name="title" value="${requestScope.post.title}" placeholder="제목">
+					<p id="user_id" name="user_id">${requestScope.post.userId }</p>
+					<%-- <input type="text" id="user_id" name="user_id" placeholder="아이디"> --%>
 				</div>
 				<div id="div-gametitle">
 					<select id="gametitle" name="gametitle">
@@ -32,19 +31,17 @@
 					<button id="favor3" value="발로란트">발로란트</button>
 				</div>
 				<div id="div-meeting">
-					<input type="number" id="recruitment-max" name="recruitment-max" min="2" step="1" value="2">
-					<input type="datetime-local" id="meettime" name="meettime">
-					<input type="datetime-local" id="leavetime" name="leavetime">
+					<input type="number" id="recruitment-max" name="recruitment-max" min="2" step="1" value="${requestScope.post.recruitMax }">
+					<input type="datetime-local" id="meettime" name="meettime" value="${requestScope.post.meetTime }">
+					<input type="datetime-local" id="leavetime" name="leavetime" value="${requestScope.post.leaveTime }">
 				</div>
 				<div id="div-content">
-					<input type="text" id="content" name="content" placeholder="내용">
+					<input type="text" id="content" name="content" value="${requestScope.post.content }" placeholder="내용" autofocus>
 				</div>
 				<input type="submit" value="작성">
-				</div>
 			</form>
 			<%-- <button onclick="location.href='post.jsp'">작성</button> --%>
 		</section>
 	</div>
-	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

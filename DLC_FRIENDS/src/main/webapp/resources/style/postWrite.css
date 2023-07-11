@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+#root {
+	 background: linear-gradient(#172235, #3a536f);
+}
+
+form {
+	    padding:100px;
+}
+
+.write-wrap {
+	display:flex;
+    flex-direction: column;
+    padding:100px;
+    background: #0f213f;
+}
+
+#div-title {
+	display:flex;
+	flex-direction: column;
+}
+#div-title input {
+	padding: 10px 0;
+	margin: 5px 0;
+}

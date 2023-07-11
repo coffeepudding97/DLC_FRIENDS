@@ -25,16 +25,21 @@
 				
 				<span><strong>${post.title}</strong></span>
 				<span>time : ${requestScope.post.createdTime }</span>
-				<span>조회수 : ${requestScope.post.viewCount }</span>
+				<span id="viewCount">조회수 : ${requestScope.post.viewCount+1 }</span>
 				<hr/>
 				<span>${post.userId }</span>
-				<button onclick="">수정</button>
-				<button onclick="">삭제</button>
+				<form method="post" action="/UpdatePostAction">
+					<input type="hidden" name="postNo" value="${requestScope.post.postNo }">
+					<input type="submit" value="수정">
+				</form>
+				<%--<button onclick="">수정</button>--%>
+				<button onclick="delPost()">삭제</button>
 				<br/>
 				<span>${post.gameTitle }</span>
 				<span>1</span><span>/</span><span>${post.recruitMax }</span>
-				<span>${post.meetTime }</span>
+				<span id="meetTime">${post.meetTime }</span>
 				<span>${post.leaveTime }</span>
+				<span id="isEnd"></span>
 				<br/>
 				<p>${post.content }</p>
 			</div>
@@ -61,27 +66,28 @@
 						<c:choose>
 							<c:when test="${cmt.rpNo == 0 }">
 								<li>
-									<p><strong style="color:orange;">${cmt.userId }</strong></p>
+									<p><strong name="userId" style="color:orange;">${cmt.userId }</strong></p>
 									<p>${cmt.content }</p>
 									<p>${cmt.createdTime }</p>
 							</c:when>
 							<c:otherwise>
 								<li>
-									<p><strong style="color:blue;">${cmt.userId }</strong></p>
+									<p><strong name="userId" style="color:blue;">${cmt.userId }</strong></p>
 									<p>${cmt.content }</p>
 									<p>${cmt.createdTime }</p>
 							</c:otherwise>
 						</c:choose>
+						<form>
+								<%-- <form method="post" action="/deleteCmt"> --%>
+							<input type="hidden" class="cmtNo" name="cmtNo" value="${cmt.cmtNo }">
+							<input type="button" value="댓글" onclick="setRpNo(this)">
 						<c:choose>
 							<c:when test="${requestScope.post.userId == cmt.userId }">
-								<%-- <form method="post" action="/deleteCmt"> --%>
-								<form>
-									<input type="hidden" class="cmtNo" name="cmtNo" value="${cmt.cmtNo }">
-									<%-- <input type="submit" value="삭제"> --%>
-									<input type="button" value="삭제" onclick="delete_comment(this)">
-								</form>
+								<%-- <input type="submit" value="삭제"> --%>
+								<input type="button" value="삭제" onclick="delete_comment(this)">
 							</c:when>
 						</c:choose>
+							</form>
 						</li>
 					</c:forEach>
 				</ul>
@@ -90,13 +96,13 @@
 				<form>
 					<input type="hidden" id="postNo" name="postNo" value="${param.post_no }">
 					<input type="hidden" id="userId" name="userId" value="${requestScope.post.userId }">
+					<input type="hidden" id="rpNo" name="rpNo" value="0">
+					<span id="replyName"></span>
 					<input type="text" id="comment" name="comment">
 					<input type="button" value="작성" onclick="post_comment()">
 				</form>
 			</div>
 		</section>
 	</div>
-	
-	
 </body>
 </html>
