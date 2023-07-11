@@ -129,6 +129,7 @@ public class UserDao {
 					this.pstmt.setString(1, id);
 					
 					String imagePath = "C:\\Users\\dldbs\\git\\DLC_FRIENDS\\DLC_FRIENDS\\src\\main\\webapp\\resources\\images\\user.png";
+					// String imagePath = "/DLC_FRIENDS/src/main/webapp/resources/images/user.png";
 					InputStream inputStream = new FileInputStream(imagePath);
 					this.pstmt.setBinaryStream(2, inputStream, inputStream.available());
 					pstmt.executeUpdate();

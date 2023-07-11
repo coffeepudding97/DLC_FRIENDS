@@ -85,7 +85,7 @@
 							<input type="hidden" class="cmtNo" name="cmtNo" value="${cmt.cmtNo }">
 							<input type="button" value="댓글" onclick="setRpNo(this)">
 						<c:choose>
-							<c:when test="${requestScope.post.userId == cmt.userId }">
+							<c:when test="${sessionScope.log == cmt.userId }">
 								<%-- <input type="submit" value="삭제"> --%>
 								<input type="button" value="삭제" onclick="delete_comment(this)">
 							</c:when>
@@ -95,10 +95,11 @@
 					</c:forEach>
 				</ul>
 				<%--아래 post.userID 나중에 로그인한 유저 id로 바꾸기 --%>
-				<span>${requestScope.post.userId }</span>
+				<%--<span>${requestScope.post.userId }</span>--%>
+				<span>${sessionScope.log } </span>
 				<form>
 					<input type="hidden" id="postNo" name="postNo" value="${param.post_no }">
-					<input type="hidden" id="userId" name="userId" value="${requestScope.post.userId }">
+					<input type="hidden" id="userId" name="userId" value="${sessionScope.log }">
 					<input type="hidden" id="rpNo" name="rpNo" value="0">
 					<span id="replyName"></span>
 					<input type="text" id="comment" name="comment">
