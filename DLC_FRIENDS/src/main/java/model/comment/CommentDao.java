@@ -49,15 +49,17 @@ public class CommentDao {
 		return check;
 	}
 	
-	public void createReply(CommentRequestDto cmtDto, int postNo) {
+	public boolean createReply(CommentRequestDto cmtDto, int postNo) {
 		String userId = cmtDto.getUserId();
 		String content = cmtDto.getContent();
 		int rpNo = cmtDto.getRpNo();
 		
+		boolean check = true;
+		
 		this.conn = DBManager.getConnection();
 		if(this.conn!=null) {
 			String sql = "INSERT INTO comment(post_no, user_id, content, reply_no) values(?, ?, ?, ?)";
-			
+
 			try {
 				this.pstmt = conn.prepareStatement(sql);
 				this.pstmt.setInt(1, postNo);
@@ -68,10 +70,14 @@ public class CommentDao {
 				this.pstmt.execute();
 			} catch (Exception e) {
 				e.printStackTrace();
+				check = false;
 			} finally {
 				DBManager.close(conn, pstmt);
 			}
+		}else {
+			check = false;
 		}
+		return check;
 	}
 	
 	public ArrayList<CommentResponseDto> getCommentsByPostNo(int postNo) {
@@ -117,6 +123,26 @@ public class CommentDao {
 		}
 		
 		return cmtList;
+	}
+	
+	public void deleteCommentsByPostNo(int postNo) {
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn!=null) {
+			String sql = "DELETE FROM comment WHERE post_no=?";
+			
+			try {
+				this.pstmt = conn.prepareStatement(sql);
+				this.pstmt.setInt(1, postNo);
+				
+				this.pstmt.execute();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt, rs);
+			}
+		}
+		
 	}
 	
 	public void deleteAllCommentByPostNo(int postNo) {
@@ -192,6 +218,5 @@ public class CommentDao {
 			}
 		}
 		return commentList;
-
 	}
 }

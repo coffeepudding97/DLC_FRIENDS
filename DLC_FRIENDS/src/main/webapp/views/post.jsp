@@ -61,27 +61,29 @@
 						<c:choose>
 							<c:when test="${cmt.rpNo == 0 }">
 								<li>
-									<p><strong style="color:orange;">${cmt.userId }</strong></p>
+									<p><strong name="userId" style="color:orange;">${cmt.userId }</strong></p>
 									<p>${cmt.content }</p>
 									<p>${cmt.createdTime }</p>
 							</c:when>
 							<c:otherwise>
 								<li>
-									<p><strong style="color:blue;">${cmt.userId }</strong></p>
+									<p><strong name="userId" style="color:blue;">${cmt.userId }</strong></p>
 									<p>${cmt.content }</p>
 									<p>${cmt.createdTime }</p>
 							</c:otherwise>
 						</c:choose>
+						<form>
+								<%-- <form method="post" action="/deleteCmt"> --%>
+							<input type="text" class="cmtNo" name="cmtNo" value="${cmt.cmtNo }">
+							<input type="button" value="댓글" onclick="setRpNo(this)">
 						<c:choose>
 							<c:when test="${requestScope.post.userId == cmt.userId }">
-								<%-- <form method="post" action="/deleteCmt"> --%>
-								<form>
-									<input type="hidden" class="cmtNo" name="cmtNo" value="${cmt.cmtNo }">
-									<%-- <input type="submit" value="삭제"> --%>
-									<input type="button" value="삭제" onclick="delete_comment(this)">
-								</form>
+								<input type="button" value="수정" onclick="#">
+								<%-- <input type="submit" value="삭제"> --%>
+								<input type="button" value="삭제" onclick="delete_comment(this)">
 							</c:when>
 						</c:choose>
+							</form>
 						</li>
 					</c:forEach>
 				</ul>
@@ -90,6 +92,8 @@
 				<form>
 					<input type="hidden" id="postNo" name="postNo" value="${param.post_no }">
 					<input type="hidden" id="userId" name="userId" value="${requestScope.post.userId }">
+					<input type="hidden" id="rpNo" name="rpNo" value="0">
+					<span id="replyName"></span>
 					<input type="text" id="comment" name="comment">
 					<input type="button" value="작성" onclick="post_comment()">
 				</form>

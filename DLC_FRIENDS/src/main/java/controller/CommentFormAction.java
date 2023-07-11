@@ -44,12 +44,18 @@ public class CommentFormAction extends HttpServlet {
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		String userId = request.getParameter("userId");
 		String content = request.getParameter("comment");
+		int rpNo = Integer.parseInt(request.getParameter("rpNo"));
 		
-		CommentRequestDto cmtDto = new CommentRequestDto(userId, content);
+		CommentRequestDto cmtDto = new CommentRequestDto(userId, content, rpNo);			
 		
 		CommentDao cmtDao = CommentDao.getInstance();
 		
-		boolean result = cmtDao.createComment(cmtDto, postNo);
+		boolean result = false;
+		if(rpNo==0) {
+			result = cmtDao.createComment(cmtDto, postNo);
+		}else {
+			result = cmtDao.createReply(cmtDto, postNo);
+		}
 		response.getWriter().append(result + "");
 	}
 
