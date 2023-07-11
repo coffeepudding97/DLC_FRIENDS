@@ -40,5 +40,3 @@
 	</section>
 	<script src="../resources/script/view-count.js"></script>
 </div>
-
-
