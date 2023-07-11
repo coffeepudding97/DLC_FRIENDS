@@ -25,7 +25,7 @@
 				
 				<span><strong>${post.title}</strong></span>
 				<span>time : ${requestScope.post.createdTime }</span>
-				<span>조회수 : ${requestScope.post.viewCount }</span>
+				<span id="viewCount">조회수 : ${requestScope.post.viewCount+1 }</span>
 				<hr/>
 				<span>${post.userId }</span>
 				<button onclick="">수정</button>

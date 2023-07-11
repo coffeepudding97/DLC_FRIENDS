@@ -150,3 +150,12 @@ function setRpNo(button){
 	$('#replyName').text("to." + userId + "/" + cmtNo);
 	console.log($('#rpNo').val());
 }
+
+$(document).ready(function(){
+	const postNo = $('#postNo').val();
+	
+	$.ajax({
+		"method":"POST",
+		"url":`http://localhost:8080/PostViewUpdateAction?postNo=${postNo}`
+	})
+})
