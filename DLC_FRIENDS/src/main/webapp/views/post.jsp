@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+	
 </head>
 <c:import url="header"></c:import>
 <body>
@@ -28,12 +28,15 @@
 				<span id="viewCount">조회수 : ${requestScope.post.viewCount+1 }</span>
 				<hr/>
 				<span>${post.userId }</span>
-				<form method="post" action="/UpdatePostAction">
-					<input type="hidden" name="postNo" value="${requestScope.post.postNo }">
-					<input type="submit" value="수정">
-				</form>
 				<%--<button onclick="">수정</button>--%>
-				<button onclick="delPost()">삭제</button>
+				<c:if test="${sessionScope.log eq requestScope.post.userId }">
+					<form method="post" action="/UpdatePostAction">
+						<input type="hidden" name="postNo" value="${requestScope.post.postNo }">
+						<input type="submit" value="수정">
+					</form>
+					<button onclick="delPost()">삭제</button>
+				</c:if>
+				
 				<br/>
 				<span>${post.gameTitle }</span>
 				<span>1</span><span>/</span><span>${post.recruitMax }</span>

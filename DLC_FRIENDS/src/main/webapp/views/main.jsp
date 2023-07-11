@@ -19,9 +19,10 @@
 						<li>조회수</li>
 					</ul>
 				</li>
-				<li><c:forEach items="${mainList}" var="post">
-						<ul class="table_content">
-							<li>${post.postNo}</li>
+				<li id="lines">
+					<c:forEach items="${mainList}" var="post">
+						<ul class="table_content" onclick="readPost(this)">
+							<li name="post_no" value="${post.postNo }">${post.postNo}</li>
 							<li>${post.gameTitle}</li>
 							<li>${post.title}</li>
 							<li>${post.userId}</li>
@@ -29,13 +30,15 @@
 							<li>${post.recruitMax}</li>
 							<li>${post.viewCount}</li>
 						</ul>
-					</c:forEach></li>
+					</c:forEach>
+				</li>
 			</ul>
 		</div>
 		<div class=write>
 			<a href="views/postWrite.jsp">글쓰기</a>
 		</div>
 	</section>
+	<script src="../resources/script/view-count.js"></script>
 </div>
 
 
