@@ -17,7 +17,7 @@
 			<div class=header_top_wrap>
 					<div class =header_top>
 					<div class = "logo_wrap">
-					<a href="/main"><img src="http://localhost:8080/resources/images/main_logo.png"></a>
+					<a href="/index"><img src="http://localhost:8080/resources/images/main_logo.png"></a>
 					</div>
 					
 					<c:choose>
@@ -38,7 +38,7 @@
 			</div>
 			<div class=header_bottom_wrap>
 				<div class=header_bottom>
-					<a href="main" class="on">친구찾기</a> <a href="#">신고게시판</a> <a href="#">클랜찾기</a>
+					<a href="/index" class="on">친구찾기</a> <a href="#">신고게시판</a> <a href="#">클랜찾기</a>
 				</div>
 				</div>
 			</div>
