@@ -15,7 +15,9 @@
 			<div class=header_wrap>
 			<div class=header_top_wrap>
 					<div class =header_top>
-					<a href="main">DLC_FRIENDS</a>
+					<div class = "logo_wrap">
+					<a href="main"><img src="http://localhost:8080/resources/images/main_logo.png"></a>
+					</div>
 					<a href="#">로그인</a>
 					</div>
 			</div>

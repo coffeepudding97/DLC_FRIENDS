@@ -5,11 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../resources/style/header.css">
+<link rel="stylesheet" href="../resources/style/footer.css">
+<link rel="stylesheet" href="../resources/style/postWrite.css">
 </head>
 <body>
+<jsp:include page="../header"></jsp:include>
 	<div id="root">
 		<section id="main-section">
 			<form method="post" action="/WritePost">
+			<div class="write-wrap">
 				<div id="div-title">
 					<input type="text" id="title" name="title" placeholder="제목" autofocus>
 					<input type="text" id="user_id" name="user_id" placeholder="아이디">
@@ -35,9 +40,11 @@
 					<input type="text" id="content" name="content" placeholder="내용">
 				</div>
 				<input type="submit" value="작성">
+				</div>
 			</form>
 			<%-- <button onclick="location.href='post.jsp'">작성</button> --%>
 		</section>
 	</div>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>
