@@ -37,16 +37,15 @@ public class ProfileFormAction extends HttpServlet {
     }
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		request.setCharacterEncoding("UTF-8");
+		String id = request.getParameter("id");
 		
 		ProfileDto profileDto = null;
 		PostResponseDto postDto = null;
 
-		String id = request.getParameter("id");
 		System.out.println("id : " + id);
 		
-//		profileDto = new ProfileDto(id);
+		profileDto = new ProfileDto(id);
 		
 		ProfileDao profileDao = ProfileDao.getInstance();
 		Profile profile = profileDao.getUserProfile(id);
@@ -60,7 +59,7 @@ public class ProfileFormAction extends HttpServlet {
 		
 		System.out.println("profile>" + profile);
 		System.out.println("postList>" + postList);
-		System.out.println("postList>" + commentList);
+		System.out.println("commentList>" + commentList);
 		
 		request.setAttribute("profile", profile);
 		request.setAttribute("postList", postList);
@@ -69,7 +68,6 @@ public class ProfileFormAction extends HttpServlet {
 		String url = "/";
 		
 		if(profile != null) {
-			session.setAttribute("log", id);
 			url = "profile";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);

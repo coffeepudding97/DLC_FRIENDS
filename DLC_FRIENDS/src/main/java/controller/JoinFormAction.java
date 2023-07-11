@@ -44,6 +44,7 @@ public class JoinFormAction extends HttpServlet {
 		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
+		String confirmPassword = request.getParameter("confirm_password");
 		String nickName = request.getParameter("nickName");
 		String email = request.getParameter("email");
 		int birth = Integer.parseInt(request.getParameter("birth"));
@@ -54,26 +55,35 @@ public class JoinFormAction extends HttpServlet {
 		boolean duplNick = userDao.duplNickname(nickName);
 		boolean result = false;
 		
-		if(!duplId) {
-			System.out.println("아이디 중복없음");
-			
-			if(!duplNick) {
-				System.out.println("닉네임 중복없음");
-				
-				UserRequestDto user = new UserRequestDto(id, password, nickName, email, birth);
-				result = userDao.createUser(user);
-				
-			}else {
-				System.out.println("닉네임 중복있음");
-				response.sendRedirect("join");
+		String url = "join";
+		// 비밀번호와 확인 비밀번호가 같은 경우
+		if (!password.equals(confirmPassword)) {
+			System.out.println("비밀번호 다시 입력");
+		} else {
+			// 아이디 중복이 없는 경우
+			if (!duplId) {
+				System.out.println("아이디 중복 없음");
+
+				// 닉네임 중복이 없는 경우
+				if (!duplNick) {
+					System.out.println("닉네임 중복 없음");
+
+					// 사용자 생성
+					UserRequestDto user = new UserRequestDto(id, password, nickName, email, birth);
+					result = userDao.createUser(user);
+					url = "login";
+				} else {
+					// 닉네임 중복인 경우
+					System.out.println("닉네임 중복 있음");
+				}
+			} else {
+				// 아이디 중복인 경우
+				System.out.println("아이디 중복 있음");
 			}
-			
-		}else{
-			System.out.println("아이디 중복있음");
-			response.sendRedirect("join");
 		}
 		
 		System.out.println("결과: " + result);
+		response.sendRedirect(url);
 	}
 
 }

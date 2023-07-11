@@ -18,7 +18,7 @@
 	%>
 	<div id="root">
 		<jsp:include page="header"></jsp:include>
-		<h1><%=id%>님의 마이페이지</h1>
+		<h1><%=profile.getId()%>님의 마이페이지</h1>
 		<section id="main-section">
 			<!-- 상단 프로필 부분 -->
 			<div id="top">
@@ -47,15 +47,24 @@
 				</div>
 				<!-- 오른쪽 버튼 -->
 				<div id="profile_right">
-				<!-- 
-					<button onclick="profileUpdate">내 정보 수정</button>
-				-->
-				<!-- 
-					<c:if test="${sessionScope.log == profile.getId()} ">
-						<a href="profileUpdate">내 정보 수정</a>										
+					<c:if test="${sessionScope.id == profile.getId()}">
+						<div>
+	  						<a href="profileUpdate">내 정보 수정</a>
+						</div>
+						<div>
+							<a href="deleteUserForm">회원 탈퇴</a>
+						</div>
 					</c:if>
+				
+				<!-- 
+					<div>
+	  					<a href="profileUpdate">내 정보 수정</a>
+					</div>
+					
+					<div>
+						<a href="deleteUserForm">회원 탈퇴</a>
+					</div>
 				 -->
-					<a href="profileUpdate">내 정보 수정</a>										
 				</div>
 
 			</div>

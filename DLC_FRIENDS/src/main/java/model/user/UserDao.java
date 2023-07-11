@@ -1,5 +1,10 @@
 package model.user;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -7,6 +12,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import util.DBManager;
 
@@ -86,13 +103,13 @@ public class UserDao {
 		String email = userDto.getEmail();
 		int birth = userDto.getBirthday(); // date
 		
-		boolean isSuccess = false;
+		boolean check = false;
 
 		if(id != null && password != null && nickName != null && birth != 0) {
 			this.conn = DBManager.getConnection();
 			if(this.conn != null) {
 				String userInsertSql = "INSERT INTO user VALUES(?, ?, ?, ?, DATE(?))";
-				String profileInsertSql = "INSERT INTO profile(user_id, profile_img, info) VALUES(?, null, '소개글을 입력해주세요.');";
+				String profileInsertSql = "INSERT INTO profile(user_id, profile_img, info) VALUES(?, ?, '소개글을 입력해주세요.');";
 				
 				try {
 					// 트랜잭션 시작
@@ -110,15 +127,19 @@ public class UserDao {
 					// 프로필 정보 저장
 					this.pstmt = this.conn.prepareStatement(profileInsertSql);
 					this.pstmt.setString(1, id);
+					
+					String imagePath = "C:\\Users\\dldbs\\git\\DLC_FRIENDS\\DLC_FRIENDS\\src\\main\\webapp\\resources\\images\\user.png";
+					InputStream inputStream = new FileInputStream(imagePath);
+					this.pstmt.setBinaryStream(2, inputStream, inputStream.available());
 					pstmt.executeUpdate();
 					
 					// 트랜잭션 커밋
 					conn.commit();
-					isSuccess = true;
+					check = true;
 					
 				} catch (Exception e) {
 					e.printStackTrace();
-					isSuccess = false;
+					check = false;
 					try {
 						// 트랜지션 롤백
 						this.conn.rollback();
@@ -131,7 +152,113 @@ public class UserDao {
 				}
 			}
 		}
-		return isSuccess;
+		return check;
+	}
+	
+	// 메일인증
+	public boolean gmailSend(String userMail) {
+		// 발신자 메일계정, 비밀번호 설정
+		final String sender = "dldbswjd7879@gmail.com";
+		final String password = "pzpuwhaafzynshqn";
+		
+		// Property에 SMTP 서버 정보 설정
+		Properties prop = new Properties();
+		prop.put("mail.smtp.host", "smtp.gmail.com");
+		prop.put("mail.smtp.port", 465);
+		prop.put("mail.smtp.auth", "true");
+		prop.put("mail.smtp.ssl.enable", "true");
+		prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+		
+		Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(sender, password);
+            }
+        });
+		
+		try {
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(sender));
+			
+			//수신자 메일주소
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(userMail));
+            // Subject
+            message.setSubject("인증메일입니다."); //메일 제목을 입력
+
+            // Text
+            message.setText("내용을 입력하세요");    //메일 내용을 입력
+
+            // send the message
+            Transport.send(message); ////전송
+            System.out.println("메세지 전송 성공");
+            
+        } catch (AddressException e) {
+            e.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+		return false;
+	}
+	
+	// 코드 생성
+	private String makeCode() {
+		String code = "";
+        String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        
+        Random r = new Random();
+//        char c = alphabet.charAt(r.nextInt(alphabet.length()));
+        
+		return code;
+	}
+	
+    
+    
+	public boolean deleteUserById(String id, String password) {
+		this.conn = DBManager.getConnection();
+		
+		boolean check = true;
+		
+		if(this.conn != null) {
+			// FK로 연결된 요소들 우선적으로 삭제 후 user 삭제 가능
+			String profileDeleteSql = "DELETE FROM profile WHERE user_id=?";
+			String userDeleteSql = "DELETE FROM user WHERE user_id=? AND pw=?";
+			
+			try {
+				// 트랜잭션 시작
+				conn.setAutoCommit(false);
+				
+				// 프로필정보 삭제
+				this.pstmt = this.conn.prepareStatement(profileDeleteSql);
+				this.pstmt.setString(1, id);
+				this.pstmt.executeUpdate();
+				
+				// 유저 삭제
+				this.pstmt = this.conn.prepareStatement(userDeleteSql);
+				this.pstmt.setString(1, id);
+				this.pstmt.setString(2, password);
+				this.pstmt.executeUpdate();
+				
+				// 트랜잭션 커밋
+				conn.commit();
+				check = true;
+				
+				try {
+					// 트랜지션 롤백
+					this.conn.rollback();
+					
+				} catch (SQLException sqle) {
+					sqle.printStackTrace();
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				check = false;
+			} finally {
+				DBManager.close(this.conn, this.pstmt);
+			}
+		}else {
+			check = false;
+		}
+		return check;
 	}
 
 	public User getUserById(String id) {
@@ -157,7 +284,7 @@ public class UserDao {
 					user = new User(id, password, nickname, email, birth);
 				}
 			} catch (Exception e) {
-//				e.printStackTrace();
+				e.printStackTrace();
 				return null;
 			} finally {
 				DBManager.close(this.conn, this.pstmt, this.rs);
