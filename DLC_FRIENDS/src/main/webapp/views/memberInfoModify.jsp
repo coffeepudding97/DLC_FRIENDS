@@ -8,15 +8,10 @@
 <link rel="stylesheet" href="../resources/style/profile.css">
 </head>
 <body>
-	<%
-	String id = session.getAttribute("log").toString();
-	%>
-
-
 	<div id="root">
 		<jsp:include page="header"></jsp:include>
 		<div>
-			<h1><%=id%>님의 프로필 수정
+			<h1>프로필 수정
 			</h1>
 		</div>
 

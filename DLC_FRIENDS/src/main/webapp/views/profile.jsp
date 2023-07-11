@@ -52,7 +52,7 @@
 	  						<a href="profileUpdate">내 정보 수정</a>
 						</div>
 						<div>
-							<a href="deleteUserForm">회원 탈퇴</a>
+							<a href="deleteUser">회원 탈퇴</a>
 						</div>
 					</c:if>
 				

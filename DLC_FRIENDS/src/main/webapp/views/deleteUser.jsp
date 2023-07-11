@@ -15,7 +15,7 @@
 		<%-- <jsp:include page="../header.jsp"></jsp:include> --%>
 		<section id="main-section">
 			<div class="login_container">
-				<h1>Login</h1>
+				<h1>회원탈퇴</h1>
 				<form onsubmit="return loginChk()" method="post" action="/deleteUserForm">
 					<div class="login-box">
 						<ion-icon name="mail-outline"></ion-icon>
@@ -37,7 +37,7 @@
 				<a href="#" class="forget_password">비밀번호를 잊어버리셨나요?</a>
 				<div class="login_signup">
 					<p>
-						DLC.FRIENDS가 처음이신가요? <a href="signup.html">회원가입</a>
+						DLC.FRIENDS가 처음이신가요? <a href="/join">회원가입</a>
 					</p>
 				</div>
 			</div>
