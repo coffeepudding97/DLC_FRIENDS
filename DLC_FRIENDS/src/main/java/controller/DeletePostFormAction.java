@@ -44,12 +44,10 @@ public class DeletePostFormAction extends HttpServlet {
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		
 		PostDao postDao = PostDao.getInstance();
-		CommentDao commentDao = CommentDao.getInstance();
-		PartyDao partyDao = PartyDao.getInstance();
 		
-		partyDao.deletePartyByPostNo(postNo);
-		commentDao.deleteAllCommentByPostNo(postNo);
-		postDao.deletePostByPostNo(postNo);
+		boolean result = postDao.deletePostByPostNo(postNo);
+		
+		response.getWriter().append(result + "");
 	}
 
 }

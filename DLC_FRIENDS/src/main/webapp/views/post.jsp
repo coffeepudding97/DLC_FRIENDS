@@ -29,7 +29,7 @@
 				<hr/>
 				<span>${post.userId }</span>
 				<button onclick="">수정</button>
-				<button onclick="">삭제</button>
+				<button onclick="delPost()">삭제</button>
 				<br/>
 				<span>${post.gameTitle }</span>
 				<span>1</span><span>/</span><span>${post.recruitMax }</span>
@@ -74,11 +74,10 @@
 						</c:choose>
 						<form>
 								<%-- <form method="post" action="/deleteCmt"> --%>
-							<input type="text" class="cmtNo" name="cmtNo" value="${cmt.cmtNo }">
+							<input type="hidden" class="cmtNo" name="cmtNo" value="${cmt.cmtNo }">
 							<input type="button" value="댓글" onclick="setRpNo(this)">
 						<c:choose>
 							<c:when test="${requestScope.post.userId == cmt.userId }">
-								<input type="button" value="수정" onclick="#">
 								<%-- <input type="submit" value="삭제"> --%>
 								<input type="button" value="삭제" onclick="delete_comment(this)">
 							</c:when>

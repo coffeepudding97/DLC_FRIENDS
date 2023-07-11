@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import model.comment.CommentDao;
+import model.party.PartyDao;
 import model.user.User;
 import util.DBManager;
 
@@ -99,10 +101,16 @@ public class PostDao {
 		return check;
 	}
 	
-	public void deletePostByPostNo(int postNo) {
+	public boolean deletePostByPostNo(int postNo) {
 		this.conn = DBManager.getConnection();
+		PartyDao partyDao = PartyDao.getInstance();
+		CommentDao commentDao = CommentDao.getInstance();
 		
-		if(this.conn!=null) {
+		boolean delParty = partyDao.deletePartyByPostNo(postNo);
+		boolean delCmts = commentDao.deleteCommentsByPostNo(postNo);
+		boolean check = true;
+		
+		if(this.conn!=null && delParty && delCmts) {
 			String sql = "DELETE FROM post WHERE post_no = ?";
 			
 			try {
@@ -112,10 +120,15 @@ public class PostDao {
 				
 			} catch (Exception e) {
 				e.printStackTrace();
+				check = false;
 			} finally {
 				DBManager.close(conn, pstmt);
 			}
+		} else {
+			check = false;
 		}
+		
+		return check;
 	}
 	
 	public String getUserIdByPostNo(int postNo) {

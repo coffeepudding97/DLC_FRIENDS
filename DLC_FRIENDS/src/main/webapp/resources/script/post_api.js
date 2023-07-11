@@ -56,7 +56,7 @@ function append_comment(list) {
 	list.forEach(comment => {
 		let tag = '';
 		if (comment.userId === user_id) {
-			tag = `<input type="button" value="수정" onclick="#"><input type="button" value="삭제" onclick="delete_comment(this)">`
+			tag = `<input type="button" value="삭제" onclick="delete_comment(this)">`
 		}
 		if(comment.rpNo!=0){
 			color = "blue";
@@ -159,3 +159,18 @@ $(document).ready(function(){
 		"url":`http://localhost:8080/PostViewUpdateAction?postNo=${postNo}`
 	})
 })
+
+function delPost(){
+	const postNo = $('#postNo').val();
+	
+	$.ajax({
+		"method":"POST",
+		"url":`http://localhost:8080/DeletePostFormAction?postNo=${postNo}`
+	}).done(result => {
+		if(result==="true"){
+			location.href = "/dbtestGJ"
+		}else{
+			alert("삭제 실패");
+		}
+	})
+}
