@@ -68,9 +68,7 @@ public class PartyDao {
 			try {
 				this.pstmt = this.conn.prepareStatement(sql);
 				this.pstmt.setInt(1, postNo);
-				
 				this.rs = this.pstmt.executeQuery();
-				
 				int partyNo = 0;
 				ArrayList<String> userIds = new ArrayList<String>();
 				ArrayList<String> imageHtmls = new ArrayList<String>();

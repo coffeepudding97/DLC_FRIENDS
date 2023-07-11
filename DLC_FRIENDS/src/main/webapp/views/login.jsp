@@ -16,7 +16,7 @@
 		<section id="main-section">
 			<div class="login_container">
 				<h1>Login</h1>
-				<form onsubmit="return loginChk()" method="post" action="">
+				<form onsubmit="return loginChk()" method="post" action="/loginFormAction">
 					<div class="login-box">
 						<ion-icon name="mail-outline"></ion-icon>
 						<input type="text" name="id" id="id" maxlength="30"
