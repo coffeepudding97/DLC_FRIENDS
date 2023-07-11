@@ -153,6 +153,7 @@ function setRpNo(button){
 
 $(document).ready(function(){
 	const postNo = $('#postNo').val();
+	isEnd();
 	
 	$.ajax({
 		"method":"POST",
@@ -173,4 +174,25 @@ function delPost(){
 			alert("삭제 실패");
 		}
 	})
+}
+
+function updatePost(){
+	const postNo = $('#postNo').val();
+	
+	
+	
+}
+
+function isEnd(){
+	var currentTime = new Date();
+	var meetTime = $('#meetTime').text();
+	var meetTimeMillis = new Date(meetTime).getTime();
+	var currentTimeMillis = currentTime.getTime();
+	
+	console.log(currentTimeMillis);
+	if(meetTimeMillis>currentTimeMillis){
+		$('#isEnd').text("모집기간");
+	}else{
+		$('#isEnd').text("기간초과");
+	}
 }

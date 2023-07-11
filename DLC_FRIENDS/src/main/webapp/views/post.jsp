@@ -28,13 +28,18 @@
 				<span id="viewCount">조회수 : ${requestScope.post.viewCount+1 }</span>
 				<hr/>
 				<span>${post.userId }</span>
-				<button onclick="">수정</button>
+				<form method="post" action="/UpdatePostAction">
+					<input type="hidden" name="postNo" value="${requestScope.post.postNo }">
+					<input type="submit" value="수정">
+				</form>
+				<%--<button onclick="">수정</button>--%>
 				<button onclick="delPost()">삭제</button>
 				<br/>
 				<span>${post.gameTitle }</span>
 				<span>1</span><span>/</span><span>${post.recruitMax }</span>
-				<span>${post.meetTime }</span>
+				<span id="meetTime">${post.meetTime }</span>
 				<span>${post.leaveTime }</span>
+				<span id="isEnd"></span>
 				<br/>
 				<p>${post.content }</p>
 			</div>
@@ -99,7 +104,5 @@
 			</div>
 		</section>
 	</div>
-	
-	
 </body>
 </html>

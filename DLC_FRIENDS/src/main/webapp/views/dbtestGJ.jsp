@@ -16,7 +16,7 @@
 				<input type="submit" value="조회">
 			</form>
 			-->
-			<input type="number" id="post_no" name="post_no">
+			<input type="number" id="post_no" name="post_no" min="1" value="1">
 			<button onclick="viewPost()">조회</button>
 		</section>
 	</div>
