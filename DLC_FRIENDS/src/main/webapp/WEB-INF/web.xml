@@ -72,6 +72,16 @@
 		<servlet-name>profile</servlet-name>
 		<url-pattern>/profile</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>postUpdate</servlet-name>
+		<jsp-file>/views/postUpdate.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>postUpdate</servlet-name>
+		<url-pattern>/postUpdate</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>CommentFormAction</servlet-name>

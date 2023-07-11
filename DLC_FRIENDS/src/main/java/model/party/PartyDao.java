@@ -136,8 +136,10 @@ public class PartyDao {
 		}
 	}
 	
-	public void deletePartyByPostNo(int postNo) {
+	public boolean deletePartyByPostNo(int postNo) {
 		this.conn = DBManager.getConnection();
+		
+		boolean check = true;
 		
 		if(this.conn!= null) {
 			String sql = "DELETE FROM party_member WHERE post_no = ?";
@@ -148,9 +150,14 @@ public class PartyDao {
 				this.pstmt.execute();
 			} catch (Exception e) {
 				e.printStackTrace();
+				check = false;
 			} finally {
 				DBManager.close(conn, pstmt);
 			}
+		} else {
+			check = false;
 		}
+		
+		return check;
 	}
 }

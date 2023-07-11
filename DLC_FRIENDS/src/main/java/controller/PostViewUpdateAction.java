@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.post.PostDao;
+
 /**
  * Servlet implementation class PostViewUpdateAction
  */
@@ -27,7 +29,7 @@ public class PostViewUpdateAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -35,7 +37,11 @@ public class PostViewUpdateAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		// doGet(request, response);
+		int postNo = Integer.parseInt(request.getParameter("postNo"));
+		
+		PostDao postDao = PostDao.getInstance();
+				postDao.increaseViewCount(postNo);
 	}
 
 }

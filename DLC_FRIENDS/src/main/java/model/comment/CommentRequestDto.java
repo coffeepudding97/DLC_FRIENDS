@@ -14,6 +14,14 @@ public class CommentRequestDto {
 		this.userId = userId;
 		this.content = content;
 	}
+	
+	public CommentRequestDto(String userId, String content, int rpNo) {
+		super();
+		this.userId = userId;
+		this.content = content;
+		this.rpNo = rpNo;
+	}
+
 	public int getCmtNo() {
 		return cmtNo;
 	}
