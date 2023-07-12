@@ -10,38 +10,49 @@
 <title>User Profile</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="../resources/style/profile.css">
+<%
+// 조회한 프로필 정보
+Profile profile = (Profile) request.getAttribute("profile");
+%>
 </head>
 <body>
-	<%
-	Profile profile = (Profile) request.getAttribute("profile");
-	String id = session.getAttribute("log").toString();
-	%>
 	<div id="root">
 		<jsp:include page="header"></jsp:include>
-		<h1><%=profile.getId()%>님의 마이페이지</h1>
 		<section id="main-section">
 			<!-- 상단 프로필 부분 -->
 			<div id="top">
 				<!-- 왼쪽 프로필 -->
 				<div id="profile_left">
 					<!-- 이미지 -->
-					<%=profile.getProfileImg() %>
-					 
+					<c:choose>
+						<c:when test="${empty profile.profileImg}">
+							<div>
+								<img src="../resources/images/user.png" alt="이미지" width="100" height="100" />
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div>
+							   <img src="data:image/png;base64, ${profile.profileImg}" alt="이미지" width="100" height="100" />
+							</div>
+						</c:otherwise>
+					</c:choose>
+					
+
+
 					<!-- 유저 이름 -->
-					<p><%=profile.getId()%></p>
+					<p><%=profile.getNickname()%></p>
 				</div>
 
 				<!-- 중앙 메세지 -->
 				<div id="profile_center">
-					<!-- 태그 -->
-					<div>#리그오브레전드 #배틀그라운드 #It Takes Two</div>
+					<!-- ^ 태그 -->
 
 					<br>
 					<!-- 소개글 -->
-					<div><%=profile.getInfo()%></div>
-					<br>
+					<div>${profile.info }</div>
+					
 
-					<!-- 유저평가(신고) 태그 -->
+					<!-- ^ 유저평가(신고) 태그 -->
 					<div>#욕설 #게임방해</div>
 
 				</div>
@@ -55,16 +66,6 @@
 							<a href="deleteUser">회원 탈퇴</a>
 						</div>
 					</c:if>
-				
-				<!-- 
-					<div>
-	  					<a href="profileUpdate">내 정보 수정</a>
-					</div>
-					
-					<div>
-						<a href="deleteUserForm">회원 탈퇴</a>
-					</div>
-				 -->
 				</div>
 
 			</div>

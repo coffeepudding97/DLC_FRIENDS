@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.profile.Profile;
+import model.profile.ProfileDao;
 import model.user.User;
 import model.user.UserDao;
 
@@ -29,8 +33,6 @@ public class LoginFormAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -46,11 +48,16 @@ public class LoginFormAction extends HttpServlet {
 		UserDao userDao = UserDao.getInstance();
 		User user = userDao.getUserById(id);
 		
+		ProfileDao profileDao = ProfileDao.getInstance();
+		Profile profile = profileDao.getUserProfile(id);
+		
 		String url = "/login";
+		
 		if(user != null && user.getPw().equals(password)) {
 			url = "/";
 			System.out.println(user);
 			session.setAttribute("log", id);
+			session.setAttribute("profile", profile);
 		}
 		response.sendRedirect(url);
 	}
