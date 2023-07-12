@@ -21,16 +21,16 @@ $(document).ready(function(){
 							<input type="radio" name="score" value="5">
 						</div>
 						<div>
-							<label for="tag1">욕설</label>
-							<input id="tag1" name="tag" type="checkbox" value="curse">
-							<label for="tag2">탈주</label>
-							<input id="tag2" name="tag" type="checkbox" value="run">
-							<label for="tag3">지각</label>
-							<input id="tag3" name="tag" type="checkbox" value="late">
-							<label for="tag4">게임진행방해</label>
-							<input id="tag4" name="tag" type="checkbox" value="disturb">
-							<label for="tag5">불법프로그램사용</label>
-							<input id="tag5" name="tag" type="checkbox" value="hack">
+							<label for="${rating.postNo}${rating.rated}curse">욕설</label>
+							<input id="${rating.postNo}${rating.rated}curse" name="tag" type="checkbox" value="curse">
+							<label for="${rating.postNo}${rating.rated}run">탈주</label>
+							<input id="${rating.postNo}${rating.rated}run" name="tag" type="checkbox" value="run">
+							<label for="${rating.postNo}${rating.rated}late">지각</label>
+							<input id="${rating.postNo}${rating.rated}late" name="tag" type="checkbox" value="late">
+							<label for="${rating.postNo}${rating.rated}disturb">게임진행방해</label>
+							<input id="${rating.postNo}${rating.rated}disturb" name="tag" type="checkbox" value="disturb">
+							<label for="${rating.postNo}${rating.rated}hack">불법프로그램사용</label>
+							<input id="${rating.postNo}${rating.rated}hack" name="tag" type="checkbox" value="hack">
 						</div>
 						<div>
 							<input id="content" name="content" type="textarea">
