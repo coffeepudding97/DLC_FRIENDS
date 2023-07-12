@@ -47,9 +47,6 @@ Profile profile = (Profile) request.getAttribute("profile");
 				<div id="profile_center">
 					<!-- ^ 태그 -->
 					<div>
-						<c:choose>
-							
-						</c:choose>
 
 					</div>
 
@@ -66,7 +63,7 @@ Profile profile = (Profile) request.getAttribute("profile");
 				<div id="profile_right">
 					<c:if test="${sessionScope.log == profile.id}">
 						<div>
-	  						<a href="profileUpdate">내 정보 수정</a>
+	  						<a href="memberInfoModify">내 정보 수정</a>
 						</div>
 						<div>
 							<a href="deleteUser">회원 탈퇴</a>

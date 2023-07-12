@@ -1,12 +1,13 @@
 <%@page import="model.profile.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Modify</title>
-<link rel="stylesheet" href="../resources/style/profile.css">
 </head>
 <body>
 	<div id="root">
@@ -41,19 +42,22 @@
 
 				<!-- 중앙 메세지 -->
 				<div id="profile_center">
-					<!-- 태그 -->
-					<div>
-						<p>* 선호 게임 설정</p>
-					</div>
-					
-					<form action="favoriteGames" method="POST">
-					</form>
-					<div style="overflow:scroll">
-						리스트
+					<!-- 태그지정 -->
+					<p id="gametitleToggle">* 선호 게임 설정</p>
+					<div id="gametitleList">
+						<form action="favoriteGames" method="POST">
+							<div>
+								<c:forEach items="${gameList}" var="games">
+									<p>${games.gameTitle }
+										<input type="checkbox" name="selectGame" value="${games.gameTitleNo }" />
+									</p>
+								</c:forEach>
+							</div>
+						</form>
 					</div>
 
-					<!-- 소개글 -->
-					<div></div>
+								
+
 
 					<!-- 유저평가(신고) 태그 -->
 					<div></div>
@@ -68,7 +72,10 @@
 					<!-- 왼쪽 수정부분 -->
 					<div id="left_modify">
 						<!-- 아이디 -->
-						<div>
+						<div id="">
+							<div>
+								<p>선호게임 리스트</p>
+							</div>
 							<input type="text" id="id" name="id" value="${profile.nickname }"
 								readonly>
 						</div>

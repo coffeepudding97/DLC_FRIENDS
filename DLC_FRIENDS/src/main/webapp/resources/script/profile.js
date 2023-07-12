@@ -1,3 +1,9 @@
+$(document).ready(function(){
+  $("#gametitleToggle").click(function(){
+    $("gametitleList").toggle();
+  });
+});
+
 function modify(){
 	alert('회원정보가 변경되었습니다.');
 }

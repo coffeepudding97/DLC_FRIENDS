@@ -13,11 +13,12 @@ import javax.servlet.http.HttpSession;
 
 import model.comment.Comment;
 import model.comment.CommentDao;
+import model.gametitle.GameTitle;
+import model.gametitle.GameTitleDao;
 import model.post.Post;
 import model.post.PostDao;
 import model.profile.Profile;
 import model.profile.ProfileDao;
-import model.user.UserDao;
 import model.user.UserRequestDto;
 
 /**
@@ -38,15 +39,12 @@ public class MemberInfoModifyAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		HttpSession session = request.getSession();
-//		String id = (String) session.getAttribute("log");
-//		
-//		ProfileDao profileDao = ProfileDao.getInstance();
-//		Profile profile = profileDao.getUserProfile(id);
-//		
-//		request.setAttribute("profile", profile);
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("profileUpdate");
-//		dispatcher.forward(request, response);
+		GameTitleDao gameTitleDao = GameTitleDao.getInstance();
+		ArrayList<GameTitle> gameList = gameTitleDao.allGameTitle();
+		System.out.println(gameList);
+		request.setAttribute("gameList", gameList);
+		
+		request.getRequestDispatcher("profileUpdate").forward(request, response);
 	}
 
 	/**
@@ -70,15 +68,21 @@ public class MemberInfoModifyAction extends HttpServlet {
 		boolean isTrue = profileDao.updateUser(userDto, password);
 		System.out.println("변경: " + isTrue);
 		
+		response.sendRedirect("memberInfoModify");
+		
 		Profile profile = profileDao.getUserProfile(id);
+		
 		PostDao postDao = PostDao.getInstance();
 		ArrayList<Post> postList = postDao.getPostByUserId(id); 
+		
 		CommentDao commentDao = CommentDao.getInstance();
 		ArrayList<Comment> commentList = commentDao.getCommentsByUserId(id);
 		
+
 		request.setAttribute("profile", profile);
 		request.setAttribute("postList", postList);
 		request.setAttribute("commentList", commentList);
+		
 		
 		String url = "/";
 		
