@@ -17,9 +17,9 @@
 			<div class=header_top_wrap>
 					<div class =header_top>
 					<div class = "logo_wrap">
-					<a href="/index"><img src="http://localhost:8080/resources/images/main_logo.png"></a>
+					<a href="/index"><img src="/resources/images/main_logo.png"></a>
 					</div>
-					
+					<div class="logo_right">
 					<c:choose>
 						<c:when test="${empty sessionScope.log }">
 							<a href="/login">로그인</a>
@@ -27,11 +27,12 @@
 						<c:otherwise>
 							<form method="POST" action="/ProfileForm" style="display:inline;">
 								<input type="hidden" name="id" value="${sessionScope.log}" />
-      							<input type="submit" value="마이 페이지" />
+      							<input type="submit" class="my_page" value="마이 페이지" />
       						</form>
       						<a href="/logoutAction">로그아웃</a>
 						</c:otherwise>
 					</c:choose>
+					</div>
 					
 					
 					</div>

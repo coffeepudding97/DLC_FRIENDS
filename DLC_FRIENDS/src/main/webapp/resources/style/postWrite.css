@@ -12,7 +12,7 @@ button {
 	 background: linear-gradient(#172235, #3a536f);
 }
 
-form {
+#wrap {
 	    padding: 150px 100px 200px 100px;
 	    display:flex;
 	    align-items:center;
@@ -23,7 +23,7 @@ form {
 	display:flex;
     flex-direction: column;
     padding:100px;
-    background: #313141;
+    background: #31313c;
     max-width:1200px;
 }
 
@@ -56,12 +56,13 @@ form {
 
 .member_cnt {
 	display:flex;
+	justify-content: space-between;
 }
 
 .member_cnt input {
 	margin-left:30px;
 	width:30px;
-	margin: 10px 0 10px 30px;
+	margin: 10px 167px 10px 0;
 }
 
 .create_time {
