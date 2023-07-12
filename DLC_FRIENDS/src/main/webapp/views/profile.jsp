@@ -48,7 +48,6 @@ Profile profile = (Profile) request.getAttribute("profile");
 				<div id="profile_center">
 					<!-- ^ 태그 -->
 
-					<br>
 					<!-- 소개글 -->
 					<div>${profile.info }</div>
 					
@@ -63,7 +62,7 @@ Profile profile = (Profile) request.getAttribute("profile");
 				<div id="profile_right">
 					<c:if test="${sessionScope.log == profile.id}">
 						<div class="profile_update">
-	  						<a href="profileUpdate">내 정보 수정</a>
+	  						<a href="memberInfoModify">내 정보 수정</a>
 						</div>
 						<div class="delete_user">
 							<a href="deleteUser">회원 탈퇴</a>
