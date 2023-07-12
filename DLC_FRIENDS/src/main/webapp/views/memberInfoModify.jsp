@@ -9,9 +9,6 @@
 <link rel="stylesheet" href="../resources/style/profile.css">
 </head>
 <body>
-	<%
-Profile profile = (Profile) request.getAttribute("profile");
-%>
 	<div id="root">
 		<jsp:include page="header"></jsp:include>
 		<div>
@@ -64,12 +61,12 @@ Profile profile = (Profile) request.getAttribute("profile");
 					<div id="left_modify">
 						<!-- 아이디 -->
 						<div>
-							<input type="text" id="id" name="id" value="${sessionScope.log }"
+							<input type="text" id="id" name="id" value="${profile.nickname }"
 								readonly>
 						</div>
 						<!-- 기존 비밀번호 -->
 						<div>
-							<p>소개글</p>
+							<p>* 비밀번호 수정</p>
 						</div>
 						<div>
 							<input type="password" name="password" placeholder="기존 비밀번호">
@@ -81,18 +78,10 @@ Profile profile = (Profile) request.getAttribute("profile");
 
 						<!-- 유저 소개글 -->
 						<div>
-							<p>소개글</p>
+							<p>* 소개글</p>
 						</div>
 						<input type="text" id="info" name="info"
-							value="<%=profile.getInfo() %>" placeholder="소개글을 입력해주세요.">
-
-						<!-- * 생년월일 -->
-						<!--  
-						<div>
-							<input type="text" id="birthday" name="birthday"
-								value="${requestScope.birthday }" readonly>
-						</div>
-						-->
+							value="${profile.info }" placeholder="소개글을 입력해주세요.">
 					</div>
 
 					<!-- 오른쪽 완료버튼 -->

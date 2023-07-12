@@ -10,11 +10,13 @@
 <title>User Profile</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="../resources/style/profile.css">
+<%
+Profile profile = (Profile) request.getAttribute("profile");
+%>
 </head>
 <body>
 	<div id="root">
 		<jsp:include page="header"></jsp:include>
-		<h1>${sessionScope.profile.getNickname()}님의 마이페이지</h1>
 		<section id="main-section">
 			<!-- 상단 프로필 부분 -->
 			<div id="top">
@@ -22,18 +24,22 @@
 				<div id="profile_left">
 					<!-- 이미지 -->
 					<c:choose>
-						<c:when test="${empty profile.profileImg }">
-							<c:url var="imgUrl" value="../resources/images/user.png"></c:url>
+						<c:when test="${empty profile.profileImg}">
+							<div>
+								<img src="../resources/images/user.png" alt="이미지" width="100" height="100" />
+							</div>
 						</c:when>
 						<c:otherwise>
-							<c:url var="imgUrl" value="${profile.profileImg }"></c:url>
+							<div>
+							   <img src="data:image/png;base64, ${profile.profileImg}" alt="이미지" width="100" height="100" />
+							</div>
 						</c:otherwise>
 					</c:choose>
 					
-					<img src="${imgUrl }" width="50" height="50">
-				
+
+
 					<!-- 유저 이름 -->
-					<p>${profile.nickName }</p>
+					<p><%=profile.getNickname()%></p>
 				</div>
 
 				<!-- 중앙 메세지 -->
@@ -55,7 +61,7 @@
 				<div id="profile_right">
 					<c:if test="${sessionScope.log == profile.id}">
 						<div>
-	  						<a href="memberInfoModify">내 정보 수정</a>
+	  						<a href="profileUpdate">내 정보 수정</a>
 						</div>
 						<div>
 							<a href="deleteUser">회원 탈퇴</a>

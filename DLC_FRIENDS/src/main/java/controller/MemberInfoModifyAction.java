@@ -38,15 +38,15 @@ public class MemberInfoModifyAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("log");
-		
-		ProfileDao profileDao = ProfileDao.getInstance();
-		Profile profile = profileDao.getUserProfile(id);
-		
-		request.setAttribute("profile", profile);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("profileUpdate");
-		dispatcher.forward(request, response);
+//		HttpSession session = request.getSession();
+//		String id = (String) session.getAttribute("log");
+//		
+//		ProfileDao profileDao = ProfileDao.getInstance();
+//		Profile profile = profileDao.getUserProfile(id);
+//		
+//		request.setAttribute("profile", profile);
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("profileUpdate");
+//		dispatcher.forward(request, response);
 	}
 
 	/**

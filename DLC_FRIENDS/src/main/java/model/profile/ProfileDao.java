@@ -61,13 +61,13 @@ public class ProfileDao {
 						
 						// 프로필 이미지 변환 및 base64 인코딩
 						String base64Image = encodeImageToBase64(outputPath);
-						String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
+//						String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
 						
 						// 프로필 정보 읽어오기
 						String info = this.rs.getString(4);
 						String nickname = this.rs.getString(5);
 						
-						profile = new Profile(id, imageHtml, info, nickname);
+						profile = new Profile(id, base64Image, info, nickname);
 					}
 				}
 			} catch (Exception e) {
