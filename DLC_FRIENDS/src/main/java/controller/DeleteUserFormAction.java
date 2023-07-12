@@ -45,7 +45,6 @@ public class DeleteUserFormAction extends HttpServlet {
 		UserDao userDao = UserDao.getInstance();
 		boolean result = userDao.deleteUserById(id, password);
 		
-		String url = "/";
 		if(result) {
 			request.getSession().removeAttribute("log");
 			System.out.println("유저삭제 성공");

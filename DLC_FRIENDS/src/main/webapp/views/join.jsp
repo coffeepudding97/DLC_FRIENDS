@@ -52,13 +52,13 @@
                 <!-- disabled => 조건이 충족될 때까지 사용자가 입력 필드를 클릭할 수 없도록 설정, 로그인 페이지로 이동.-->
             </div>
             <div>
-                <button type="button" class="signup_cancel_button"><a href=sign.html></a>취소</button> <!-- 로그인 페이지로 돌아감 -->
+                <button type="button" class="signup_cancel_button"><a href="/login"></a>취소</button> <!-- 로그인 페이지로 돌아감 -->
             </div>
         </div>
     </form>
     <div>
         이미 회원이신가요?
-        <a href="sign.html" type="button" class="signup_go_to_login">로그인하기</a> <!-- 이미 계정이 있는 경우 클릭 시 로그인 페이지로 이동.-->
+        <a href="/login" type="button" class="signup_go_to_login">로그인하기</a> <!-- 이미 계정이 있는 경우 클릭 시 로그인 페이지로 이동.-->
     </div>
 </div>
 </div>

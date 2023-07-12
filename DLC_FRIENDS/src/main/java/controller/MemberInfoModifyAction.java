@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.comment.Comment;
 import model.comment.CommentDao;
@@ -36,23 +37,32 @@ public class MemberInfoModifyAction extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-//	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("log");
+		
+		ProfileDao profileDao = ProfileDao.getInstance();
+		Profile profile = profileDao.getUserProfile(id);
+		
+		request.setAttribute("profile", profile);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("profileUpdate");
+		dispatcher.forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserRequestDto userDto = null; 
+		request.setCharacterEncoding("UTF-8");
 		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String newPassword = request.getParameter("newPw");
 //		String nickname = request.getParameter("nickname");
+		String info = request.getParameter("info");
 		
-		userDto = new UserRequestDto(id, newPassword);
+		userDto = new UserRequestDto(id, newPassword, info);
 		
 //		UserDao userDao = UserDao.getInstance();
 //		userDao.updateUser(userDto, password);

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import model.comment.Comment;
 import model.comment.CommentDao;
+import model.gametitle.GameTitle;
+import model.gametitle.GameTitleDao;
 import model.post.Post;
 import model.post.PostDao;
 import model.post.PostResponseDto;
@@ -38,44 +40,40 @@ public class ProfileFormAction extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
 		
-		ProfileDto profileDto = null;
-		PostResponseDto postDto = null;
-
+		// String id = request.getParameter("id");
+		String id = (String) request.getSession().getAttribute("log");
 		System.out.println("id : " + id);
-		
-		profileDto = new ProfileDto(id);
-		
-		ProfileDao profileDao = ProfileDao.getInstance();
-		Profile profile = profileDao.getUserProfile(id);
-
-		PostDao postDao = PostDao.getInstance();
-		ArrayList<Post> postList = postDao.getPostByUserId(id); 
-		
-		CommentDao commentDao = CommentDao.getInstance();
-		ArrayList<Comment> commentList = commentDao.getCommentsByUserId(id);
-
-		
-		System.out.println("profile>" + profile);
-		System.out.println("postList>" + postList);
-		System.out.println("commentList>" + commentList);
-		
-		request.setAttribute("profile", profile);
-		request.setAttribute("postList", postList);
-		request.setAttribute("commentList", commentList);
 		
 		String url = "/";
 		
-		if(profile != null) {
+		if(id != null) {
+			ProfileDao profileDao = ProfileDao.getInstance();
+			Profile profile = profileDao.getUserProfile(id);
+			
+			PostDao postDao = PostDao.getInstance();
+			ArrayList<Post> postList = postDao.getPostByUserId(id); 
+			
+			CommentDao commentDao = CommentDao.getInstance();
+			ArrayList<Comment> commentList = commentDao.getCommentsByUserId(id);
+			
+			GameTitleDao gameTitleDao = GameTitleDao.getInstance();
+			ArrayList<GameTitle> gameList = gameTitleDao.allGameTitle();
+			
+			System.out.println("profile>" + profile);
+			System.out.println("postList>" + postList);
+			System.out.println("commentList>" + commentList);
+			
+			request.setAttribute("postList", postList);
+			request.setAttribute("commentList", commentList);
+			request.setAttribute("gameList", gameList);
+			
 			url = "profile";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
-		}else {
-			// null이면 index로 이동
-			response.sendRedirect(url);
+		} else {
+			response.sendRedirect(url);			
 		}
-		
 
 	}
 

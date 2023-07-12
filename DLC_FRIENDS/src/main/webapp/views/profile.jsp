@@ -12,23 +12,28 @@
 <link rel="stylesheet" href="../resources/style/profile.css">
 </head>
 <body>
-	<%
-	Profile profile = (Profile) request.getAttribute("profile");
-	String id = session.getAttribute("log").toString();
-	%>
 	<div id="root">
 		<jsp:include page="header"></jsp:include>
-		<h1><%=profile.getId()%>님의 마이페이지</h1>
+		<h1>${sessionScope.profile.getNickname()}님의 마이페이지</h1>
 		<section id="main-section">
 			<!-- 상단 프로필 부분 -->
 			<div id="top">
 				<!-- 왼쪽 프로필 -->
 				<div id="profile_left">
 					<!-- 이미지 -->
-					<%=profile.getProfileImg() %>
-					 
+					<c:choose>
+						<c:when test="${empty profile.profileImg }">
+							<c:url var="imgUrl" value="../resources/images/user.png"></c:url>
+						</c:when>
+						<c:otherwise>
+							<c:url var="imgUrl" value="${profile.profileImg }"></c:url>
+						</c:otherwise>
+					</c:choose>
+					
+					<img src="${imgUrl }" width="50" height="50">
+				
 					<!-- 유저 이름 -->
-					<p><%=profile.getId()%></p>
+					<p>${profile.nickName }</p>
 				</div>
 
 				<!-- 중앙 메세지 -->
@@ -38,7 +43,8 @@
 
 					<br>
 					<!-- 소개글 -->
-					<div><%=profile.getInfo()%></div>
+					<div>${profile.info }</div>
+					
 					<br>
 
 					<!-- 유저평가(신고) 태그 -->
@@ -49,22 +55,12 @@
 				<div id="profile_right">
 					<c:if test="${sessionScope.log == profile.id}">
 						<div>
-	  						<a href="profileUpdate">내 정보 수정</a>
+	  						<a href="memberInfoModify">내 정보 수정</a>
 						</div>
 						<div>
 							<a href="deleteUser">회원 탈퇴</a>
 						</div>
 					</c:if>
-				
-				<!-- 
-					<div>
-	  					<a href="profileUpdate">내 정보 수정</a>
-					</div>
-					
-					<div>
-						<a href="deleteUserForm">회원 탈퇴</a>
-					</div>
-				 -->
 				</div>
 
 			</div>

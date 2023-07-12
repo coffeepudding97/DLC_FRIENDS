@@ -54,17 +54,21 @@ public class ProfileDao {
 				
 				if(this.rs.next()) {
 					InputStream inputStream = this.rs.getBinaryStream(3);
+					
 					Path outputPath = Path.of("output.png");
-					Files.copy(inputStream, outputPath, StandardCopyOption.REPLACE_EXISTING);
-					
-					// 프로필 이미지 변환 및 base64 인코딩
-					String base64Image = encodeImageToBase64(outputPath);
-					String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
-					
-					// 프로필 정보 읽어오기
-					String info = this.rs.getString(4);
-					
-					profile = new Profile(id, imageHtml, info);
+					if(inputStream != null) {
+						Files.copy(inputStream, outputPath, StandardCopyOption.REPLACE_EXISTING);						
+						
+						// 프로필 이미지 변환 및 base64 인코딩
+						String base64Image = encodeImageToBase64(outputPath);
+						String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
+						
+						// 프로필 정보 읽어오기
+						String info = this.rs.getString(4);
+						String nickname = this.rs.getString(5);
+						
+						profile = new Profile(id, imageHtml, info, nickname);
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -176,8 +180,37 @@ public class ProfileDao {
 				} finally {
 					DBManager.close(this.conn, this.pstmt);
 				}
+    			
+    		// 비밀번호 입력 X, info만 처리
+    		} else if(userDto.getPassword() == "") {
+    			String sql = "UPDATE profile SET info=? WHERE user_id=?";
+    			
+    			try {
+					this.pstmt = this.conn.prepareStatement(sql);
+					
+					this.pstmt.setString(1, userDto.getInfo());
+					this.pstmt.setString(2, userDto.getId());
+					
+	                int affectedRows = this.pstmt.executeUpdate();
+
+	                if (affectedRows > 0) {
+	                    System.out.println("소개글을 작성하였습니다.");
+	                    System.out.println("개수: " + affectedRows);
+	                    result = true;
+	                } else {
+	                    System.out.println("변경 실패했습니다.");
+	                    result = false;
+	                }
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					DBManager.close(this.conn, this.pstmt);
+				}
     		}
-    	}
+    		
+    	} 
+    	
+    	
     	return result;
     }
 }

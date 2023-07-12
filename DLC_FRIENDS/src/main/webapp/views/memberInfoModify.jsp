@@ -1,3 +1,4 @@
+<%@page import="model.profile.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,11 +9,13 @@
 <link rel="stylesheet" href="../resources/style/profile.css">
 </head>
 <body>
+	<%
+Profile profile = (Profile) request.getAttribute("profile");
+%>
 	<div id="root">
 		<jsp:include page="header"></jsp:include>
 		<div>
-			<h1>프로필 수정
-			</h1>
+			<h1>프로필 수정</h1>
 		</div>
 
 		<section id="main-section">
@@ -32,9 +35,11 @@
 					<!-- 
 					<div>
 						<input type="text" id="nickname" name="nickname"
-							placeholder="아이디 or 닉네임 입력">
+							placeholder="닉네임 입력">
 					</div>
 					 -->
+
+
 				</div>
 
 				<!-- 중앙 메세지 -->
@@ -64,27 +69,37 @@
 						</div>
 						<!-- 기존 비밀번호 -->
 						<div>
+							<p>소개글</p>
+						</div>
+						<div>
 							<input type="password" name="password" placeholder="기존 비밀번호">
 						</div>
 						<!-- 새로운 비밀번호 -->
 						<div>
-							<input type="text" id="newPw" name="newPw"
-								placeholder="새 비밀번호">
+							<input type="text" id="newPw" name="newPw" placeholder="새 비밀번호">
 						</div>
+
+						<!-- 유저 소개글 -->
+						<div>
+							<p>소개글</p>
+						</div>
+						<input type="text" id="info" name="info"
+							value="<%=profile.getInfo() %>" placeholder="소개글을 입력해주세요.">
+
 						<!-- * 생년월일 -->
-						<!-- 
+						<!--  
 						<div>
 							<input type="text" id="birthday" name="birthday"
 								value="${requestScope.birthday }" readonly>
 						</div>
-						 -->
+						-->
 					</div>
 
 					<!-- 오른쪽 완료버튼 -->
 					<div id="right_btn">
-						<input type="button" id="submit-btn" onclick="modify(form)" value="회원정보 수정완료">
+						<input type="submit" id="submit-btn" value="회원정보 수정완료">
 					</div>
-					
+
 					<button onclick="test(this)">테스트</button>
 				</div>
 			</form>
