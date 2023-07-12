@@ -21,8 +21,7 @@ public class UserDao {
 	// Database 연동하여 데이터 관리.
 	// Dao 싱글톤 구현
 
-	private UserDao() {
-	}
+	private UserDao() {}
 
 	private static UserDao instance = new UserDao();
 

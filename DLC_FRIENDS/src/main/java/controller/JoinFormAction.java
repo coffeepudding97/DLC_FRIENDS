@@ -42,7 +42,7 @@ public class JoinFormAction extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		String id = request.getParameter("id");
+		String id = request.getParameter("id"); // re
 		String password = request.getParameter("password");
 		String nickName = request.getParameter("nickName");
 		String email = request.getParameter("email");
