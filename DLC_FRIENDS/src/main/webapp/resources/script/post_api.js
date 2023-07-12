@@ -92,15 +92,20 @@ function profileClick(button){
 	const memberId = btn.text();
 	
 	if(userId === memberId){
-		$.ajax({
-			"method":"POST",
-			"url":`http://localhost:8080//PartyLeaveAction?postNo=${postNo}&userId=${userId}`
-		}).done(party => {
-			btn.empty();
-			btn.append(`<span class="memberId">+</span>`);
-			btn.removeAttr("onclick");
-			btn.attr("onclick", "blankClick(this)");
-		})
+		if($('#isEnd').text()=="기간초과"){
+			alert("기간초과");
+		}else{
+			$.ajax({
+				"method":"POST",
+				"url":`http://localhost:8080//PartyLeaveAction?postNo=${postNo}&userId=${userId}`
+			}).done(party => {
+				btn.empty();
+				btn.append(`<span class="memberId">+</span>`);
+				btn.removeAttr("onclick");
+				btn.attr("onclick", "blankClick(this)");
+			})
+		}
+		
 	} else{
 		alert("프로필");
 	}
@@ -117,35 +122,41 @@ function blankClick(button){
 		log=false;
 	}
 	
-	if(log){
-		$('.memberId').each(
-			function(){
-				if($(this).text() === userId){
-					res = true;
-					return false;
+	if($('#isEnd').text()=="기간초과"){
+		alert("기간초과");
+	} else{
+		if(log){
+			$('.memberId').each(
+				function(){
+					if($(this).text() === userId){
+						res = true;
+						return false;
+					}
 				}
+			);
+		
+			if(!res){
+				$.ajax({
+					"method":"POST",
+					"url":`http://localhost:8080/PartyJoinAction?postNo=${postNo}&userId=${userId}`,
+					"dataType":"json"
+				}).done(profile => {
+					$(button).empty();
+					$(button).append(`${profile.profileImg}<span class="memberId">${profile.id }</span>`);
+					$(button).removeAttr("onclick");
+					$(button).attr("onclick", "profileClick(this)");
+				})
+				
+				
+			} else {
+				alert("이미 참가한 유저");
 			}
-		);
-	
-		if(!res){
-			$.ajax({
-				"method":"POST",
-				"url":`http://localhost:8080/PartyJoinAction?postNo=${postNo}&userId=${userId}`,
-				"dataType":"json"
-			}).done(profile => {
-				$(button).empty();
-				$(button).append(`${profile.profileImg}<span class="memberId">${profile.id }</span>`);
-				$(button).removeAttr("onclick");
-				$(button).attr("onclick", "profileClick(this)");
-			})
-			
-			
 		} else {
-			alert("이미 참가한 유저");
+			alert("로그인");
 		}
-	} else {
-		alert("로그인");
 	}
+	
+	
 	
 }
 
