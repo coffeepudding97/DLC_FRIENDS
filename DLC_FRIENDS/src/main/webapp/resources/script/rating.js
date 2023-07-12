@@ -55,6 +55,7 @@ function rating(button){
 	const postNo = $(line).find('div[name="postNo"]').text();
 	const rated = $(line).find('div[name="userId"]').text();
 	const radio = $(line).find('input[name="score"]:checked').val();
+	const content = $(line).find('input[name="content"]').val();
 	const tags = $(line).find('input[name="tag"]:checked').map(function() {
   		return this.value;
 	}).get();
@@ -64,6 +65,7 @@ function rating(button){
 		postNo,
 		rated,
 		radio,
+		content,
 		tags
 	}
 	
