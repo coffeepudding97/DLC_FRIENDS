@@ -76,6 +76,16 @@
 		<servlet-name>postUpdate</servlet-name>
 		<jsp-file>/views/postUpdate.jsp</jsp-file>
 	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>rating</servlet-name>
+		<url-pattern>/rating</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>rating</servlet-name>
+		<jsp-file>/views/rating.jsp</jsp-file>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>postUpdate</servlet-name>

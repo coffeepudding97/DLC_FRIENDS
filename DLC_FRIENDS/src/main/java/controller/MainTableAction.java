@@ -38,6 +38,7 @@ public class MainTableAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=utf-8");
+		
 		MainTableDao MaintableDao = MainTableDao.getInstance();
 		ArrayList<MainTable> mainList = MaintableDao.getPostAll();
 		//request.setAttribute("mainList", mainList);

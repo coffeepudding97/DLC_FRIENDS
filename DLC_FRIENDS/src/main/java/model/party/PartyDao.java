@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import model.post.PostDao;
 import model.profile.Profile;
 import model.profile.ProfileDao;
+import model.rating.RatingDao;
 import util.DBManager;
 
 public class PartyDao {
@@ -41,6 +42,7 @@ public class PartyDao {
 					this.pstmt.setString(2, hostId);
 					
 					this.pstmt.execute();
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 					check = false;
@@ -96,6 +98,50 @@ public class PartyDao {
 		
 		return party;
 	}
+	
+	public Party getPartyExceptSelfByPostNo(int postNo, String self) {
+		Party party = null;
+		
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "SELECT * FROM party_member WHERE post_no=?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setInt(1, postNo);
+				this.rs = this.pstmt.executeQuery();
+				int partyNo = 0;
+				ArrayList<String> userIds = new ArrayList<String>();
+				ArrayList<String> imageHtmls = new ArrayList<String>();
+				ProfileDao profileDao = ProfileDao.getInstance();
+				
+				while(this.rs.next()) {
+					partyNo = this.rs.getInt(1);
+					String userId = this.rs.getString(3);
+					if(!userId.equals(self)) {
+						userIds.add(userId);
+						
+						Profile profile = profileDao.getUserProfile(userId);
+						imageHtmls.add(profile.getProfileImg());
+					}
+					
+				}
+				
+				//party = new Party(partyNo, postNo, userIds);
+				party = new Party(partyNo, postNo, userIds, imageHtmls);
+				
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			} finally {
+				DBManager.close(conn, pstmt, rs);
+			}
+		}
+		
+		return party;
+	}
+	
 	
 	// 로그인 기능 환성 후 작성
 	public void join(int postNo, String userId) {
@@ -157,5 +203,31 @@ public class PartyDao {
 		}
 		
 		return check;
+	}
+	
+	public ArrayList<Integer> getPostNosByUserId(String userId) {
+		ArrayList<Integer> postNos = new ArrayList<Integer>();
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn!=null) {
+			String sql = "SELECT post_no FROM party_member WHERE user_id=?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setString(1, userId);
+				
+				this.rs = this.pstmt.executeQuery();
+				
+				while(this.rs.next()) {
+					postNos.add(this.rs.getInt(1));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt, rs);
+			}
+		}
+		
+		return postNos;
 	}
 }

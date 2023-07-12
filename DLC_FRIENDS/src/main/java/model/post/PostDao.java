@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import model.comment.CommentDao;
@@ -328,5 +329,43 @@ public class PostDao {
 			}
 		}
 		return postList;
+	}
+	
+	public ArrayList<Integer> getTimeEndPostNosByPostNos(ArrayList<Integer> postNos) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "SELECT * FROM post WHERE post_no=?";
+			
+			LocalDateTime curTime = LocalDateTime.now();
+			Timestamp curTimestamp = Timestamp.valueOf(curTime);
+			
+			try {
+				for(int postNo : postNos) {
+					this.pstmt = this.conn.prepareStatement(sql);
+					this.pstmt.setInt(1, postNo);
+					
+					this.rs = this.pstmt.executeQuery();
+					
+					if(this.rs.next()) {
+						Timestamp leave_time = this.rs.getTimestamp("leave_time");
+						int post_no = this.rs.getInt("post_no");
+						
+						if(curTimestamp.compareTo(leave_time) > 0) {
+							list.add(post_no);
+						}
+					}
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt, rs);
+			}
+		}
+		
+		return list;
 	}
 }
