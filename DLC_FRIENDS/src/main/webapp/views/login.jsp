@@ -11,7 +11,7 @@
 <title>로그인</title>
 </head>
 <body>
-	<div id="root">
+<div id="root">
 		<%-- <jsp:include page="../header.jsp"></jsp:include> --%>
 		<section id="main-section">
 			<div class="login_container">
