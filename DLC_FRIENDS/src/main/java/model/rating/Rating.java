@@ -13,6 +13,23 @@ public class Rating {
 	private int disturb;
 	private int hack;
 	private boolean finish;
+	
+	
+	public Rating(int postNo, String rater, String rated, String content, int score, int curse, int run, int late,
+			int disturb, int hack, boolean finish) {
+		super();
+		this.postNo = postNo;
+		this.rater = rater;
+		this.rated = rated;
+		this.content = content;
+		this.score = score;
+		this.curse = curse;
+		this.run = run;
+		this.late = late;
+		this.disturb = disturb;
+		this.hack = hack;
+		this.finish = finish;
+	}
 	public int getRatingNo() {
 		return ratingNo;
 	}

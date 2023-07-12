@@ -13,6 +13,7 @@ import model.party.Party;
 import model.party.PartyDao;
 import model.profile.Profile;
 import model.profile.ProfileDao;
+import model.rating.RatingDao;
 
 /**
  * Servlet implementation class PartyLeaveAction
@@ -51,7 +52,11 @@ public class PartyLeaveAction extends HttpServlet {
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
 		String userId = request.getParameter("userId");
 		
+		RatingDao ratingDao = RatingDao.getInstance();
 		PartyDao partyDao = PartyDao.getInstance();
+		
+		ratingDao.deleteRating(postNo, userId);
+		
 		partyDao.leave(postNo, userId);
 		
 		Party party = partyDao.getPartyByPostNo(postNo);

@@ -53,7 +53,7 @@ public class LoadRatingsAction extends HttpServlet {
 		
 		ArrayList<Integer> postNos = null;
 		ArrayList<Party> partys = new ArrayList<Party>();
-		ArrayList<Rating> ratings = new ArrayList<Rating>();
+		ArrayList<Rating> ratings = null;
 		
 		PartyDao partyDao = PartyDao.getInstance();
 		RatingDao ratingDao = RatingDao.getInstance();
@@ -66,11 +66,11 @@ public class LoadRatingsAction extends HttpServlet {
 		
 		for(int postNo : postNos) {
 			Party party = partyDao.getPartyExceptSelfByPostNo(postNo, rater);
-			ArrayList<Rating> list = ratingDao.getRatingByPostNoAndUserId(postNo, rater);
 			partys.add(party);
-			ratings.addAll(list);
 		}
 					
+		
+		ratings = ratingDao.getRatingsByRater(rater);
 		JSONArray json = new JSONArray(partys);
 		JSONArray jsonRatings = new JSONArray(ratings);
 		

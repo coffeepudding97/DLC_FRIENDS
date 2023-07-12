@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
+import model.party.Party;
 import model.party.PartyDao;
 import model.profile.Profile;
 import model.profile.ProfileDao;
+import model.rating.RatingDao;
 
 /**
  * Servlet implementation class PartyJoinAction
@@ -52,6 +54,14 @@ public class PartyJoinAction extends HttpServlet {
 		Profile profile = profileDao.getUserProfile(userId);
 		
 		PartyDao partyDao = PartyDao.getInstance();
+		
+		RatingDao ratingDao = RatingDao.getInstance();
+		
+		Party party = partyDao.getPartyByPostNo(postNo);
+		for(String member : party.getUserIds()) {
+			ratingDao.createRating(postNo, member, userId);
+			ratingDao.createRating(postNo, userId, member);
+		}
 		
 		partyDao.join(postNo, userId);
 		

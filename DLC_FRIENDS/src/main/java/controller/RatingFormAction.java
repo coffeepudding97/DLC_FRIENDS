@@ -44,10 +44,12 @@ public class RatingFormAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
-		String rated = request.getParameter("userId");
-		int score = Integer.parseInt("radio");
+		String rater = request.getParameter("rater"); // <- ajax rater 가져오기
+		String rated = request.getParameter("rated");
+		int score = Integer.parseInt(request.getParameter("radio"));
 		String content = request.getParameter("content");
-		String[] arr = request.getParameterValues("tags");
+		String[] arr = request.getParameterValues("tags[]");
+
 		int curse = 0;
 		int run = 0;
 		int late = 0;
@@ -71,7 +73,7 @@ public class RatingFormAction extends HttpServlet {
 			}
 		}
 		
-		RatingDto ratingDto = new RatingDto(postNo, rated, content, score, curse, run, late, disturb, hack);
+		RatingDto ratingDto = new RatingDto(postNo, rater, rated, content, score, curse, run, late, disturb, hack);
 		
 		RatingDao ratingDao = RatingDao.getInstance();
 		
@@ -81,7 +83,8 @@ public class RatingFormAction extends HttpServlet {
 		
 		JSONObject json = new JSONObject(ratingDto);
 		
-		response.getWriter().append(json.toString());
+		response.getWriter().append(String.valueOf(ratingDto.isFinish()));
+		// response.getWriter().append(json.toString());
 	}
 
 }
