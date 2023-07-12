@@ -11,6 +11,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="../resources/style/profile.css">
 <%
+// 조회한 프로필 정보
 Profile profile = (Profile) request.getAttribute("profile");
 %>
 </head>
@@ -44,16 +45,20 @@ Profile profile = (Profile) request.getAttribute("profile");
 
 				<!-- 중앙 메세지 -->
 				<div id="profile_center">
-					<!-- 태그 -->
-					<div>#리그오브레전드 #배틀그라운드 #It Takes Two</div>
+					<!-- ^ 태그 -->
+					<div>
+						<c:choose>
+							
+						</c:choose>
+
+					</div>
 
 					<br>
 					<!-- 소개글 -->
 					<div>${profile.info }</div>
 					
-					<br>
 
-					<!-- 유저평가(신고) 태그 -->
+					<!-- ^ 유저평가(신고) 태그 -->
 					<div>#욕설 #게임방해</div>
 
 				</div>

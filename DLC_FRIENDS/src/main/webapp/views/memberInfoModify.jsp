@@ -42,7 +42,15 @@
 				<!-- 중앙 메세지 -->
 				<div id="profile_center">
 					<!-- 태그 -->
-					<div></div>
+					<div>
+						<p>* 선호 게임 설정</p>
+					</div>
+					
+					<form action="favoriteGames" method="POST">
+					</form>
+					<div style="overflow:scroll">
+						리스트
+					</div>
 
 					<!-- 소개글 -->
 					<div></div>
