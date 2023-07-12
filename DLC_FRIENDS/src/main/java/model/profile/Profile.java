@@ -1,15 +1,21 @@
 package model.profile;
 
-import java.sql.Blob;
-
 public class Profile {
 	// profile_no, user_id, profile_img, info, title, content
 	private String id;
 //	private Blob profileImg;
 	private String imageHtml;
 	private String info;
+	private String nickname;
 	
 	
+	public Profile(String id, String imageHtml, String info, String nickname) {
+		super();
+		this.id = id;
+		this.imageHtml = imageHtml;
+		this.info = info;
+		this.nickname = nickname;
+	}
 	
 	public Profile(String id, String imageHtml, String info) {
 		super();
@@ -18,20 +24,16 @@ public class Profile {
 		this.info = info;
 	}
 	
-	
-	public Profile(String id, String info) {
+	public Profile(String id, String nickname) {
 		super();
 		this.id = id;
-		this.info = info;
+		this.info = "소개글을 입력해주세요.";
+		this.nickname = nickname;
 	}
 
-
-	public Profile(String id) {
-		super();
-		this.id = id;
+	public String getNickname() {
+		return nickname;
 	}
-
-
 	public String getId() {
 		return id;
 	}

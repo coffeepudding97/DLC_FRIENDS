@@ -8,6 +8,7 @@ public class UserRequestDto {
 	private String nickName;
 	private String email;
 	private int birthday;
+	private String info;
 	
 	public UserRequestDto(String id, String password, String nickname, String email, int birthday) {
 		this.id = id;
@@ -51,6 +52,26 @@ public class UserRequestDto {
 
 	public void setBirthday(int birthday) {
 		this.birthday = birthday;
+	}
+
+	
+
+	public String getInfo() {
+		return info;
+	}
+
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	
+	
+	public UserRequestDto(String id, String password, String info) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.info = info;
 	}
 
 

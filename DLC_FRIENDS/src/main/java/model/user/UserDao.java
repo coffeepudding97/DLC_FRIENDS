@@ -25,6 +25,8 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import model.profile.Profile;
+import model.profile.ProfileDto;
 import util.DBManager;
 
 public class UserDao {
@@ -38,8 +40,7 @@ public class UserDao {
 	// Database 연동하여 데이터 관리.
 	// Dao 싱글톤 구현
 
-	private UserDao() {
-	}
+	private UserDao() {}
 
 	private static UserDao instance = new UserDao();
 
@@ -108,8 +109,9 @@ public class UserDao {
 		if(id != null && password != null && nickName != null && birth != 0) {
 			this.conn = DBManager.getConnection();
 			if(this.conn != null) {
+				
 				String userInsertSql = "INSERT INTO user VALUES(?, ?, ?, ?, DATE(?))";
-				String profileInsertSql = "INSERT INTO profile(user_id, profile_img, info) VALUES(?, ?, '소개글을 입력해주세요.');";
+				String profileInsertSql = "INSERT INTO profile(user_id, info, nickname) VALUES(?, ?, ?);";
 				
 				try {
 					// 트랜잭션 시작
@@ -125,12 +127,13 @@ public class UserDao {
 					this.pstmt.executeUpdate();
 
 					// 프로필 정보 저장
-					this.pstmt = this.conn.prepareStatement(profileInsertSql);
-					this.pstmt.setString(1, id);
+					Profile profile = new Profile(id, nickName);
 					
-					String imagePath = "C:\\Users\\dldbs\\git\\DLC_FRIENDS\\DLC_FRIENDS\\src\\main\\webapp\\resources\\images\\user.png";
-					InputStream inputStream = new FileInputStream(imagePath);
-					this.pstmt.setBinaryStream(2, inputStream, inputStream.available());
+					this.pstmt = this.conn.prepareStatement(profileInsertSql);
+					this.pstmt.setString(1, profile.getId());
+					this.pstmt.setString(2, profile.getInfo());					
+					this.pstmt.setString(3, profile.getNickname());
+					
 					pstmt.executeUpdate();
 					
 					// 트랜잭션 커밋

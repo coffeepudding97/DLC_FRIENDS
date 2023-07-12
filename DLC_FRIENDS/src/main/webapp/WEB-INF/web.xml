@@ -129,6 +129,17 @@
 		<servlet-name>MemberInfoModify</servlet-name>
 		<url-pattern>/memberInfoModify</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SelectGamesFormAction</servlet-name>
+		<servlet-class>controller.SelectGamesFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SelectGamesFormAction</servlet-name>
+		<url-pattern>/SelectGames</url-pattern>
+	</servlet-mapping>
+	
+	
 
 	<servlet>
 		<servlet-name>profileUpdate</servlet-name>

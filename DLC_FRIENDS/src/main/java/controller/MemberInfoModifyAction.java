@@ -9,14 +9,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.comment.Comment;
 import model.comment.CommentDao;
+import model.gametitle.GameTitle;
+import model.gametitle.GameTitleDao;
 import model.post.Post;
 import model.post.PostDao;
 import model.profile.Profile;
 import model.profile.ProfileDao;
-import model.user.UserDao;
 import model.user.UserRequestDto;
 
 /**
@@ -36,23 +38,29 @@ public class MemberInfoModifyAction extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-//	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		GameTitleDao gameTitleDao = GameTitleDao.getInstance();
+		ArrayList<GameTitle> gameList = gameTitleDao.allGameTitle();
+		System.out.println(gameList);
+		request.setAttribute("gameList", gameList);
+		
+		request.getRequestDispatcher("profileUpdate").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserRequestDto userDto = null; 
+		request.setCharacterEncoding("UTF-8");
 		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String newPassword = request.getParameter("newPw");
 //		String nickname = request.getParameter("nickname");
+		String info = request.getParameter("info");
 		
-		userDto = new UserRequestDto(id, newPassword);
+		userDto = new UserRequestDto(id, newPassword, info);
 		
 //		UserDao userDao = UserDao.getInstance();
 //		userDao.updateUser(userDto, password);
@@ -60,15 +68,21 @@ public class MemberInfoModifyAction extends HttpServlet {
 		boolean isTrue = profileDao.updateUser(userDto, password);
 		System.out.println("변경: " + isTrue);
 		
+		response.sendRedirect("memberInfoModify");
+		
 		Profile profile = profileDao.getUserProfile(id);
+		
 		PostDao postDao = PostDao.getInstance();
 		ArrayList<Post> postList = postDao.getPostByUserId(id); 
+		
 		CommentDao commentDao = CommentDao.getInstance();
 		ArrayList<Comment> commentList = commentDao.getCommentsByUserId(id);
 		
+
 		request.setAttribute("profile", profile);
 		request.setAttribute("postList", postList);
 		request.setAttribute("commentList", commentList);
+		
 		
 		String url = "/";
 		

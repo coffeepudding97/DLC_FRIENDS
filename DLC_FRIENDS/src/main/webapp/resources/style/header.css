@@ -64,6 +64,19 @@ nav {
 .logo_wrap a img {
 	width:150px;
 }
+.logo_right {
+	display:flex;
+	align-items:center;
+}
+
+.my_page {
+	background:none;
+	border:none;
+	color:white;
+	font-family: 'Pretendard-Regular';
+	font-size:16px;
+}
+
 
 .header_bottom_wrap {
 	background-color:#db0442;

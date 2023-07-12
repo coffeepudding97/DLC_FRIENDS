@@ -52,6 +52,7 @@ function delete_comment(button) {
 function append_comment(list) {
 	const user_id = $('#userId').val();
 	let color = "orange";
+	let cls = "cmt";
 	$('#ul-comment').empty();
 	list.forEach(comment => {
 		let tag = '';
@@ -59,12 +60,14 @@ function append_comment(list) {
 			tag = `<input type="button" value="삭제" onclick="delete_comment(this)">`
 		}
 		if(comment.rpNo!=0){
-			color = "blue";
+			color="blue"
+			cls = "rp"
 		}else{
 			color = "orange";
+			cls = "cmt"
 		}
 		$('#ul-comment').append(`
-						<li>
+						<li class="${cls}">
 							<p>
 								<strong name="userId" style="color:${color}">${comment.userId}</strong>
 							</p>
@@ -75,15 +78,19 @@ function append_comment(list) {
 								${comment.createdTime}
 							</p>
 							<form>
+							<div>
 								<input type="hidden" class="cmtNo" name="cmtNo" value="${comment.cmtNo }">
-								<input type="button" value="댓글" onclick="setRpNo(this)">
+								<input type="button" class="comment_answer" value="답글 쓰기" onclick="setRpNo(this)">
 								${tag}
+							 <div>
 							</form>
 						</li>
 					`);
 
 	})
 }
+
+
 
 function profileClick(button){
 	const postNo = $('#postNo').val();

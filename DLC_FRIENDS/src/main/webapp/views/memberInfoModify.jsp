@@ -1,23 +1,19 @@
+<%@page import="model.profile.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Modify</title>
-<link rel="stylesheet" href="../resources/style/profile.css">
 </head>
 <body>
-	<%
-	String id = session.getAttribute("log").toString();
-	%>
-
-
 	<div id="root">
 		<jsp:include page="header"></jsp:include>
 		<div>
-			<h1><%=id%>님의 프로필 수정
-			</h1>
+			<h1>프로필 수정</h1>
 		</div>
 
 		<section id="main-section">
@@ -37,18 +33,31 @@
 					<!-- 
 					<div>
 						<input type="text" id="nickname" name="nickname"
-							placeholder="아이디 or 닉네임 입력">
+							placeholder="닉네임 입력">
 					</div>
 					 -->
+
+
 				</div>
 
 				<!-- 중앙 메세지 -->
 				<div id="profile_center">
-					<!-- 태그 -->
-					<div></div>
+					<!-- 태그지정 -->
+					<p id="gametitleToggle">* 선호 게임 설정</p>
+					<div id="gametitleList">
+						<form action="favoriteGames" method="POST">
+							<div>
+								<c:forEach items="${gameList}" var="games">
+									<p>${games.gameTitle }
+										<input type="checkbox" name="selectGame" value="${games.gameTitleNo }" />
+									</p>
+								</c:forEach>
+							</div>
+						</form>
+					</div>
 
-					<!-- 소개글 -->
-					<div></div>
+								
+
 
 					<!-- 유저평가(신고) 태그 -->
 					<div></div>
@@ -63,33 +72,38 @@
 					<!-- 왼쪽 수정부분 -->
 					<div id="left_modify">
 						<!-- 아이디 -->
-						<div>
-							<input type="text" id="id" name="id" value="${sessionScope.log }"
+						<div id="">
+							<div>
+								<p>선호게임 리스트</p>
+							</div>
+							<input type="text" id="id" name="id" value="${profile.nickname }"
 								readonly>
 						</div>
 						<!-- 기존 비밀번호 -->
+						<div>
+							<p>* 비밀번호 수정</p>
+						</div>
 						<div>
 							<input type="password" name="password" placeholder="기존 비밀번호">
 						</div>
 						<!-- 새로운 비밀번호 -->
 						<div>
-							<input type="text" id="newPw" name="newPw"
-								placeholder="새 비밀번호">
+							<input type="text" id="newPw" name="newPw" placeholder="새 비밀번호">
 						</div>
-						<!-- * 생년월일 -->
-						<!-- 
+
+						<!-- 유저 소개글 -->
 						<div>
-							<input type="text" id="birthday" name="birthday"
-								value="${requestScope.birthday }" readonly>
+							<p>* 소개글</p>
 						</div>
-						 -->
+						<input type="text" id="info" name="info"
+							value="${profile.info }" placeholder="소개글을 입력해주세요.">
 					</div>
 
 					<!-- 오른쪽 완료버튼 -->
 					<div id="right_btn">
-						<input type="button" id="submit-btn" onclick="modify(form)" value="회원정보 수정완료">
+						<input type="submit" id="submit-btn" value="회원정보 수정완료">
 					</div>
-					
+
 					<button onclick="test(this)">테스트</button>
 				</div>
 			</form>
