@@ -75,7 +75,7 @@ function append_comment(list) {
 								${comment.createdTime}
 							</p>
 							<form>
-								<input type="text" class="cmtNo" name="cmtNo" value="${comment.cmtNo }">
+								<input type="hidden" class="cmtNo" name="cmtNo" value="${comment.cmtNo }">
 								<input type="button" value="댓글" onclick="setRpNo(this)">
 								${tag}
 							</form>
@@ -92,15 +92,20 @@ function profileClick(button){
 	const memberId = btn.text();
 	
 	if(userId === memberId){
-		$.ajax({
-			"method":"POST",
-			"url":`http://localhost:8080//PartyLeaveAction?postNo=${postNo}&userId=${userId}`
-		}).done(party => {
-			btn.empty();
-			btn.append(`<span class="memberId">+</span>`);
-			btn.removeAttr("onclick");
-			btn.attr("onclick", "blankClick(this)");
-		})
+		if($('#isEnd').text()=="기간초과"){
+			alert("기간초과");
+		}else{
+			$.ajax({
+				"method":"POST",
+				"url":`http://localhost:8080//PartyLeaveAction?postNo=${postNo}&userId=${userId}`
+			}).done(party => {
+				btn.empty();
+				btn.append(`<span class="memberId">+</span>`);
+				btn.removeAttr("onclick");
+				btn.attr("onclick", "blankClick(this)");
+			})
+		}
+		
 	} else{
 		alert("프로필");
 	}
@@ -109,35 +114,50 @@ function profileClick(button){
 function blankClick(button){
 	const postNo = $('#postNo').val();
 	const userId = $('#userId').val();
+	let log = true;
 	let res = false;
 	
 	
-	
-	$('.memberId').each(
-		function(){
-			if($(this).text() === userId){
-				res = true;
-				return false;
-			}
-		}
-	);
-	
-	if(!res){
-		$.ajax({
-			"method":"POST",
-			"url":`http://localhost:8080/PartyJoinAction?postNo=${postNo}&userId=${userId}`,
-			"dataType":"json"
-		}).done(profile => {
-			$(button).empty();
-			$(button).append(`${profile.profileImg}<span class="memberId">${profile.id }</span>`);
-			$(button).removeAttr("onclick");
-			$(button).attr("onclick", "profileClick(this)");
-		})
-		
-		
-	} else {
-		alert("이미 참가한 유저");
+	if(userId == ""){
+		log=false;
 	}
+	
+	if($('#isEnd').text()=="기간초과"){
+		alert("기간초과");
+	} else{
+		if(log){
+			$('.memberId').each(
+				function(){
+					if($(this).text() === userId){
+						res = true;
+						return false;
+					}
+				}
+			);
+		
+			if(!res){
+				$.ajax({
+					"method":"POST",
+					"url":`http://localhost:8080/PartyJoinAction?postNo=${postNo}&userId=${userId}`,
+					"dataType":"json"
+				}).done(profile => {
+					$(button).empty();
+					$(button).append(`${profile.profileImg}<span class="memberId">${profile.id }</span>`);
+					$(button).removeAttr("onclick");
+					$(button).attr("onclick", "profileClick(this)");
+				})
+				
+				
+			} else {
+				alert("이미 참가한 유저");
+			}
+		} else {
+			alert("로그인");
+		}
+	}
+	
+	
+	
 }
 
 function setRpNo(button){

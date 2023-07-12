@@ -71,6 +71,8 @@ public class PostFormAction extends HttpServlet {
 		
 		boolean result = false;
 		
+		String url = "index";
+		
 		if(createdPostNo != 0) {
 			ArrayList<String> userIds = new ArrayList<String>();
 			userIds.add(user_id);
@@ -79,6 +81,8 @@ public class PostFormAction extends HttpServlet {
 			PartyDao partyDao = PartyDao.getInstance();
 			result = partyDao.createParty(party, createdPostNo);
 		}
+		
+		response.sendRedirect(url);
 	}
 
 }
