@@ -16,8 +16,9 @@ Profile profile = (Profile) request.getAttribute("profile");
 %>
 </head>
 <body>
+	<jsp:include page="header"></jsp:include>
+	<div id ="wrap">
 	<div id="root">
-		<jsp:include page="header"></jsp:include>
 		<section id="main-section">
 			<!-- 상단 프로필 부분 -->
 			<div id="top">
@@ -56,13 +57,15 @@ Profile profile = (Profile) request.getAttribute("profile");
 					<div>#욕설 #게임방해</div>
 
 				</div>
+				
+
 				<!-- 오른쪽 버튼 -->
 				<div id="profile_right">
 					<c:if test="${sessionScope.log == profile.id}">
-						<div>
+						<div class="profile_update">
 	  						<a href="profileUpdate">내 정보 수정</a>
 						</div>
-						<div>
+						<div class="delete_user">
 							<a href="deleteUser">회원 탈퇴</a>
 						</div>
 					</c:if>
@@ -75,32 +78,27 @@ Profile profile = (Profile) request.getAttribute("profile");
 				<!-- 왼쪽 -->
 				<div id="bottom_left">
 					<!-- 왼쪽 상단 '게시글' -->
-					<div>
-						<table>
-							<thead>* 작성한 게시글
-							</thead>
+					<div class="bottom_write">
+							<h1>* 작성한 게시글
+							</h1>
 							<c:forEach items="${postList}" var="post">
-								<tr>
-									<td>${post.title}/ ${post.gameTitle}</td>
-								</tr>
+								<div>
+									<div>${post.title}/ ${post.gameTitle}</div>
+								</div>
 							</c:forEach>
-						</table>
-
 					</div>
-					<br>
 
 					<!-- 왼쪽 하단 '댓글' -->
-					<div>
-						<table>
-							<thead>
+					<div class="bottom_reply">
+							<h1>
 								* 작성한 댓글
+								</h1>
 								<c:forEach items="${commentList}" var="comment">
-									<tr>
-										<td>${comment.content}<br>->${comment.createdTime}
-										</td>
-									</tr>
+									<div>
+										<div>${comment.content}<br>->${comment.createdTime}
+										</div>
+									</div>
 								</c:forEach>
-						</table>
 					</div>
 				</div>
 				<!-- 오른쪽 -->
@@ -121,10 +119,9 @@ Profile profile = (Profile) request.getAttribute("profile");
 
 			</div>
 		</section>
-
-		<footer></footer>
-
 	</div>
+		</div>
+		<jsp:include page="footer"></jsp:include>
 	<script src="../resources/script/profile.js"></script>
 </body>
 </html>
