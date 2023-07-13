@@ -225,4 +225,19 @@ public class CommentDao {
 		}
 		return commentList;
 	}
+	
+	public void sortCommentList(ArrayList<CommentResponseDto> list) {
+		int size = list.size();
+		
+		for(int i=0;i<size;i++) {
+			int cnt = 1;
+			for(int j=0;j<size;j++) {
+				if(list.get(i).getCmtNo() == list.get(j).getRpNo()) {
+					list.add(i+cnt, list.get(j));
+					list.remove(j+1);
+					cnt++;
+				}
+			}
+		}
+	}
 }

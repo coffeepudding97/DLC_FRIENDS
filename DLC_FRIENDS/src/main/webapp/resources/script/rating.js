@@ -18,7 +18,7 @@ $(document).ready(function(){
 							<input type="radio" name="score" value="2">
 							<input type="radio" name="score" value="3">
 							<input type="radio" name="score" value="4">
-							<input type="radio" name="score" value="5">
+							<input type="radio" name="score" value="5" checked>
 						</div>
 						<div>
 							<label for="${rating.postNo}${rating.rated}curse">욕설</label>
