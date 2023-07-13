@@ -142,4 +142,45 @@ public class RatingDao {
 		
 		return list;
 	}
+	
+	public ArrayList<Rating> getTenRatings() {
+		ArrayList<Rating> list = new ArrayList<Rating>();
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn!=null) {
+			String sql = "SELECT * FROM rating WHERE finish=true ORDER BY rating_no DESC LIMIT 10";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				
+				this.rs = this.pstmt.executeQuery();
+				
+				while(this.rs.next()) {
+					
+					String content = this.rs.getString("content");
+					if(content==null) {
+						content = "";
+					}
+					int score = this.rs.getInt("score");
+					int curse = this.rs.getInt("curse");
+					int run = this.rs.getInt("run");
+					int late = this.rs.getInt("late");
+					int disturb = this.rs.getInt("disturb");
+					int hack = this.rs.getInt("hack");
+					String rated = this.rs.getString("rated");
+					
+					Rating rating = new Rating(rated, content, score, curse, run, late, disturb, hack);
+					
+					list.add(rating);
+				}
+						
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt, rs);
+			}
+		}
+		
+		return list;
+	}
 }

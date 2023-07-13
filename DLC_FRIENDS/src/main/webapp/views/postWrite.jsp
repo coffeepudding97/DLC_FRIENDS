@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,20 +19,14 @@
 					<div class="write-wrap">
 						<div id="div-title">
 							<input type="text" id="title" name="title" placeholder="제목"
-								autofocus> <input type="text" id="user_id"
-								name="user_id" placeholder="아이디">
+								autofocus> <input type="hidden" id="user_id"
+								name="user_id" placeholder="아이디" value="${sessionScope.log }">
 						</div>
 						<div id="div-gametitle">
+							<h2>게임타이틀</h2>
 							<select id="gametitle" name="gametitle">
-								<option value="리그오브레전드">리그오브레전드</option>
-								<option value="배틀그라운드">배틀그라운드</option>
-								<option value="오버워치">오버워치</option>
-								<option value="발로란트">발로란트</option>
-								<option value="기타">기타</option>
 							</select>
-							<button id="favor1" value="리그오브레전드">리그오브레전드</button>
-							<button id="favor2" value="오버워치">오버워치</button>
-							<button id="favor3" value="발로란트">발로란트</button>
+							<h2>선호게임</h2>
 						</div>
 						<div id="div-meeting">
 							<div class="member_cnt">
@@ -40,11 +35,11 @@
 									min="2" step="1" value="2">
 							</div>
 							<div class="create_time">
-								<h2>모집시작시간</h2>
+								<h2>시작시간</h2>
 								<input type="datetime-local" id="meettime" name="meettime">
 							</div>
 							<div class="end_time">
-								<h2>모집종료시간</h2>
+								<h2>종료시간</h2>
 								<input type="datetime-local" id="leavetime" name="leavetime">
 							</div>
 						</div>
@@ -61,5 +56,6 @@
 		</section>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>
+	<script src="../resources/script/postWrite.js"></script>
 </body>
 </html>

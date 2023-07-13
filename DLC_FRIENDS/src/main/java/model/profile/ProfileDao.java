@@ -116,7 +116,8 @@ public class ProfileDao {
 						String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
 						String info = this.rs.getString("info");
 						
-						profileDtos.add(new ProfileDto(userId, imageHtml, info));
+						String nickname = this.rs.getString("nickname");
+						profileDtos.add(new ProfileDto(userId, imageHtml, info, nickname));
 					}
 				}
 			} catch (Exception e) {

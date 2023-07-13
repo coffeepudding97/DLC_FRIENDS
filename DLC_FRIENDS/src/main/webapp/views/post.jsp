@@ -21,7 +21,9 @@
 				pageScope. 
 				requestScope. 
 				sessionScope. 
-				applicationScope. 
+				applicationScope.
+
+				requestScope.post.createdTime
 				-->
 						<div class="main_title">
 							<h2>${param.post_no }</h2>
@@ -30,7 +32,7 @@
 						<div class="main_title_bottom_wrap">
 							<span>글쓴이 : ${post.userId }</span>
 							<div class="main_title_bottom">
-								<span>작성 시간 : ${requestScope.post.createdTime }</span> <span
+								<span>작성 시간 : ${requestScope.createdTime }</span> <span
 									id="viewCount">조회수 : ${requestScope.post.viewCount+1 }</span>
 							</div>
 						</div>
@@ -46,9 +48,9 @@
 							<button onclick="delPost()">삭제</button>
 						</c:if>
 
-						<br /> <span>${post.gameTitle }</span> <span id="party_member_count">${requestScope.party.userIds.size() }</span><span>/</span><span>${post.recruitMax }</span>
-						<span id="meetTime">${post.meetTime }</span> <span>${post.leaveTime }</span>
-						<span id="isEnd"></span> <br />
+						<span>같이할 게임 : ${post.gameTitle }</span> <br/><span id="party_member_count">모집 인원 : ${requestScope.party.userIds.size() }</span><span>/</span><span>${post.recruitMax }</span>
+						<br/><span id="meetTime">시작 시간 : ${requestScope.meetTime } / </span> <span>끝나는 시간 : ${requestScope.leaveTime }</span>
+						<br/><span>모집 상태 : </span><span id="isEnd"></span> <br />
 						<hr />
 					</div>
 					<div class="post_content">
@@ -133,6 +135,7 @@
 					</form>
 					</div>
 				</div>
+				
 			</section>
 		</div>
 	</div>

@@ -22,6 +22,7 @@ import model.post.PostRequestDto;
 import model.post.PostResponseDto;
 import model.profile.ProfileDao;
 import model.profile.ProfileDto;
+import util.TimestampToString;
 
 /**
  * Servlet implementation class ReadPostFormAction
@@ -82,18 +83,33 @@ public class ReadPostFormAction extends HttpServlet {
 			ProfileDao profileDao = ProfileDao.getInstance();
 			
 			Party party = partyDao.getPartyByPostNo(postNo);
+			System.out.println(party);
 			
-			ArrayList<String> userIds = party.getUserIds();
-			ArrayList<ProfileDto> profileDtos = profileDao.getProfileDtosByUserIds(userIds, postNo);
+			ArrayList<String> userIds = null;
+			ArrayList<ProfileDto> profileDtos = null;
+			PartyRequestDto partyDto = null;
 			
-			PartyRequestDto partyDto = new PartyRequestDto(postNo, userIds);
+			if(party != null) {
+				userIds = party.getUserIds();
+				profileDtos = profileDao.getProfileDtosByUserIds(userIds, postNo);
+				partyDto = new PartyRequestDto(postNo, userIds);
+			}
 			
 			ArrayList<CommentResponseDto> cmtList = commentDao.getCommentsByPostNo(postNo);
+			
+			TimestampToString timestampToString = TimestampToString.getInstance();
+			
+			String strCreatedT = timestampToString.TTS(createdTime);
+			String strMeetT = timestampToString.TTS(meetTime);
+			String strleaveT = timestampToString.TTS(leaveTime);
 			
 			request.setAttribute("post", postDto);
 			request.setAttribute("party", partyDto);
 			request.setAttribute("profileDtos", profileDtos);
 			request.setAttribute("cmtList", cmtList);
+			request.setAttribute("createdTime", strCreatedT);
+			request.setAttribute("meetTime", strMeetT);
+			request.setAttribute("leaveTime", strleaveT);
 			
 			url = "post";
 		}

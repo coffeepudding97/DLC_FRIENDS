@@ -65,7 +65,7 @@ public class UpdatePostFormAction extends HttpServlet {
 		PostDao postDao = PostDao.getInstance();
 		postDao.updatePost(post, postNo);
 		
-		String url = "dbtestGJ";
+		String url = "index";
 		
 		response.sendRedirect(url);
 	}

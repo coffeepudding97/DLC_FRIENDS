@@ -58,6 +58,7 @@ function append_comment(list) {
 	/*<li id="cmt${comment.cmtNo}" class="${cls}">*/
 	
 	list.forEach(comment => {
+		var data = splitTimeStamp(comment.createdTime);
 		let tag = '';
 		if (comment.userId === user_id) {
 			tag = `<input type="button" value="삭제" onclick="delete_comment(this)">`
@@ -75,12 +76,10 @@ function append_comment(list) {
 			<li class="${cls}">
 				<p>
 					<strong name="userId" style="color:${color}">${comment.userId}</strong>
+					<small>작성 시간 : ${data.MM}-${data.DD} ${data.hh}:${data.mm}</small>
 				</p>
 				<p>
 					${comment.content}
-				</p>
-				<p>
-					${comment.createdTime}
 				</p>
 				<form>
 				<div>
@@ -131,7 +130,20 @@ function profileClick(button){
 		}
 		
 	} else{
-		alert("프로필");
+		// 멤버 프로필 페이지 이동
+		var form = document.createElement("form");
+		form.method = "POST";
+		form.action = "/ProfileForm";
+		
+		var input = document.createElement("input");
+		input.type = "hidden";
+		input.name = "id";
+		input.value = memberId;
+		
+		form.appendChild(input);
+		document.body.appendChild(form);
+		
+		form.submit();
 	}
 }
 
@@ -166,7 +178,7 @@ function blankClick(button){
 					"dataType":"json"
 				}).done(profile => {
 					$(button).empty();
-					$(button).append(`${profile.profileImg}<span class="memberId">${profile.id }</span>`);
+					$(button).append(`<img src="data:image/png;base64, ${profile.profileImg}" alt="이미지"/><span class="memberId">${userId }</span>`);
 					$(button).removeAttr("onclick");
 					$(button).attr("onclick", "profileClick(this)");
 					let member_count = $("#party_member_count").text();
@@ -225,7 +237,7 @@ function delPost(){
 		"url":`http://localhost:8080/DeletePostFormAction?postNo=${postNo}`
 	}).done(result => {
 		if(result==="true"){
-			location.href = "/dbtestGJ"
+			location.href = "/index"
 		}else{
 			alert("삭제 실패");
 		}
@@ -243,4 +255,19 @@ function isEnd(){
 	}else{
 		$('#isEnd').text("기간초과");
 	}
+}
+
+function splitTimeStamp(ts){
+	const YY = ts.substr(0,4);
+	const MM = ts.substr(5,2);
+	const DD = ts.substr(8,2);
+	const hh = ts.substr(11,2);
+	const mm = ts.substr(14,2);
+	const ss = ts.substr(17,2);
+	
+	var date = {
+		"YY":YY, "MM":MM, "DD":DD, "hh":hh, "mm":mm, "ss":ss
+	}
+	
+	return date;
 }

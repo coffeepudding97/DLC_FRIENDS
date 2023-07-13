@@ -39,8 +39,11 @@ public class MainTableAction extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=utf-8");
 		
+		int pageNo = Integer.parseInt(request.getParameter("cnt"));
+		
 		MainTableDao MaintableDao = MainTableDao.getInstance();
-		ArrayList<MainTable> mainList = MaintableDao.getPostAll();
+		//ArrayList<MainTable> mainList = MaintableDao.getPostAll();
+		ArrayList<MainTable> mainList = MaintableDao.getTenPosts(pageNo);
 		//request.setAttribute("mainList", mainList);
 		
 		//request.getRequestDispatcher("index").forward(request, response);

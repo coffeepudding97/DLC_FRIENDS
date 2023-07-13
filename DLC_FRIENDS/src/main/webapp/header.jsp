@@ -39,7 +39,7 @@
 			</div>
 			<div class=header_bottom_wrap>
 				<div class=header_bottom>
-					<a href="/index" class="on">친구찾기</a> <a href="#">신고게시판</a> <a href="#">클랜찾기</a>
+					<a href="/index" class="on">친구찾기</a> <a href="/warningBoard">신고게시판</a> <a href="#">클랜찾기</a>
 				</div>
 				</div>
 			</div>

@@ -81,7 +81,7 @@ public class PostFormAction extends HttpServlet {
 			PartyDao partyDao = PartyDao.getInstance();
 			result = partyDao.createParty(party, createdPostNo);
 		}
-		
+		System.out.println(result);
 		response.sendRedirect(url);
 	}
 

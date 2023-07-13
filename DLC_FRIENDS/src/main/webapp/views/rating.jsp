@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../resources/style/rating.css" />
 </head>
 <c:import url="/header"></c:import>
 <body>
