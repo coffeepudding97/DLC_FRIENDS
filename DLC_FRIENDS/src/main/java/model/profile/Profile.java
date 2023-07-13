@@ -30,6 +30,7 @@ public class Profile {
 		this.info = "소개글을 입력해주세요.";
 		this.nickname = nickname;
 	}
+	
 
 	public String getNickname() {
 		return nickname;

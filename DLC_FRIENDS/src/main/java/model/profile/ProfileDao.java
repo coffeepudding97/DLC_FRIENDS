@@ -62,14 +62,21 @@ public class ProfileDao {
 						// 프로필 이미지 변환 및 base64 인코딩
 						String base64Image = encodeImageToBase64(outputPath);
 //						String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
-						if(base64Image == null)
-							base64Image = "";
+//						if(base64Image == null)
+//							base64Image = "";
 						
 						// 프로필 정보 읽어오기
 						String info = this.rs.getString(4);
 						String nickname = this.rs.getString(5);
 						
 						profile = new Profile(id, base64Image, info, nickname);
+					
+					// 이미지파일이 null일 때 
+					}else {
+						String info = this.rs.getString(4);
+						String nickname = this.rs.getString(5);
+						
+						profile = new Profile(id, null, info, nickname);
 					}
 				}
 			} catch (Exception e) {
@@ -190,6 +197,8 @@ public class ProfileDao {
     			try {
 					this.pstmt = this.conn.prepareStatement(sql);
 					
+					System.out.println(userDto.getInfo());
+					System.out.println(userDto.getId());
 					this.pstmt.setString(1, userDto.getInfo());
 					this.pstmt.setString(2, userDto.getId());
 					
@@ -198,9 +207,10 @@ public class ProfileDao {
 	                if (affectedRows > 0) {
 	                    System.out.println("소개글을 작성하였습니다.");
 	                    System.out.println("개수: " + affectedRows);
-	                    result = true;
+	                    result = true;	
 	                } else {
 	                    System.out.println("변경 실패했습니다.");
+	                    System.out.println("개수: " + affectedRows);
 	                    result = false;
 	                }
 				} catch (Exception e) {

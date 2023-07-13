@@ -75,6 +75,9 @@
 					<!-- 왼쪽 수정부분 -->
 					<div id="left_modify">
 						<!-- 아이디 -->
+						<div>
+							<p>* 닉네임</p>
+						</div>
 						<div id="">
 							<input type="text" id="id" name="id" value="${profile.nickname }"
 								readonly>
