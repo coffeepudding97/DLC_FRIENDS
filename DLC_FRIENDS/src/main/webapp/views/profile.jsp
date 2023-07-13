@@ -16,7 +16,7 @@ Profile profile = (Profile) request.getAttribute("profile");
 %>
 </head>
 <body>
-	<jsp:include page="header"></jsp:include>
+	<jsp:include page="/header"></jsp:include>
 	<div id ="wrap">
 	<div id="root">
 		<section id="main-section">
@@ -32,39 +32,49 @@ Profile profile = (Profile) request.getAttribute("profile");
 							</div>
 						</c:when>
 						<c:otherwise>
-							<div>
+							<div class="profile_contents">
 							   <img src="data:image/png;base64, ${profile.profileImg}" alt="이미지" width="100" height="100" />
+
+					<!-- 유저 이름 -->
 							</div>
 						</c:otherwise>
 					</c:choose>
 					
 
-
-					<!-- 유저 이름 -->
-					<p><%=profile.getNickname()%></p>
 				</div>
 
 				<!-- 중앙 메세지 -->
 				<div id="profile_center">
-					<!-- ^ 태그 -->
-					<div>
-						<c:forEach items="${selectGameList}" var="selGames">
-							<p>#${selGames.gametitle} </p>
-						</c:forEach>
+					<div class="profile_nickname">
+					<p><%=profile.getNickname()%></p>
 					</div>
 
 					<!-- 소개글 -->
-					<div>${profile.info }</div>
+					<div class="profile_comment">${profile.info }</div>
 					
-
-					<!-- ^ 유저평가(신고) 태그 -->
-					<div>#욕설 #게임방해</div>
+					
+					
 
 				</div>
 				
 
 				<!-- 오른쪽 버튼 -->
 				<div id="profile_right">
+					<div class="tag">
+					<!-- ^ 태그 -->
+					<div class="game_tag">
+						<c:forEach items="${selectGameList}" var="selGames">
+							<p>#${selGames.gametitle} </p>
+						</c:forEach>
+					</div>
+
+					<!-- ^ 유저평가(신고) 태그 -->
+					<div class="report_tag">
+					<p>#욕설</p>
+					<p>#게임방해</p>
+					</div>
+					</div>
+					<div class="profile_user">
 					<c:if test="${sessionScope.log == profile.id}">
 						<div class="profile_update">
 	  						<a href="memberInfoModify">내 정보 수정</a>
@@ -73,6 +83,7 @@ Profile profile = (Profile) request.getAttribute("profile");
 							<a href="deleteUser">회원 탈퇴</a>
 						</div>
 					</c:if>
+					</div>
 				</div>
 
 			</div>
@@ -82,6 +93,7 @@ Profile profile = (Profile) request.getAttribute("profile");
 				<!-- 왼쪽 -->
 				<div id="bottom_left">
 					<!-- 왼쪽 상단 '게시글' -->
+					<div class="bottom_write_wrap">
 					<div class="bottom_write">
 							<h1>* 작성한 게시글
 							</h1>
@@ -91,8 +103,10 @@ Profile profile = (Profile) request.getAttribute("profile");
 								</div>
 							</c:forEach>
 					</div>
+					</div>
 
 					<!-- 왼쪽 하단 '댓글' -->
+					<div class="bottom_reply_wrap">
 					<div class="bottom_reply">
 							<h1>
 								* 작성한 댓글
@@ -104,18 +118,19 @@ Profile profile = (Profile) request.getAttribute("profile");
 									</div>
 								</c:forEach>
 					</div>
+					</div>
 				</div>
 				<!-- 오른쪽 -->
 				<div id="bottom_right">
 					<!-- 오른쪽 상단, 최근파티원 -->
 					<div>
 						<ul>
-							<li>최근 파티원
-								<ol>
+							<li><p>최근 파티원</p>
+								<ul>
 									<li>유저1</li>
 									<li>유저2</li>
 									<li>유저3</li>
-								</ol>
+								</ul>
 							</li>
 						</ul>
 					</div>
@@ -125,7 +140,7 @@ Profile profile = (Profile) request.getAttribute("profile");
 		</section>
 	</div>
 		</div>
-		<jsp:include page="footer"></jsp:include>
+		<jsp:include page="/footer"></jsp:include>
 	<script src="../resources/script/profile.js"></script>
 </body>
 </html>

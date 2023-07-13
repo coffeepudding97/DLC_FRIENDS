@@ -38,7 +38,7 @@ a {
 	max-width:1200px;
 	margin:0 auto;
 	padding-top:100px;
-	padding-bottom:100px;
+	padding-bottom:30px;
 }
 .main_table {
 	display:flex;
@@ -63,7 +63,7 @@ a {
 
 .main_table .table_title li {
 	text-align:center;
-	font-size:8px;
+	font-size:10px;
 	padding: 5px 0;
 }
 .main_table .table_title li:first-child {
@@ -80,7 +80,7 @@ a {
 
 .main_table .table_content li {
 	text-align:center;
-	font-size:15px;
+	font-size:18px;
 	padding: 30px 0;
 }
 
@@ -102,11 +102,13 @@ a {
 
 /* 글쓰기버튼 */
 .write {
+	max-width:1320px;
 	display:flex;
 	justify-content:flex-end;
 }
 .write a {
-	background-color:white;
-	padding:5px;
-	border:1px solid black;
+	background-color:#282830;
+	padding:10px;
+	border:1px solid #db0442;
+	color: #db0442;
 }

@@ -13,7 +13,7 @@ body {
 	font-family: 'Pretendard-Regular';
 }
 
-ul, li {
+ul, li, form, input {
 	margin:0;
 	padding:0;
 	list-style:none;

@@ -23,55 +23,124 @@
 }
 
 #main-section {
-	background-color:white;
+	background:linear-gradient(#0a2768, #060a1b69, #0a2768);
+	color:white;
 }
 
 
 #profile_left{
-	width:100%;
-	background:white;
-	padding:30px;
-	border:1px solid #ddd;
+	margin:30px;
+	border:1px solid #09173b;
+	display:flex;
+	align-items:center;
+	padding:10px;
 }
 
 #profile_left img {
-	width:100px;
-	height:100px;
+	width:250px;
+	height:250px;
 }
+
+#profile_left .profile_contents {
+	display:flex;
+	align-items: center;
+}
+
+
 
 #profile_center{
 	width:100%;
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
-	border:1px solid #ddd;
-	padding: 0 50px;
+	margin: 30px;
+	
 }
 
-#profile_right{
-	width:100%;
-	background:white;
+#profile_center .profile_nickname {
+	height:100%;
+	display:flex;
+	align-items:center;
+}
+
+#profile_center .profile_nickname p {
+	font-size:30px;
+	
+}
+
+#profile_center .profile_comment {
+	height:100%;
+	padding:20px 0;
+	font-size:20px;
+	display:flex;
+}
+#profile_right .tag {
+	display:flex;
+	flex-direction:column;
+	padding:30px;
+}
+
+#profile_right .game_tag {
+	padding-right:5px;
+}
+
+#profile_right .game_tag p {
+	padding:5px;
+	display:inline-block;
+	border:1px solid #39c1e9;
+	border-radius:25px;
+	color: #39c1e9;
+	margin:2px;
+}
+
+#profile_right .report_tag p {
+	padding:5px;
+	display:inline-block;
+	border:1px solid #f30101;
+	border-radius:25px;
+	color: #f30101;
+	margin:2px;
+}
+
+#profile_right {
+	width:50%;
 	display:flex;
 	flex-direction:column;
 }
 
-#profile_right .profile_update {
+.profile_user {
 	display:flex;
-	align-items:center;
-	border: 1px solid #ddd;
-	width:100%;
 	height:100%;
-	justify-content: center;
-	box-sizing:border-box;
+	padding:30px;
 }
-#profile_right .delete_user {
+
+#profile_right .profile_update {
+	margin-right:10px;
+}
+#profile_right .profile_user a {
 	display:flex;
 	align-items:center;
-	border: 1px solid #ddd;
+	color:white;
 	width:100%;
 	height:100%;
 	justify-content: center;
 	box-sizing:border-box;
+	padding:5px;
+	background:#747e93;
+	border-radius:5px;
+}
+
+
+#profile_right .delete_user a {
+	display:flex;
+	align-items:center;
+	width:100%;
+	height:100%;
+	justify-content: center;
+	box-sizing:border-box;
+	padding:5px;
+	background:#747e93;
+	border-radius:5px;
 }
 
 
@@ -81,29 +150,44 @@
 
 #bottom_left{
 	width:100%;
-	padding:50px;
-	border:1px solid #ddd;
-	
+}
+
+.bottom_write_wrap {
+	border-top:none;
+	padding:30px;
 }
 
 .bottom_write {
-	background:#fff;
-	margin-right:50px;
+	background:#0a102b;
+	padding:20px;
+}
+
+.bottom_reply_wrap {
+	padding:30px;
 }
 
 .bottom_reply {
-	margin-top:30px;
-	background:#fff;
-	margin-right:50px;
+	background:#0a102b;
+	padding:20px;
+}
+
+#bottom_right {
+	width:29%;
+}
+#bottom_right div {
+	padding:10px;
 }
 
 #bottom_right div ul{
-	width:200px;
-	background:#fff;
+	width:100%;
 	
 }
+#bottom_right div p {
+	padding:10px;
+}
 #bottom_right div ul li {
-	border:1px solid #ddd;
+	border:1px solid #09173b;
+	padding:10px;
 }
 
 

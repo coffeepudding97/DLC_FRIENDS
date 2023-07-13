@@ -1,0 +1,105 @@
+@charset "UTF-8";
+body, li, ul, h1, h2, input, form, p {
+	margin:0;
+	padding:0;
+	list-style:none;
+	box-sizing:border-box;
+}
+
+#wrap {
+	background: linear-gradient(#172235, #3a536f);
+	display:flex;
+	justify-content: center;
+	
+}
+
+#root {
+	max-width:1200px;
+	width:100%;
+	margin-top:50px;
+	margin-bottom:50px;
+}
+
+#main-section {
+	padding:50px;
+	display:flex;
+	flex-direction: column;
+    align-items: center;
+    border:1px solid black;
+    background: linear-gradient(#0a2768, #060a1b69, #0a2768);
+}
+
+.main-section-inner p {
+	padding:10px;
+	padding-top:20px;
+	padding-bottom:20px;
+	background:#282830;
+	color:white;
+}
+
+
+
+.update_img {
+	display:flex;
+	width:1000px;
+	flex-direction:column;
+	position:relative;
+}
+
+.upload_img {
+	display:none;
+	padding:20px;
+	background:#212127;
+	color:white;
+}
+
+.upload_img form {
+	display:flex;
+	flex-direction:space-between;
+	align-items:center;
+}
+
+.update_nickname {
+	padding:20px;
+	display:none;
+	background:#212127;
+	color:white;
+}
+
+.update_password {
+	padding:20px;
+	display:none;
+	background:#212127;
+	color:white;
+}
+
+.update_comment {
+	padding:20px;
+	display:none;
+	background:#212127;
+	color:white;
+}
+
+
+
+#gametitleList {
+	display:none;
+	padding:20px;
+	background:#212127;
+	color:white;
+}
+
+#right_btn {
+	padding-top:10px;
+	display:flex;
+	justify-content:flex-end;
+}
+
+#right_btn input {
+	border:1px solid #212127;
+	padding:10px;
+	background:#fff;
+}
+
+
+

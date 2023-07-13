@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$("#gametitleToggle").click(function(){
-		$("#gametitleList").toggle();
+		$("#gametitleList").slideToggle();
 	});
 	
 	$("input[type='checkbox']").on("click", function(){
@@ -11,6 +11,23 @@ $(document).ready(function(){
 		}
 	});
 	
+});
+
+
+$(document).ready(function(){
+	$(".update_img_txt").click(function(){
+		$(".upload_img").slideToggle();
+	});	
+	$(".update_nickname_title a").click(function(){
+		$(".update_nickname, .update_password, .update_comment").slideToggle();
+	});	
+	$(".update_password_title a").click(function(){
+		$(".update_nickname, .update_password, .update_comment").slideToggle();
+	});	
+	$(".update_comment_title a").click(function(){
+		$(".update_nickname, .update_password, .update_comment").slideToggle();
+	});	
+
 });
 
 
