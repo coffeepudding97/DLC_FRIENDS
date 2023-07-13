@@ -44,6 +44,7 @@ public class CommentAllAction extends HttpServlet {
 
 		ArrayList<CommentResponseDto> list = null;
 		list = cmtDao.getCommentsByPostNo(postNo);
+		cmtDao.sortCommentList(list);
 
 		JSONArray arr = new JSONArray(list);
 		response.getWriter().append(arr.toString());

@@ -85,6 +85,7 @@ public class RatingFormAction extends HttpServlet {
 		
 		response.getWriter().append(String.valueOf(ratingDto.isFinish()));
 		// response.getWriter().append(json.toString());
+		
 	}
 
 }
