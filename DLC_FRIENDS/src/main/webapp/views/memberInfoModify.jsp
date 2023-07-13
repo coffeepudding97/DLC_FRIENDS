@@ -32,14 +32,6 @@
 								</form>
 							</div>
 
-							<!-- * 유저 이름 -->
-							<!-- 
-					<div>
-						<input type="text" id="nickname" name="nickname"
-							placeholder="닉네임 입력">
-					</div>
-					 -->
-
 
 						</div>
 

@@ -69,10 +69,21 @@ Profile profile = (Profile) request.getAttribute("profile");
 					</div>
 
 					<!-- ^ 유저평가(신고) 태그 -->
-					<div class="report_tag">
-					<p>#욕설</p>
-					<p>#게임방해</p>
-					</div>
+						<div class="report_tag">
+						    <c:forEach items="${rateList}" var="rateTag">
+						        <c:set var="curseDisplayed" value="${curseDisplayed or rateTag.curse == 1}" />
+						        <c:set var="runDisplayed" value="${runDisplayed or rateTag.run == 1}" />
+						        <c:set var="lateDisplayed" value="${lateDisplayed or rateTag.late == 1}" />
+						        <c:set var="disturbDisplayed" value="${disturbDisplayed or rateTag.disturb == 1}" />
+						        <c:set var="hackDisplayed" value="${ hackDisplayed or rateTag.hack == 1}" />
+						    </c:forEach>
+						
+						    <c:if test="${curseDisplayed}"><p>#욕설</p></c:if>
+						    <c:if test="${runDisplayed}"><p>#탈주</p></c:if>
+						    <c:if test="${lateDisplayed}"><p>#지각</p></c:if>
+						    <c:if test="${disturbDisplayed}"><p>#게임진행방해</p></c:if>
+						    <c:if test="${hackDisplayed}"><p>#불법프로그램사용</p></c:if>
+						</div>
 					</div>
 					<div class="profile_user">
 					<c:if test="${sessionScope.log == profile.id}">
@@ -99,7 +110,10 @@ Profile profile = (Profile) request.getAttribute("profile");
 							</h1>
 							<c:forEach items="${postList}" var="post">
 								<div>
-									<div>${post.title}/ ${post.gameTitle}</div>
+									<ul>
+										<li>${post.title}</li>
+										<li>${post.gameTitle}</li>
+									</ul>
 								</div>
 							</c:forEach>
 					</div>
@@ -124,16 +138,13 @@ Profile profile = (Profile) request.getAttribute("profile");
 				<div id="bottom_right">
 					<!-- 오른쪽 상단, 최근파티원 -->
 					<div>
-						<ul>
-							<li><p>최근 파티원</p>
-								<ul>
-									<li>유저1</li>
-									<li>유저2</li>
-									<li>유저3</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
+							<p>* 최근 파티원</p>
+							<ul>
+								<c:forEach items="${partyMemList }" var="partyMem">
+									<li>${partyMem.userId}</li>
+								</c:forEach>
+							</ul>
+						</div>
 				</div>
 
 			</div>

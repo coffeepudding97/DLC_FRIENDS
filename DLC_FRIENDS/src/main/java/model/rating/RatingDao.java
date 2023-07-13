@@ -143,6 +143,7 @@ public class RatingDao {
 		return list;
 	}
 	
+
 	public ArrayList<Rating> getTenRatings() {
 		ArrayList<Rating> list = new ArrayList<Rating>();
 		this.conn = DBManager.getConnection();
@@ -180,7 +181,43 @@ public class RatingDao {
 				DBManager.close(conn, pstmt, rs);
 			}
 		}
+		return list;
+	}
 		
+	// 입력된 아이디의 신고조회
+	public ArrayList<Rating> getRatingsById(String id) {
+		ArrayList<Rating> list = new ArrayList<>();
+
+		this.conn = DBManager.getConnection();
+
+		if (this.conn != null) {
+			String sql = "SELECT * FROM rating WHERE rated=? AND finish=true";
+
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+
+				this.pstmt.setString(1, id);
+
+				this.rs = this.pstmt.executeQuery();
+
+				while (this.rs.next()) {
+					String rated = this.rs.getString(4);
+					int score = this.rs.getInt(6);
+					int curse = this.rs.getInt(7);
+					int run = this.rs.getInt(8);
+					int late = this.rs.getInt(9);
+					int disturb = this.rs.getInt(10);
+					int hack = this.rs.getInt(11);
+
+					Rating rating = new Rating(rated, score, curse, run, late, disturb, hack);
+					list.add(rating);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(this.conn, this.pstmt);
+			}
+		}
 		return list;
 	}
 }

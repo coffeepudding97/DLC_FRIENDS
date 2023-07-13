@@ -41,6 +41,18 @@ public class Rating {
 		this.hack = hack;
 		this.finish = finish;
 	}
+	
+	public Rating(String rated, int score, int curse, int run, int late, int disturb, int hack) {
+		super();
+		this.rated = rated;
+		this.score = score;
+		this.curse = curse;
+		this.run = run;
+		this.late = late;
+		this.disturb = disturb;
+		this.hack = hack;
+	}
+
 	public int getRatingNo() {
 		return ratingNo;
 	}
@@ -113,9 +125,12 @@ public class Rating {
 	public void setFinish(boolean finish) {
 		this.finish = finish;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Rating [ratingNo=" + ratingNo + ", postNo=" + postNo + ", rater=" + rater + ", rated=" + rated
+				+ ", content=" + content + ", score=" + score + ", curse=" + curse + ", run=" + run + ", late=" + late
+				+ ", disturb=" + disturb + ", hack=" + hack + ", finish=" + finish + "]";
+	}
 	
 }
