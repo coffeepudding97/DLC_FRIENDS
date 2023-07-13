@@ -46,7 +46,7 @@
 							<button onclick="delPost()">삭제</button>
 						</c:if>
 
-						<br /> <span>${post.gameTitle }</span> <span>1</span><span>/</span><span>${post.recruitMax }</span>
+						<br /> <span>${post.gameTitle }</span> <span id="party_member_count">${requestScope.party.userIds.size() }</span><span>/</span><span>${post.recruitMax }</span>
 						<span id="meetTime">${post.meetTime }</span> <span>${post.leaveTime }</span>
 						<span id="isEnd"></span> <br />
 						<hr />
@@ -82,10 +82,10 @@
 				<div id="div-comment">
 					<h1>댓글</h1>
 					<ul id=ul-comment>
-						<c:forEach items="${requestScope.cmtList }" var="cmt">
+						<%--<c:forEach items="${requestScope.cmtList }" var="cmt">
 							<c:choose>
 								<c:when test="${cmt.rpNo == 0 }">
-									<li class="cmt">
+									<li id="${cmt.cmtNo }" class="cmt">
 										<p>
 											<strong name="userId" style="color: orange;">${cmt.userId }</strong>
 										</p>
@@ -93,7 +93,7 @@
 										<p>${cmt.createdTime }</p>
 								</c:when>
 								<c:otherwise>
-									<li class="rp">
+									<li id="${cmt.cmtNo }" class="rp">
 										<p>
 											<strong name="userId" class="reply" style="color: blue;">${cmt.userId }</strong>
 										</p>
@@ -103,20 +103,18 @@
 							</c:choose>
 							<form>
 							<div>
-								<%-- <form method="post" action="/deleteCmt"> --%>
 								<input type="hidden" class="cmtNo" name="cmtNo"
 									value="${cmt.cmtNo }"> <input type="button"
 									value="답글 쓰기" class="comment_answer" onclick="setRpNo(this)">
 								<c:choose>
 									<c:when test="${sessionScope.log == cmt.userId }">
-										<%-- <input type="submit" value="삭제"> --%>
 										<input type="button" value="삭제" onclick="delete_comment(this)">
 									</c:when>
 								</c:choose>
 							</div>
 							</form>
 							</li>
-						</c:forEach>
+						</c:forEach>--%>
 					</ul>
 					<%--아래 post.userID 나중에 로그인한 유저 id로 바꾸기 --%>
 					<%--<span>${requestScope.post.userId }</span>--%>
@@ -127,7 +125,7 @@
 							value="${param.post_no }"> 
 						<input type="hidden" id="userId" name="userId" value="${sessionScope.log }"> 
 						<input type="hidden" id="rpNo" name="rpNo" value="0"> 
-						<span id="replyName"></span> 
+						<span id="replyName"></span><input type="button" value="-" onclick="resetRpNo()"> 
 						<div class="writer_txt">
 						<input type="text" id="comment" name="comment"> 
 						<input type="button" id="commentWrite" value="작성" onclick="post_comment()">

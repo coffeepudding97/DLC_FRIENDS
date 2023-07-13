@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../resources/style/postWrite.css">
 </head>
 <body>
-	<jsp:include page="../header"></jsp:include>
+	<jsp:include page="/header"></jsp:include>
 	<div id="root">
 		<section id="main-section">
 			<div id="wrap">

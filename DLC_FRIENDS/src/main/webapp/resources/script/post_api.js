@@ -54,39 +54,50 @@ function append_comment(list) {
 	let color = "orange";
 	let cls = "cmt";
 	$('#ul-comment').empty();
+	
+	/*<li id="cmt${comment.cmtNo}" class="${cls}">*/
+	
 	list.forEach(comment => {
 		let tag = '';
 		if (comment.userId === user_id) {
 			tag = `<input type="button" value="삭제" onclick="delete_comment(this)">`
 		}
+		
 		if(comment.rpNo!=0){
-			color="blue"
-			cls = "rp"
+			color="blue";
+			cls = "rp";
 		}else{
 			color = "orange";
-			cls = "cmt"
+			cls = "cmt";
 		}
-		$('#ul-comment').append(`
-						<li class="${cls}">
-							<p>
-								<strong name="userId" style="color:${color}">${comment.userId}</strong>
-							</p>
-							<p>
-								${comment.content}
-							</p>
-							<p>
-								${comment.createdTime}
-							</p>
-							<form>
-							<div>
-								<input type="hidden" class="cmtNo" name="cmtNo" value="${comment.cmtNo }">
-								<input type="button" class="comment_answer" value="답글 쓰기" onclick="setRpNo(this)">
-								${tag}
-							 <div>
-							</form>
-						</li>
-					`);
-
+		
+		let li = `
+			<li class="${cls}">
+				<p>
+					<strong name="userId" style="color:${color}">${comment.userId}</strong>
+				</p>
+				<p>
+					${comment.content}
+				</p>
+				<p>
+					${comment.createdTime}
+				</p>
+				<form>
+				<div>
+					<input type="hidden" class="cmtNo" name="cmtNo" value="${comment.cmtNo}">
+					<input type="button" class="comment_answer" value="답글 쓰기" onclick="setRpNo(this)">
+					${tag}
+				 <div>
+				</form>
+			</li>
+		`;
+		
+		/*if(comment.rpNo!=0){
+			$(`#cmt${comment.rpNo}`).after(li);
+		}else{
+			$('#ul-comment').append(li);
+		}*/
+		$('#ul-comment').append(li);
 	})
 }
 
@@ -96,7 +107,11 @@ function profileClick(button){
 	const postNo = $('#postNo').val();
 	const userId = $('#userId').val();
 	const btn = $(button);
-	const memberId = btn.text();
+	const memberId = btn.find('.memberId').text();
+	console.log(userId);
+	console.log(memberId);
+	console.log(userId === memberId);
+	
 	
 	if(userId === memberId){
 		if($('#isEnd').text()=="기간초과"){
@@ -110,6 +125,8 @@ function profileClick(button){
 				btn.append(`<span class="memberId">+</span>`);
 				btn.removeAttr("onclick");
 				btn.attr("onclick", "blankClick(this)");
+				let member_count = $("#party_member_count").text();
+				$("#party_member_count").text(parseInt(member_count) - 1);
 			})
 		}
 		
@@ -152,6 +169,8 @@ function blankClick(button){
 					$(button).append(`${profile.profileImg}<span class="memberId">${profile.id }</span>`);
 					$(button).removeAttr("onclick");
 					$(button).attr("onclick", "profileClick(this)");
+					let member_count = $("#party_member_count").text();
+					$("#party_member_count").text(parseInt(member_count) + 1);
 				})
 				
 				
@@ -178,6 +197,11 @@ function setRpNo(button){
 	console.log($('#rpNo').val());
 }
 
+function resetRpNo(){
+	$('#rpNo').val(0);
+	$('#replyName').text("");
+}
+
 $(document).ready(function(){
 	const postNo = $('#postNo').val();
 	isEnd();
@@ -186,6 +210,11 @@ $(document).ready(function(){
 		"method":"POST",
 		"url":`http://localhost:8080/PostViewUpdateAction?postNo=${postNo}`
 	})
+	
+	$.ajax({
+		"method":"GET",
+		"url":`http://localhost:8080/CommentAllAction?postNo=${postNo}`
+	}).done(list => append_comment(list))
 })
 
 function delPost(){
@@ -203,20 +232,12 @@ function delPost(){
 	})
 }
 
-function updatePost(){
-	const postNo = $('#postNo').val();
-	
-	
-	
-}
-
 function isEnd(){
 	var currentTime = new Date();
 	var meetTime = $('#meetTime').text();
 	var meetTimeMillis = new Date(meetTime).getTime();
 	var currentTimeMillis = currentTime.getTime();
 	
-	console.log(currentTimeMillis);
 	if(meetTimeMillis>currentTimeMillis){
 		$('#isEnd').text("모집기간");
 	}else{
