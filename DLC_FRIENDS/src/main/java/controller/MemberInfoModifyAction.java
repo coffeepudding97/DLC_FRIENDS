@@ -19,6 +19,8 @@ import model.post.Post;
 import model.post.PostDao;
 import model.profile.Profile;
 import model.profile.ProfileDao;
+import model.selectgames.SelectGames;
+import model.selectgames.SelectGamesDao;
 import model.user.UserRequestDto;
 
 /**
@@ -44,6 +46,12 @@ public class MemberInfoModifyAction extends HttpServlet {
 		System.out.println(gameList);
 		request.setAttribute("gameList", gameList);
 		
+		String val = (String) request.getSession().getAttribute("log");
+		SelectGamesDao selectGamesDao = SelectGamesDao.getInstance();
+		ArrayList<SelectGames> selectGameList = selectGamesDao.getSelectedListById(val);
+		System.out.println("gameList: "+selectGameList);
+		request.setAttribute("selectGameList", selectGameList);
+		
 		request.getRequestDispatcher("profileUpdate").forward(request, response);
 	}
 
@@ -62,13 +70,9 @@ public class MemberInfoModifyAction extends HttpServlet {
 		
 		userDto = new UserRequestDto(id, newPassword, info);
 		
-//		UserDao userDao = UserDao.getInstance();
-//		userDao.updateUser(userDto, password);
 		ProfileDao profileDao = ProfileDao.getInstance();
 		boolean isTrue = profileDao.updateUser(userDto, password);
 		System.out.println("변경: " + isTrue);
-		
-		response.sendRedirect("memberInfoModify");
 		
 		Profile profile = profileDao.getUserProfile(id);
 		

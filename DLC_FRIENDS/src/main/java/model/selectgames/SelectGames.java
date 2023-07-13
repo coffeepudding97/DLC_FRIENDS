@@ -2,13 +2,26 @@ package model.selectgames;
 
 public class SelectGames {
 	String userId;
-	int gametitleNo;
+	String gametitle;
 	
 	public String getUserId() {
 		return userId;
 	}
-	public int getGametitleNo() {
-		return gametitleNo;
+	public String getGametitle() {
+		return gametitle;
 	}
+	
+	public SelectGames(String userId, String gametitle) {
+		super();
+		this.userId = userId;
+		this.gametitle = gametitle;
+	}
+	
+	@Override
+	public String toString() {
+		return "SelectGames [userId=" + userId + ", gametitle=" + gametitle + "]";
+	}
+	
+	
 	
 }

@@ -133,8 +133,8 @@ public class UserDao {
 					this.pstmt.setString(1, profile.getId());
 					this.pstmt.setString(2, profile.getInfo());					
 					this.pstmt.setString(3, profile.getNickname());
-					
 					pstmt.executeUpdate();
+					
 					
 					// 트랜잭션 커밋
 					conn.commit();

@@ -44,7 +44,7 @@ public class JoinFormAction extends HttpServlet {
 		
 		String id = request.getParameter("id"); // re
 		String password = request.getParameter("password");
-		String confirmPassword = request.getParameter("confirm_password");
+		String confirmPassword = request.getParameter("passwordChk");
 		String nickName = request.getParameter("nickName");
 		String email = request.getParameter("email");
 		int birth = Integer.parseInt(request.getParameter("birth"));
@@ -71,6 +71,7 @@ public class JoinFormAction extends HttpServlet {
 					// 사용자 생성
 					UserRequestDto user = new UserRequestDto(id, password, nickName, email, birth);
 					result = userDao.createUser(user);
+					System.out.println(user);
 					url = "login";
 				} else {
 					// 닉네임 중복인 경우

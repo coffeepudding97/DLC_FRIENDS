@@ -26,7 +26,7 @@
 						</c:when>
 						<c:otherwise>
 							<form method="POST" action="/ProfileForm" style="display:inline;">
-								<input type="hidden" name="id" value="${sessionScope.log}" />
+								<!-- <input type="hidden" name="id" value="${sessionScope.log}" />  -->
       							<input type="submit" class="my_page" value="마이 페이지" />
       						</form>
       						<a href="/logoutAction">로그아웃</a>

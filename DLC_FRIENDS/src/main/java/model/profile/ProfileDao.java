@@ -47,7 +47,7 @@ public class ProfileDao {
 			
 			try {
 				this.pstmt = this.conn.prepareStatement(sql);
-				// profile_no, user_id, profile_img, info
+				// user_id, profile_img, info, nickname
 				this.pstmt.setString(1, id);
 				
 				this.rs = this.pstmt.executeQuery();
@@ -62,6 +62,8 @@ public class ProfileDao {
 						// 프로필 이미지 변환 및 base64 인코딩
 						String base64Image = encodeImageToBase64(outputPath);
 //						String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
+						if(base64Image == null)
+							base64Image = "";
 						
 						// 프로필 정보 읽어오기
 						String info = this.rs.getString(4);

@@ -1,7 +1,7 @@
 <%@page import="model.profile.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <!DOCTYPE html>
 <html>
@@ -45,18 +45,21 @@
 					<!-- 태그지정 -->
 					<p id="gametitleToggle">* 선호 게임 설정</p>
 					<div id="gametitleList">
-						<form action="favoriteGames" method="POST">
+						<form action="SelectGames" method="POST">
 							<div>
 								<c:forEach items="${gameList}" var="games">
-									<p>${games.gameTitle }
-										<input type="checkbox" name="selectGame" value="${games.gameTitleNo }" />
-									</p>
+									<label>${games.gameTitle }
+										<input type="checkbox" name="selectGame"
+											value="${games.gameTitle }" />
+									</label>
+									<br>
 								</c:forEach>
 							</div>
+							<input type="submit" id="game_submit" value="설정완료">
 						</form>
 					</div>
 
-								
+
 
 
 					<!-- 유저평가(신고) 태그 -->
@@ -73,9 +76,6 @@
 					<div id="left_modify">
 						<!-- 아이디 -->
 						<div id="">
-							<div>
-								<p>선호게임 리스트</p>
-							</div>
 							<input type="text" id="id" name="id" value="${profile.nickname }"
 								readonly>
 						</div>
@@ -95,8 +95,8 @@
 						<div>
 							<p>* 소개글</p>
 						</div>
-						<input type="text" id="info" name="info"
-							value="${profile.info }" placeholder="소개글을 입력해주세요.">
+						<input type="text" id="info" name="info" value="${profile.info }"
+							placeholder="소개글을 입력해주세요.">
 					</div>
 
 					<!-- 오른쪽 완료버튼 -->

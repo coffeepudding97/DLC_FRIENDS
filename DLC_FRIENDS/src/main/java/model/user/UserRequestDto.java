@@ -82,6 +82,13 @@ public class UserRequestDto {
 		this.password = password;
 	}
 
+
+	@Override
+	public String toString() {
+		return "UserRequestDto [id=" + id + ", password=" + password + ", nickName=" + nickName + ", email=" + email
+				+ ", birthday=" + birthday + ", info=" + info + "]";
+	}
+
 	
 	
 }

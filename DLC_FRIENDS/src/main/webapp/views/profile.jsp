@@ -47,6 +47,11 @@ Profile profile = (Profile) request.getAttribute("profile");
 				<!-- 중앙 메세지 -->
 				<div id="profile_center">
 					<!-- ^ 태그 -->
+					<div>
+						<c:forEach items="${selectGameList}" var="selGames">
+							<p>#${selGames.gametitle} </p>
+						</c:forEach>
+					</div>
 
 					<!-- 소개글 -->
 					<div>${profile.info }</div>

@@ -22,6 +22,8 @@ import model.post.PostResponseDto;
 import model.profile.Profile;
 import model.profile.ProfileDao;
 import model.profile.ProfileDto;
+import model.selectgames.SelectGames;
+import model.selectgames.SelectGamesDao;
 import model.user.User;
 import model.user.UserDao;
 
@@ -42,20 +44,20 @@ public class ProfileFormAction extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		String id = (String) request.getSession().getAttribute("log");
+		String log = (String) request.getSession().getAttribute("log");
 		String value = request.getParameter("id");
 
 		if (value != null) {
-			id = value;
+			log = value;
 		}
 
-		System.out.println("id : " + id);
+		System.out.println("log : " + log);
 
 		String url = "/";
 
-		if (id != null) {
+		if (log != null) {
 			ProfileDao profileDao = ProfileDao.getInstance();
-			Profile profile = profileDao.getUserProfile(id);
+			Profile profile = profileDao.getUserProfile(log);
 			System.out.println(profile);
 
 			if (profile == null) {
@@ -65,22 +67,24 @@ public class ProfileFormAction extends HttpServlet {
 				response.sendRedirect(url);
 			} else {
 				PostDao postDao = PostDao.getInstance();
-				ArrayList<Post> postList = postDao.getPostByUserId(id);
+				ArrayList<Post> postList = postDao.getPostByUserId(log);
 
 				CommentDao commentDao = CommentDao.getInstance();
-				ArrayList<Comment> commentList = commentDao.getCommentsByUserId(id);
+				ArrayList<Comment> commentList = commentDao.getCommentsByUserId(log);
 
 				GameTitleDao gameTitleDao = GameTitleDao.getInstance();
 				ArrayList<GameTitle> gameList = gameTitleDao.allGameTitle();
-
-//				System.out.println("profile>" + profile);
-//				System.out.println("postList>" + postList);
-//				System.out.println("commentList>" + commentList);
-
+				
+				SelectGamesDao selectGamesDao = SelectGamesDao.getInstance();
+				ArrayList<SelectGames> selectGameList = selectGamesDao.getSelectedListById(log);
+				System.out.println(selectGameList);
+				
+				
 				request.setAttribute("profile", profile);
 				request.setAttribute("postList", postList);
 				request.setAttribute("commentList", commentList);
 				request.setAttribute("gameList", gameList);
+				request.setAttribute("selectGameList", selectGameList);
 
 				url = "profile";
 				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
