@@ -63,6 +63,7 @@ public class MemberInfoModifyAction extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String id = request.getParameter("id");
+		System.out.println(id);
 		String password = request.getParameter("password");
 		String newPassword = request.getParameter("newPw");
 //		String nickname = request.getParameter("nickname");

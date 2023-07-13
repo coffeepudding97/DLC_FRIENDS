@@ -78,8 +78,8 @@
 						<div>
 							<p>* 닉네임</p>
 						</div>
-						<div id="">
-							<input type="text" id="id" name="id" value="${profile.nickname }"
+						<div>
+							<input type="text" id="id" name="id" value="${profile.id }"
 								readonly>
 						</div>
 						<!-- 기존 비밀번호 -->
