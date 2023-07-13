@@ -23,24 +23,33 @@
 }
 
 #main-section {
-	
+	background-color:white;
+}
+
+
+#profile_left{
+	width:100%;
+	background:white;
+	padding:30px;
+	border:1px solid #ddd;
+}
+
+#profile_left img {
+	width:100px;
+	height:100px;
 }
 
 #profile_center{
-	margin-right:50px;
-	width:800px;
-	background:white;
+	width:100%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	border:1px solid #ddd;
+	padding: 0 50px;
 }
-
-#profile_left{
-	margin-right:50px;
-	background:white;
-}
-
 
 #profile_right{
-	width:200px;
-
+	width:100%;
 	background:white;
 	display:flex;
 	flex-direction:column;
@@ -49,7 +58,7 @@
 #profile_right .profile_update {
 	display:flex;
 	align-items:center;
-	border: 1px solid black;
+	border: 1px solid #ddd;
 	width:100%;
 	height:100%;
 	justify-content: center;
@@ -58,7 +67,7 @@
 #profile_right .delete_user {
 	display:flex;
 	align-items:center;
-	border: 1px solid black;
+	border: 1px solid #ddd;
 	width:100%;
 	height:100%;
 	justify-content: center;
@@ -67,12 +76,13 @@
 
 
 #bottom{
-	margin-top:50px;
 	display: flex;
 }
 
 #bottom_left{
-	width:1200px;
+	width:100%;
+	padding:50px;
+	border:1px solid #ddd;
 	
 }
 
@@ -90,6 +100,11 @@
 #bottom_right div ul{
 	width:200px;
 	background:#fff;
+	
 }
+#bottom_right div ul li {
+	border:1px solid #ddd;
+}
+
 
 
