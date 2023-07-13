@@ -1,10 +1,12 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +24,7 @@ public class JoinFormAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
-     * Default constructor. 
+     * Default constructor.
      */
     public JoinFormAction() {
         // TODO Auto-generated constructor stub
@@ -38,9 +40,11 @@ public class JoinFormAction extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		 */
+		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+			request.setCharacterEncoding("UTF-8");
+		
+		
 		
 		String id = request.getParameter("id"); // re
 		String password = request.getParameter("password");
@@ -82,9 +86,7 @@ public class JoinFormAction extends HttpServlet {
 				System.out.println("아이디 중복 있음");
 			}
 		}
-		
 		System.out.println("결과: " + result);
 		response.sendRedirect(url);
 	}
-
 }

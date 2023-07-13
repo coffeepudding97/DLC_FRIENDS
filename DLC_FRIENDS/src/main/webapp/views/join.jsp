@@ -5,12 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../resources/style/join.css"/>
-<script src="../resources/js/" ></script>
+<script src="../resources/js/join.js" ></script>
 <title>Insert title here</title>
 </head>
 <body>
 	<div id="root">
-	<%-- <jsp:include page="../header.jsp"></jsp:include> --%>
+	<jsp:include page="/header"></jsp:include>
 	<section id="main-section">
 	<div class="sign_container">
         <h1>회원가입</h1>
@@ -18,17 +18,18 @@
             <div class="input-control">
                 <label for="id">아이디</label>
                 <input id="id" name="id" type="text" placeholder="" maxlength="40">
-                <small class="small">* 최소 4자리이상 영문 소문자와 숫자로만 입력</small>
+                <button type="button" value="중복확인" class="dup" onclick="winopen()">중복 확인</button>
+                <input type="hidden" name="idDuplication" value="idUncheck">
             </div>
             <div class="input-control">
                 <label for="password">비밀번호</label>
                 <input id="password" name="password" type="password" maxlength="40">
-                <small class="small">* 최소 8자리이상 영문, 숫자, 특수문자 최소 1개씩 입력</small>
+                <small class="small">* 영문, 숫자, 특수문자 최소 1개씩 포함</small>
             </div>
             <div class="input-control">
                 <label for="passwordChk">비밀번호 확인</label>
                 <input id="passwordChk" name="passwordChk" type="password" maxlength="40">
-                <small class="small">* 비밀번호를 다시 한번 입력해 주세요</small>
+                <input type="hidden" value="passwordUncheck" class="small">* 비밀번호를 다시 한번 입력해 주세요</input>
             </div>
             <div class="input-control">
                 <label for="nickName">닉네임</label>
@@ -50,7 +51,7 @@
         </form>
     </div>
 	</section>
-	<%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
+	<jsp:include page="/footer"></jsp:include>
  	</div>
 </body>
 </html>
