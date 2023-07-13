@@ -73,6 +73,34 @@ function signupChk(){
         $("#birth").focus();
         return false;
     }
+    
+    // 데이터 전송을 위한 Ajax 요청
+  $.ajax({
+    url: "",
+    type: "POST",
+    data: {
+      id: id,
+      password: password,
+      nickName: nickName,
+      email: email,
+      birth: birth
+    },
+    success: function (response) {
+      // 응답 처리
+      if (response.success) {
+        // 회원 가입 성공
+        alert("회원 가입이 완료되었습니다.");
+        location.href = "/login"; // 로그인 페이지로 이동
+      } else {
+        // 회원 가입 실패
+        alert("회원 가입에 실패했습니다. 다시 시도해주세요.");
+      }
+    },
+    error: function () {
+      // 에러 처리
+      alert("서버와의 통신 중 오류가 발생했습니다.");
+    }
+  });
 
     // 유효성 검사 통과 시 폼 제출
     document.getElementById("form").submit();
