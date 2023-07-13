@@ -34,6 +34,7 @@
 				</li>
 			</ul>
 		</div>
+		<button onclick="getMorePosts()">더보기</button>
 		<div class=write>
 			<a href="views/postWrite.jsp">글쓰기</a>
 		</div>

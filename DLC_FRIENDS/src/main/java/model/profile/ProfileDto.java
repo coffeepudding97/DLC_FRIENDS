@@ -7,6 +7,7 @@ public class ProfileDto {
 //	private Blob profileImg;
 	private String imageHtml;
 	private String info;
+	private String nickname;
 	
 	public String getId() {
 		return id;
@@ -29,6 +30,15 @@ public class ProfileDto {
 	public void setImageHtml(String imageHtml) {
 		this.imageHtml = imageHtml;
 	}
+	
+	
+	public ProfileDto(String id, String imageHtml, String info, String nickname) {
+		super();
+		this.id = id;
+		this.imageHtml = imageHtml;
+		this.info = info;
+		this.nickname = nickname;
+	}
 	public ProfileDto(String id, String imageHtml, String info) {
 		super();
 		this.id = id;
@@ -47,6 +57,14 @@ public class ProfileDto {
 		this.id = id;
 	}
 	
+	
+	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	@Override
 	public String toString() {
 		return "ProfileDto [id=" + id + ", info=" + info + "]";

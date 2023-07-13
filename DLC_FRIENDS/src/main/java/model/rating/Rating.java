@@ -15,6 +15,17 @@ public class Rating {
 	private boolean finish;
 	
 	
+	public Rating(String rated, String content, int score, int curse, int run, int late, int disturb, int hack) {
+		super();
+		this.rated = rated;
+		this.content = content;
+		this.score = score;
+		this.curse = curse;
+		this.run = run;
+		this.late = late;
+		this.disturb = disturb;
+		this.hack = hack;
+	}
 	public Rating(int postNo, String rater, String rated, String content, int score, int curse, int run, int late,
 			int disturb, int hack, boolean finish) {
 		super();

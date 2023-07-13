@@ -73,6 +73,16 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>warningBoard</servlet-name>
+		<jsp-file>/views/warningBoard.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>warningBoard</servlet-name>
+		<url-pattern>/warningBoard</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>postUpdate</servlet-name>
 		<jsp-file>/views/postUpdate.jsp</jsp-file>
 	</servlet>

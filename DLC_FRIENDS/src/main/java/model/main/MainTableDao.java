@@ -63,9 +63,42 @@ public class MainTableDao {
 		return list;
 	}
 	
-	
-	
-	
-	
+	public ArrayList<MainTable> getTenPosts(int pageNo) {
+		ArrayList<MainTable> list = new ArrayList<MainTable>();
+		
+		//데이터베이스 연동
+		this.conn=DBManager.getConnection();
+		if(this.conn!=null) {
+			String sql = "SELECT * FROM post ORDER BY post_no DESC LIMIT 10 OFFSET ?";
+			try {
+				//쿼리를 개체에 담아 날릴 준비
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setInt(1, (pageNo-1)*10);
+				
+				//쿼리실행
+				this.rs = this.pstmt.executeQuery();
+				
+				while(this.rs.next()) {
+					int postNo = this.rs.getInt(1);
+					String userId = this.rs.getString(2);
+					String title = this.rs.getString(3);
+					String gameTitle = this.rs.getString(5);
+					int recruitMax = this.rs.getInt(6);
+					Timestamp createdTime = this.rs.getTimestamp(7);
+					int viewCount = this.rs.getInt(10);
+					
+					MainTable mt= new MainTable(postNo, gameTitle, title, userId, recruitMax, createdTime, viewCount);
+					
+					list.add(mt);
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(this.conn, this.pstmt, this.rs);
+			}
+			
+		}
+		return list;
+	}
 	
 }
