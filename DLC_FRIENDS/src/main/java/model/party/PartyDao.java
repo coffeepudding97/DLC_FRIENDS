@@ -143,6 +143,36 @@ public class PartyDao {
 	}
 	
 	
+	// 프로필 유저의 최근 파티정보 출력
+	public ArrayList<Party> getPartyById(String id) {
+		ArrayList<Party> list = new ArrayList<>();
+		
+		this.conn = DBManager.getConnection();
+		if(this.conn != null) {
+			try {
+				//  중복 제거, 프로필유저의 최근 파티목록 (최대3명)
+				String sql = "SELECT DISTINCT user_id FROM party_member WHERE post_no IN ( SELECT post_no FROM party_member WHERE user_id = ? ) AND user_id != ? LIMIT 3";
+			
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setString(1, id);
+				this.pstmt.setString(2, id);
+				this.rs = this.pstmt.executeQuery();
+				
+				while(this.rs.next()) {
+					String partyId = this.rs.getString(1);
+					
+					Party party = new Party(partyId);
+					list.add(party);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(this.conn, this.pstmt);
+			}
+		}
+		return list;
+	}
+	
 	// 로그인 기능 환성 후 작성
 	public void join(int postNo, String userId) {
 		this.conn = DBManager.getConnection();

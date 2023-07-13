@@ -9,6 +9,7 @@ public class Party {
 	private int postNo;
 	private ArrayList<String> userIds;
 	private ArrayList<String> imageHtml;
+	private String userId;
 	
 	public Party(int partyNo, int postNo, ArrayList<String> userIds) {
 		super();
@@ -47,6 +48,20 @@ public class Party {
 	public void setUserIds(ArrayList<String> userIds) {
 		this.userIds = userIds;
 	}
+	
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	// *
+	public Party(String userId) {
+		super();
+		this.userId = userId;
+	}
+	
 	@Override
 	public String toString() {
 		return "Party [userIds=" + userIds + ", imageHtml=" + imageHtml + "]";

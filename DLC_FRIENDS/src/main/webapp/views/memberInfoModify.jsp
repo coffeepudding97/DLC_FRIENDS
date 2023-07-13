@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,9 +47,8 @@
 						<form action="SelectGames" method="POST">
 							<div>
 								<c:forEach items="${gameList}" var="games">
-									<label>${games.gameTitle }
-										<input type="checkbox" name="selectGame"
-											value="${games.gameTitle }" />
+									<label>${games.gameTitle } <input type="checkbox"
+										name="selectGame" value="${games.gameTitle }" />
 									</label>
 									<br>
 								</c:forEach>
@@ -106,8 +104,6 @@
 					<div id="right_btn">
 						<input type="submit" id="submit-btn" value="회원정보 수정완료">
 					</div>
-
-					<button onclick="test(this)">테스트</button>
 				</div>
 			</form>
 

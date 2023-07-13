@@ -66,7 +66,6 @@ public class MemberInfoModifyAction extends HttpServlet {
 		System.out.println(id);
 		String password = request.getParameter("password");
 		String newPassword = request.getParameter("newPw");
-//		String nickname = request.getParameter("nickname");
 		String info = request.getParameter("info");
 		
 		userDto = new UserRequestDto(id, newPassword, info);

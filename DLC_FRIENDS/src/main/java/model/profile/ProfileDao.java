@@ -62,8 +62,6 @@ public class ProfileDao {
 						// 프로필 이미지 변환 및 base64 인코딩
 						String base64Image = encodeImageToBase64(outputPath);
 //						String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
-//						if(base64Image == null)
-//							base64Image = "";
 						
 						// 프로필 정보 읽어오기
 						String info = this.rs.getString(4);
@@ -99,14 +97,11 @@ public class ProfileDao {
 			try {
 				for(String id : userIds) {
 					this.pstmt = this.conn.prepareStatement(sql);
-					// profile_no, user_id, profile_img, info
 					this.pstmt.setString(1, id);
-					//this.pstmt.setInt(2, postNo);
 					
 					this.rs = this.pstmt.executeQuery();
 					
 					if(this.rs.next()) {
-//						Blob profileImg = this.rs.getBlob(3);
 						String userId = this.rs.getString("user_id");
 						InputStream inputStream = rs.getBinaryStream("profile_img");
 						Path outputPath = Path.of("output.png");
@@ -221,8 +216,6 @@ public class ProfileDao {
     		}
     		
     	} 
-    	
-    	
     	return result;
     }
 }

@@ -16,12 +16,16 @@ import model.comment.Comment;
 import model.comment.CommentDao;
 import model.gametitle.GameTitle;
 import model.gametitle.GameTitleDao;
+import model.party.Party;
+import model.party.PartyDao;
 import model.post.Post;
 import model.post.PostDao;
 import model.post.PostResponseDto;
 import model.profile.Profile;
 import model.profile.ProfileDao;
 import model.profile.ProfileDto;
+import model.rating.Rating;
+import model.rating.RatingDao;
 import model.selectgames.SelectGames;
 import model.selectgames.SelectGamesDao;
 import model.user.User;
@@ -65,6 +69,7 @@ public class ProfileFormAction extends HttpServlet {
 				url = "/";
 				// 조회한 계정이 없을 경우 index로 이동
 				response.sendRedirect(url);
+				
 			} else {
 				PostDao postDao = PostDao.getInstance();
 				ArrayList<Post> postList = postDao.getPostByUserId(log);
@@ -79,12 +84,39 @@ public class ProfileFormAction extends HttpServlet {
 				ArrayList<SelectGames> selectGameList = selectGamesDao.getSelectedListById(log);
 				System.out.println(selectGameList);
 				
+				PartyDao partyDao = PartyDao.getInstance();
+				ArrayList<Party> partyMemList = partyDao.getPartyById(log);
+				System.out.println(partyMemList);
+				
+				RatingDao ratingDao = RatingDao.getInstance();
+				ArrayList<Rating> rateList = ratingDao.getRatingsById(log);
+				System.out.println(rateList);
+				
+				// 게임 평가 처리
+				int rateCount = rateList.size();
+				int totalScore = 5; // default값
+				
+				if(rateList != null && rateCount > 0) {
+					int score = 0;
+					System.out.println(rateCount);
+					for(int i=0; i<rateCount; i++) {
+						score += rateList.get(i).getScore();
+					}
+					score /= rateCount;
+					totalScore = score;
+					System.out.println("스코어: "+score);
+				}
 				
 				request.setAttribute("profile", profile);
 				request.setAttribute("postList", postList);
 				request.setAttribute("commentList", commentList);
 				request.setAttribute("gameList", gameList);
 				request.setAttribute("selectGameList", selectGameList);
+				request.setAttribute("partyMemList", partyMemList);
+				// 유저평점이 3점 이하면 신고태그가 프로필화면에 표시
+				if(totalScore < 3) {
+					request.setAttribute("rateList", rateList);
+				}
 
 				url = "profile";
 				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
