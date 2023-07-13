@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="root">
 	<jsp:include page="/header"></jsp:include>
+	<div id="root">
 	<section id="main-section">
 	<div class="sign_container">
         <h1>회원가입</h1>
@@ -51,7 +51,7 @@
         </form>
     </div>
 	</section>
-	<jsp:include page="/footer"></jsp:include>
  	</div>
+	<jsp:include page="/footer"></jsp:include>
 </body>
 </html>
