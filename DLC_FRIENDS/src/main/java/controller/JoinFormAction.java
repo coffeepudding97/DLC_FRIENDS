@@ -67,7 +67,7 @@ public class JoinFormAction extends HttpServlet {
 	        boolean result = false;
 
 	        String message = "";
-	        PrintWriter out = response.getWriter();
+	         
 	        if (!password.equals(passwordChk)) {
 	        	 message = "비밀번호가 일치하지 않습니다.";
 	        } else {
@@ -86,11 +86,13 @@ public class JoinFormAction extends HttpServlet {
 	            	message = "이미 존재하는 아이디입니다.";
 	            }
 	        }
-
-	        JSONObject jsonResponse = new JSONObject();
-	        jsonResponse.put("message", message);
-	        response.getWriter().write(jsonResponse.toString());
-	        //out.flush();
 	        
+	        if(message.equals("Success")) {
+	        	response.sendRedirect("/views/login.jsp");
+	        } else {
+	        	JSONObject jsonResponse = new JSONObject();
+		        jsonResponse.put("message", message);
+		        response.getWriter().write(jsonResponse.toString());
+	        }       
 }
 }

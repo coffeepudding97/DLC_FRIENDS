@@ -90,16 +90,15 @@ function signupChk(){
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
     data: formData,
     dataType: "json",
+    complete: poll, timeout: 30000,
     success: function(response) {
+      //console.log(response.message);
       // 서버로부터의 응답을 처리
-      console.log(response.message);
-      if(response.message === "Success"){
+     if(response.message === "Success"){
 		  alert("회원가입이 성공적으로 완료되었습니다.");
-		  // 리다이렉트(회원가입 완료 시 로그인창으로 이동하도록 설정)
-		  location.href="http://localhost:8080/login";
-		  
+		  window.location.href='/login'; // 리다이렉트(회원가입 완료 시 로그인창으로 이동하도록 설정)
 	  } else {
-		  alert(response.message);
+		  alert("회원가입에 실패했습니다.");
 	  }
      },
      error: function(xhr, status, error){
