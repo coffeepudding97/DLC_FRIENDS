@@ -108,6 +108,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>GetSessionLogAction</servlet-name>
+		<servlet-class>controller.GetSessionLogAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetSessionLogAction</servlet-name>
+		<url-pattern>/GetSession</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>PartyLeaveAction</servlet-name>
 		<servlet-class>controller.PartyLeaveAction</servlet-class>
 	</servlet>

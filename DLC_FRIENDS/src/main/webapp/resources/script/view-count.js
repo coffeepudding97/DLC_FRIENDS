@@ -2,6 +2,30 @@ var cnt = 1;
 var search = "";
 var select = "";
 
+$(document).ready(function(){
+	$.ajax({
+		"method":"GET",
+		"url":`http://localhost:8080/main?cnt=${cnt}`
+	}).done(list => {
+		cnt = cnt + 1;
+		$('#lines').empty();
+		list.forEach(post =>{
+			var data = splitTimeStamp(post.createdTime);
+			appendAni(post, data);
+		})
+		
+		getSessionLog(function(log){
+		if(log == "null"){
+			$("#writing_link").attr("href", "/login");
+			$(".table_content").removeAttr("onclick");
+			$(".table_content").attr("onclick", "goLogin()");
+		} else {
+			$("#writing_link").attr("href", "/postWrite");
+		}
+	})
+	})
+})
+
 function viewPost() {
 	const post_no = document.getElementById('post_no').value;
 	
@@ -20,30 +44,7 @@ function readPost(ul){
 	}
 }
 
-$(document).ready(function(){
-	console.log(`${cnt}`);
-	$.ajax({
-		"method":"GET",
-		"url":`http://localhost:8080/main?cnt=${cnt}`
-	}).done(list => {
-		cnt = cnt + 1;
-		$('#lines').empty();
-		list.forEach(post =>{
-			var data = splitTimeStamp(post.createdTime);
-			$('#lines').append(`
-				<ul class="table_content" onclick="readPost(this)">
-					<li name="post_no" value="${post.postNo }">${post.postNo}</li>
-					<li>${post.gameTitle}</li>
-					<li>${post.title}</li>
-					<li>${post.userId}</li>
-					<li>${data.MM}-${data.DD} ${data.hh}:${data.mm}</li>
-					<li>${post.recruitMax}</li>
-					<li>${post.viewCount}</li>
-				</ul>
-			`)
-		})
-	})
-})
+
 
 /*$(window).on('scroll', function() {
   var windowHeight = $(window).height();
@@ -63,17 +64,7 @@ function getMorePosts(){
 		cnt = cnt + 1;
 		list.forEach(post =>{
 			var data = splitTimeStamp(post.createdTime);
-			$('#lines').append(`
-				<ul class="table_content" onclick="readPost(this)">
-					<li name="post_no" value="${post.postNo }">${post.postNo}</li>
-					<li>${post.gameTitle}</li>
-					<li>${post.title}</li>
-					<li>${post.userId}</li>
-					<li>${data.MM}-${data.DD} ${data.hh}:${data.mm}</li>
-					<li>${post.recruitMax}</li>
-					<li>${post.viewCount}</li>
-				</ul>
-			`)
+			appendAni(post, data);
 		})
 	})
 }
@@ -93,17 +84,7 @@ function getMoreSearchs(){
 		cnt = cnt + 1;
 		list.forEach(post =>{
 			var data = splitTimeStamp(post.createdTime);
-			$('#lines').append(`
-				<ul class="table_content" onclick="readPost(this)">
-					<li name="post_no" value="${post.postNo }">${post.postNo}</li>
-					<li>${post.gameTitle}</li>
-					<li>${post.title}</li>
-					<li>${post.userId}</li>
-					<li>${data.MM}-${data.DD} ${data.hh}:${data.mm}</li>
-					<li>${post.recruitMax}</li>
-					<li>${post.viewCount}</li>
-				</ul>
-			`)
+			appendAni(post, data);
 		})
 	})
 }
@@ -129,17 +110,7 @@ function searchPost(){
 		$('#lines').empty();
 		list.forEach(post =>{
 			var data = splitTimeStamp(post.createdTime);
-			$('#lines').append(`
-				<ul class="table_content" onclick="readPost(this)">
-					<li name="post_no" value="${post.postNo }">${post.postNo}</li>
-					<li>${post.gameTitle}</li>
-					<li>${post.title}</li>
-					<li>${post.userId}</li>
-					<li>${data.MM}-${data.DD} ${data.hh}:${data.mm}</li>
-					<li>${post.recruitMax}</li>
-					<li>${post.viewCount}</li>
-				</ul>
-			`)
+			appendAni(post, data);
 		})
 		$('#more_btn').removeAttr("onclick");
 		$('#more_btn').attr("onclick", "getMoreSearchs()");
@@ -161,4 +132,19 @@ function splitTimeStamp(ts){
 	}
 	
 	return date;
+}
+
+function appendAni(post, data){
+	var data = splitTimeStamp(post.createdTime);
+	var line = $('<ul class="table_content" onclick="readPost(this)">')
+			      .append($('<li name="post_no">').val(post.postNo).text(post.postNo))
+			      .append($('<li>').text(post.gameTitle))
+			      .append($('<li>').text(post.title))
+			      .append($('<li>').text(post.userId))
+			      .append($('<li>').text(data.MM+"-"+data.DD+" "+data.hh+":"+data.mm))
+			      .append($('<li>').text(post.recruitMax))
+			      .append($('<li>').text(post.viewCount))
+			      .hide();
+	$('#lines').append(line);
+	line.slideDown(500);
 }

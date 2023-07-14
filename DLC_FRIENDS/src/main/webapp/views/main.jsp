@@ -57,7 +57,7 @@
 			<button id="more_btn" onclick="getMorePosts()"><img src="../resources/images/arrow_down.png"></button>
 		</div>
 		<div class=write>
-			<a href="views/postWrite.jsp">글쓰기</a>
+			<a id="writing_link" href="/postWrite">글쓰기</a>
 		</div>
 		</div>
 	</section>

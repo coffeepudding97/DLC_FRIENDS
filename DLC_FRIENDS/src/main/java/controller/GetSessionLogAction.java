@@ -1,29 +1,22 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
-
-import model.selectgames.SelectGames;
-import model.selectgames.SelectGamesDao;
-
 /**
- * Servlet implementation class GetFavorateGameAction
+ * Servlet implementation class GetSessionLogAction
  */
-public class GetFavorateGameAction extends HttpServlet {
+public class GetSessionLogAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetFavorateGameAction() {
+    public GetSessionLogAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,19 +36,10 @@ public class GetFavorateGameAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/json; charset=utf-8");
-		
-		// String userId = request.getParameter("userId");
 		
 		String log = (String) request.getSession().getAttribute("log");
 		
-		SelectGamesDao selectGamesDao = SelectGamesDao.getInstance();
-		
-		ArrayList<SelectGames> selectGames = selectGamesDao.getSelectedListById(log);
-		
-		JSONArray json = new JSONArray(selectGames);
-		
-		response.getWriter().append(json.toString());
+		response.getWriter().append(log);
 	}
 
 }

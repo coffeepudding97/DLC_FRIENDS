@@ -1,6 +1,20 @@
 $(document).ready(function(){
 	const userId = $('#user_id').val();
 	
+	getSessionLog(function(log){
+		$.ajax({
+			"method":"POST",
+			"url":`http://localhost:8080/GetFavorateGame?userId=${log}`
+		}).done(list => {
+			
+			list.forEach(game => {
+				$('#div-gametitle').append(`
+					<labal onclick="setGameTitle(this)" id="${game.gametitle}" value="${game.gametitle}">${game.gametitle}</label>
+				`)
+			})
+		})
+	})
+	
 	let intmeetTime = new Date();
 	let intleaveTime = new Date();
 	timeFormat(intmeetTime, 12);
@@ -22,17 +36,7 @@ $(document).ready(function(){
 		})
 	})
 	
-	$.ajax({
-		"method":"POST",
-		"url":`http://localhost:8080/GetFavorateGame?userId=${userId}`
-	}).done(list => {
-		
-		list.forEach(game => {
-			$('#div-gametitle').append(`
-				<labal onclick="setGameTitle(this)" id="${game.gametitle}" value="${game.gametitle}">${game.gametitle}</label>
-			`)
-		})
-	})
+	
 });
 
 function setGameTitle(label){

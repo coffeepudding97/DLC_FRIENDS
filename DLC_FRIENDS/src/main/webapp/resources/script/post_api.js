@@ -1,3 +1,26 @@
+$(document).ready(function(){
+	const postNo = $('#postNo').val();
+	getSessionLog(function(log){
+		if(log == "null"){
+			$('#commentWrite').removeAttr("onclick");
+			$('#commentWrite').attr("onclick", "goLogin()");
+			$('.profile_btn').removeAttr("onclick");
+			$('.profile_btn').attr("onclick", "goLogin()");
+		}
+	})
+	//isEnd();
+	
+	$.ajax({
+		"method":"POST",
+		"url":`http://localhost:8080/ViewUpdate?postNo=${postNo}`
+	})
+	
+	$.ajax({
+		"method":"GET",
+		"url":`http://localhost:8080/GetComments?postNo=${postNo}`
+	}).done(list => append_comment(list))
+})
+
 function post_comment() {
 	const user_id = $('#userId').val();
 	const content = $('#comment').val();
@@ -107,10 +130,6 @@ function profileClick(button){
 	const userId = $('#userId').val();
 	const btn = $(button);
 	const memberId = btn.find('.memberId').text();
-	console.log(userId);
-	console.log(memberId);
-	console.log(userId === memberId);
-	
 	
 	if(userId === memberId){
 		if($('#isEnd').text()=="기간종료"){
@@ -193,10 +212,11 @@ function blankClick(button){
 				
 				
 			} else {
-				alert("이미 참가한 유저");
+				alert("이미 참가한 유저 입니다.");
 			}
 		} else {
-			alert("로그인");
+			//alert("로그인");
+			location.href = "/login";
 		}
 	}
 	
@@ -211,29 +231,14 @@ function setRpNo(button){
 	const cmtNo = form.find('input[name="cmtNo"]').val();
 	
 	$('#rpNo').val(cmtNo);
-	$('#replyName').text("to." + userId + "/" + cmtNo);
-	console.log($('#rpNo').val());
+	//$('#replyName').text("to." + userId + "/" + cmtNo);
+	$('#replyName').text("to." + userId);
 }
 
 function resetRpNo(){
 	$('#rpNo').val(0);
 	$('#replyName').text("");
 }
-
-$(document).ready(function(){
-	const postNo = $('#postNo').val();
-	//isEnd();
-	
-	$.ajax({
-		"method":"POST",
-		"url":`http://localhost:8080/ViewUpdate?postNo=${postNo}`
-	})
-	
-	$.ajax({
-		"method":"GET",
-		"url":`http://localhost:8080/GetComments?postNo=${postNo}`
-	}).done(list => append_comment(list))
-})
 
 function delPost(){
 	const postNo = $('#postNo').val();

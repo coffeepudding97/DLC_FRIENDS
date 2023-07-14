@@ -63,14 +63,14 @@
 								<c:choose>
 									<c:when test="${i < requestScope.party.userIds.size() }">
 										<div class="join_member">
-											<button onclick="profileClick(this)">${requestScope.profileDtos.get(i).imageHtml }<span
+											<button class="profile_btn" onclick="profileClick(this)">${requestScope.profileDtos.get(i).imageHtml }<span
 													class="memberId">${requestScope.profileDtos.get(i).id }</span>
 											</button>
 										</div>
 									</c:when>
 									<c:otherwise>
 										<div class="button_join">
-											<button onclick="blankClick(this)">
+											<button class="profile_btn" onclick="blankClick(this)">
 												<span class="memberId">+</span>
 											</button>
 										</div>

@@ -55,7 +55,8 @@
 			</div>
 		</section>
 	</div>
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page="/footer"></jsp:include>
 	<script src="../resources/script/postWrite.js"></script>
+	<script src="../resources/script/getSessionLog.js"></script>
 </body>
 </html>
