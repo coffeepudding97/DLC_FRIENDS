@@ -22,7 +22,7 @@ import model.rating.RatingDao;
 /**
  * Servlet implementation class LoadRatingsAction
  */
-@WebServlet("/LoadRatingsAction")
+//@WebServlet("/LoadRatingsAction")
 public class LoadRatingsAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

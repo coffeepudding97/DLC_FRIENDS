@@ -2,7 +2,7 @@ $(document).ready(function(){
 	const userId = $('#userId').text();
 	$.ajax({
 		"method":"POST",
-		"url":`http://localhost:8080/LoadRatingsAction?userId=${userId}`
+		"url":`http://localhost:8080/LoadRating?userId=${userId}`
 	}).done(list => {
 		$('#ul-rating').empty();
 		list.forEach(rating => {
@@ -73,7 +73,7 @@ function rating(button){
 	
 	$.ajax({
 		"method":"POST",
-		"url":`http://localhost:8080/RatingFormAction`,
+		"url":`http://localhost:8080/RatingForm`,
 		"data":data
 	}).done(res => {
 		if(res === "true"){

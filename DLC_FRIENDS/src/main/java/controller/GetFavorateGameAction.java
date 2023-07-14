@@ -17,7 +17,6 @@ import model.selectgames.SelectGamesDao;
 /**
  * Servlet implementation class GetFavorateGameAction
  */
-@WebServlet("/GetFavorateGameAction")
 public class GetFavorateGameAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

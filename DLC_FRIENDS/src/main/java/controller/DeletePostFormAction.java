@@ -14,7 +14,6 @@ import model.post.PostDao;
 /**
  * Servlet implementation class DeletePostFormAction
  */
-@WebServlet("/DeletePostFormAction")
 public class DeletePostFormAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

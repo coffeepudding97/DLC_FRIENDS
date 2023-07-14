@@ -17,7 +17,7 @@ import model.gametitle.GameTitleDao;
 /**
  * Servlet implementation class GetGameTitlesAction
  */
-@WebServlet("/GetGameTitlesAction")
+//@WebServlet("/GetGameTitlesAction")
 public class GetGameTitlesAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

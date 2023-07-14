@@ -118,7 +118,7 @@ function profileClick(button){
 		}else{
 			$.ajax({
 				"method":"POST",
-				"url":`http://localhost:8080//PartyLeaveAction?postNo=${postNo}&userId=${userId}`
+				"url":`http://localhost:8080//PartyLeave?postNo=${postNo}&userId=${userId}`
 			}).done(party => {
 				btn.empty();
 				btn.append(`<span class="memberId">+</span>`);
@@ -177,7 +177,7 @@ function blankClick(button){
 			if(!res){
 				$.ajax({
 					"method":"POST",
-					"url":`http://localhost:8080/PartyJoinAction?postNo=${postNo}&userId=${userId}`,
+					"url":`http://localhost:8080/PartyJoin?postNo=${postNo}&userId=${userId}`,
 					"dataType":"json"
 				}).done(profile => {
 					$(button).empty();
@@ -226,7 +226,7 @@ $(document).ready(function(){
 	
 	$.ajax({
 		"method":"POST",
-		"url":`http://localhost:8080/PostViewUpdateAction?postNo=${postNo}`
+		"url":`http://localhost:8080/ViewUpdate?postNo=${postNo}`
 	})
 	
 	$.ajax({
@@ -240,7 +240,7 @@ function delPost(){
 	
 	$.ajax({
 		"method":"POST",
-		"url":`http://localhost:8080/DeletePostFormAction?postNo=${postNo}`
+		"url":`http://localhost:8080/DeletePost?postNo=${postNo}`
 	}).done(result => {
 		if(result==="true"){
 			location.href = "/index"

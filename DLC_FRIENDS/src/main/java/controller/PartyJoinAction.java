@@ -18,7 +18,6 @@ import model.rating.RatingDao;
 /**
  * Servlet implementation class PartyJoinAction
  */
-@WebServlet("/PartyJoinAction")
 public class PartyJoinAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

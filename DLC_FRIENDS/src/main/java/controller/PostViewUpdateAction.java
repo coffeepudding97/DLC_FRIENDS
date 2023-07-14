@@ -12,7 +12,6 @@ import model.post.PostDao;
 /**
  * Servlet implementation class PostViewUpdateAction
  */
-@WebServlet("/PostViewUpdateAction")
 public class PostViewUpdateAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
