@@ -331,6 +331,42 @@ public class PostDao {
 		return postList;
 	}
 	
+	// 선택된 프로필 유저의 id값을 받아, 
+	//그 유저가 작성한 게시글들을 페이지 기준으로 받아오는 기능
+	public ArrayList<Post> getPostByIdAndIdx(String id, int pageNum, int sizePosts) {
+		ArrayList<Post> postList = new ArrayList<>();
+		Post post = null;
+		
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "SELECT title, game_title FROM post WHERE user_id='homin' ORDER BY created_time DESC LIMIT ?, ?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setString(1, id);
+				this.pstmt.setInt(2, pageNum-1);
+				this.pstmt.setInt(3, sizePosts);
+				
+				this.rs = this.pstmt.executeQuery();
+				
+				while(this.rs.next()) {
+					String title = this.rs.getString(1);
+					String gameTitle = this.rs.getString(2);
+					
+					post = new Post(title, gameTitle);
+					postList.add(post);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(this.conn, this.pstmt, this.rs);
+			}
+		}
+		return postList;
+	}
+	
+	
 	public ArrayList<Integer> getTimeEndPostNosByPostNos(ArrayList<Integer> postNos) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		

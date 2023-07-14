@@ -10,10 +10,6 @@
 <title>User Profile</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="../resources/style/profile.css">
-<%
-// 조회한 프로필 정보
-Profile profile = (Profile) request.getAttribute("profile");
-%>
 </head>
 <body>
 	<jsp:include page="/header"></jsp:include>
@@ -46,14 +42,14 @@ Profile profile = (Profile) request.getAttribute("profile");
 				<!-- 중앙 메세지 -->
 				<div id="profile_center">
 					<div class="profile_nickname">
-					<p><%=profile.getNickname()%></p>
+					<p>${profile.nickname }</p>
+					</div>
+					<div class="profile_id">
+						<p>${profile.id }</p>
 					</div>
 
 					<!-- 소개글 -->
 					<div class="profile_comment">${profile.info }</div>
-					
-					
-					
 
 				</div>
 				
@@ -104,33 +100,40 @@ Profile profile = (Profile) request.getAttribute("profile");
 				<!-- 왼쪽 -->
 				<div id="bottom_left">
 					<!-- 왼쪽 상단 '게시글' -->
-					<div class="bottom_write_wrap">
-					<div class="bottom_write">
-							<h1>* 작성한 게시글
-							</h1>
-							<c:forEach items="${postList}" var="post">
+						<div class="bottom_write_wrap">
+							<div class="bottom_write">
 								<div>
-									<ul>
-										<li>${post.title}</li>
-										<li>${post.gameTitle}</li>
-									</ul>
+									<h1>* 작성한 게시글</h1>
 								</div>
-							</c:forEach>
-					</div>
-					</div>
+								<div>
+									<button id="posts_more" onclick="postsMore()">더보기</button>
+								</div>
+								<div id="now_page">1</div>
+								<div class="posts">
+									<c:forEach items="${postList}" var="post">
+										<ul>
+											<li>${post.gameTitle}| ${post.title}</li>
+										</ul>
+									</c:forEach>
+								</div>
+							</div>
+						</div>
 
-					<!-- 왼쪽 하단 '댓글' -->
+						<!-- 왼쪽 하단 '댓글' -->
 					<div class="bottom_reply_wrap">
 					<div class="bottom_reply">
 							<h1>
 								* 작성한 댓글
 								</h1>
-								<c:forEach items="${commentList}" var="comment">
-									<div>
-										<div>${comment.content}<br>->${comment.createdTime}
+								<div >
+									<c:forEach items="${commentList}" var="comment">
+										<div>
+											<div>${comment.content} ->${comment.createdTime}
+											</div>
 										</div>
-									</div>
-								</c:forEach>
+									</c:forEach>
+								</div>
+								<button class="comments_title"></button>
 					</div>
 					</div>
 				</div>

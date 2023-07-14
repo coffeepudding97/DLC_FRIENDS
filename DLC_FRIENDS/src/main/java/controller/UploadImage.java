@@ -53,21 +53,17 @@ public class UploadImage extends HttpServlet {
 			boolean isTrue = profileDao.upload(id, inputImage, inputStream);
 			System.out.println("업로드: " + isTrue);
 			
-	        String message = "프로필 사진이 업로드되었습니다.";
+	        String message = "프로필 사진이 업로드되었습니다!";
 	        response.setContentType("text/html;charset=UTF-8");
-	        
-	        // PrintWriter 객체를 생성해서 메소드를 통해 클라이언트에 데이터 전송
 	        PrintWriter out = response.getWriter();
-	        // script로 alert를 호출하고, location.href로 페이지 이동 처리.
-	        out.println("<script>alert('" + message + "'); location.href='profileUpdate';</script>");
-	        out.flush();
+	        out.print(message);
 	        out.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 	        String message = "프로필사진 업로드를 실패하였습니다.";
 	        response.setContentType("text/html;charset=UTF-8");
 	        PrintWriter out = response.getWriter();
-	        out.println("<script>alert('" + message + "'); location.href='profileUpdate';</script>");
+	        out.println(message);
 	        
 	        out.flush();
 	        out.close();

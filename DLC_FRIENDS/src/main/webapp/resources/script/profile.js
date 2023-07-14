@@ -1,3 +1,6 @@
+let startIndex = 0;
+let postCount = 5;
+
 $(document).ready(function(){
 	$("#gametitleToggle").click(function(){
 		$("#gametitleList").slideToggle();
@@ -11,6 +14,24 @@ $(document).ready(function(){
 		}
 	});
 	
+	/* 프로필 토글 페이징 */
+	$(".posts_title").click(function(){
+		$('.posts').slideToggle();
+	})
+	$(".comments_title").click(function(){
+		$('.comments').slideToggle();
+	})
+	
+	/* 프로필 수정 부분 */
+	$('#uploadBtn').click(function() {
+		var inputImage = document.getElementById('input_image');
+
+		if (inputImage.files.length === 0) {
+			alert('사진을 선택해주세요!');
+		} else {
+			uploadImage();
+		}
+	});
 });
 
 
@@ -44,13 +65,45 @@ function mypage() {
 	}
 }
 
-function test(button){
-	alert(button);
-}
-
 function modify(htmlForm){
 	let check = true;
 	
 	if(check === true)
 		htmlForm.submit();
 }
+
+
+// 프로필 게시글 더보기
+
+
+
+
+// 프로필 사진 수정
+function uploadImage(){
+    var inputImage = document.getElementById('input_image');
+    var formData = new FormData();
+    formData.append('input_image', inputImage.files[0]);
+    
+    $.ajax({
+        type: 'POST',
+        url: 'uploadImage',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response){
+            alert(response);
+            if(response === '프로필사진 업로드완료!'){
+                location.href = 'profileUpdate';
+            }
+        },
+        error: function(){
+            alert('프로필사진 업로드 실패..');
+        },
+    });
+}
+
+// 비밀번호, 소개글 수정
+
+
+
+

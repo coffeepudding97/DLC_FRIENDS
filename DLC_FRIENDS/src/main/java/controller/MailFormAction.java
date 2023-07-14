@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.user.UserDao;
+import util.MailSender;
 
 /**
  * Servlet implementation class MailFormAction
@@ -38,9 +39,14 @@ public class MailFormAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String user = request.getParameter("mail");
-		UserDao userDao = UserDao.getInstance();
+		System.out.println("addr : " + user);
+		//UserDao userDao = UserDao.getInstance();
+		MailSender mailSender = MailSender.getInstance();
+		//boolean success = userDao.gmailSend(user);
+		boolean success = mailSender.gmailSend(user);
+		System.out.println("scs : " + success);
 		
-		boolean success = userDao.gmailSend(user);
+		
 	}
 
 }
