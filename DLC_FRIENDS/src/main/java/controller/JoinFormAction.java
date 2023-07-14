@@ -42,8 +42,8 @@ public class JoinFormAction extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			request.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json");
+			request.setCharacterEncoding("UTF-8");
 		
 		
 	        // 회원가입 데이터 처리
@@ -67,7 +67,7 @@ public class JoinFormAction extends HttpServlet {
 	        boolean result = false;
 
 	        String message = "";
-	        
+	        PrintWriter out = response.getWriter();
 	        if (!password.equals(passwordChk)) {
 	        	 message = "비밀번호가 일치하지 않습니다.";
 	        } else {
@@ -90,5 +90,7 @@ public class JoinFormAction extends HttpServlet {
 	        JSONObject jsonResponse = new JSONObject();
 	        jsonResponse.put("message", message);
 	        response.getWriter().write(jsonResponse.toString());
+	        //out.flush();
+	        
 }
 }
