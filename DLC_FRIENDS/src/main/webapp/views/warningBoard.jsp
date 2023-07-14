@@ -19,8 +19,7 @@
 				<li>닉네임</li>
 				<li>메모</li>
 				<li>평점</li>
-				<li>트롤태그</li>
-				
+				<li>트롤태그</li>	
 			</ul>
 			<ul id="ul-board">
 			</ul>
