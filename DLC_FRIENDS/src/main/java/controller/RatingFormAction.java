@@ -17,7 +17,7 @@ import model.rating.RatingDto;
 /**
  * Servlet implementation class RatingFormAction
  */
-@WebServlet("/RatingFormAction")
+//@WebServlet("/RatingFormAction")
 public class RatingFormAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

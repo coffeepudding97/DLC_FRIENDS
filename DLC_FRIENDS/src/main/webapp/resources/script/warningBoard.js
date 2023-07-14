@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$.ajax({
 		"method":"POST",
-		"url":`http://localhost:8080/GetWarningPostAction`
+		"url":`http://localhost:8080/Warning`
 	}).done(list => {
 		list.forEach(rating => {
 			$('#ul-board').append(`

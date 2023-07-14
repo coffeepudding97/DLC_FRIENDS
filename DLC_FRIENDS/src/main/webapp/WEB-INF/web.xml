@@ -63,6 +63,87 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>GetWarningPostAction</servlet-name>
+		<servlet-class>controller.GetWarningPostAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetWarningPostAction</servlet-name>
+		<url-pattern>/Warning</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LoadRatingsAction</servlet-name>
+		<servlet-class>controller.LoadRatingsAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadRatingsAction</servlet-name>
+		<url-pattern>/LoadRating</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RatingFormAction</servlet-name>
+		<servlet-class>controller.RatingFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RatingFormAction</servlet-name>
+		<url-pattern>/RatingForm</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GetGameTitlesAction</servlet-name>
+		<servlet-class>controller.GetGameTitlesAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetGameTitlesAction</servlet-name>
+		<url-pattern>/GetGameTitles</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GetFavorateGameAction</servlet-name>
+		<servlet-class>controller.GetFavorateGameAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetFavorateGameAction</servlet-name>
+		<url-pattern>/GetFavorateGame</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>PartyLeaveAction</servlet-name>
+		<servlet-class>controller.PartyLeaveAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PartyLeaveAction</servlet-name>
+		<url-pattern>/PartyLeave</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>PartyJoinAction</servlet-name>
+		<servlet-class>controller.PartyJoinAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PartyJoinAction</servlet-name>
+		<url-pattern>/PartyJoin</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>PostViewUpdateAction</servlet-name>
+		<servlet-class>controller.PostViewUpdateAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PostViewUpdateAction</servlet-name>
+		<url-pattern>/ViewUpdate</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DeletePostFormAction</servlet-name>
+		<servlet-class>controller.DeletePostFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeletePostFormAction</servlet-name>
+		<url-pattern>/DeletePost</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>SearchPostAction</servlet-name>
 		<servlet-class>controller.SearchPostAction</servlet-class>
 	</servlet>

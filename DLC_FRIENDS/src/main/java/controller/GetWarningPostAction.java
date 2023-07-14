@@ -17,7 +17,7 @@ import model.rating.RatingDao;
 /**
  * Servlet implementation class GetWarningPostAction
  */
-@WebServlet("/GetWarningPostAction")
+//@WebServlet("/GetWarningPostAction")
 public class GetWarningPostAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
