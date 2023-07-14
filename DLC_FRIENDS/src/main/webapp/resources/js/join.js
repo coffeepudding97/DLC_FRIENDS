@@ -74,24 +74,14 @@ function signupChk(){
         return false;
     }
     
-    function formData() {
-		//회원가입 폼 데이터 수집하기
-		var formData = {
+  		formData = {
 			id: $("#id").val(),
 			password: $("#password").val(),
 			passwordChk: $("#passwordChk").val(),
 			nickName: $("#nickName").val(),
 			email: $("#email").val(),
 			birth: $("#birth").val()
-		};
-  /*var formData = new FormData();
-  formData.append("id", $("#id").val());
-  formData.append("password", $("#password").val());
-  formData.append("passwordChk", $("#passwordChk").val());
-  formData.append("nickName", $("#nickName").val());
-  formData.append("email", $("#email").val());
-  formData.append("birth", $("#birth").val());*/
-
+	};
 
 //servlet에 ajax 요청 보내기
   $.ajax({
@@ -102,10 +92,12 @@ function signupChk(){
     dataType: "json",
     success: function(response) {
       // 서버로부터의 응답을 처리
+      console.log(response.message);
       if(response.message === "Success"){
 		  alert("회원가입이 성공적으로 완료되었습니다.");
 		  // 리다이렉트(회원가입 완료 시 로그인창으로 이동하도록 설정)
-		  location.href = "login.jsp"; 
+		  location.href="http://localhost:8080/login";
+		  
 	  } else {
 		  alert(response.message);
 	  }
@@ -113,7 +105,18 @@ function signupChk(){
      error: function(xhr, status, error){
 		 // 에러 처리
 		 console.error(error);
-	 }   
+	 }
   });
 }
-}
+function formData() {
+		//회원가입 폼 데이터 수집하기
+		var formData = {
+			id: $("#id").val(),
+			password: $("#password").val(),
+			passwordChk: $("#passwordChk").val(),
+			nickName: $("#nickName").val(),
+			email: $("#email").val(),
+			birth: $("#birth").val()
+	};
+	return formdata();
+};
