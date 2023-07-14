@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+body, ul, li, input, button, form, a, h1, h2 {
+	margin:0;
+	padding:0;
+}
+
+#wrap {
+	background: linear-gradient(#172235, #3a536f);
+}
+
+#main-section {
+	max-width:1200px;
+	margin:0 auto;
+	padding-top:50px;
+	padding-bottom:500px;
+}
+
+.board_wrap {
+	background:#31313c;
+	display:flex;
+	flex-direction:column;
+	color:#fff;
+	
+}
+.board_wrap li {
+	width:100%;
+}
+
+.board_title {
+	display:flex;
+	text-align:center;
+	background: #282830;
+}
+
+.board_title li {
+	padding:5px 15px;
+}
+.board_title li:first-child {
+	width:50%;
+}
+
+.board_title li:nth-child(2) {
+	width:150%;
+}
+.board_title li:nth-child(3) {
+	width:20%;
+}
+
+.board_title li:nth-child(4) {
+	width:100%;
+}
+
+
+#ul-board {
+	display:flex;
+	flex-direction:column;
+	font-size:12px;
+}
+
+#ul-board li {
+	display:flex;
+	text-align:center;
+	align-items:center;
+}
+
+#ul-board li .id {
+	width:50%;
+	padding:15px;
+}
+
+#ul-board li .content {
+	width:150%;
+	padding:15px;
+	border:1px solid #515163;
+	box-sizing:border-box;
+	border-radius:5px;
+	background:#424254;
+}
+#ul-board li .score {
+	width:20%;
+	padding:15px;
+}
+#ul-board li .tags {
+	width:100%;
+	padding:15px;
+}
+
+
+
+/*태그 css*/
+.tags div {
+	display:inline-block;
+	max-width:100%;
+	border:1px solid red;
+	border-radius:15px;
+	box-sizing:border-box;
+	text-align:center;
+	padding:5px;
+	margin:5px;
+	word-break:keep-all;
+	white-space: nowrap;
+}
+

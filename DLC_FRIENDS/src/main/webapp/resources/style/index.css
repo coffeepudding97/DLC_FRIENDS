@@ -53,28 +53,39 @@ a {
 .main_table_wrap {
 	max-width:1200px;
 	margin:0 auto;
-	padding-top:100px;
+	padding-top:50px;
 	padding-bottom:30px;
 }
 .main_table {
 	display:flex;
 	flex-direction:column;
 	background-color:#31313c;
+	border-radius:10px;
+	overflow:hidden;
 }
 
 .main_table ul {
 	display:flex;
 	flex-direction: row;
+	border-bottom:1px solid #282830;
 }
+
+.table_title {
+	background:#282830;
+}
+.table_title li  {
+	border-right:1px solid #31313c;
+}
+
+.table_title li:last-child {
+	border-right:none;
+}
+
 .main_table ul li {
 	width:100%;
 	color:white;
-	border:1px solid #282830;
-	border-bottom:none;
 }
-.main_table ul li:last-child {
-	border-bottom:1px solid #282830;
-}
+
 
 
 .main_table .table_title li {
@@ -96,7 +107,7 @@ a {
 
 .main_table .table_content li {
 	text-align:center;
-	font-size:18px;
+	font-size:16px;
 	padding: 30px 0;
 }
 
