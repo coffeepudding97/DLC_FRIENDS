@@ -44,7 +44,7 @@ public class ReadPostFormAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-				
+		
 		int postNo = Integer.parseInt(request.getParameter("post_no"));
 		
 		PostDao postDao = PostDao.getInstance();
@@ -89,11 +89,12 @@ public class ReadPostFormAction extends HttpServlet {
 			ArrayList<ProfileDto> profileDtos = null;
 			PartyRequestDto partyDto = null;
 			
-			if(party != null) {
+			//if(party != null) {
 				userIds = party.getUserIds();
 				profileDtos = profileDao.getProfileDtosByUserIds(userIds, postNo);
+				System.out.println(profileDtos);
 				partyDto = new PartyRequestDto(postNo, userIds);
-			}
+			//}
 			
 			ArrayList<CommentResponseDto> cmtList = commentDao.getCommentsByPostNo(postNo);
 			

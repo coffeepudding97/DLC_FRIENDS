@@ -13,7 +13,7 @@ function post_comment() {
 			// 댓글 영역 갱신 
 			$.ajax({
 				"method": "GET",
-				"url": `http://localhost:8080/CommentAllAction?postNo=${post_no}`
+				"url": `http://localhost:8080/GetComments?postNo=${post_no}`
 			}).done(list => append_comment(list))
 
 		} else {
@@ -40,7 +40,7 @@ function delete_comment(button) {
 			// 댓글 영역 갱신 
 			$.ajax({
 				"method": "GET",
-				"url": `http://localhost:8080/CommentAllAction?postNo=${post_no}`
+				"url": `http://localhost:8080/GetComments?postNo=${post_no}`
 			}).done(list => append_comment(list))
 
 		} else {
@@ -124,6 +124,9 @@ function profileClick(button){
 				btn.append(`<span class="memberId">+</span>`);
 				btn.removeAttr("onclick");
 				btn.attr("onclick", "blankClick(this)");
+				let div = btn.parent();
+				div.removeAttr("class");
+				div.attr("class", "button_join");
 				let member_count = $("#count_number").text();
 				$("#count_number").text(parseInt(member_count) - 1);
 			})
@@ -178,9 +181,12 @@ function blankClick(button){
 					"dataType":"json"
 				}).done(profile => {
 					$(button).empty();
-					$(button).append(`<img src="data:image/png;base64, ${profile.profileImg}" alt="이미지"/><span class="memberId">${userId }</span>`);
+					$(button).append(`<img src="data:image/png;base64, ${profile.profileImg}" alt="image" width="100" height="100"/><span class="memberId">${userId }</span>`);
 					$(button).removeAttr("onclick");
 					$(button).attr("onclick", "profileClick(this)");
+					let div = $(button).parent();
+					div.removeAttr("class");
+					div.attr("class", "join_member");
 					let member_count = $("#count_number").text();
 					$("#count_number").text(parseInt(member_count) + 1);
 				})
@@ -225,7 +231,7 @@ $(document).ready(function(){
 	
 	$.ajax({
 		"method":"GET",
-		"url":`http://localhost:8080/CommentAllAction?postNo=${postNo}`
+		"url":`http://localhost:8080/GetComments?postNo=${postNo}`
 	}).done(list => append_comment(list))
 })
 

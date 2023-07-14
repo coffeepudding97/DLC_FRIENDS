@@ -10,6 +10,8 @@ $(document).ready(function(){
 				<li name="line">
 					<div onclick="formToggle(this)">
 						<div name="postNo">${rating.postNo}</div>
+						<div name="title">${rating.title}</div>
+						<div name="title">${rating.gametitle}</div>
 						<div name="userId">${rating.rated}</div>
 					</div>
 					<form>

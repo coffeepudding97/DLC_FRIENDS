@@ -61,6 +61,24 @@
 		<servlet-name>ProfileFormAction</servlet-name>
 		<url-pattern>/ProfileForm</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SearchPostAction</servlet-name>
+		<servlet-class>controller.SearchPostAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchPostAction</servlet-name>
+		<url-pattern>/Search</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CommentAllAction</servlet-name>
+		<servlet-class>controller.CommentAllAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommentAllAction</servlet-name>
+		<url-pattern>/GetComments</url-pattern>
+	</servlet-mapping>
 
 	<!-- jsp -->
 	<servlet>

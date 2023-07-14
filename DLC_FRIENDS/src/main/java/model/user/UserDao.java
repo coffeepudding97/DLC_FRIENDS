@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -103,6 +104,7 @@ public class UserDao {
 		String nickName = userDto.getNickname();
 		String email = userDto.getEmail();
 		int birth = userDto.getBirthday(); // date
+		InputStream inputStream = getDefaultImg();
 		
 		boolean check = false;
 
@@ -111,7 +113,7 @@ public class UserDao {
 			if(this.conn != null) {
 				
 				String userInsertSql = "INSERT INTO user VALUES(?, ?, ?, ?, DATE(?))";
-				String profileInsertSql = "INSERT INTO profile(user_id, info, nickname) VALUES(?, ?, ?);";
+				String profileInsertSql = "INSERT INTO profile(user_id, profile_img, info, nickname) VALUES(?, ?, ?, ?);";
 				
 				try {
 					// 트랜잭션 시작
@@ -131,8 +133,9 @@ public class UserDao {
 					
 					this.pstmt = this.conn.prepareStatement(profileInsertSql);
 					this.pstmt.setString(1, profile.getId());
-					this.pstmt.setString(2, profile.getInfo());					
-					this.pstmt.setString(3, profile.getNickname());
+					this.pstmt.setBinaryStream(2, inputStream);
+					this.pstmt.setString(3, profile.getInfo());					
+					this.pstmt.setString(4, profile.getNickname());
 					pstmt.executeUpdate();
 					
 					
@@ -295,5 +298,30 @@ public class UserDao {
 		}
 
 		return user;
+	}
+	
+	private InputStream getDefaultImg() {
+		InputStream inputStream = null;
+		
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "SELECT FILE FROM tbl_test WHERE ID = 1";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.rs = this.pstmt.executeQuery();
+				
+				if(this.rs.next()) {
+					inputStream = rs.getBinaryStream("FILE");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt, rs);
+			}
+		}
+		
+		return inputStream;
 	}
 }

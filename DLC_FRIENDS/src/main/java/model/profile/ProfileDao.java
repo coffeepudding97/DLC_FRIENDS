@@ -104,15 +104,21 @@ public class ProfileDao {
 					if(this.rs.next()) {
 						String userId = this.rs.getString("user_id");
 						InputStream inputStream = rs.getBinaryStream("profile_img");
-						Path outputPath = Path.of("output.png");
-						Files.copy(inputStream, outputPath, StandardCopyOption.REPLACE_EXISTING);
-						
-						String base64Image = encodeImageToBase64(outputPath);
-						String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
 						String info = this.rs.getString("info");
 						
 						String nickname = this.rs.getString("nickname");
-						profileDtos.add(new ProfileDto(userId, imageHtml, info, nickname));
+						if(inputStream != null) {
+							Path outputPath = Path.of("output.png");
+							Files.copy(inputStream, outputPath, StandardCopyOption.REPLACE_EXISTING);
+							
+							String base64Image = encodeImageToBase64(outputPath);
+							String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
+							
+							profileDtos.add(new ProfileDto(userId, imageHtml, info, nickname));
+						}else {
+							profileDtos.add(new ProfileDto(userId, null, info, nickname));
+						}
+						
 					}
 				}
 			} catch (Exception e) {

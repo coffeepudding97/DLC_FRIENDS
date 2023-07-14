@@ -220,4 +220,14 @@ public class RatingDao {
 		}
 		return list;
 	}
+	
+	public ArrayList<Integer> getPostNosByRatings(ArrayList<Rating> ratings) {
+		ArrayList<Integer> postNos = new ArrayList<Integer>();
+		
+		for(Rating rating : ratings) {
+			postNos.add(rating.getPostNo());
+		}
+		
+		return postNos;
+	}
 }

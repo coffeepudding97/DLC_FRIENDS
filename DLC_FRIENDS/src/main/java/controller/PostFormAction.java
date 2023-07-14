@@ -48,8 +48,10 @@ public class PostFormAction extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		String log = (String) request.getSession().getAttribute("log");
+		
 		String title = request.getParameter("title");
-		String user_id = request.getParameter("user_id");
+		//String user_id = request.getParameter("user_id");
 		String gameTitle = request.getParameter("gametitle");
 		int recruitMax = Integer.parseInt(request.getParameter("recruitment-max"));
 		
@@ -61,7 +63,7 @@ public class PostFormAction extends HttpServlet {
 		Timestamp leaveTime = Timestamp.valueOf(leaveTimeDateTimeLocal.replace("T", " "));
 		String content = request.getParameter("content");
 
-		PostRequestDto post = new PostRequestDto(title, user_id, gameTitle, recruitMax, meetTime, leaveTime, content);
+		PostRequestDto post = new PostRequestDto(title, log, gameTitle, recruitMax, meetTime, leaveTime, content);
 		
 		System.out.println("post : " + post.getUser_id());
 		System.out.println(post.getTitle());
@@ -75,7 +77,7 @@ public class PostFormAction extends HttpServlet {
 		
 		if(createdPostNo != 0) {
 			ArrayList<String> userIds = new ArrayList<String>();
-			userIds.add(user_id);
+			userIds.add(log);
 			PartyRequestDto party = new PartyRequestDto(createdPostNo, userIds);
 			
 			PartyDao partyDao = PartyDao.getInstance();
