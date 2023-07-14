@@ -73,31 +73,47 @@ function signupChk(){
         $("#birth").focus();
         return false;
     }
+    
+    function formData() {
+		//회원가입 폼 데이터 수집하기
+		var formData = {
+			id: $("#id").val(),
+			password: $("#password").val(),
+			passwordChk: $("#passwordChk").val(),
+			nickName: $("#nickName").val(),
+			email: $("#email").val(),
+			birth: $("#birth").val()
+		};
+  /*var formData = new FormData();
+  formData.append("id", $("#id").val());
+  formData.append("password", $("#password").val());
+  formData.append("passwordChk", $("#passwordChk").val());
+  formData.append("nickName", $("#nickName").val());
+  formData.append("email", $("#email").val());
+  formData.append("birth", $("#birth").val());*/
 
-    // 데이터 전송을 위한 Ajax 요청
+
+//servlet에 ajax 요청 보내기
   $.ajax({
-    url: "/joinForm",
     type: "POST",
-    data: formdata,
+    url: "/joinForm", // 서블릿의 URL
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    data: formData,
     dataType: "json",
-     success: function (response) {
-		console.log(response); //응답데이터 로깅
-
-		
-      // 응답 처리
-      if (response.success) {
-		  
-          alert("회원 가입이 완료되었습니다.");  // 회원 가입 성공
-        
-       	 } else {
-				
-			alert("회원 가입에 실패했습니다. 다시 시도해주세요.");
-			}
-   },
-   error:function(xhr){
-	   console.log(xhr); // 에러 로깅
-    alert("서버 오류가 발생했습니다. 다시 시도해주세요."); // 서버 오류 메시지
-    return;
-  }
+    success: function(response) {
+      // 서버로부터의 응답을 처리
+      if(response.message === "Success"){
+		  alert("회원가입이 성공적으로 완료되었습니다.");
+		  // 리다이렉트(회원가입 완료 시 로그인창으로 이동하도록 설정)
+		  location.href = "login.jsp"; 
+	  } else {
+		  alert(response.message);
+	  }
+     },
+     error: function(xhr, status, error){
+		 // 에러 처리
+		 console.error(error);
+	 }   
   });
+}
 }

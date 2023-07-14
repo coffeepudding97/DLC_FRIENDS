@@ -66,7 +66,7 @@ public class UserDao {
 	}
 	
 	// 닉네임 중복체크 (true: 중복있음)
-	public boolean duplNickname(String nickname) {
+	public boolean duplNickname(String nickName) {
 		this.conn = DBManager.getConnection();
 		
 		if(this.conn != null) {
@@ -74,7 +74,7 @@ public class UserDao {
 			
 			try {
 				this.pstmt = this.conn.prepareStatement(sql);
-				this.pstmt.setString(1, nickname);
+				this.pstmt.setString(1, nickName);
 				
 				this.rs = this.pstmt.executeQuery();
 				
@@ -283,11 +283,11 @@ public class UserDao {
 
 				if (this.rs.next()) {
 					String password = this.rs.getString(2);
-					String nickname = this.rs.getString(3);
+					String nickName = this.rs.getString(3);
 					String email = this.rs.getString(4);
 					Date birth = this.rs.getDate(5);
 
-					user = new User(id, password, nickname, email, birth);
+					user = new User(id, password, nickName, email, birth);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

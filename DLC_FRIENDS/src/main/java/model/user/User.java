@@ -4,14 +4,14 @@ import java.sql.Date;
 
 public class User {
 	private String id;
-	private String pw;
+	private String password;
 	private String nickName;
 	private String email;
 	private Date birthday;
 	
-	public User(String id, String pw, String nickName, String email, Date birth) {
+	public User(String id, String password, String nickName, String email, Date birth) {
 		this.id = id;
-		this.pw = pw;
+		this.password = password;
 		this.nickName = nickName;
 		this.email = email;
 		this.birthday = birth;
@@ -21,8 +21,8 @@ public class User {
 		return id;
 	}
 
-	public String getPw() {
-		return pw;
+	public String getPassword() {
+		return password;
 	}
 
 	public String getNickname() {
@@ -39,7 +39,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return String.format("id: %s\npw: %s\nnickname: %s\nemail: %s\nbirthday: %s", this.id, this.pw, this.nickName, this.email, this.birthday);
+		return String.format("id: %s\npassword: %s\nnickName: %s\nemail: %s\nbirthday: %s", this.id, this.password, this.nickName, this.email, this.birthday);
 	}
 	
 	
