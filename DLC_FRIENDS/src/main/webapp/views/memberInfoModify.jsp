@@ -25,11 +25,8 @@
 							</div>
 							<!-- 이미지 -->
 							<div class="upload_img">
-								<form action="/uploadImage" method="post"
-									enctype="multipart/form-data">
-									<input type="file" name="input_image"> <input
-										type="submit" value="Upload Image">
-								</form>
+							  <input type="file" id="input_image" name="input_image" accept="image/jpeg, image/png">
+							  <input type="button" id="uploadBtn" value="Upload Image">
 							</div>
 
 
@@ -53,12 +50,6 @@
 								</form>
 							</div>
 
-
-
-
-							<!-- 유저평가(신고) 태그 -->
-							<div></div>
-
 						</div>
 
 					</div>
@@ -76,7 +67,7 @@
 								</div>
 								<div class="update_nickname">
 									<input type="text" id="id" name="id"
-										value="${profile.nickname }" readonly>
+										value="${profile.id }" readonly>
 								</div>
 								<!-- 기존 비밀번호 -->
 								<div class="update_password_title">

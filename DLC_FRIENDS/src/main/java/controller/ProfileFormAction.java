@@ -43,6 +43,21 @@ public class ProfileFormAction extends HttpServlet {
 	public ProfileFormAction() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PostDao postDao = PostDao.getInstance();
+		String id = request.getParameter("id");
+		
+		// 시작페이지, 표시될 페이지개수
+		int startIdx = Integer.parseInt(request.getParameter("startIdx"));
+		int countPosts = 5;
+		
+		ArrayList<Post> postList = postDao.getPostByIdAndIdx(id, startIdx, countPosts);
+		System.out.println(postList);
+//		String log = (String) request.getSession().getAttribute("log");
+//		PostDao postDao = PostDao.getInstance();
+//		ArrayList<Post> postList = postDao.getPostByUserId(log, startIndex, postCount);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
