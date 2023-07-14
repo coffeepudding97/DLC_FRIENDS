@@ -27,6 +27,7 @@
 					</div>
 					<div id="div-gametitle">
 						<h2>게임타이틀</h2>
+						<input id="selected" type="hidden" value="${requestScope.post.gameTitle }">
 						<select id="gametitle" name="gametitle">
 							
 						</select>

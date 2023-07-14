@@ -44,9 +44,7 @@ public class ReadPostFormAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		System.out.println("두겟");
-		
+				
 		int postNo = Integer.parseInt(request.getParameter("post_no"));
 		
 		PostDao postDao = PostDao.getInstance();
@@ -60,10 +58,12 @@ public class ReadPostFormAction extends HttpServlet {
 		String gameTitle = post.getGameTitle();
 		int recruitMax = post.getRecruitMax();
 		Timestamp meetTime = post.getMeetTime();
+		System.out.println("mt : " + meetTime.getTime());
+		System.out.println("ct : " + System.currentTimeMillis());
 		Timestamp leaveTime = post.getLeaveTime();
 		String content = post.getContent();
 		int viewCount = post.getViewCount();
-		
+		String state = String.valueOf(meetTime.getTime()).compareTo(String.valueOf(System.currentTimeMillis())) > 0 ? "모집중" : "기간종료";
 		
 		String url = "index";
 		
@@ -110,6 +110,7 @@ public class ReadPostFormAction extends HttpServlet {
 			request.setAttribute("createdTime", strCreatedT);
 			request.setAttribute("meetTime", strMeetT);
 			request.setAttribute("leaveTime", strleaveT);
+			request.setAttribute("state", state);
 			
 			url = "post";
 		}

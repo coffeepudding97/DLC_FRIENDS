@@ -48,9 +48,9 @@
 							<button onclick="delPost()">삭제</button>
 						</c:if>
 
-						<span>같이할 게임 : ${post.gameTitle }</span> <br/><span id="party_member_count">모집 인원 : ${requestScope.party.userIds.size() }</span><span>/</span><span>${post.recruitMax }</span>
+						<span>같이할 게임 : ${post.gameTitle }</span> <br/><span id="party_member_count">모집 인원 : <span id="count_number">${requestScope.party.userIds.size() }</span></span><span>/</span><span>${post.recruitMax }</span>
 						<br/><span id="meetTime">시작 시간 : ${requestScope.meetTime } / </span> <span>끝나는 시간 : ${requestScope.leaveTime }</span>
-						<br/><span>모집 상태 : </span><span id="isEnd"></span> <br />
+						<br/><span>모집 상태 : </span><span id="isEnd">${requestScope.state }</span> <br />
 						<hr />
 					</div>
 					<div class="post_content">

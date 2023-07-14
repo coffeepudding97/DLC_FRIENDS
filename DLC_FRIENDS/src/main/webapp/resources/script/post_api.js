@@ -113,8 +113,8 @@ function profileClick(button){
 	
 	
 	if(userId === memberId){
-		if($('#isEnd').text()=="기간초과"){
-			alert("기간초과");
+		if($('#isEnd').text()=="기간종료"){
+			alert("기간종료");
 		}else{
 			$.ajax({
 				"method":"POST",
@@ -124,8 +124,8 @@ function profileClick(button){
 				btn.append(`<span class="memberId">+</span>`);
 				btn.removeAttr("onclick");
 				btn.attr("onclick", "blankClick(this)");
-				let member_count = $("#party_member_count").text();
-				$("#party_member_count").text(parseInt(member_count) - 1);
+				let member_count = $("#count_number").text();
+				$("#count_number").text(parseInt(member_count) - 1);
 			})
 		}
 		
@@ -158,8 +158,8 @@ function blankClick(button){
 		log=false;
 	}
 	
-	if($('#isEnd').text()=="기간초과"){
-		alert("기간초과");
+	if($('#isEnd').text()=="기간종료"){
+		alert("기간종료");
 	} else{
 		if(log){
 			$('.memberId').each(
@@ -181,8 +181,8 @@ function blankClick(button){
 					$(button).append(`<img src="data:image/png;base64, ${profile.profileImg}" alt="이미지"/><span class="memberId">${userId }</span>`);
 					$(button).removeAttr("onclick");
 					$(button).attr("onclick", "profileClick(this)");
-					let member_count = $("#party_member_count").text();
-					$("#party_member_count").text(parseInt(member_count) + 1);
+					let member_count = $("#count_number").text();
+					$("#count_number").text(parseInt(member_count) + 1);
 				})
 				
 				
@@ -216,7 +216,7 @@ function resetRpNo(){
 
 $(document).ready(function(){
 	const postNo = $('#postNo').val();
-	isEnd();
+	//isEnd();
 	
 	$.ajax({
 		"method":"POST",
@@ -246,15 +246,27 @@ function delPost(){
 
 function isEnd(){
 	var currentTime = new Date();
-	var meetTime = $('#meetTime').text();
-	var meetTimeMillis = new Date(meetTime).getTime();
-	var currentTimeMillis = currentTime.getTime();
+	var MM = formatXX((currentTime.getMonth() + 1));
+	var DD = formatXX(currentTime.getDate());
+	var hh = formatXX(currentTime.getHours());
+	var mm = formatXX(currentTime.getMinutes());
+	var currentTimeFormat = MM + "-" + DD + " " + hh + ":" + mm; 
+	var meetTime = $('#meetTime').text().substr(8,11);
 	
-	if(meetTimeMillis>currentTimeMillis){
-		$('#isEnd').text("모집기간");
+	console.log(currentTimeFormat);
+	console.log(meetTime);
+	console.log(meetTime>currentTimeFormat);
+	
+	if(meetTime>currentTimeFormat){
+		$('#isEnd').text("모집중");
 	}else{
-		$('#isEnd').text("기간초과");
+		$('#isEnd').text("기간종료");
 	}
+}
+
+function formatXX(xx){
+	xx = xx+"";
+	return xx.length == 2 ? xx : "0"+xx;
 }
 
 function splitTimeStamp(ts){

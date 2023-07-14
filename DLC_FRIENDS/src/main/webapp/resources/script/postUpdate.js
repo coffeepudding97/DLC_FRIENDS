@@ -1,16 +1,25 @@
 $(document).ready(function(){
 	const userId = $('#user_id').val();
+	const name = $('#selected').val();
+	var selected = "";
 	
 	$.ajax({
 		"method":"POST",
 		"url":"http://localhost:8080/GetGameTitlesAction"
 	}).done(list => {
-		list.forEach(gametitle => {
+		list.forEach(gametitle => {		
+			if(gametitle.gameTitle === name){
+				selected = "selected";
+			}else{
+				selected = "";
+			}
 			$('#gametitle').append(`
-				<option value="${gametitle.gameTitle}">${gametitle.gameTitle}</option>
+				<option value="${gametitle.gameTitle}" ${selected}>${gametitle.gameTitle}</option>
 			`);
 		})
 	})
+	
+	$('#gametitle').val(name).prop("selected", true);
 	
 	$.ajax({
 		"method":"POST",
