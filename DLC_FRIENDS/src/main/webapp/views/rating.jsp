@@ -10,14 +10,19 @@
 </head>
 <c:import url="/header"></c:import>
 <body>
+	<div id="wrap">
 	<div id="root">
 		<section id="main-section">
+		<div class="rating">
 			<h1 id="userId">${sessionScope.log }</h1>
 			<ul id="ul-rating">
 				
 			</ul>
+		</div>
 		</section>
 	</div>
+	</div>
 	<script src="../resources/script/rating.js"></script>
+<c:import url="/footer"></c:import>
 </body>
 </html>

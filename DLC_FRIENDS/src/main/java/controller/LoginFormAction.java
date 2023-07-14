@@ -53,7 +53,7 @@ public class LoginFormAction extends HttpServlet {
 		
 		String url = "/login";
 		
-		if(user != null && user.getPw().equals(password)) {
+		if(user != null && user.getPassword().equals(password)) {
 			url = "/";
 			System.out.println(user);
 			session.setAttribute("log", id);

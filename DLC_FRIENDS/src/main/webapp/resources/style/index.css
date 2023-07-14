@@ -34,19 +34,41 @@ a {
 
 
 /* 검색 기능 */
-.search {
+.search_wrap {
 	display:flex;
 	justify-content:center;
+	padding-top:50px;
 }
 
-.search_area {
-		background:#fff;
+.search {
+	border:1px solid black;
+	border-radius:50px;
+	display:flex;
+	align-items:center;
+	padding:0 15px;
+	background:#fff;
+	overflow:hidden;
 }
-.select_area {
-		background:#fff;
+
+.select_area #search_select {
+	border:none;
+	border-right: 1px solid #ddd;
+	padding:5px 0;
+	margin:5px;
 }
-.submit_area {
-		background:#fff;
+.search_area #search {
+	border:none;
+	padding: 10px 0;
+	margin:5px;
+}
+.submit_area button {
+	border:none;
+	background: #fff;
+	padding-top:2px;
+}
+.submit_area button img {
+	width:24px;
+	height:24px;
 }
 
 /* 메인 게시판 */
@@ -132,7 +154,7 @@ a {
 
 /* 더보기 버튼 */
 .view_more {
-		display:flex;
+	display:flex;
 	justify-content:center;
 }
 
@@ -145,8 +167,8 @@ a {
 }
 
 .view_more img {
-	width:48px;
-	height:48px;
+	width:36px;
+	height:36px;
 
 }
 
