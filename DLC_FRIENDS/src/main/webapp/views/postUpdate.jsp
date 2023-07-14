@@ -21,8 +21,8 @@
 					<input type="hidden" name="postNo" value="${requestScope.post.postNo }">
 					<div id="div-title">
 						<input type="text" id="title" name="title" value="${requestScope.post.title}" placeholder="제목">
-						<input type="hidden" id="user_id"
-								name="user_id" placeholder="아이디" value="${sessionScope.log }">
+						<!-- <input type="hidden" id="user_id"
+								name="user_id" placeholder="아이디" value="${sessionScope.log }"> -->
 						<%-- <input type="text" id="user_id" name="user_id" placeholder="아이디"> --%>
 					</div>
 					<div id="div-gametitle">

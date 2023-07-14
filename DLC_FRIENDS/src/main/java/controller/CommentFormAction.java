@@ -41,12 +41,14 @@ public class CommentFormAction extends HttpServlet {
 		// doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
 		
+		String log = (String) request.getSession().getAttribute("log");
+		
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
-		String userId = request.getParameter("userId");
+		// String userId = request.getParameter("userId");
 		String content = request.getParameter("comment");
 		int rpNo = Integer.parseInt(request.getParameter("rpNo"));
 		
-		CommentRequestDto cmtDto = new CommentRequestDto(userId, content, rpNo);			
+		CommentRequestDto cmtDto = new CommentRequestDto(log, content, rpNo);			
 		
 		CommentDao cmtDao = CommentDao.getInstance();
 		

@@ -19,8 +19,8 @@
 					<div class="write-wrap">
 						<div id="div-title">
 							<input type="text" id="title" name="title" placeholder="제목"
-								autofocus> <input type="hidden" id="user_id"
-								name="user_id" placeholder="아이디" value="${sessionScope.log }">
+								autofocus> <!-- <input type="hidden" id="user_id"
+								name="user_id" placeholder="아이디" value="${sessionScope.log }"> -->
 						</div>
 						<div id="div-gametitle">
 							<h2>게임타이틀</h2>

@@ -369,5 +369,35 @@ public class PostDao {
 		return list;
 	}
 	
-	
+	public ArrayList<String> getTitlesByPostNos(ArrayList<Integer> postNos) {
+		ArrayList<String> titles = new ArrayList<String>();
+		
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "SELECT title FROM post WHERE post_no = ?";
+			
+			try {
+				for(int postNo : postNos) {
+					this.pstmt = this.conn.prepareStatement(sql);
+					this.pstmt.setInt(1, postNo);
+					
+					this.rs = this.pstmt.executeQuery();
+					
+					if(this.rs.next()) {
+						String title = this.rs.getString("title");
+						
+						titles.add(title);
+					}
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt, rs);
+			}
+		}
+		
+		return titles;
+	}
 }
