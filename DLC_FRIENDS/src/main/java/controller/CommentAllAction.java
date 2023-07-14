@@ -17,7 +17,6 @@ import model.comment.CommentResponseDto;
 /**
  * Servlet implementation class CommentAllAction
  */
-@WebServlet("/CommentAllAction")
 public class CommentAllAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

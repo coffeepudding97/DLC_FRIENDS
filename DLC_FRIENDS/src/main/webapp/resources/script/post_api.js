@@ -13,7 +13,7 @@ function post_comment() {
 			// 댓글 영역 갱신 
 			$.ajax({
 				"method": "GET",
-				"url": `http://localhost:8080/CommentAllAction?postNo=${post_no}`
+				"url": `http://localhost:8080/GetComments?postNo=${post_no}`
 			}).done(list => append_comment(list))
 
 		} else {
@@ -40,7 +40,7 @@ function delete_comment(button) {
 			// 댓글 영역 갱신 
 			$.ajax({
 				"method": "GET",
-				"url": `http://localhost:8080/CommentAllAction?postNo=${post_no}`
+				"url": `http://localhost:8080/GetComments?postNo=${post_no}`
 			}).done(list => append_comment(list))
 
 		} else {
@@ -225,7 +225,7 @@ $(document).ready(function(){
 	
 	$.ajax({
 		"method":"GET",
-		"url":`http://localhost:8080/CommentAllAction?postNo=${postNo}`
+		"url":`http://localhost:8080/GetComments?postNo=${postNo}`
 	}).done(list => append_comment(list))
 })
 
