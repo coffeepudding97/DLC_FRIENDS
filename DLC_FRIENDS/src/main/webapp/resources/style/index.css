@@ -33,6 +33,22 @@ a {
 }
 
 
+/* 검색 기능 */
+.search {
+	display:flex;
+	justify-content:center;
+}
+
+.search_area {
+		background:#fff;
+}
+.select_area {
+		background:#fff;
+}
+.submit_area {
+		background:#fff;
+}
+
 /* 메인 게시판 */
 .main_table_wrap {
 	max-width:1200px;
@@ -97,8 +113,31 @@ a {
 }
 
 
+.bottom_buttons {
+	display:flex;
+	flex-direction:column;
+}
 
 
+/* 더보기 버튼 */
+.view_more {
+		display:flex;
+	justify-content:center;
+}
+
+.view_more button {
+	margin:0;
+	padding:0;
+	background-color:#31313c;
+	border:none;
+	border-radius:50%;
+}
+
+.view_more img {
+	width:48px;
+	height:48px;
+
+}
 
 /* 글쓰기버튼 */
 .write {

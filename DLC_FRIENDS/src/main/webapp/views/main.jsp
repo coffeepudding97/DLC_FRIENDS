@@ -6,6 +6,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="wrap">
 	<section id="main-section">
+		<div class="search_wrap">
+		  <div class="search">
+		  	<div class="select_area">
+		  		<select id="search_select"></select>
+		  	</div>
+		  	<div class="search_area">
+		  		<input type="text">
+		  	</div>
+		  	<div class="submit_area">
+		  		<a href="#"><img src="../resources/images/search.png"></a>
+		  	</div>
+		  </div>
+		</div>
 		<div class=main_table_wrap>
 			<ul class=main_table>
 				<li class="table_title_wrap">
@@ -34,9 +47,13 @@
 				</li>
 			</ul>
 		</div>
-		<button onclick="getMorePosts()">더보기</button>
+		<div class="bottom_buttons">
+		<div class="view_more">
+			<button onclick="getMorePosts()"><img src="../resources/images/arrow_down.png"></button>
+		</div>
 		<div class=write>
 			<a href="views/postWrite.jsp">글쓰기</a>
+		</div>
 		</div>
 	</section>
 	<script src="../resources/script/view-count.js"></script>
