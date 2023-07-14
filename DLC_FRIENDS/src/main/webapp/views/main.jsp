@@ -9,13 +9,18 @@
 		<div class="search_wrap">
 		  <div class="search">
 		  	<div class="select_area">
-		  		<select id="search_select"></select>
+		  		<select id="search_select">
+		  			<option value="all">전체</option>
+		  			<option value="title">제목</option>
+		  			<option value="gametitle">게임타이틀</option>
+		  			<option value="content">내용</option>
+		  		</select>
 		  	</div>
 		  	<div class="search_area">
-		  		<input type="text">
+		  		<input type="text" id="search">
 		  	</div>
 		  	<div class="submit_area">
-		  		<a href="#"><img src="../resources/images/search.png"></a>
+		  		<button onclick="searchPost()"><img src="../resources/images/search.png"></button>
 		  	</div>
 		  </div>
 		</div>
@@ -49,7 +54,7 @@
 		</div>
 		<div class="bottom_buttons">
 		<div class="view_more">
-			<button onclick="getMorePosts()"><img src="../resources/images/arrow_down.png"></button>
+			<button id="more_btn" onclick="getMorePosts()"><img src="../resources/images/arrow_down.png"></button>
 		</div>
 		<div class=write>
 			<a href="views/postWrite.jsp">글쓰기</a>

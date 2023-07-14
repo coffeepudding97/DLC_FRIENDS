@@ -87,7 +87,7 @@ function getMoreSearchs(){
 	
 	$.ajax({
 		"method":"GET",
-		"url":``,
+		"url":`http://localhost:8080/Search`,
 		"data":data
 	}).done(list => {
 		cnt = cnt + 1;
@@ -108,11 +108,11 @@ function getMoreSearchs(){
 	})
 }
 
-function search(){
+function searchPost(){
 	let backup = cnt;
 	cnt = 1;
 	search = $('#search').val();
-	select = $('#select option:selected').val();
+	select = $('#search_select option:selected').val();
 	
 	let data = {
 		"cnt":cnt,
@@ -122,7 +122,7 @@ function search(){
 	
 	$.ajax({
 		"method":"GET",
-		"url":``,
+		"url":`http://localhost:8080/Search`,
 		"data":data
 	}).done(list => {
 		cnt = cnt + 1;
@@ -141,7 +141,8 @@ function search(){
 				</ul>
 			`)
 		})
-		$('')
+		$('#more_btn').removeAttr("onclick");
+		$('#more_btn').attr("onclick", "getMoreSearchs()");
 	}).fail(e => {
 		cnt = backup;
 	})
