@@ -73,35 +73,15 @@ public class MemberInfoModifyAction extends HttpServlet {
 		userDto = new UserRequestDto(id, newPassword, info);
 		
 		ProfileDao profileDao = ProfileDao.getInstance();
-		boolean isTrue = profileDao.updateUser(userDto, password);
-		System.out.println("변경: " + isTrue);
-		
-		Profile profile = profileDao.getUserProfile(id);
-		
-		PostDao postDao = PostDao.getInstance();
-		ArrayList<Post> postList = postDao.getPostByUserId(id); 
-		
-		CommentDao commentDao = CommentDao.getInstance();
-		ArrayList<Comment> commentList = commentDao.getCommentsByUserId(id);
-		
-
-		request.setAttribute("profile", profile);
-		request.setAttribute("postList", postList);
-		request.setAttribute("commentList", commentList);
+		String result = profileDao.updateUser(userDto, password);
+		System.out.println("변경: " + result);
 		
 		JSONObject jObject = new JSONObject();
 		
+		jObject.put("result", result);
 		
-		String url = "/";
-		
-		if(profile != null) {
-			url = "profile";
-			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-			dispatcher.forward(request, response);
-		}else {
-			// null이면 index로 이동
-			response.sendRedirect(url);
-		}
+		response.setContentType("application/json; charset=utf-8");
+		response.getWriter().print(jObject);
 	}
 
 }

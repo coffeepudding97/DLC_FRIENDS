@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
+
 import model.selectgames.SelectGamesDao;
 import model.selectgames.SelectGamesDto;
 
@@ -35,14 +37,20 @@ public class SelectGamesFormAction extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String log = (String) request.getSession().getAttribute("log");
-		
 		String[] games = request.getParameterValues("selectGame");
+		System.out.println("리스트: "+games);
 		
 		SelectGamesDao selectGamesDao = SelectGamesDao.getInstance();
 		boolean result = selectGamesDao.updateSelectedList(log, games);
-		System.out.println("result" + result);
+		System.out.println("result: " + result);
 		
-		response.sendRedirect("/");
+		JSONObject jObject = new JSONObject();
+		
+		jObject.put("result", result);
+		
+		response.setContentType("application/json; charset=utf-8");
+		response.getWriter().print(jObject);
+		
 	}
 
 }

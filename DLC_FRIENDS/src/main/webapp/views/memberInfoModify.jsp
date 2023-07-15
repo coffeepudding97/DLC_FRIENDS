@@ -28,8 +28,9 @@
 							</div>
 							<!-- 이미지 -->
 							<div class="upload_img">
-							  <input type="file" id="input_image" name="input_image" accept="image/jpeg, image/png">
-							  <input type="button" id="uploadBtn" value="Upload Image">
+								<input type="file" id="input_image" name="input_image"
+									accept="image/jpeg, image/png"> <input type="button"
+									id="uploadBtn" value="Upload Image">
 							</div>
 
 
@@ -40,17 +41,15 @@
 							<!-- 태그지정 -->
 							<a href="#"><p id="gametitleToggle">* 선호 게임 설정</p></a>
 							<div id="gametitleList">
-								<form action="SelectGames" method="POST">
-									<div>
-										<c:forEach items="${gameList}" var="games">
-											<label>${games.gameTitle } <input type="checkbox"
-												name="selectGame" value="${games.gameTitle }" />
-											</label>
-											<br>
-										</c:forEach>
-									</div>
-									<input type="submit" id="game_submit" value="설정완료">
-								</form>
+								<div>
+									<c:forEach items="${gameList}" var="games">
+										<label>${games.gameTitle } <input type="checkbox"
+											name="selectGame" value="${games.gameTitle }" />
+										</label>
+										<br>
+									</c:forEach>
+								</div>
+								<input type="button" id="game_submit" value="설정완료" onclick="selectGames()">
 							</div>
 
 						</div>
@@ -58,59 +57,68 @@
 					</div>
 
 					<!-- 하단 -->
-					<form method="POST" action="/memberInfoModify">
-						<div id="bottom">
-							<!-- 왼쪽 수정부분 -->
-							<div id="left_modify">
-								<!-- 아이디 -->
-								<div class="update_nickname_title">
-									<a href="#">
-										<p>* 닉네임</p>
-									</a>
+					<div id="bottom">
+					
+						<!-- 
+						
+							이 부분에 간단한 설명 있으면 좋을듯
+							
+							"소개글만 작성하고 '회원정보 수정완료' 버튼 누르면
+							소개글만 수정됩니다!"
+							
+						 -->
+						<!-- 왼쪽 수정부분 -->
+						<div id="left_modify">
+							<!-- 아이디 -->
+							<div class="update_nickname_title">
+								<a href="#">
+									<p>* 아이디</p>
+								</a>
+							</div>
+							<div class="update_nickname">
+								<input type="text" id="id" name="id" value="${profile.id }"
+									readonly>
+							</div>
+							<!-- 기존 비밀번호 -->
+							<div class="update_password_title">
+								<a href="#">
+									<p>* 비밀번호 수정</p>
+								</a>
+							</div>
+							<div class="update_password">
+								<div>
+									<input type="password" id="password" name="password"
+										placeholder="기존 비밀번호">
 								</div>
-								<div class="update_nickname">
-									<input type="text" id="id" name="id"
-										value="${profile.id }" readonly>
-								</div>
-								<!-- 기존 비밀번호 -->
-								<div class="update_password_title">
-									<a href="#">
-										<p>* 비밀번호 수정</p>
-									</a>
-								</div>
-								<div class="update_password">
-									<div>
-										<input type="password" id="password" name="password" placeholder="기존 비밀번호">
-									</div>
-									<!-- 새로운 비밀번호 -->
-									<div>
-										<input type="password" id="newPw" name="newPw"
-											placeholder="새 비밀번호">
-									</div>
-								</div>
-
-								<!-- 유저 소개글 -->
-								<div class="update_comment_title">
-									<a href="#">
-										<p>* 소개글</p>
-									</a>
-								</div>
-								<div class="update_comment">
-									<input type="text" id="info" name="info"
-										value="${profile.info }" placeholder="소개글을 입력해주세요.">
+								<!-- 새로운 비밀번호 -->
+								<div>
+									<input type="password" id="newPw" name="newPw"
+										placeholder="새 비밀번호">
 								</div>
 							</div>
 
-							<!-- 오른쪽 완료버튼 -->
-							<div id="right_btn">
-								<input type="submit" id="submit-btn" value="회원정보 수정완료">
+							<!-- 유저 소개글 -->
+							<div class="update_comment_title">
+								<a href="#">
+									<p>* 소개글 수정</p>
+								</a>
+							</div>
+							
+							<div class="update_comment">
+								<input type="text" id="info" name="info"
+									value="${profile.info }" placeholder="소개글을 입력해주세요.">
 							</div>
 						</div>
-					</form>
+
+						<!-- 오른쪽 완료버튼 -->
+						<div id="right_btn">
+							<input type="button" id="submit-btn" value="회원정보 수정완료"
+								onclick="modifyPwAndInfo()">
+						</div>
+					</div>
 				</div>
 
 			</section>
-
 
 		</div>
 	</div>
