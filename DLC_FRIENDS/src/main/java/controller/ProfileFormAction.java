@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.JSONObject;
+
 import javax.servlet.http.HttpSession;
 
 import model.comment.Comment;
@@ -45,18 +48,6 @@ public class ProfileFormAction extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PostDao postDao = PostDao.getInstance();
-		String id = request.getParameter("id");
-		
-		// 시작페이지, 표시될 페이지개수
-		int startIdx = Integer.parseInt(request.getParameter("startIdx"));
-		int countPosts = 5;
-		
-		ArrayList<Post> postList = postDao.getPostByIdAndIdx(id, startIdx, countPosts);
-		System.out.println(postList);
-//		String log = (String) request.getSession().getAttribute("log");
-//		PostDao postDao = PostDao.getInstance();
-//		ArrayList<Post> postList = postDao.getPostByUserId(log, startIndex, postCount);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -86,8 +77,8 @@ public class ProfileFormAction extends HttpServlet {
 				response.sendRedirect(url);
 				
 			} else {
-				PostDao postDao = PostDao.getInstance();
-				ArrayList<Post> postList = postDao.getPostByUserId(log);
+//				PostDao postDao = PostDao.getInstance();
+//				ArrayList<Post> postList = postDao.getPostByUserId(log);
 
 				CommentDao commentDao = CommentDao.getInstance();
 				ArrayList<Comment> commentList = commentDao.getCommentsByUserId(log);
@@ -123,7 +114,7 @@ public class ProfileFormAction extends HttpServlet {
 				}
 				
 				request.setAttribute("profile", profile);
-				request.setAttribute("postList", postList);
+//				request.setAttribute("postList", postList);
 				request.setAttribute("commentList", commentList);
 				request.setAttribute("gameList", gameList);
 				request.setAttribute("selectGameList", selectGameList);

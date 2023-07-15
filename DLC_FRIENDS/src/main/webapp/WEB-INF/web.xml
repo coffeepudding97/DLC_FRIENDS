@@ -54,6 +54,23 @@
 
 
 	<servlet>
+		<servlet-name>SelectPoriflePosts</servlet-name>
+		<servlet-class>controller.SelectPoriflePosts</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SelectPoriflePosts</servlet-name>
+		<url-pattern>/selectPosts</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SelectProfileCommentAction</servlet-name>
+		<servlet-class>controller.SelectProfileCommentAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SelectProfileCommentAction</servlet-name>
+		<url-pattern>/selectComments</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>ProfileFormAction</servlet-name>
 		<servlet-class>controller.ProfileFormAction</servlet-class>
 	</servlet>
@@ -426,6 +443,8 @@
 		<servlet-name>join</servlet-name>
 		<url-pattern>/join</url-pattern>
 	</servlet-mapping>
+	
+	
 
 
 </web-app>

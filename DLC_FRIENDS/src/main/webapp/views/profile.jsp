@@ -44,8 +44,8 @@
 					<div class="profile_nickname">
 					<p>${profile.nickname }</p>
 					</div>
-					<div class="profile_id">
-						<p>${profile.id }</p>
+					<div>
+						<p id="profile_id">${profile.id }</p>
 					</div>
 
 					<!-- 소개글 -->
@@ -105,38 +105,32 @@
 								<div>
 									<h1>* 작성한 게시글</h1>
 								</div>
-								<div>
-									<button id="posts_more" onclick="postsMore()">더보기</button>
-								</div>
-								<div id="now_page">1</div>
+								<button id="post_minus_btn" onclick="post_minus_btn()">-</button>
+								<div id="post_page">1</div>
+								<button id="post_plus_btn" onclick="post_plus_btn()">+</button>
+								
 								<div class="posts">
-									<c:forEach items="${postList}" var="post">
-										<ul>
-											<li>${post.gameTitle}| ${post.title}</li>
-										</ul>
-									</c:forEach>
+									
 								</div>
 							</div>
 						</div>
 
 						<!-- 왼쪽 하단 '댓글' -->
-					<div class="bottom_reply_wrap">
-					<div class="bottom_reply">
-							<h1>
-								* 작성한 댓글
-								</h1>
-								<div >
-									<c:forEach items="${commentList}" var="comment">
-										<div>
-											<div>${comment.content} ->${comment.createdTime}
-											</div>
-										</div>
-									</c:forEach>
+						<div class="bottom_reply_wrap">
+							<div class="bottom_reply">
+								<div>
+									<h1>* 작성한 댓글</h1>
 								</div>
-								<button class="comments_title"></button>
+								<button id="comment_minus_btn" onclick="comment_minus_btn()">-</button>
+								<div id="comment_page">1</div>
+								<button id="comment_plus_btn" onclick="comment_plus_btn()">+</button>
+									
+								<div class="comments">
+								
+								</div>
+							</div>
+						</div>
 					</div>
-					</div>
-				</div>
 				<!-- 오른쪽 -->
 				<div id="bottom_right">
 					<!-- 오른쪽 상단, 최근파티원 -->

@@ -1,109 +1,166 @@
-let startIndex = 0;
-let postCount = 5;
+var postPage = document.getElementById('post_page').innerText;
+var commentPage = document.getElementById('comment_page').innerText;
+var profileId = document.getElementById('profile_id').textContent;
 
-$(document).ready(function(){
-	$("#gametitleToggle").click(function(){
-		$("#gametitleList").slideToggle();
-	});
-	
-	$("input[type='checkbox']").on("click", function(){
-	  	var checkedCount = $("input:checkbox[name=selectGame]:checked").length;
-		if(checkedCount > 5){
-			$(this).prop("checked", false);
-			alert("5개까지만 선택할 수 있습니다.");
-		}
-	});
-	
-	/* 프로필 토글 페이징 */
-	$(".posts_title").click(function(){
-		$('.posts').slideToggle();
-	})
-	$(".comments_title").click(function(){
-		$('.comments').slideToggle();
-	})
-	
-	/* 프로필 수정 부분 */
-	$('#uploadBtn').click(function() {
-		var inputImage = document.getElementById('input_image');
+$(document).ready(function() {
 
-		if (inputImage.files.length === 0) {
-			alert('사진을 선택해주세요!');
-		} else {
-			uploadImage();
-		}
-	});
-});
-
-
-$(document).ready(function(){
-	$(".update_img_txt").click(function(){
-		$(".upload_img").slideToggle();
-	});	
-	$(".update_nickname_title a").click(function(){
-		$(".update_nickname, .update_password, .update_comment").slideToggle();
-	});	
-	$(".update_password_title a").click(function(){
-		$(".update_nickname, .update_password, .update_comment").slideToggle();
-	});	
-	$(".update_comment_title a").click(function(){
-		$(".update_nickname, .update_password, .update_comment").slideToggle();
-	});	
+	/* 프로필 부분 */
+	loadPosts();
+	loadComments();
 
 });
 
 
+// 프로필 - 게시글 로딩
+function loadPosts() {
+	postPage = document.getElementById('post_page').innerText;
+	$.ajax({
+		type: 'GET',
+		url: 'selectPosts',
+		data: {
+			startIdx: postPage,
+			id: profileId,
+		},
 
-function modify(){
-	alert('회원정보가 변경되었습니다.');
+		success: (list) => {
+			if (list.postList.length !== 0) {
+				// 기존 페이지 글 제거
+				$('.posts').empty();
+
+				list.postList.forEach((post) => {
+					// timestamp -> date -> format 변환
+					var timestamp = post.createdTime;
+					var changeToDate = new Date(timestamp);
+					var date = dateFormat(changeToDate);
+					$('.posts').append(
+						`
+						<ul>
+							<li>${post.gameTitle}</li>
+							<li>${post.title}</li>
+							<li>${date}</li>
+							<br>
+						</ul>
+						`
+					);
+				});
+			} else {
+				alert('마지막 페이지입니다.');
+				var element = document.getElementById('post_page');
+				postPage = Number(postPage);
+				postPage -= 1;
+				element.innerText = postPage;
+			}
+		},
+
+	});
 }
 
-function mypage() {
-	try {
-		window.location.href = 'ProfileForm'; // 이동할 페이지의 URL을 지정
-	} catch (error) {
-		console.error('오류 발생:', error);
+// 프로필 게시글 +
+function post_plus_btn() {
+	var element = document.getElementById('post_page');
+	postPage = Number(postPage);
+
+	postPage += 1;
+	element.innerText = postPage;
+	loadPosts();
+}
+
+// 프로필 게시글 -
+function post_minus_btn() {
+	var element = document.getElementById('post_page');
+	postPage = Number(postPage);
+	if (postPage > 1) {
+
+		postPage -= 1;
+		element.innerText = postPage;
+		console.log(postPage);
+		loadPosts();
+	} else {
+		alert('첫 페이지입니다.');
 	}
 }
 
-function modify(htmlForm){
-	let check = true;
-	
-	if(check === true)
-		htmlForm.submit();
+// 프로필 댓글
+function loadComments() {
+	commentPage = document.getElementById('comment_page').innerText;
+	$.ajax({
+		type: 'GET',
+		url: 'selectComments',
+		data: {
+			startIdx: commentPage,
+			id: profileId,
+		},
+
+		success: (list) => {
+
+			if (list.commentList.length !== 0) {
+				// 기존 페이지 글 제거
+				$('.comments').empty();
+
+				list.commentList.forEach((comment) => {
+					// timestamp -> date -> format 변환
+					var timestamp = comment.createdTime;
+					var changeToDate = new Date(timestamp);
+					var date = dateFormat(changeToDate);
+					$('.comments').append(
+						`
+						<ul>
+							<li>${comment.content}</li>
+							<li>${date}</li>
+							<br>
+						</ul>
+						`
+					);
+				});
+			} else {
+				alert('마지막 페이지입니다.');
+				var element = document.getElementById('comment_page');
+				commentPage = Number(commentPage);
+				commentPage -= 1;
+				element.innerText = commentPage;
+			}
+		},
+
+	});
+}
+
+function comment_plus_btn() {
+	var element = document.getElementById('comment_page');
+	commentPage = Number(commentPage);
+
+	commentPage += 1;
+	element.innerText = commentPage;
+	loadComments();
+}
+
+function comment_minus_btn() {
+	var element = document.getElementById('comment_page');
+	commentPage = Number(commentPage);
+	if (commentPage > 1) {
+
+		commentPage -= 1;
+		element.innerText = commentPage;
+		console.log(commentPage);
+		loadComments();
+	} else {
+		alert('첫 페이지입니다.');
+	}
 }
 
 
-// 프로필 게시글 더보기
+function dateFormat(date) {
+	let month = date.getMonth() + 1;
+	let day = date.getDate();
+	let hour = date.getHours();
+	let minute = date.getMinutes();
+	let second = date.getSeconds();
 
+	month = month >= 10 ? month : '0' + month;
+	day = day >= 10 ? day : '0' + day;
+	hour = hour >= 10 ? hour : '0' + hour;
+	minute = minute >= 10 ? minute : '0' + minute;
+	second = second >= 10 ? second : '0' + second;
 
-
-
-// 프로필 사진 수정
-function uploadImage(){
-    var inputImage = document.getElementById('input_image');
-    var formData = new FormData();
-    formData.append('input_image', inputImage.files[0]);
-    
-    $.ajax({
-        type: 'POST',
-        url: 'uploadImage',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response){
-            alert(response);
-            if(response === '프로필사진 업로드완료!'){
-                location.href = 'profileUpdate';
-            }
-        },
-        error: function(){
-            alert('프로필사진 업로드 실패..');
-        },
-    });
+	return month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
 }
-
-// 비밀번호, 소개글 수정
-
-
-
 

@@ -12,6 +12,9 @@
 </head>
 <body>
 	<jsp:include page="/header"></jsp:include>
+	<c:if test="${ empty sessionScope.log }">
+		<c:redirect url="/"></c:redirect>
+	</c:if>
 	<div id="wrap">
 		<div id="root">
 			<section id="main-section">
@@ -111,6 +114,6 @@
 
 		</div>
 	</div>
-	<script src="../resources/script/profile.js"></script>
+	<script src="../resources/script/memberInfoModify.js"></script>
 </body>
 </html>
