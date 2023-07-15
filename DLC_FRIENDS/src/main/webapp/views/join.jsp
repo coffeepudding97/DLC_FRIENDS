@@ -18,8 +18,8 @@
             <div class="input-control">
                 <label for="id">아이디</label>
                 <input id="id" name="id" type="text" placeholder="" maxlength="40">
-                <button type="button" value="중복확인" class="dup" onclick="winopen()">중복 확인</button>
-                <input type="hidden" name="idDuplication" value="idUncheck">
+                <button type="button" class="id_check_button" onclick="id_check_check()">중복검사</button>
+				<img id="id_check_sucess" style="display: none;">
             </div>
             <div class="input-control">
                 <label for="password">비밀번호</label>

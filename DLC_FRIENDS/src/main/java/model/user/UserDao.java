@@ -111,7 +111,7 @@ public class UserDao {
 			if(this.conn != null) {
 				
 				String userInsertSql = "INSERT INTO user VALUES(?, ?, ?, ?, DATE(?))";
-				String profileInsertSql = "INSERT INTO profile(user_id, info, nickname) VALUES(?, ?, ?);";
+				String profileInsertSql = "INSERT INTO profile(user_id, info, nickname) VALUES(?, ?, ?)";
 				
 				try {
 					// 트랜잭션 시작
