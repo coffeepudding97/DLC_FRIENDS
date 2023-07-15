@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
+
 import model.comment.Comment;
 import model.comment.CommentDao;
 import model.gametitle.GameTitle;
@@ -86,6 +88,8 @@ public class MemberInfoModifyAction extends HttpServlet {
 		request.setAttribute("profile", profile);
 		request.setAttribute("postList", postList);
 		request.setAttribute("commentList", commentList);
+		
+		JSONObject jObject = new JSONObject();
 		
 		
 		String url = "/";

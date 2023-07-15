@@ -17,7 +17,7 @@ $(document).ready(function() {
 			alert("5개까지만 선택할 수 있습니다.");
 		}
 	});
-	
+
 	/* 프론트 */
 	$("#gametitleToggle").click(function() {
 		$("#gametitleList").slideToggle();
@@ -62,3 +62,31 @@ function uploadImage() {
 }
 
 // 비밀번호, 소개글 수정
+function modifyPwAndInfo() {
+	var id = document.getElementById("id").value;
+	var password = document.getElementById("password").value;
+	var newPassword = document.getElementById("newPw").value;
+	var info = document.getElementById("info").value;
+
+	var data = {
+		id: id,
+		password: password,
+		newPw: newPassword,
+		info: info
+	}
+	
+	$.ajax({
+		type: 'POST',
+		url: 'memberInfoModify',
+		data: data,
+		dataType: 'json',
+		success: (response) => {
+			alert(response.result);
+			console.log(response.result);
+			location.reload(); 
+		},
+		error: function(){
+			alert(error)
+		}
+	})
+}

@@ -80,11 +80,11 @@
 								</div>
 								<div class="update_password">
 									<div>
-										<input type="password" name="password" placeholder="기존 비밀번호">
+										<input type="password" id="password" name="password" placeholder="기존 비밀번호">
 									</div>
 									<!-- 새로운 비밀번호 -->
 									<div>
-										<input type="text" id="newPw" name="newPw"
+										<input type="password" id="newPw" name="newPw"
 											placeholder="새 비밀번호">
 									</div>
 								</div>

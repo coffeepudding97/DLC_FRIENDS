@@ -96,7 +96,7 @@ public class ProfileFormAction extends HttpServlet {
 				
 				RatingDao ratingDao = RatingDao.getInstance();
 				ArrayList<Rating> rateList = ratingDao.getRatingsById(log);
-				System.out.println(rateList);
+				System.out.println("신고리스트:" + rateList);
 				
 				// 게임 평가 처리
 				int rateCount = rateList.size();
@@ -110,7 +110,7 @@ public class ProfileFormAction extends HttpServlet {
 					}
 					score /= rateCount;
 					totalScore = score;
-					System.out.println("스코어: "+score);
+					System.out.println("스코어: "+totalScore);
 				}
 				
 				request.setAttribute("profile", profile);
@@ -120,7 +120,7 @@ public class ProfileFormAction extends HttpServlet {
 				request.setAttribute("selectGameList", selectGameList);
 				request.setAttribute("partyMemList", partyMemList);
 				// 유저평점이 3점 이하면 신고태그가 프로필화면에 표시
-				if(totalScore < 3) {
+				if(totalScore < 5) {
 					request.setAttribute("rateList", rateList);
 				}
 
