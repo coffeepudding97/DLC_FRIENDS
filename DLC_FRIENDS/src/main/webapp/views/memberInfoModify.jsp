@@ -12,6 +12,9 @@
 </head>
 <body>
 	<jsp:include page="/header"></jsp:include>
+	<c:if test="${ empty sessionScope.log }">
+		<c:redirect url="/"></c:redirect>
+	</c:if>
 	<div id="wrap">
 		<div id="root">
 			<section id="main-section">
@@ -77,11 +80,11 @@
 								</div>
 								<div class="update_password">
 									<div>
-										<input type="password" name="password" placeholder="기존 비밀번호">
+										<input type="password" id="password" name="password" placeholder="기존 비밀번호">
 									</div>
 									<!-- 새로운 비밀번호 -->
 									<div>
-										<input type="text" id="newPw" name="newPw"
+										<input type="password" id="newPw" name="newPw"
 											placeholder="새 비밀번호">
 									</div>
 								</div>
@@ -111,6 +114,6 @@
 
 		</div>
 	</div>
-	<script src="../resources/script/profile.js"></script>
+	<script src="../resources/script/memberInfoModify.js"></script>
 </body>
 </html>
