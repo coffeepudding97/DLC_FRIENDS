@@ -24,75 +24,80 @@ import model.user.UserRequestDto;
 public class JoinFormAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor.
-     */
-    public JoinFormAction() {
-    	
-    }
+	/**
+	 * Default constructor.
+	 */
+	public JoinFormAction() {
+
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-		 */
-		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			response.setContentType("application/json");
-			request.setCharacterEncoding("UTF-8");
-		
-		
-	        // 회원가입 데이터 처리
-	        String id = request.getParameter("id");
-	        String password = request.getParameter("password");
-	        String passwordChk = request.getParameter("passwordChk");
-	        String nickName = request.getParameter("nickName");
-	        String email = request.getParameter("email");
-	        int birth = Integer.parseInt(request.getParameter("birth"));
-	        System.out.println(id);
-	        System.out.println(password);
-	        System.out.println(passwordChk);
-	        System.out.println(nickName);
-	        System.out.println(email);
-	        System.out.println(birth);
-	        
-	        UserDao userDao = UserDao.getInstance();
-	        
-	        boolean duplId = userDao.duplIdCheck(id);
-	        boolean duplNick = userDao.duplNickname(nickName);
-	        boolean result = false;
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("application/json; charset=utf-8");
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("utf-8");
 
-	        String message = "";
-	         
-	        if (!password.equals(passwordChk)) {
-	        	 message = "비밀번호가 일치하지 않습니다.";
-	        } else {
-	            if (!duplId) {
-	            	System.out.println("아이디 중복 없음");
+		// 회원가입 데이터 처리
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		String passwordChk = request.getParameter("passwordChk");
+		String nickName = request.getParameter("nickName");
+		String email = request.getParameter("email");
+		int birth = Integer.parseInt(request.getParameter("birth"));
+		System.out.print("id : " + id);
+		System.out.print(" pw : " + password);
+		System.out.print(" pwc : " + passwordChk);
+		System.out.print(" name : " + nickName);
+		System.out.print(" email : "+email);
+		System.out.println(" birth : " + birth);
 
-	                if (!duplNick) {
-	                	 System.out.println("닉네임 중복 없음");
-	                	 UserRequestDto user = new UserRequestDto(id, password, nickName, email, birth);
-	                     result = userDao.createUser(user);
-	                     message = "Success";
-	                } else {
-	                	message = "이미 존재하는 닉네임입니다.";
-	                }
-	            } else {
-	            	message = "이미 존재하는 아이디입니다.";
-	            }
-	        }
-	        
-	        if(message.equals("Success")) {
-	        	response.sendRedirect("/views/login.jsp");
-	        } else {
-	        	JSONObject jsonResponse = new JSONObject();
-		        jsonResponse.put("message", message);
-		        response.getWriter().write(jsonResponse.toString());
-	        }       
-}
+		UserDao userDao = UserDao.getInstance();
+
+		boolean duplId = userDao.duplIdCheck(id);
+		boolean duplNick = userDao.duplNickname(nickName);
+		boolean result = false;	
+		
+		/*
+		if (!password.equals(passwordChk)) {
+			message = "비밀번호가 일치하지 않습니다.";
+		} else {
+			if (!duplId) {
+				System.out.println("아이디 중복 없음");
+
+				if (!duplNick) {
+					System.out.println("닉네임 중복 없음");
+					UserRequestDto user = new UserRequestDto(id, password, nickName, email, birth);
+					result = userDao.createUser(user);
+					message = "Success";
+				} else {
+					message = "이미 존재하는 닉네임입니다.";
+				}
+			} else {
+				message = "이미 존재하는 아이디입니다.";
+			}
+		}*/
+		
+		System.out.println("ID중복 : " + duplId + ", Nick중복 : " + duplNick);
+		if(!duplId && !duplNick) {
+			UserRequestDto user = new UserRequestDto(id, passwordChk, nickName, email, birth);
+			result = userDao.createUser(user);
+		}
+
+		JSONObject jsonResponse = new JSONObject();
+		jsonResponse.put("result", result);
+		response.getWriter().append(jsonResponse.toString());
+	}
 }

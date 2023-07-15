@@ -63,6 +63,42 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>GetSessionCodeAction</servlet-name>
+		<servlet-class>controller.GetSessionCodeAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetSessionCodeAction</servlet-name>
+		<url-pattern>/GetCode</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SendCodeAction</servlet-name>
+		<servlet-class>controller.SendCodeAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SendCodeAction</servlet-name>
+		<url-pattern>/SendCode</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DuplCheckIdAction</servlet-name>
+		<servlet-class>controller.DuplCheckIdAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DuplCheckIdAction</servlet-name>
+		<url-pattern>/DuplId</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DuplCheckNicknameAction</servlet-name>
+		<servlet-class>controller.DuplCheckNicknameAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DuplCheckNicknameAction</servlet-name>
+		<url-pattern>/DuplNickname</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>GetWarningPostAction</servlet-name>
 		<servlet-class>controller.GetWarningPostAction</servlet-class>
 	</servlet>
