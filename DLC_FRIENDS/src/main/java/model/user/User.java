@@ -8,7 +8,7 @@ public class User {
 	private String nickName;
 	private String email;
 	private Date birthday;
-	
+	 
 	public User(String id, String password, String nickName, String email, Date birth) {
 		this.id = id;
 		this.password = password;
