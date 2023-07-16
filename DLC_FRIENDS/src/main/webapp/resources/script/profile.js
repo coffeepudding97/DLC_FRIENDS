@@ -117,7 +117,7 @@ function loadComments() {
 					);
 				});
 			} else if (commentPage === '1' && list.commentList.length === 0) {
-				$('.comments').append('<p>작성한 게시글이 없습니다..</p>')
+				$('.comments').append('<p>작성한 댓글이 없습니다..</p>')
 			} 
 			else {
 				alert('마지막 페이지입니다.');
