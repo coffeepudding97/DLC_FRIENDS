@@ -125,7 +125,7 @@ form {
 #login_button{
     width: 250px;
     height: 40px;
-    margin-top: 20px;
+    margin-top: 40px;
     /* cursor: default!important; */
 
 }
@@ -142,19 +142,19 @@ form {
     font-size: 1.0rem;
 }
 
-.forget {
+/* .forget {
     margin: 15px 0 0px;
     font-size: 1em;
     
-}
+} */
 
-.join_button {
+/* .join_button {
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
     color: #1ea1f7;
     text-decoration: underline;
-}
+} */
 
 .forget_password {
     margin-top: -10px;

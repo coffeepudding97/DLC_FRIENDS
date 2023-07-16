@@ -28,10 +28,10 @@
 							maxlength="30" autocapitalize="off"> <label
 							for="password">비밀번호</label>
 					</div>
-					<div class="forget">
+					<!-- <div class="forget">
 						<label for="saveId"><input type="checkbox" class="checkbox_input"
 						name="checkId" id="saveId" >ID저장</label>
-					</div>
+					</div> -->
 					<button id="login_button" type="submit" value="login">로그인</button>
 				</form>
 				<a href="#" class="forget_password">비밀번호를 잊어버리셨나요?</a>
