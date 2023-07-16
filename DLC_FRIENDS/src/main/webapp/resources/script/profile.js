@@ -39,7 +39,6 @@ function loadPosts() {
 							<li>${post.gameTitle}</li>
 							<li>${post.title}</li>
 							<li>${date}</li>
-							<br>
 						</ul>
 						`
 					);
@@ -111,7 +110,6 @@ function loadComments() {
 						<ul>
 							<li>${comment.content}</li>
 							<li>${date}</li>
-							<br>
 						</ul>
 						`
 					);
