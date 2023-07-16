@@ -32,10 +32,25 @@ $(document).ready(function(){
 			`)
 		})
 	})
+	
+	let curTime = new Date();
+	timeFormat(curTime, 9);
+	let formatCur = new Date(curTime).toISOString().slice(0, 16);
+	
+	$('#meettime').attr("min", formatCur);
+
+	$('#leavetime').attr("min", formatCur);
 });
 
 function setGameTitle(label){
 	const name = $.trim($(label).text());
 	
 	$('#gametitle').val(name).prop("selected", true);
+}
+
+function timeFormat(time, offset){
+	time.setHours(time.getHours() + offset);
+	time.setMinutes(0);
+	time.setSeconds(0);
+	time.setMilliseconds(0);
 }

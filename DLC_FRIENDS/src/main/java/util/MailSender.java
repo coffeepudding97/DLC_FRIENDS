@@ -20,8 +20,8 @@ public class MailSender {
 		return instance;
 	}
 	
-	public boolean gmailSend(String recipient) {
-		boolean check = true;
+	public String gmailSend(String recipient) {
+		String code = null;
         String user = "dlcfriendscheck@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
         String password = "lnqiuychxqsqixye";   // 패스워드
 
@@ -52,19 +52,18 @@ public class MailSender {
             message.setSubject("DLC:Friends 회원가입을 위한 인증번호 입니다."); //메일 제목을 입력
 
             // Text
-            message.setText("인증번호 : " + getVerificationCode());    //메일 내용을 입력
+            code = getVerificationCode();
+            message.setText("인증번호 : " + code);    //메일 내용을 입력
 
             // send the message
             Transport.send(message); ////전송
             System.out.println("message sent successfully...");
         } catch (AddressException e) {
             e.printStackTrace();
-            check = false;
         } catch (MessagingException e) {
             e.printStackTrace();
-            check = false;
         }
-        return check;
+        return code;
     }
 	
 	private String getVerificationCode() {

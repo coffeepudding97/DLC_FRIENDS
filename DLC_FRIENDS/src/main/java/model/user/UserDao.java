@@ -67,6 +67,9 @@ public class UserDao {
 	
 	// 닉네임 중복체크 (true: 중복있음)
 	public boolean duplNickname(String nickName) {
+		boolean dupl = false;
+		String name = null;
+		
 		this.conn = DBManager.getConnection();
 		
 		if(this.conn != null) {
@@ -79,9 +82,10 @@ public class UserDao {
 				this.rs = this.pstmt.executeQuery();
 				
 				if(this.rs.next()) {
-					int count = rs.getInt(1);
-					if(count > 0)
-						return true;
+					name = rs.getString(1);
+					System.out.println("name:" + name);
+					if(name != null)
+						dupl = true;
 				}
 				
 			} catch (Exception e) {
@@ -90,7 +94,7 @@ public class UserDao {
 				DBManager.close(this.conn, this.pstmt);
 			}
 		}
-		return false;
+		return dupl;
 	}
 	
 	// 유저 생성
@@ -272,27 +276,29 @@ public class UserDao {
 		User user = null;
 
 		this.conn = DBManager.getConnection();
-
+		
 		if (this.conn != null) {
-			String sql = "SELECT * FROM user WHERE user_id=?";
+			String sql = "SELECT * FROM user WHERE user_id = ?";
 
 			try {
 				this.pstmt = this.conn.prepareStatement(sql);
 				this.pstmt.setString(1, id);
 
 				this.rs = this.pstmt.executeQuery();
-
+				
 				if (this.rs.next()) {
+					System.out.println("rs");
 					String password = this.rs.getString(2);
+					System.out.println(password);
 					String nickName = this.rs.getString(3);
 					String email = this.rs.getString(4);
 					Date birth = this.rs.getDate(5);
 
 					user = new User(id, password, nickName, email, birth);
+					
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				return null;
 			} finally {
 				DBManager.close(this.conn, this.pstmt, this.rs);
 			}
