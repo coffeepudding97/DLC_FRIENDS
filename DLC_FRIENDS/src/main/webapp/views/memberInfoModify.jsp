@@ -70,11 +70,6 @@
 						<!-- 왼쪽 수정부분 -->
 						<div id="left_modify">
 							<!-- 아이디 -->
-							<div class="update_nickname_title">
-								<a href="#">
-									<p>* 아이디</p>
-								</a>
-							</div>
 							<div class="update_nickname">
 								<input type="text" id="id" name="id" value="${profile.id }"
 									readonly>
