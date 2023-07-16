@@ -20,6 +20,8 @@ ul, li, form, input {
 }
 
 a {
+	margin:0;
+	padding:0;
 	text-decoration: none;
 	color:black;
 }
@@ -55,11 +57,13 @@ nav {
 
 /* 헤더 */
 .logo_wrap {
-	padding-top: 10px;
-	padding-bottom:5px;
+	display:flex;
+	align-items: center;
 }
 .logo_wrap a {
 	width:100%;
+	padding-top: 10px;
+	padding-bottom:5px;
 }
 .logo_wrap a img {
 	width:150px;
@@ -69,12 +73,23 @@ nav {
 	align-items:center;
 }
 
+.logo_right img {
+	padding-left:10px;
+	padding-top:2px;
+	width:28px;
+	height:28px;
+}
+
 .my_page {
-	background:none;
+	cursor: pointer;
+	width:30px;
+	height:30px;
 	border:none;
-	color:white;
-	font-family: 'Pretendard-Regular';
-	font-size:16px;
+	background:transparent;
+	background-image : url('../images/my_account.png');
+	background-repeat : no-repeat;
+	background-size: 30px;
+	text-indent:-9999px;
 }
 
 

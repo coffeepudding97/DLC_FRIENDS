@@ -181,6 +181,15 @@ input {
 	display:flex;
 }
 
+/*답글 취소*/
+.writer_id .reply_cancel {
+	margin: 5px 0;
+	padding:5px;
+	border:1px solid black;
+	max-width:70px;
+	display:flex;
+}
+
 
 
 

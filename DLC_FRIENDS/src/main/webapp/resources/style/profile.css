@@ -165,10 +165,20 @@
 	padding:20px;
 }
 
+.posts ul {
+	padding:10px 0;
+}
+
+#post_page {
+	font-size:20px;
+	font-weight:500;
+}
+
 /* 작성글 리스트 */
 .post_list {
 	display:flex;
 	justify-content: center;
+	align-items: center;
 }
 
 .post_list button {
@@ -178,6 +188,19 @@
 
 .post_list div {
 	padding: 0 5px;
+}
+
+#post_minus_btn {
+	background:transparent;
+}
+
+#bottom_left img {
+	width:24px;
+	height:24px;
+}
+
+#post_plus_btn {
+	background:transparent;
 }
 
 
@@ -209,6 +232,35 @@
 	border:1px solid #09173b;
 	padding:10px;
 }
+
+.comments ul {
+	padding:10px 0; 
+}
+
+/*댓글 리스트*/
+.reply_list {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.reply_list button {
+	border:none;
+}
+
+#comment_page {
+	font-size:20px;
+	font-weight:500;
+}
+
+.reply_list #comment_minus_btn {
+	background: transparent;
+}
+
+.reply_list #comment_plus_btn {
+	background: transparent;
+}
+
 
 
 

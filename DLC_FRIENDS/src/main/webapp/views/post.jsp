@@ -129,7 +129,7 @@
 							value="${param.post_no }"> 
 						<input type="hidden" id="userId" name="userId" value="${sessionScope.log }">
 						<input type="hidden" id="rpNo" name="rpNo" value="0"> 
-						<span id="replyName"></span><input type="button" value="-" onclick="resetRpNo()"> 
+						<span id="replyName"></span><input type="button" class="reply_cancel" value="답글 취소" onclick="resetRpNo()"> 
 						<div class="writer_txt">
 						<input type="text" id="comment" name="comment"> 
 						<input type="button" id="commentWrite" value="작성" onclick="post_comment()">

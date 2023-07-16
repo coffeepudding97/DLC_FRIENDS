@@ -11,11 +11,12 @@
 </head>
 <body>
 	<jsp:include page="/header"></jsp:include>
+	<div id="wrap">
 	<div id="root">
 	<section id="main-section">
 	<div class="sign_container">
-        <h1>회원가입</h1>
         <form id="form" class="sign">
+        <h1>회원가입</h1>
             <div class="input-control">
                 <label for="id">아이디</label>
                 <input id="id" name="id" type="text" placeholder="최소 4자리 이상 16자리 이하 영소문자, 숫자" maxlength="40">
@@ -64,6 +65,7 @@
     </div>
 	</section>
  	</div>
+	</div>
 	<jsp:include page="/footer"></jsp:include>
 </body>
 </html>

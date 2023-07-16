@@ -22,14 +22,14 @@
 					<div class="logo_right">
 					<c:choose>
 						<c:when test="${empty sessionScope.log }">
-							<a href="/login">로그인</a>
+							<a href="/login"><img src="../resources/images/login.png"></a>
 						</c:when>
 						<c:otherwise>
 							<form method="POST" action="/ProfileForm" style="display:inline;">
 								<!-- <input type="hidden" name="id" value="${sessionScope.log}" />  -->
-      							<input type="submit" class="my_page" value="마이 페이지" />
+      							<input type="submit" class="my_page"/>
       						</form>
-      						<a href="/logoutAction">로그아웃</a>
+      						<a href="/logoutAction"><img src="../resources/images/logout.png"></a>
 						</c:otherwise>
 					</c:choose>
 					</div>
