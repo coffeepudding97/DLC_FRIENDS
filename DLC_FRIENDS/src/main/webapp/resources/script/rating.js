@@ -8,21 +8,22 @@ $(document).ready(function(){
 		list.forEach(rating => {
 			$('#ul-rating').append(`
 				<li name="line">
-					<div onclick="formToggle(this)">
-						<div name="postNo">${rating.postNo}</div>
-						<div name="title">${rating.title}</div>
-						<div name="title">${rating.gametitle}</div>
-						<div name="userId">${rating.rated}</div>
+					<div class="line_post" onclick="formToggle(this)">
+						<div name="postNo"><h1>글 번호</h1><p>${rating.postNo}</p></div>
+						<div name="title"><h1>글 제목</h1><p>${rating.title}</p></div>
+						<div name="title"><h1>같이한 게임</h1><p>${rating.gametitle}</p></div>
+						<div name="userId"><h1>닉네임</h1><p>${rating.rated}</p></div>
 					</div>
 					<form>
-						<div>
-							<input type="radio" name="score" value="1">
-							<input type="radio" name="score" value="2">
-							<input type="radio" name="score" value="3">
-							<input type="radio" name="score" value="4">
-							<input type="radio" name="score" value="5" checked>
+						<div class="user_rating">
+							<h1>유저 평가</h1>
+							1<input type="radio" name="score" value="1">
+							2<input type="radio" name="score" value="2">
+							3<input type="radio" name="score" value="3">
+							4<input type="radio" name="score" value="4">
+							5<input type="radio" name="score" value="5" checked>
 						</div>
-						<div>
+						<div class="report">
 							<label for="${rating.postNo}${rating.rated}curse">욕설</label>
 							<input id="${rating.postNo}${rating.rated}curse" name="tag" type="checkbox" value="curse">
 							<label for="${rating.postNo}${rating.rated}run">탈주</label>
@@ -34,10 +35,13 @@ $(document).ready(function(){
 							<label for="${rating.postNo}${rating.rated}hack">불법프로그램사용</label>
 							<input id="${rating.postNo}${rating.rated}hack" name="tag" type="checkbox" value="hack">
 						</div>
-						<div>
+						<div class="memo">
+							<h1>메모</h1>
 							<input id="content" name="content" type="textarea">
 						</div>
-						<input type="button" value="제출" onclick="rating(this)">
+						<div class="submit_wrap">
+						<input type="button" class="submit" value="제출" onclick="rating(this)">
+						</div>
 					</form>
 				</li>
 			`);

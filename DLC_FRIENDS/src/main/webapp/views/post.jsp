@@ -37,8 +37,9 @@
 							</div>
 						</div>
 						<hr />
-
+						
 						<%--<button onclick="">수정</button>--%>
+						<div class="post_action">
 						<c:if test="${sessionScope.log eq requestScope.post.userId }">
 							<form method="post" action="/UpdatePostAction">
 								<input type="hidden" name="postNo"
@@ -47,6 +48,7 @@
 							</form>
 							<button onclick="delPost()">삭제</button>
 						</c:if>
+						</div>
 
 						<span>같이할 게임 : ${post.gameTitle }</span> <br/><span id="party_member_count">모집 인원 : <span id="count_number">${requestScope.party.userIds.size() }</span></span><span>/</span><span>${post.recruitMax }</span>
 						<br/><span id="meetTime">시작 시간 : ${requestScope.meetTime } / </span> <span>끝나는 시간 : ${requestScope.leaveTime }</span>

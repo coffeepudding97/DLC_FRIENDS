@@ -9,7 +9,7 @@ $(document).ready(function(){
 			
 			list.forEach(game => {
 				$('#div-gametitle').append(`
-					<labal onclick="setGameTitle(this)" id="${game.gametitle}" value="${game.gametitle}">${game.gametitle}</label>
+					<labal onclick="setGameTitle(this)" id="${game.gametitle}" class="played_game" value="${game.gametitle}">${game.gametitle}</label>
 				`)
 			})
 		})
