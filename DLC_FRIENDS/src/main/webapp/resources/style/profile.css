@@ -251,6 +251,7 @@
 #comment_page {
 	font-size:20px;
 	font-weight:500;
+	padding:0 5px;
 }
 
 .reply_list #comment_minus_btn {
