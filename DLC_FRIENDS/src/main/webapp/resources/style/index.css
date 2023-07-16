@@ -147,8 +147,10 @@ a {
 
 
 .bottom_buttons {
+	max-width:1200px;
+	margin: 0 auto;
 	display:flex;
-	flex-direction:column;
+	flex-direction:row;
 }
 
 
@@ -156,9 +158,13 @@ a {
 .view_more {
 	display:flex;
 	justify-content:center;
+	width:100%;
+	padding-left:60px;
 }
 
 .view_more button {
+	width:38px;
+	height:38px;
 	margin:0;
 	padding:0;
 	background-color:#31313c;
@@ -174,13 +180,13 @@ a {
 
 /* 글쓰기버튼 */
 .write {
-	max-width:1320px;
 	display:flex;
 	justify-content:flex-end;
 }
 .write a {
-	background-color:#282830;
+	width:100%;
+	background-color: #31313c;
 	padding:10px;
-	border:1px solid #db0442;
-	color: #db0442;
+	color: #fff;
+	white-space:nowrap;
 }
