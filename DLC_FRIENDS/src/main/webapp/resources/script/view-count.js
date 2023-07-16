@@ -15,14 +15,20 @@ $(document).ready(function(){
 		})
 		
 		getSessionLog(function(log){
-		if(log == "null"){
-			$("#writing_link").attr("href", "/login");
-			$(".table_content").removeAttr("onclick");
-			$(".table_content").attr("onclick", "goLogin()");
-		} else {
-			$("#writing_link").attr("href", "/postWrite");
-		}
+			if(log == "null"){
+				$("#writing_link").attr("href", "/login");
+				$(".table_content").removeAttr("onclick");
+				$(".table_content").attr("onclick", "goLogin()");
+			} else {
+				$("#writing_link").attr("href", "/postWrite");
+			}
+		})
 	})
+	
+	$('#search').on('keyup', function(key){
+		if(key.keyCode==13){
+			searchPost();
+		}
 	})
 })
 
