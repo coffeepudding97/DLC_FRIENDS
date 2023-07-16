@@ -27,8 +27,8 @@ $(document).ready(function(){
 	}).done(list => {
 		
 		list.forEach(game => {
-			$('#div-gametitle').append(`
-				<labal onclick="setGameTitle(this)" id="${game.gametitle}" value="${game.gametitle}">${game.gametitle}</label>
+			$('#favorite_game').append(`
+				<labal onclick="setGameTitle(this)" id="${game.gametitle}" class="played_game" value="${game.gametitle}">${game.gametitle}</label>
 			`)
 		})
 	})

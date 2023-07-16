@@ -36,7 +36,7 @@ function loadPosts() {
 					$('.posts').append(
 						`
 						<ul>
-							<li>${post.gameTitle}</li>
+							<li>[${post.gameTitle}]</li>
 							<li>${post.title}</li>
 							<li>${date}</li>
 						</ul>

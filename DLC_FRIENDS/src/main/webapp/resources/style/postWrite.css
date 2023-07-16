@@ -25,6 +25,7 @@ button {
     padding:100px;
     background: #31313c;
     max-width:1200px;
+    border-radius:10px;
 }
 
 
@@ -34,40 +35,55 @@ button {
 }
 
 #div-title input {
-	padding: 10px 0;
+	padding: 10px;
 	margin: 5px 0;
 }
 
 #div-gametitle {
 	display:flex;
-	justify-content: space-between;
 	align-items: center;
-	padding-top:20px;
+	padding-top:10px;
 }
 
 #div-gametitle select {
 	height:22px;
+	margin-left:10px;
+}
+
+#favorite_game {	
+	display:flex;
+	align-items: center;
+	justify-content:flex-start;
+}
+#favorite_game .played_game {
+	padding: 0 10px;
+	margin: 5px;
+	border:1px solid #fff;
+	color:white;
+	border-radius:15px;
 }
 
 #div-meeting {
 	display:flex;
 	flex-direction:column;
+	justify-content:flex-start;
 }
 
 .member_cnt {
 	display:flex;
 	justify-content: space-between;
+	justify-content:flex-start;
 }
 
 .member_cnt input {
-	margin-left:30px;
 	width:30px;
-	margin: 10px 167px 10px 0;
+	margin: 10px 167px 10px 10px;
 }
 
 .create_time {
 	display:flex;
 	justify-content: space-between;
+	justify-content:flex-start;
 }
 
 .create_time input {
@@ -77,6 +93,7 @@ button {
 .end_time {
 	display:flex;
 	justify-content: space-between;
+	justify-content:flex-start;
 }
 
 .end_time input {
@@ -86,15 +103,18 @@ button {
 
 #div-content {
 	padding: 15px 0;
+	overflow:hidden;
 }
 
 #div-content input {
-	width:380px;
+	width:100%;
 	height:150px;
+	padding:10px;
 }
 
 #div-submit {
 	padding:10px;
+	padding-top:20px;
 	display:flex;
 	justify-content:center;
 }
@@ -103,6 +123,7 @@ button {
 	border:0;
 	width:150px;
 	padding:10px 0;
+	border-radius:10px;
 }
 #div-submit input:hover {
 		background:#db0442;

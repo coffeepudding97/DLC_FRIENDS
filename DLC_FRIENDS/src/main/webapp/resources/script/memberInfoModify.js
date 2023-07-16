@@ -16,10 +16,7 @@ $(document).ready(function() {
 		$(".upload_img").slideToggle();
 	});
 	$(".update_password_title a").click(function() {
-		$(".update_password, .update_comment").slideToggle();
-	});
-	$(".update_comment_title a").click(function() {
-		$(".update_password, .update_comment").slideToggle();
+		$(".update_password").slideToggle();
 	});
 });
 
