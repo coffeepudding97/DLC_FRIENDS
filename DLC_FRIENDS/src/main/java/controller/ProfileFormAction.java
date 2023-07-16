@@ -67,7 +67,7 @@ public class ProfileFormAction extends HttpServlet {
 
 		if (log != null) {
 			ProfileDao profileDao = ProfileDao.getInstance();
-			Profile profile = profileDao.getUserProfile(log);
+			Profile profile = profileDao.getUserProfile2(log);
 			System.out.println(profile);
 
 			if (profile == null) {
@@ -132,8 +132,6 @@ public class ProfileFormAction extends HttpServlet {
 		} else {
 			response.sendRedirect(url);
 		}
-
-
 
 	}
 

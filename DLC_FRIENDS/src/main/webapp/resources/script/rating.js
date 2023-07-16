@@ -9,10 +9,10 @@ $(document).ready(function(){
 			$('#ul-rating').append(`
 				<li name="line">
 					<div class="line_post" onclick="formToggle(this)">
-						<div name="postNo"><h1>글 번호</h1><p>${rating.postNo}</p></div>
-						<div name="title"><h1>글 제목</h1><p>${rating.title}</p></div>
-						<div name="title"><h1>같이한 게임</h1><p>${rating.gametitle}</p></div>
-						<div name="userId"><h1>닉네임</h1><p>${rating.rated}</p></div>
+						<div><h1>글 번호</h1><p name="postNo">${rating.postNo}</p></div>
+						<div><h1>글 제목</h1><p name="title">${rating.title}</p></div>
+						<div><h1>같이한 게임</h1><p name="title">${rating.gametitle}</p></div>
+						<div><h1>닉네임</h1><p name="userId">${rating.rated}</p></div>
 					</div>
 					<form>
 						<div class="user_rating">
@@ -58,8 +58,8 @@ function formToggle(info){
 function rating(button){
 	const rater = $('#userId').text();
 	const line = $(button).closest('li[name="line"]');
-	const postNo = $(line).find('div[name="postNo"]').text();
-	const rated = $(line).find('div[name="userId"]').text();
+	const postNo = $(line).find('p[name="postNo"]').text();
+	const rated = $(line).find('p[name="userId"]').text();
 	const radio = $(line).find('input[name="score"]:checked').val();
 	const content = $(line).find('input[name="content"]').val();
 	const tags = $(line).find('input[name="tag"]:checked').map(function() {

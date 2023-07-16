@@ -55,23 +55,26 @@ public class RatingFormAction extends HttpServlet {
 		int late = 0;
 		int disturb = 0;
 		int hack = 0;
-		for(String tag : arr) {
-			if(tag.equals("curse")) {
-				curse=1;
-			}
-			if(tag.equals("run")) {
-				run=1;
-			}
-			if(tag.equals("late")) {
-				late=1;
-			}
-			if(tag.equals("disturb")) {
-				disturb=1;
-			}
-			if(tag.equals("hack")) {
-				hack=1;
+		if(arr != null) {
+			for(String tag : arr) {
+				if(tag.equals("curse")) {
+					curse=1;
+				}
+				if(tag.equals("run")) {
+					run=1;
+				}
+				if(tag.equals("late")) {
+					late=1;
+				}
+				if(tag.equals("disturb")) {
+					disturb=1;
+				}
+				if(tag.equals("hack")) {
+					hack=1;
+				}
 			}
 		}
+		
 		
 		RatingDto ratingDto = new RatingDto(postNo, rater, rated, content, score, curse, run, late, disturb, hack);
 		
