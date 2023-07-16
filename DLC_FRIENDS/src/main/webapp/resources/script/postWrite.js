@@ -15,15 +15,20 @@ $(document).ready(function(){
 		})
 	})
 	
+	let curTime = new Date();
 	let intmeetTime = new Date();
 	let intleaveTime = new Date();
+	timeFormat(curTime, 9);
 	timeFormat(intmeetTime, 12);
 	timeFormat(intleaveTime, 14);
+	let formatCur = new Date(curTime).toISOString().slice(0, 16);
 	let formatMeet = new Date(intmeetTime).toISOString().slice(0, 16);
 	let formatLeave = new Date(intleaveTime).toISOString().slice(0, 16);
 	
+	$('#meettime').attr("min", formatCur);
 	$('#meettime').val(formatMeet);
 	$('#leavetime').val(formatLeave);
+	$('#leavetime').attr("min", formatCur);	
 	
 	$.ajax({
 		"method":"POST",

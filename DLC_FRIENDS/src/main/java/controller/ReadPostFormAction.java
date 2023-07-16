@@ -58,8 +58,6 @@ public class ReadPostFormAction extends HttpServlet {
 		String gameTitle = post.getGameTitle();
 		int recruitMax = post.getRecruitMax();
 		Timestamp meetTime = post.getMeetTime();
-		System.out.println("mt : " + meetTime.getTime());
-		System.out.println("ct : " + System.currentTimeMillis());
 		Timestamp leaveTime = post.getLeaveTime();
 		String content = post.getContent();
 		int viewCount = post.getViewCount();
@@ -89,12 +87,10 @@ public class ReadPostFormAction extends HttpServlet {
 			ArrayList<ProfileDto> profileDtos = null;
 			PartyRequestDto partyDto = null;
 			
-			//if(party != null) {
-				userIds = party.getUserIds();
-				profileDtos = profileDao.getProfileDtosByUserIds(userIds, postNo);
-				System.out.println(profileDtos);
-				partyDto = new PartyRequestDto(postNo, userIds);
-			//}
+			userIds = party.getUserIds();
+			profileDtos = profileDao.getProfileDtosByUserIds2(userIds, postNo);
+			System.out.println(profileDtos);
+			partyDto = new PartyRequestDto(postNo, userIds);
 			
 			ArrayList<CommentResponseDto> cmtList = commentDao.getCommentsByPostNo(postNo);
 			

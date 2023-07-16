@@ -86,6 +86,53 @@ public class ProfileDao {
 		return profile;
 	}
 	
+	public Profile getUserProfile2(String id) {
+		Profile profile = null;
+		
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "SELECT * FROM profile WHERE user_id=?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				// user_id, profile_img, info, nickname
+				this.pstmt.setString(1, id);
+				
+				this.rs = this.pstmt.executeQuery();
+				
+				if(this.rs.next()) {
+					InputStream inputStream = this.rs.getBinaryStream(3);
+					
+					if(inputStream != null) {
+						byte[] imageBytes = inputStream.readAllBytes();
+						// 프로필 이미지 변환 및 base64 인코딩
+						String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+//						String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
+						
+						// 프로필 정보 읽어오기
+						String info = this.rs.getString(4);
+						String nickname = this.rs.getString(5);
+						
+						profile = new Profile(id, base64Image, info, nickname);
+					
+					// 이미지파일이 null일 때 
+					}else {
+						String info = this.rs.getString(4);
+						String nickname = this.rs.getString(5);
+						
+						profile = new Profile(id, null, info, nickname);
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(this.conn, this.pstmt, this.rs);
+			}
+		}
+		return profile;
+	}
+	
 	public ArrayList<ProfileDto> getProfileDtosByUserIds(ArrayList<String> userIds, int postNo) {
 		ArrayList<ProfileDto> profileDtos = new ArrayList<ProfileDto>();
 		
@@ -112,6 +159,50 @@ public class ProfileDao {
 							Files.copy(inputStream, outputPath, StandardCopyOption.REPLACE_EXISTING);
 							
 							String base64Image = encodeImageToBase64(outputPath);
+							String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
+							
+							profileDtos.add(new ProfileDto(userId, imageHtml, info, nickname));
+						}else {
+							profileDtos.add(new ProfileDto(userId, null, info, nickname));
+						}
+						
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(this.conn, this.pstmt, this.rs);
+			}
+		}
+		return profileDtos;
+	}
+	
+	public ArrayList<ProfileDto> getProfileDtosByUserIds2(ArrayList<String> userIds, int postNo) {
+		ArrayList<ProfileDto> profileDtos = new ArrayList<ProfileDto>();
+		
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "SELECT * FROM profile WHERE user_id=?";
+			
+			try {
+				for(String id : userIds) {
+					this.pstmt = this.conn.prepareStatement(sql);
+					this.pstmt.setString(1, id);
+					
+					this.rs = this.pstmt.executeQuery();
+					
+					if(this.rs.next()) {
+						String userId = this.rs.getString("user_id");
+						InputStream inputStream = rs.getBinaryStream("profile_img");
+						String info = this.rs.getString("info");
+						
+						String nickname = this.rs.getString("nickname");
+						if(inputStream != null) {
+							//Path outputPath = Path.of("output.png");
+							//Files.copy(inputStream, outputPath, StandardCopyOption.REPLACE_EXISTING);
+							byte[] imageBytes = inputStream.readAllBytes();
+							String base64Image = Base64.getEncoder().encodeToString(imageBytes);
 							String imageHtml = "<img src=\"data:image/png;base64," + base64Image + "\" alt=\"image\" width=\"100\" height=\"100\">";
 							
 							profileDtos.add(new ProfileDto(userId, imageHtml, info, nickname));
