@@ -102,3 +102,7 @@ body, ul, li, input, button, form, a, h1, h2 {
 	white-space: nowrap;
 }
 
+.tags .tag0{
+	display: none;
+}
+
