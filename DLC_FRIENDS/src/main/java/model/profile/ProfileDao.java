@@ -173,26 +173,47 @@ public class ProfileDao {
 
 			// 비밀번호만 변경
 			if (!userDto.getPassword().isEmpty()) {
+				// using transaction to update both tables together
 				try {
+					this.conn.setAutoCommit(false);
+
+					// 비밀번호 수정
 					this.pstmt = this.conn.prepareStatement(userSql);
 					this.pstmt.setString(1, userDto.getPassword());
 					this.pstmt.setString(2, userDto.getId());
 					this.pstmt.setString(3, password);
 
-					int affectedRows = this.pstmt.executeUpdate();
-					if (affectedRows > 0) {
-						result = "pwChange";
-					} else if(affectedRows == 0){
+					int affectedRows1 = this.pstmt.executeUpdate();
+
+					// info 수정
+					this.pstmt = this.conn.prepareStatement(profileSql);
+					this.pstmt.setString(1, userDto.getInfo());
+					this.pstmt.setString(2, userDto.getId());
+
+					int affectedRows2 = this.pstmt.executeUpdate();
+
+					if (affectedRows1 > 0 && affectedRows2 > 0) {
+						this.conn.commit();
+						result = "pwInfoChange";
+					} else if (affectedRows1 == 0) {
 						result = "pwWrong";
+					} else if (affectedRows2 == 0) {
+						result = "infoWrong";
 					}
 
 				} catch (Exception e) {
 					e.printStackTrace();
+
+					try {
+						this.conn.rollback();
+					} catch (SQLException ex) {
+						ex.printStackTrace();
+					}
 				} finally {
 					DBManager.close(this.conn, this.pstmt);
 				}
 
-				// info만 변경
+			// info만 변경
 			} else if (userDto.getPassword().isEmpty()) {
 				try {
 					this.pstmt = this.conn.prepareStatement(profileSql);
@@ -202,7 +223,7 @@ public class ProfileDao {
 					int affectedRows = this.pstmt.executeUpdate();
 					if (affectedRows > 0) {
 						result = "infoChange";
-					} else if(affectedRows == 0){
+					} else if (affectedRows == 0) {
 						result = "infoWrong";
 					}
 
@@ -211,7 +232,7 @@ public class ProfileDao {
 				} finally {
 					DBManager.close(this.conn, this.pstmt);
 				}
-			} 
+			}
 		}
 		return result;
 	}

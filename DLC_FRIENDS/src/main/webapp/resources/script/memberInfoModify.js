@@ -130,9 +130,13 @@ function modifyPwAndInfo() {
                 alert('기존 비밀번호가 틀렸습니다.');
                 //location.reload();
             } else if (response.result === 'infoChange' || response.result === '') {
-                alert('소개글이 수정되었습니다!');
+                alert('소개글이 변경되었습니다!');
                 //window.location.href='/';
-            }
+            }else if (response.result === 'pwInfoChange'){
+				alert('비밀번호, 소개글이 변경되었습니다!');
+			} else if(response.result === 'infoWrong'){
+				alert('소개글 변경이 실패하였습니다.');
+			}
         },
         error: function () {
             alert(error);
