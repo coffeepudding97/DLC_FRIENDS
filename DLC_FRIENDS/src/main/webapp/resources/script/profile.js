@@ -3,11 +3,10 @@ var commentPage = document.getElementById('comment_page').innerText;
 var profileId = document.getElementById('profile_id').textContent;
 
 $(document).ready(function() {
-
 	/* 프로필 부분 */
 	loadPosts();
 	loadComments();
-
+	
 });
 
 
@@ -23,7 +22,9 @@ function loadPosts() {
 		},
 
 		success: (list) => {
+			console.log(list.postList.length);
 			if (list.postList.length !== 0) {
+
 				// 기존 페이지 글 제거
 				$('.posts').empty();
 
@@ -38,12 +39,14 @@ function loadPosts() {
 							<li>${post.gameTitle}</li>
 							<li>${post.title}</li>
 							<li>${date}</li>
-							<br>
 						</ul>
 						`
 					);
 				});
-			} else {
+			} else if (postPage === '1' && list.postList.length === 0) {
+				$('.posts').append('<p>작성한 게시글이 없습니다..</p>')
+			}
+			else if (list.postList.length === 0) {
 				alert('마지막 페이지입니다.');
 				var element = document.getElementById('post_page');
 				postPage = Number(postPage);
@@ -80,7 +83,7 @@ function post_minus_btn() {
 	}
 }
 
-// 프로필 댓글
+// 프로필 댓글 로딩
 function loadComments() {
 	commentPage = document.getElementById('comment_page').innerText;
 	$.ajax({
@@ -107,12 +110,14 @@ function loadComments() {
 						<ul>
 							<li>${comment.content}</li>
 							<li>${date}</li>
-							<br>
 						</ul>
 						`
 					);
 				});
-			} else {
+			} else if (commentPage === '1' && list.commentList.length === 0) {
+				$('.comments').append('<p>작성한 댓글이 없습니다..</p>')
+			} 
+			else {
 				alert('마지막 페이지입니다.');
 				var element = document.getElementById('comment_page');
 				commentPage = Number(commentPage);

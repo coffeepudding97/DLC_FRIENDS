@@ -28,18 +28,8 @@
 							maxlength="30" autocapitalize="off"> <label
 							for="password">비밀번호</label>
 					</div>
-					<div class="forget">
-						<label for=""><input type="checkbox"
-							class="checkbox_input">ID저장</label>
-					</div>
-					<button id="login_button" type="submit" value="login">로그인</button>
+					<button id="login_button" type="submit" value="login">회원탈퇴하기</button>
 				</form>
-				<a href="#" class="forget_password">비밀번호를 잊어버리셨나요?</a>
-				<div class="login_signup">
-					<p>
-						DLC.FRIENDS가 처음이신가요? <a href="/join">회원가입</a>
-					</p>
-				</div>
 			</div>
 		</section>
 		<script type="module"
