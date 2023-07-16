@@ -29,8 +29,8 @@
 							for="password">비밀번호</label>
 					</div>
 					<div class="forget">
-						<label for=""><input type="checkbox"
-							class="checkbox_input">ID저장</label>
+						<label for="saveId"><input type="checkbox" class="checkbox_input"
+						name="checkId" id="saveId" >ID저장</label>
 					</div>
 					<button id="login_button" type="submit" value="login">로그인</button>
 				</form>
