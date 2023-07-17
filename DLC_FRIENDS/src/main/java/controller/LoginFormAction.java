@@ -49,7 +49,7 @@ public class LoginFormAction extends HttpServlet {
 		User user = userDao.getUserById(id);
 		
 		ProfileDao profileDao = ProfileDao.getInstance();
-		Profile profile = profileDao.getUserProfile(id);
+		Profile profile = profileDao.getUserProfile2(id);
 		
 		String url = "/login";
 		
