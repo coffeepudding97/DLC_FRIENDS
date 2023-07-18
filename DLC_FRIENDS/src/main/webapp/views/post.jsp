@@ -46,7 +46,7 @@
 									value="${requestScope.post.postNo }"> <input
 									type="submit" value="수정">
 							</form>
-							<button onclick="delPost()">삭제</button>
+							<button id="del_post_btn" onclick="delPost()">삭제</button>
 						</c:if>
 						</div>
 

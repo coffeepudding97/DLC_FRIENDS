@@ -24,6 +24,10 @@ $(document).ready(function() {
 });
 
 $('#uploadBtn').click(function() {
+	$('#uploadBtn').prop("disabled", true);
+	setTimeout(function(){
+		$('#uploadBtn').prop("disabled", false);
+	}, 300);
 	var inputImage = document.getElementById('input_image');
 
 	if (inputImage.files.length === 0) {
@@ -35,6 +39,10 @@ $('#uploadBtn').click(function() {
 
 // 선호게임설정 /SelectGames
 function selectGames() {
+	$('#game_submit').prop("disabled", true);
+	setTimeout(function(){
+		$('#game_submit').prop("disabled", false);
+	}, 300);
 	var selGamesList = [];
 	
 	$('input:checkbox[name=selectGame]:checked').each(function(i){
@@ -87,6 +95,10 @@ function uploadImage() {
 
 // 비밀번호, 소개글 수정
 function modifyPwAndInfo() {
+	$('#submit-btn').prop("disabled", true);
+	setTimeout(function(){
+		$('#submit-btn').prop("disabled", false);
+	}, 300);
     var id = document.getElementById("id").value;
     var password = document.getElementById("password").value;
     var newPassword = document.getElementById("newPw").value;

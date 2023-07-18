@@ -56,6 +56,10 @@ function formToggle(info){
 }
 
 function rating(button){
+	$(button).prop("disabled", true);
+	setTimeout(function(){
+		$(button).prop("disabled", false);
+	}, 300);
 	const rater = $('#userId').text();
 	const line = $(button).closest('li[name="line"]');
 	const postNo = $(line).find('p[name="postNo"]').text();
