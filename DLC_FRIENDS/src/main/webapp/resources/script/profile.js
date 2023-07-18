@@ -169,3 +169,8 @@ function dateFormat(date) {
 	return month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
 }
 
+function tagSearch(p){
+	let tag = $(p).text();
+	tag = tag.substr(1);
+	window.location.href = `index?search=${tag}`;
+}
