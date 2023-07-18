@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -76,11 +78,12 @@ public class LoadRatingsAction extends HttpServlet {
 		
 		ArrayList<Integer> postNos = new ArrayList<Integer>();
 		
+		
 		for(Rating rating: ratings) {
 			postNos.add(rating.getPostNo());
 		}
+		
 		//JSONArray json = new JSONArray(partys);
-		JSONArray jsonRatings = new JSONArray(ratings);
 		
 		//ArrayList<Integer> postNos = ratingDao.getPostNosByRatings(ratings);
 		
@@ -90,8 +93,18 @@ public class LoadRatingsAction extends HttpServlet {
 			posts.add(postDao.getPostByPostNo(postNo));
 		}
 		
+		Timestamp cur = new Timestamp(System.currentTimeMillis());
+		for(int i=posts.size()-1;i>=0;i--) {
+			if(posts.get(i).getLeaveTime().compareTo(cur) > 0) {
+				posts.remove(i);
+				ratings.remove(i);
+			}
+		}
+		
+		JSONArray jsonRatings = new JSONArray(ratings);
 		for(int i=0; i<jsonRatings.length(); i++) {
 			JSONObject json = jsonRatings.getJSONObject(i);
+			System.out.println(posts.get(i).getLeaveTime());
 			json.put("title", posts.get(i).getTitle());
 			json.put("gametitle", posts.get(i).getGameTitle());
 			//json.put("title", titles.get(i));
