@@ -12,12 +12,12 @@ $(document).ready(function(){
 	
 	$.ajax({
 		"method":"POST",
-		"url":`http://localhost:8080/ViewUpdate?postNo=${postNo}`
+		"url":`ViewUpdate?postNo=${postNo}`
 	})
 	
 	$.ajax({
 		"method":"GET",
-		"url":`http://localhost:8080/GetComments?postNo=${postNo}`
+		"url":`GetComments?postNo=${postNo}`
 	}).done(list => append_comment(list))
 })
 
@@ -30,13 +30,13 @@ function post_comment() {
 
 	$.ajax({
 		"method": "POST",
-		"url": `http://localhost:8080/comment?postNo=${post_no}&userId=${user_id}&comment=${content}&rpNo=${reply_No}`,
+		"url": `comment?postNo=${post_no}&userId=${user_id}&comment=${content}&rpNo=${reply_No}`,
 	}).done(result => {
 		if (result === 'true') {
 			// 댓글 영역 갱신 
 			$.ajax({
 				"method": "GET",
-				"url": `http://localhost:8080/GetComments?postNo=${post_no}`
+				"url": `GetComments?postNo=${post_no}`
 			}).done(list => append_comment(list))
 
 		} else {
@@ -57,13 +57,13 @@ function delete_comment(button) {
 
 	$.ajax({
 		"method": "POST",
-		"url": `http://localhost:8080/deleteCmt?cmtNo=${cmtNo}`,
+		"url": `deleteCmt?cmtNo=${cmtNo}`,
 	}).done(result => {
 		if (result === 'true') {
 			// 댓글 영역 갱신 
 			$.ajax({
 				"method": "GET",
-				"url": `http://localhost:8080/GetComments?postNo=${post_no}`
+				"url": `GetComments?postNo=${post_no}`
 			}).done(list => append_comment(list))
 
 		} else {
@@ -137,7 +137,7 @@ function profileClick(button){
 		}else{
 			$.ajax({
 				"method":"POST",
-				"url":`http://localhost:8080//PartyLeave?postNo=${postNo}&userId=${userId}`
+				"url":`PartyLeave?postNo=${postNo}&userId=${userId}`
 			}).done(party => {
 				btn.empty();
 				btn.append(`<span class="memberId">+</span>`);
@@ -196,7 +196,7 @@ function blankClick(button){
 			if(!res){
 				$.ajax({
 					"method":"POST",
-					"url":`http://localhost:8080/PartyJoin?postNo=${postNo}&userId=${userId}`,
+					"url":`PartyJoin?postNo=${postNo}&userId=${userId}`,
 					"dataType":"json"
 				}).done(profile => {
 					$(button).empty();
@@ -245,7 +245,7 @@ function delPost(){
 	
 	$.ajax({
 		"method":"POST",
-		"url":`http://localhost:8080/DeletePost?postNo=${postNo}`
+		"url":`DeletePost?postNo=${postNo}`
 	}).done(result => {
 		if(result==="true"){
 			location.href = "/index"

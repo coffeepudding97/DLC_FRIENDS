@@ -62,7 +62,7 @@
 							<!-- ^ 태그 -->
 							<div class="game_tag">
 								<c:forEach items="${selectGameList}" var="selGames">
-									<p>#${selGames.gametitle}</p>
+									<p class="sel_gametitle" onclick="tagSearch(this)">#${selGames.gametitle}</p>
 								</c:forEach>
 							</div>
 

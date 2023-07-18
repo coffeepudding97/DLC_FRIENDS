@@ -1,29 +1,37 @@
 var cnt = 1;
 var search = "";
 var select = "";
+var tag = "undefined";
 
 $(document).ready(function(){
-	$.ajax({
-		"method":"GET",
-		"url":`http://localhost:8080/main?cnt=${cnt}`
-	}).done(list => {
-		cnt = cnt + 1;
-		$('#lines').empty();
-		list.forEach(post =>{
-			var data = splitTimeStamp(post.createdTime);
-			appendAni(post, data);
+	tag = getSearchTag();
+	
+	if(tag == "undefined"){
+		$.ajax({
+			"method":"GET",
+			"url":`main?cnt=${cnt}`
+		}).done(list => {
+			cnt = cnt + 1;
+			$('#lines').empty();
+			list.forEach(post =>{
+				var data = splitTimeStamp(post.createdTime);
+				appendAni(post, data);
+			})
+			
+			getSessionLog(function(log){
+				if(log == "null"){
+					$("#writing_link").attr("href", "/login");
+					$(".table_content").removeAttr("onclick");
+					$(".table_content").attr("onclick", "goLogin()");
+				} else {
+					$("#writing_link").attr("href", "/postWrite");
+				}
+			})
 		})
-		
-		getSessionLog(function(log){
-			if(log == "null"){
-				$("#writing_link").attr("href", "/login");
-				$(".table_content").removeAttr("onclick");
-				$(".table_content").attr("onclick", "goLogin()");
-			} else {
-				$("#writing_link").attr("href", "/postWrite");
-			}
-		})
-	})
+	} else {
+		searchPost();
+	}
+	
 	
 	$('#search').on('keyup', function(key){
 		if(key.keyCode==13){
@@ -36,7 +44,7 @@ function viewPost() {
 	const post_no = document.getElementById('post_no').value;
 	
 	if(parseInt(post_no) >= 1) {
-		location.href = `/PostRead?post_no=${post_no}`;			
+		location.href = `PostRead?post_no=${post_no}`;			
 	}
 }
 
@@ -46,7 +54,7 @@ function readPost(ul){
 	console.log(post_no);
 	
 	if(parseInt(post_no) >= 1) {
-		location.href = `/PostRead?post_no=${post_no}`;			
+		location.href = `PostRead?post_no=${post_no}`;			
 	}
 }
 
@@ -65,7 +73,7 @@ function readPost(ul){
 function getMorePosts(){
 	$.ajax({
 		"method":"GET",
-		"url":`http://localhost:8080/main?cnt=${cnt}`
+		"url":`main?cnt=${cnt}`
 	}).done(list => {
 		cnt = cnt + 1;
 		list.forEach(post =>{
@@ -84,7 +92,7 @@ function getMoreSearchs(){
 	
 	$.ajax({
 		"method":"GET",
-		"url":`http://localhost:8080/Search`,
+		"url":`Search`,
 		"data":data
 	}).done(list => {
 		cnt = cnt + 1;
@@ -100,6 +108,11 @@ function searchPost(){
 	cnt = 1;
 	search = $('#search').val();
 	select = $('#search_select option:selected').val();
+	if(tag != "undefined"){
+		search = tag;
+		select = "gametitle";
+		tag = "undefined";
+	}
 	
 	let data = {
 		"cnt":cnt,
@@ -109,7 +122,7 @@ function searchPost(){
 	
 	$.ajax({
 		"method":"GET",
-		"url":`http://localhost:8080/Search`,
+		"url":`Search`,
 		"data":data
 	}).done(list => {
 		cnt = cnt + 1;
@@ -123,6 +136,12 @@ function searchPost(){
 	}).fail(e => {
 		cnt = backup;
 	})
+}
+
+function getSearchTag(){
+	let url = window.location.href;
+	let tag = decodeURIComponent(url.split("search=")[1]);
+	return tag;
 }
 
 function splitTimeStamp(ts){

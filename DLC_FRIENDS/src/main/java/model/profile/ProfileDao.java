@@ -39,7 +39,7 @@ public class ProfileDao {
 	}
 
 	// 프로필 불러오기(id 받아오고 profile 정보 반환)
-	public Profile getUserProfile(String id) {
+	/*public Profile getUserProfile(String id) {
 		Profile profile = null;
 
 		this.conn = DBManager.getConnection();
@@ -86,9 +86,9 @@ public class ProfileDao {
 			}
 		}
 		return profile;
-	}
+	}*/
 
-	public Profile getUserProfile2(String id) {
+	public Profile getUserProfile(String id) {
 		Profile profile = null;
 
 		this.conn = DBManager.getConnection();
@@ -135,7 +135,7 @@ public class ProfileDao {
 		return profile;
 	}
 
-	public ArrayList<ProfileDto> getProfileDtosByUserIds(ArrayList<String> userIds, int postNo) {
+	/*public ArrayList<ProfileDto> getProfileDtosByUserIds(ArrayList<String> userIds, int postNo) {
 		ArrayList<ProfileDto> profileDtos = new ArrayList<ProfileDto>();
 
 		this.conn = DBManager.getConnection();
@@ -178,9 +178,9 @@ public class ProfileDao {
 			}
 		}
 		return profileDtos;
-	}
+	}*/
 
-	public ArrayList<ProfileDto> getProfileDtosByUserIds2(ArrayList<String> userIds, int postNo) {
+	public ArrayList<ProfileDto> getProfileDtosByUserIds(ArrayList<String> userIds, int postNo) {
 		ArrayList<ProfileDto> profileDtos = new ArrayList<ProfileDto>();
 
 		this.conn = DBManager.getConnection();
