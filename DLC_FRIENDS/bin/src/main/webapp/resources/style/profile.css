@@ -1,0 +1,267 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+
+#top{
+	max-width: 1200px;
+	display: flex;
+	justify-content: space-between;
+
+}
+
+#wrap {
+	background: linear-gradient(#172235, #3a536f);
+}
+
+#root {
+	max-width:1200px;
+	margin:0 auto;
+	padding-top:30px;
+	padding-bottom:60px;
+}
+
+#main-section {
+	background:linear-gradient(#0a2768, #060a1b69, #0a2768);
+	color:white;
+}
+
+
+#profile_left{
+	margin:30px;
+	border:1px solid #09173b;
+	display:flex;
+	align-items:center;
+	padding:10px;
+}
+
+#profile_left img {
+	width:250px;
+	height:250px;
+}
+
+#profile_left .profile_contents {
+	display:flex;
+	align-items: center;
+}
+
+
+
+#profile_center{
+	width:100%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	margin: 30px;
+	
+}
+
+#profile_center .profile_nickname {
+	height:100%;
+	display:flex;
+	align-items:center;
+}
+
+#profile_center .profile_nickname p {
+	font-size:30px;
+	
+}
+
+#profile_center .profile_comment {
+	height:100%;
+	padding:20px 0;
+	font-size:20px;
+	display:flex;
+}
+#profile_right .tag {
+	display:flex;
+	flex-direction:column;
+	padding:30px;
+}
+
+#profile_right .game_tag {
+	padding-right:5px;
+}
+
+#profile_right .game_tag p {
+	padding:5px;
+	display:inline-block;
+	border:1px solid #39c1e9;
+	border-radius:25px;
+	color: #39c1e9;
+	margin:2px;
+}
+
+#profile_right .report_tag p {
+	padding:5px;
+	display:inline-block;
+	border:1px solid #f30101;
+	border-radius:25px;
+	color: #f30101;
+	margin:2px;
+}
+
+#profile_right {
+	width:50%;
+	display:flex;
+	flex-direction:column;
+}
+
+.profile_user {
+	display:flex;
+	padding:30px;
+}
+
+#profile_right .profile_update {
+	width:100px;
+	margin-right:10px;
+}
+#profile_right .profile_user a {
+	display:flex;
+	align-items:center;
+	color:white;
+	width:100%;
+	height:100%;
+	justify-content: center;
+	box-sizing:border-box;
+	padding:5px;
+	background:#747e93;
+	border-radius:5px;
+}
+
+#profile_right .delete_user {
+	width:70px;
+}
+
+#profile_right .delete_user a {
+	display:flex;
+	align-items:center;
+	width:100%;
+	height:100%;
+	justify-content: center;
+	box-sizing:border-box;
+	padding:5px;
+	background:#747e93;
+	border-radius:5px;
+}
+
+
+#bottom{
+	display: flex;
+}
+
+#bottom_left{
+	width:100%;
+}
+
+.bottom_write_wrap {
+	border-top:none;
+	padding:30px;
+}
+
+.bottom_write {
+	background:#0a102b;
+	padding:20px;
+}
+
+.posts ul {
+	padding:10px 0;
+}
+
+#post_page {
+	font-size:20px;
+	font-weight:500;
+}
+
+/* 작성글 리스트 */
+.post_list {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.post_list button {
+	border:none;
+	
+}
+
+.post_list div {
+	padding: 0 5px;
+}
+
+#post_minus_btn {
+	background:transparent;
+}
+
+#bottom_left img {
+	width:24px;
+	height:24px;
+}
+
+#post_plus_btn {
+	background:transparent;
+}
+
+
+
+.bottom_reply_wrap {
+	padding:30px;
+}
+
+.bottom_reply {
+	background:#0a102b;
+	padding:20px;
+}
+
+#bottom_right {
+	width:29%;
+}
+#bottom_right div {
+	padding:30px;
+}
+
+#bottom_right div ul{
+	width:100%;
+	
+}
+#bottom_right div p {
+	padding:10px;
+}
+#bottom_right div ul li {
+	border:1px solid #09173b;
+	padding:10px;
+}
+
+.comments ul {
+	padding:10px 0; 
+}
+
+/*댓글 리스트*/
+.reply_list {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.reply_list button {
+	border:none;
+}
+
+#comment_page {
+	font-size:20px;
+	font-weight:500;
+	padding:0 5px;
+}
+
+.reply_list #comment_minus_btn {
+	background: transparent;
+}
+
+.reply_list #comment_plus_btn {
+	background: transparent;
+}
+
+
+
+

@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    gap: 30px;
+    background: linear-gradient(#172235, #3a536f);
+}
+
+.login_container h1 {
+    color: #90c2f9;
+    font-size: 45px;
+    text-align: center;
+
+}
+
+.login_container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #172235;
+    width: 400px;
+    height: 550px;
+    background: linear-gradient(#3a536f, #172235);
+    justify-content: space-evenly
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-box {
+    position: relative;
+    width: 250px;
+
+}
+
+#id{
+    margin-bottom:25px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 0 0 15px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: #1d2b3a;
+    border-radius: 5px;
+    outline: none;
+    color: #fff;
+    font-size: 1em;
+}
+
+.login-box label {
+    position: absolute;
+    font-size: 1em;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    color: rgba(255, 255, 255, 0.25);
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+}
+
+.login-box input:focus + label,
+.login-box input:valid + label{
+    top: 0;
+    font-size: 13px;
+    color: #166cea;
+}
+
+/* .login-box input:focus + span,
+.login-box input:valid + span {
+    top: 0;
+} */
+
+
+/* .login-box span {
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.25);
+    text-transform: uppercase;
+    transition: 0.4s;
+} */
+
+.login-box ion-icon {
+    position: absolute;
+    right: 8px;
+    color: #fff;
+    font-size: 1.2em;
+    top: 10px;
+}
+
+.login-box input:focus ~ label,
+.login-box input:valid ~ label {
+    color: #00dfc4;
+    transform: translate(10px) translateY(-10px);
+    font-size: 0.65em;
+    padding: 0 10px;
+    background: #1d2b3a;
+    border-left: 1px solid #00dfc4;
+    border-right: 1px solid #00dfc4;
+    letter-spacing: 0.2em;
+    border-radius: 5px;
+    box-shadow: transparent(#172235, #3a536f);
+}
+
+.login-box input:valid,
+.login-box input:focus {
+    border: 1px solid #00dfc4;
+}
+
+#login_button{
+    width: 250px;
+    height: 40px;
+    margin-top: 40px;
+    /* cursor: default!important; */
+
+}
+
+.login_signup{
+    text-align: center;
+    margin: 25 0 10px;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.login_signup p a {
+    margin-left: 10px;
+    font-size: 1.0rem;
+}
+
+/* .forget {
+    margin: 15px 0 0px;
+    font-size: 1em;
+    
+} */
+
+/* .join_button {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1ea1f7;
+    text-decoration: underline;
+} */
+
+.forget_password {
+    margin-top: -10px;
+}
