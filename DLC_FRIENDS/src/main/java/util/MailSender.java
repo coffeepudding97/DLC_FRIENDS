@@ -49,7 +49,7 @@ public class MailSender {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); 
 
             // Subject
-            message.setSubject("DLC:Friends 회원가입을 위한 인증번호 입니다."); //메일 제목을 입력
+            message.setSubject("DLC:Friends 회원 확인을 위한 인증번호 입니다."); //메일 제목을 입력
 
             // Text
             code = getVerificationCode();

@@ -357,6 +357,33 @@
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>searchPw</servlet-name>
+		<jsp-file>/views/searchPw.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>searchPw</servlet-name>
+		<url-pattern>/searchPw</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EmailCheckAndSendCode</servlet-name>
+		<servlet-class>controller.EmailCheckAndSendCode</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmailCheckAndSendCode</servlet-name>
+		<url-pattern>/checkAndSendCode</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ChangePwdFormAction</servlet-name>
+		<servlet-class>controller.ChangePwdFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChangePwdFormAction</servlet-name>
+		<url-pattern>/changePwd</url-pattern>
+	</servlet-mapping>
+	
 	<!-- ================ -->
 	
 	<!-- DeleteUserFormAction -->

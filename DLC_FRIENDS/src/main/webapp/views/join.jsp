@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../resources/style/join.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="../resources/script/join.js" ></script>
-<title>Insert title here</title>
+<title>회원가입</title>
 </head>
 <body>
 	<jsp:include page="/header"></jsp:include>

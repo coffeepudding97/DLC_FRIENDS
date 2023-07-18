@@ -73,14 +73,14 @@ public class UserRequestDto {
 		this.password = password;
 		this.info = info;
 	}
-
-
-	// memberInfoModifyAction.java에서 사용
+	
 	public UserRequestDto(String id, String password) {
 		super();
 		this.id = id;
 		this.password = password;
 	}
+	
+	
 
 
 	@Override

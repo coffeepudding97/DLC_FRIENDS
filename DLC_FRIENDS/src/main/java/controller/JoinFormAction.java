@@ -70,26 +70,6 @@ public class JoinFormAction extends HttpServlet {
 		boolean duplNick = userDao.duplNickname(nickName);
 		boolean result = false;	
 		
-		/*
-		if (!password.equals(passwordChk)) {
-			message = "비밀번호가 일치하지 않습니다.";
-		} else {
-			if (!duplId) {
-				System.out.println("아이디 중복 없음");
-
-				if (!duplNick) {
-					System.out.println("닉네임 중복 없음");
-					UserRequestDto user = new UserRequestDto(id, password, nickName, email, birth);
-					result = userDao.createUser(user);
-					message = "Success";
-				} else {
-					message = "이미 존재하는 닉네임입니다.";
-				}
-			} else {
-				message = "이미 존재하는 아이디입니다.";
-			}
-		}*/
-		
 		System.out.println("ID중복 : " + duplId + ", Nick중복 : " + duplNick);
 		if(!duplId && !duplNick) {
 			UserRequestDto user = new UserRequestDto(id, passwordChk, nickName, email, birth);

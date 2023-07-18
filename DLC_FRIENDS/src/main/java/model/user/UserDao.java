@@ -184,11 +184,6 @@ public class UserDao {
 		this.conn = DBManager.getConnection();
 		boolean check = true;
 		
-//		if(checkAccount(id, password) == false) {
-//			System.out.println("오류");
-//			return false;
-//		}
-
 		if (this.conn != null) {
 			// FK로 연결된 요소들 우선 삭제 후 user 삭제
 			String profileDeleteSql = "DELETE FROM profile WHERE user_id=?";
@@ -266,6 +261,33 @@ public class UserDao {
 	}
 	
 	
+	public String checkEmail(String addr, String id) {
+		String userId = "";
+		this.conn = DBManager.getConnection();
+
+		if (this.conn != null) {
+			String sql = "SELECT user_id FROM user WHERE user_id=? AND email=?";
+
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setString(1, id);
+				this.pstmt.setString(2, addr);
+
+				this.rs = this.pstmt.executeQuery();
+
+				if (this.rs.next()) {
+					userId = this.rs.getString(1);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			} finally {
+				DBManager.close(this.conn, this.pstmt, this.rs);
+			}
+		}
+		return userId;
+	}
+	
 	public boolean checkAccount(String id, String password) {
 		boolean isTrue = false;
 		this.conn = DBManager.getConnection();
@@ -297,6 +319,33 @@ public class UserDao {
 		}
 
 		return isTrue;
+	}
+	
+	public boolean updatePwd(String id, String password) {
+		boolean result = false;
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "UPDATE user SET pw=? WHERE user_id=?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				
+				this.pstmt.setString(1, password);
+				this.pstmt.setString(2, id);
+				
+				int affectedRows = this.pstmt.executeUpdate();
+				if (affectedRows > 0) {
+					result = true;
+				} else if (affectedRows == 0) {
+					result = false;
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 	}
 	
 	private InputStream getDefaultImg() {

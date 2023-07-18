@@ -37,7 +37,7 @@
 					<input type="button" id="login_button" value="login"
 						onclick="loginChk()">
 				<div class="login_signup">
-					<a href="#" class="forget_password">비밀번호 찾기</a>
+					<a href="searchPw" class="forget_password">비밀번호 찾기</a>
 					<p>
 						DLC.FRIENDS가 처음이신가요? <a href="/join">회원가입</a>
 					</p>

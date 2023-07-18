@@ -16,6 +16,12 @@ public class User {
 		this.email = email;
 		this.birthday = birth;
 	}
+	
+	public User(String id) {
+		super();
+		this.id = id;
+	}
+
 
 	public String getId() {
 		return id;
