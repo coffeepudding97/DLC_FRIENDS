@@ -57,6 +57,7 @@
 
 					</div>
 
+
 					<!-- 하단 -->
 					<div id="bottom">
 
@@ -88,12 +89,19 @@
 									<input type="password" id="password" name="password"
 										placeholder="기존 비밀번호">
 								</div>
+								
 								<!-- 새로운 비밀번호 -->
 								<div>
 									<input type="password" id="newPw" name="newPw"
 										placeholder="새 비밀번호">
 								</div>
+								<div>
+									<input type="password" id="newPwChk" name="newPwChk"
+										placeholder="새 비밀번호 확인">
+								</div>
+								
 								<h1>소개글 수정</h1>
+								
 								<input type="text" id="info" name="info"
 									value="${profile.info }" placeholder="소개글을 입력해주세요.">
 								<!-- 오른쪽 완료버튼 -->

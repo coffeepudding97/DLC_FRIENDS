@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
+
 import model.user.UserDao;
 
 /**
@@ -41,33 +43,33 @@ public class DeleteUserFormAction extends HttpServlet {
 		String id = (String) session.getAttribute("log");
 		String password = request.getParameter("password");
 		System.out.println("아이디: "+id);
+		System.out.println("비밀번호: "+password);
 		
 		UserDao userDao = UserDao.getInstance();
-		boolean result = userDao.deleteUserById(id, password);
+		boolean check = userDao.checkAccount(id, password);
+		boolean result = false;
+		if(check) {
+			result = userDao.deleteUserById(id, password);
+		}
 		
+		JSONObject jObject = new JSONObject();
+
+		String message = "";
 		if(result) {
-			request.getSession().removeAttribute("log");
 			System.out.println("유저삭제 성공");
-			String message = "유저 삭제 완료.";
-			response.setContentType("text/html;charset=UTF-8");
-	        // PrintWriter 객체를 생성해서 메소드를 통해 클라이언트에 데이터 전송
-	        PrintWriter out = response.getWriter();
-	        // script로 alert를 호출하고, location.href로 페이지 이동 처리.
-	        out.println("<script>alert('" + message + "'); location.href='/';</script>");
-	        out.flush();
-	        out.close();
+			request.getSession().removeAttribute("log");
+			message = "success";
+			
 		}else {
 			System.out.println("유저삭제 실패");
-			String message = "유저 삭제 실패.";
-			response.setContentType("text/html;charset=UTF-8");
-	        // PrintWriter 객체를 생성해서 메소드를 통해 클라이언트에 데이터 전송
-	        PrintWriter out = response.getWriter();
-	        // script로 alert를 호출하고, location.href로 페이지 이동 처리.
-	        out.println("<script>alert('" + message + "'); location.href='login';</script>");
-	        out.flush();
-	        out.close();
+			message = "fail";
+			
 		}
-//		response.sendRedirect(url);
+		
+		jObject.put("result", message);
+		
+		response.setContentType("application/json; charset=utf-8");
+		response.getWriter().print(jObject);
 	}
 
 }

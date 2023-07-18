@@ -34,7 +34,8 @@
 						<label for="saveId"><input type="checkbox" class="checkbox_input"
 						name="checkId" id="saveId" >ID저장</label>
 					</div> -->
-					<button id="login_button" type="submit" value="login">로그인</button>
+					<input type="button" id="login_button" value="login"
+						onclick="loginChk()">
 				<div class="login_signup">
 					<a href="#" class="forget_password">비밀번호 찾기</a>
 					<p>
