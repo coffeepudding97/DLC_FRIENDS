@@ -61,6 +61,7 @@ public class MemberInfoModifyAction extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		UserRequestDto userDto = null; 
 		request.setCharacterEncoding("UTF-8");
 		
@@ -75,6 +76,12 @@ public class MemberInfoModifyAction extends HttpServlet {
 		ProfileDao profileDao = ProfileDao.getInstance();
 		String result = profileDao.updateUser(userDto, password);
 		System.out.println("변경: " + result);
+		
+		// 변경 완료 시 세션에 profile 정보 새로 담아줌.
+		if(result.equals("pwChange") || result.equals("infoChange") || result.equals("pwInfoChange")) {
+			Profile profile = profileDao.getUserProfile(id);
+			session.setAttribute("profile", profile);
+		}
 		
 		JSONObject jObject = new JSONObject();
 		

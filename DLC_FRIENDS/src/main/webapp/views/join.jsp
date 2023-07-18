@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../resources/style/join.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="../resources/js/join.js" ></script>
+<script src="../resources/script/join.js" ></script>
 <title>Insert title here</title>
 </head>
 <body>

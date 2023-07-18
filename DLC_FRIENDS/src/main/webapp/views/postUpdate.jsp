@@ -29,8 +29,9 @@
 						<h2>게임타이틀</h2>
 						<input id="selected" type="hidden" value="${requestScope.post.gameTitle }">
 						<select id="gametitle" name="gametitle">
-							
 						</select>
+					</div>
+					<div id="favorite_game">
 						<h2>선호게임</h2>
 					</div>
 					<div id="div-meeting">
@@ -50,7 +51,9 @@
 					<div id="div-content">
 						<input type="text" id="content" name="content" value="${requestScope.post.content }" placeholder="내용" autofocus>
 					</div>
+					<div id ="div-submit">
 					<input type="submit" value="작성">
+					</div>
 				</div>
 			</form>
 			<%-- <button onclick="location.href='post.jsp'">작성</button> --%>

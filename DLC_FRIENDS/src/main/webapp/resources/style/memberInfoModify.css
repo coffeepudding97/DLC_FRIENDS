@@ -14,7 +14,7 @@ body, li, ul, h1, h2, input, form, p {
 }
 
 #root {
-	max-width:1200px;
+	max-width:900px;
 	width:100%;
 	margin-top:50px;
 	margin-bottom:50px;
@@ -22,18 +22,19 @@ body, li, ul, h1, h2, input, form, p {
 
 #main-section {
 	padding:50px;
+	min-height:800px;
 	display:flex;
 	flex-direction: column;
     align-items: center;
-    border:1px solid black;
-    background: linear-gradient(#0a2768, #060a1b69, #0a2768);
+    background: #282830;
 }
 
 .main-section-inner p {
 	padding:10px;
 	padding-top:20px;
 	padding-bottom:20px;
-	background:#282830;
+	background:transparent;
+	border-bottom:2px solid#fff;
 	color:white;
 }
 
@@ -41,7 +42,8 @@ body, li, ul, h1, h2, input, form, p {
 
 .update_img {
 	display:flex;
-	width:1000px;
+	min-width:800px;
+	width:100%;
 	flex-direction:column;
 	position:relative;
 }
@@ -73,6 +75,10 @@ body, li, ul, h1, h2, input, form, p {
 	color:white;
 }
 
+.update_password h1 {
+	padding: 10px 0;
+}
+
 .update_comment {
 	padding:20px;
 	display:none;
@@ -80,6 +86,9 @@ body, li, ul, h1, h2, input, form, p {
 	color:white;
 }
 
+.update_comment h1 {
+	padding: 10px 0;
+}
 
 
 #gametitleList {

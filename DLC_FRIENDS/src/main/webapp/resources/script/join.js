@@ -202,7 +202,7 @@ function sendCode(){
 	$('#send_btn').prop("disabled", true);
 	$.ajax({
 		"method":"POST",
-		"url":`http://localhost:8080/SendCode?addr=${addr}`
+		"url":`SendCode?addr=${addr}`
 	}).done(json => {
 		$('#div_code').show();
 		console.log("인증발송 코드 : " + json.code);
@@ -217,7 +217,7 @@ function verify(){
 	$('#hint_email').hide();
 	$.ajax({
 		"method":"POST",
-		"url":"http://localhost:8080/GetCode"
+		"url":"GetCode"
 	}).done(json => {
 		let currentTime = new Date();
 		let currentTimeMillis = currentTime.getTime();

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
+
 import model.profile.Profile;
 import model.profile.ProfileDao;
 import model.user.User;
@@ -51,15 +53,29 @@ public class LoginFormAction extends HttpServlet {
 		ProfileDao profileDao = ProfileDao.getInstance();
 		Profile profile = profileDao.getUserProfile(id);
 		
-		String url = "/login";
+//		String url = "/login";
 		
+		JSONObject jObject = new JSONObject();
+		
+		String message = "";
+		// 유저정보 존재하면서 비밀번호 일치
 		if(user != null && user.getPassword().equals(password)) {
-			url = "/";
-			System.out.println(user);
 			session.setAttribute("log", id);
 			session.setAttribute("profile", profile);
-		}
-		response.sendRedirect(url);
+
+			message = "loginTrue";
+		
+		// 비밀번호 불일치 & 유저정보 없을 시
+		} else {
+			message = "noUser";
+			
+		} 
+
+//		System.out.println(message);
+		jObject.put("result", message);
+		
+		response.setContentType("application/json; charset=utf-8");
+		response.getWriter().print(jObject);
 	}
 
 }

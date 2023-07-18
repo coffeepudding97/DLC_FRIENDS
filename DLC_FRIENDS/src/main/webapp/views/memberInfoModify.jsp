@@ -39,7 +39,7 @@
 						<!-- 중앙 메세지 -->
 						<div id="profile_center">
 							<!-- 태그지정 -->
-							<a href="#"><p id="gametitleToggle">* 선호 게임 설정</p></a>
+							<a href="#"><p id="gametitleToggle">선호 게임 설정</p></a>
 							<div id="gametitleList">
 								<div>
 									<c:forEach items="${gameList}" var="games">
@@ -49,16 +49,18 @@
 										<br>
 									</c:forEach>
 								</div>
-								<input type="button" id="game_submit" value="설정완료" onclick="selectGames()">
+								<input type="button" id="game_submit" value="설정완료"
+									onclick="selectGames()">
 							</div>
 
 						</div>
 
 					</div>
 
+
 					<!-- 하단 -->
 					<div id="bottom">
-					
+
 						<!-- 
 						
 							이 부분에 간단한 설명 있으면 좋을듯
@@ -77,39 +79,40 @@
 							<!-- 기존 비밀번호 -->
 							<div class="update_password_title">
 								<a href="#">
-									<p>* 비밀번호 수정</p>
+									<p>개인정보 수정</p>
 								</a>
 							</div>
+
 							<div class="update_password">
+								<h1>비밀번호 수정</h1>
 								<div>
 									<input type="password" id="password" name="password"
 										placeholder="기존 비밀번호">
 								</div>
+								
 								<!-- 새로운 비밀번호 -->
 								<div>
 									<input type="password" id="newPw" name="newPw"
 										placeholder="새 비밀번호">
 								</div>
-							</div>
-
-							<!-- 유저 소개글 -->
-							<div class="update_comment_title">
-								<a href="#">
-									<p>* 소개글 수정</p>
-								</a>
-							</div>
-							
-							<div class="update_comment">
+								<div>
+									<input type="password" id="newPwChk" name="newPwChk"
+										placeholder="새 비밀번호 확인">
+								</div>
+								
+								<h1>소개글 수정</h1>
+								
 								<input type="text" id="info" name="info"
 									value="${profile.info }" placeholder="소개글을 입력해주세요.">
+								<!-- 오른쪽 완료버튼 -->
+								<div id="right_btn">
+									<input type="button" id="submit-btn" value="회원정보 수정완료"
+										onclick="modifyPwAndInfo()">
+								</div>
 							</div>
+
 						</div>
 
-						<!-- 오른쪽 완료버튼 -->
-						<div id="right_btn">
-							<input type="button" id="submit-btn" value="회원정보 수정완료"
-								onclick="modifyPwAndInfo()">
-						</div>
 					</div>
 				</div>
 
@@ -118,5 +121,6 @@
 		</div>
 	</div>
 	<script src="../resources/script/memberInfoModify.js"></script>
+	<jsp:include page="/footer"></jsp:include>
 </body>
 </html>

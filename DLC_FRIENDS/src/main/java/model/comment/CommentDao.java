@@ -3,6 +3,7 @@ package model.comment;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -178,15 +179,33 @@ public class CommentDao {
 		
 		if(this.conn != null) {
 			String sql = "DELETE FROM comment WHERE comment_no=?";
+			String delRpSql = "DELETE FROM comment WHERE reply_no=?";
 			
 			try {
+				this.conn.setAutoCommit(false);
+				
+				// 원댓글 삭제
 				this.pstmt = this.conn.prepareStatement(sql);
 				this.pstmt.setInt(1, cmtNo);
 				
 				this.pstmt.execute();
+				
+				// 답글 삭제
+				this.pstmt = this.conn.prepareStatement(delRpSql);
+				this.pstmt.setInt(1, cmtNo);
+				
+				this.pstmt.execute();
+				
+				this.conn.commit();
+				check = true;
 			} catch (Exception e) {
 				e.printStackTrace();
 				check = false;
+				try {
+					this.conn.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			} finally {
 				DBManager.close(conn, pstmt);
 			}

@@ -67,7 +67,7 @@ public class ProfileFormAction extends HttpServlet {
 
 		if (log != null) {
 			ProfileDao profileDao = ProfileDao.getInstance();
-			Profile profile = profileDao.getUserProfile2(log);
+			Profile profile = profileDao.getUserProfile(log);
 			System.out.println(profile);
 
 			if (profile == null) {
@@ -77,9 +77,6 @@ public class ProfileFormAction extends HttpServlet {
 				response.sendRedirect(url);
 				
 			} else {
-//				PostDao postDao = PostDao.getInstance();
-//				ArrayList<Post> postList = postDao.getPostByUserId(log);
-
 				CommentDao commentDao = CommentDao.getInstance();
 				ArrayList<Comment> commentList = commentDao.getCommentsByUserId(log);
 
@@ -114,7 +111,6 @@ public class ProfileFormAction extends HttpServlet {
 				}
 				
 				request.setAttribute("profile", profile);
-//				request.setAttribute("postList", postList);
 				request.setAttribute("commentList", commentList);
 				request.setAttribute("gameList", gameList);
 				request.setAttribute("selectGameList", selectGameList);

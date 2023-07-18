@@ -81,7 +81,7 @@ public class PartyDao {
 					String userId = this.rs.getString(3);
 					userIds.add(userId);
 					
-					Profile profile = profileDao.getUserProfile2(userId);
+					Profile profile = profileDao.getUserProfile(userId);
 					imageHtmls.add(profile.getProfileImg());
 				}
 				

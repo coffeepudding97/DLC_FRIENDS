@@ -50,7 +50,7 @@ public class PartyJoinAction extends HttpServlet {
 		String userId = request.getParameter("userId");
 		ProfileDao profileDao = ProfileDao.getInstance();
 		
-		Profile profile = profileDao.getUserProfile2(userId);
+		Profile profile = profileDao.getUserProfile(userId);
 		
 		PartyDao partyDao = PartyDao.getInstance();
 		

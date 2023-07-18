@@ -1,37 +1,51 @@
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
+    font-family: 'Pretendard-Regular';
+}
+
+
+
+a {
+	list-style:none;
+	color:black;
+	text-decoration:none;
 }
 
 body {
-    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+#wrap {
+	display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     flex-direction: column;
     gap: 30px;
-    background: linear-gradient(#172235, #3a536f);
+    background:#f3f5f7;
 }
 
-.login_container h1 {
-    color: #90c2f9;
-    font-size: 45px;
-    text-align: center;
-
-}
 
 .login_container {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    align-items: center;
-    border: 1px solid #172235;
-    width: 400px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    width: 700px;
     height: 550px;
-    background: linear-gradient(#3a536f, #172235);
-    justify-content: space-evenly
+    background: #fff;
+    padding:50px;
 }
 
 form {
@@ -39,9 +53,19 @@ form {
     flex-direction: column;
 }
 
+.logo {
+	padding:30px;
+	padding-bottom:50px;
+	margin:0 auto;
+}
+
+.logo img {
+	width:200px;
+}
+
 .login-box {
     position: relative;
-    width: 250px;
+    width: 100%;
 
 }
 
@@ -51,7 +75,7 @@ form {
 
 .login-box input {
     width: 100%;
-    padding: 0 0 15px;
+    padding: 10px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: #1d2b3a;
     border-radius: 5px;
@@ -60,6 +84,7 @@ form {
     font-size: 1em;
 }
 
+/*
 .login-box label {
     position: absolute;
     font-size: 1em;
@@ -77,6 +102,8 @@ form {
     font-size: 13px;
     color: #166cea;
 }
+
+*/
 
 /* .login-box input:focus + span,
 .login-box input:valid + span {
@@ -103,38 +130,50 @@ form {
     top: 10px;
 }
 
+/*
 .login-box input:focus ~ label,
 .login-box input:valid ~ label {
-    color: #00dfc4;
+    color: #1d2b3a;
     transform: translate(10px) translateY(-10px);
     font-size: 0.65em;
     padding: 0 10px;
-    background: #1d2b3a;
-    border-left: 1px solid #00dfc4;
-    border-right: 1px solid #00dfc4;
+    background: #fff;
+    border-left: 1px solid #1d2b3a;
+    border-right: 1px solid #1d2b3a;
     letter-spacing: 0.2em;
     border-radius: 5px;
     box-shadow: transparent(#172235, #3a536f);
 }
+*/
 
 .login-box input:valid,
 .login-box input:focus {
-    border: 1px solid #00dfc4;
+    border: 1px solid #1d2b3a;
 }
 
 #login_button{
-    width: 250px;
+    width: 100%;
     height: 40px;
-    margin-top: 40px;
+    margin-top: 80px;
+    background:#fff;
+    border: 1px solid #1d2b3a;
+    border-radius:10px;
     /* cursor: default!important; */
-
 }
 
-.login_signup{
+#login_button:hover {
+	background:#db0442;
+	color:#fff;
+}
+
+.login_signup {
+	width:100%;
     text-align: center;
-    margin: 25 0 10px;
     font-size: 0.9rem;
     color: #fff;
+    padding-top:20px;
+    display:flex;
+    justify-content: space-between;
 }
 
 .login_signup p a {
@@ -156,6 +195,3 @@ form {
     text-decoration: underline;
 } */
 
-.forget_password {
-    margin-top: -10px;
-}

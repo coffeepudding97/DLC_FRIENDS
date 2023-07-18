@@ -4,11 +4,11 @@ $(document).ready(function(){
 	getSessionLog(function(log){
 		$.ajax({
 			"method":"POST",
-			"url":`http://localhost:8080/GetFavorateGame?userId=${log}`
+			"url":`GetFavorateGame?userId=${log}`
 		}).done(list => {
 			
 			list.forEach(game => {
-				$('#div-gametitle').append(`
+				$('#favorite_game').append(`
 					<labal onclick="setGameTitle(this)" id="${game.gametitle}" class="played_game" value="${game.gametitle}">${game.gametitle}</label>
 				`)
 			})
@@ -32,7 +32,7 @@ $(document).ready(function(){
 	
 	$.ajax({
 		"method":"POST",
-		"url":"http://localhost:8080/GetGameTitles"
+		"url":"GetGameTitles"
 	}).done(list => {
 		list.forEach(gametitle => {
 			$('#gametitle').append(`

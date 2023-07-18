@@ -166,49 +166,6 @@ public class UserDao {
 		return check;
 	}
 	
-	// 메일인증
-	public boolean gmailSend(String userMail) {
-		// 발신자 메일계정, 비밀번호 설정
-		final String sender = "dldbswjd7879@gmail.com";
-		final String password = "pzpuwhaafzynshqn";
-		
-		// Property에 SMTP 서버 정보 설정
-		Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.gmail.com");
-		prop.put("mail.smtp.port", 465);
-		prop.put("mail.smtp.auth", "true");
-		prop.put("mail.smtp.ssl.enable", "true");
-		prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-		
-		Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(sender, password);
-            }
-        });
-		
-		try {
-			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(sender));
-			
-			//수신자 메일주소
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(userMail));
-            // Subject
-            message.setSubject("인증메일입니다."); //메일 제목을 입력
-
-            // Text
-            message.setText("내용을 입력하세요");    //메일 내용을 입력
-
-            // send the message
-            Transport.send(message); ////전송
-            System.out.println("메세지 전송 성공");
-            
-        } catch (AddressException e) {
-            e.printStackTrace();
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-		return false;
-	}
 	
 	// 코드 생성
 	private String makeCode() {
@@ -225,49 +182,50 @@ public class UserDao {
     
 	public boolean deleteUserById(String id, String password) {
 		this.conn = DBManager.getConnection();
-		
 		boolean check = true;
 		
-		if(this.conn != null) {
-			// FK로 연결된 요소들 우선적으로 삭제 후 user 삭제 가능
+//		if(checkAccount(id, password) == false) {
+//			System.out.println("오류");
+//			return false;
+//		}
+
+		if (this.conn != null) {
+			// FK로 연결된 요소들 우선 삭제 후 user 삭제
 			String profileDeleteSql = "DELETE FROM profile WHERE user_id=?";
 			String userDeleteSql = "DELETE FROM user WHERE user_id=? AND pw=?";
-			
+
 			try {
 				// 트랜잭션 시작
-				conn.setAutoCommit(false);
-				
-				// 프로필정보 삭제
+				this.conn.setAutoCommit(false);
+
+				// 프로필 정보 삭제
 				this.pstmt = this.conn.prepareStatement(profileDeleteSql);
 				this.pstmt.setString(1, id);
 				this.pstmt.executeUpdate();
-				
+
 				// 유저 삭제
 				this.pstmt = this.conn.prepareStatement(userDeleteSql);
 				this.pstmt.setString(1, id);
 				this.pstmt.setString(2, password);
 				this.pstmt.executeUpdate();
-				
+
 				// 트랜잭션 커밋
 				conn.commit();
 				check = true;
-				
-				try {
-					// 트랜지션 롤백
-					this.conn.rollback();
-					
-				} catch (SQLException sqle) {
-					sqle.printStackTrace();
-				}
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				check = false;
+
+				try {
+					// 트랜지션 롤백
+					this.conn.rollback();
+				} catch (SQLException sqle) {
+					sqle.printStackTrace();
+				}
 			} finally {
 				DBManager.close(this.conn, this.pstmt);
 			}
-		}else {
-			check = false;
 		}
 		return check;
 	}
@@ -305,6 +263,40 @@ public class UserDao {
 		}
 
 		return user;
+	}
+	
+	
+	public boolean checkAccount(String id, String password) {
+		boolean isTrue = false;
+		this.conn = DBManager.getConnection();
+
+		if (this.conn != null) {
+			String sql = "SELECT user_id FROM user WHERE user_id = ? AND pw = ?";
+
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setString(1, id);
+				this.pstmt.setString(2, password);
+
+				this.rs = this.pstmt.executeQuery();
+
+				if (this.rs.next()) {
+					String user_id = this.rs.getString(1);
+
+					if (user_id != null || user_id != "") {
+						isTrue = true;
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				isTrue = false;
+				
+			} finally {
+				DBManager.close(this.conn, this.pstmt, this.rs);
+			}
+		}
+
+		return isTrue;
 	}
 	
 	private InputStream getDefaultImg() {

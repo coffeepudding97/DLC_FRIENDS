@@ -19,15 +19,16 @@
 					<div class="write-wrap">
 						<div id="div-title">
 							<input type="text" id="title" name="title" placeholder="제목"
-								autofocus> <!-- <input type="hidden" id="user_id"
-								name="user_id" placeholder="아이디" value="${sessionScope.log }"> -->
+								autofocus> 
 						</div>
 						<div id="div-gametitle">
 							<h2>게임타이틀</h2>
 							<select id="gametitle" name="gametitle">
 							</select>
-							<h2>선호게임</h2>
 						</div>
+							<div id="favorite_game">
+							<h2>선호게임</h2>
+							</div>
 						<div id="div-meeting">
 							<div class="member_cnt">
 								<h2>참여인원</h2>
