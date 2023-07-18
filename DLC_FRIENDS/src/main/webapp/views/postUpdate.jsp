@@ -16,7 +16,7 @@
 	<div id="root">
 		<section id="main-section">
 			<div id="wrap">
-			<form method="post" action="/UpdatePostFormAction">
+			<form onsubmit="return checkUpdate()" method="post" action="/UpdatePostFormAction">
 				<div class="write-wrap">
 					<input type="hidden" name="postNo" value="${requestScope.post.postNo }">
 					<div id="div-title">
@@ -52,7 +52,7 @@
 						<input type="text" id="content" name="content" value="${requestScope.post.content }" placeholder="내용" autofocus>
 					</div>
 					<div id ="div-submit">
-					<input type="submit" value="작성">
+					<input id="submit_btn" type="submit" value="작성">
 					</div>
 				</div>
 			</form>

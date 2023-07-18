@@ -54,3 +54,35 @@ function timeFormat(time, offset){
 	time.setSeconds(0);
 	time.setMilliseconds(0);
 }
+
+function checkUpdate(){
+	const title = $('#title').val();
+	$('#submit_btn').prop("disabled", true);
+	
+	setTimeout(function(){
+		$('#submit_btn').prop("disabled", false);
+	}, 300);
+	
+	if(title == ""){
+		alert("제목을 입력해 주세요.");
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function checkUpdate(){
+	const title = $('#title').val();
+	$('#submit_btn').prop("disabled", true);
+	
+	setTimeout(function(){
+		$('#submit_btn').prop("disabled", false);
+	}, 300);
+	
+	if(title == ""){
+		alert("제목을 입력해 주세요.");
+		return false;
+	} else {
+		return true;
+	}
+}
