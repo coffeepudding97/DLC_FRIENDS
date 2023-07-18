@@ -265,7 +265,7 @@ public class ProfileDao {
 
 			// 비밀번호만 변경
 			if (!userDto.getPassword().isEmpty()) {
-				// using transaction to update both tables together
+				
 				try {
 					this.conn.setAutoCommit(false);
 

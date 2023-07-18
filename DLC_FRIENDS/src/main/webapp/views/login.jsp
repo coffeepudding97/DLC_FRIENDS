@@ -11,12 +11,12 @@
 <title>로그인</title>
 </head>
 <body>
-<div id="root">
+	<div id="root">
 		<%-- <jsp:include page="../header.jsp"></jsp:include> --%>
 		<section id="main-section">
 			<div class="login_container">
 				<h1>Login</h1>
-				<form onsubmit="return loginChk()" method="post" action="/loginFormAction">
+				<form>
 					<div class="login-box">
 						<ion-icon name="mail-outline"></ion-icon>
 						<input type="text" name="id" id="id" maxlength="30"
@@ -28,11 +28,8 @@
 							maxlength="30" autocapitalize="off"> <label
 							for="password">비밀번호</label>
 					</div>
-					<!-- <div class="forget">
-						<label for="saveId"><input type="checkbox" class="checkbox_input"
-						name="checkId" id="saveId" >ID저장</label>
-					</div> -->
-					<button id="login_button" type="submit" value="login">로그인</button>
+					<input type="button" id="login_button" value="login"
+						onclick="loginChk()">
 				</form>
 				<a href="#" class="forget_password">비밀번호를 잊어버리셨나요?</a>
 				<div class="login_signup">

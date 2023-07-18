@@ -17,10 +17,9 @@ $(document).ready(function() {
 	});
 	$(".update_password_title a").click(function() {
 		$(".update_password").slideToggle();
-		// $(".update_password, .update_comment").slideToggle();
 	});
 	$(".update_comment_title a").click(function() {
-		$(".update_password, .update_comment").slideToggle();
+		$(".update_password").slideToggle();
 	});
 });
 
@@ -91,6 +90,7 @@ function modifyPwAndInfo() {
     var id = document.getElementById("id").value;
     var password = document.getElementById("password").value;
     var newPassword = document.getElementById("newPw").value;
+    var newPasswordChk = document.getElementById("newPwChk").value;
     var info = document.getElementById("info").value;
     
     // 비밀번호는 8자리 이상 문자, 숫자, 특수문자 최소 1개 이상 포함
@@ -98,6 +98,7 @@ function modifyPwAndInfo() {
   
     var data = {
         id: id,
+        info: info
     };
     
     // 기존 비밀번호, 새로운 비밀번호 같이 입력되면 data에 값 입력
@@ -106,38 +107,43 @@ function modifyPwAndInfo() {
 		alert('비밀번호는 8자리 이상 문자, 숫자, 특수문자 최소 1개 이상 포함해주세요. ');
 		return false;
 		// 조건에 맞으면 값 넘겨주기
+	} else if(newPassword === password){
+		alert('기존 비밀번호와 새로 입력한 비밀번호가 일치합니다. 다시 입력해주세요.');
+	
+	} else if(newPassword != newPasswordChk){
+		alert('새로운 비밀번호와 새로운 비밀번호 확인의 입력값이 일치하지 않습니다!');
+		
 	} else {
 		data.password = password;
 		data.newPw = newPassword;
+		
+	    $.ajax({
+	        type: 'POST',
+	        url: 'memberInfoModify',
+	        data: data,
+	        success: (response) => {
+	            console.log('값: '+response.result);
+	            if (response.result === 'pwChange') {
+	                alert('비밀번호가 변경되었습니다!');
+	                location.reload();
+	            } else if (response.result === 'pwWrong') {
+	                alert('기존 비밀번호가 틀렸습니다.');
+	                //location.reload();
+	            } else if (response.result === 'infoChange') {
+	                alert('소개글이 변경되었습니다!');
+					location.reload();
+	                //window.location.href='/';
+	            }else if (response.result === 'pwInfoChange'){
+					alert('비밀번호, 소개글이 변경되었습니다!');
+					location.reload();
+				} else if(response.result === 'infoWrong'){
+					alert('소개글 변경이 실패하였습니다.');
+				}
+	        },
+	        error: function () {
+	            alert(error);
+	        },
+	    });
 	}
   
-    if (info) {
-        data.info = info;
-    }
-  
-    $.ajax({
-        type: 'POST',
-        url: 'memberInfoModify',
-        data: data,
-        success: (response) => {
-            console.log('값: '+response.result);
-            if (response.result === 'pwChange') {
-                alert('비밀번호가 변경되었습니다!');
-                location.reload();
-            } else if (response.result === 'pwWrong') {
-                alert('기존 비밀번호가 틀렸습니다.');
-                //location.reload();
-            } else if (response.result === 'infoChange' || response.result === '') {
-                alert('소개글이 변경되었습니다!');
-                //window.location.href='/';
-            }else if (response.result === 'pwInfoChange'){
-				alert('비밀번호, 소개글이 변경되었습니다!');
-			} else if(response.result === 'infoWrong'){
-				alert('소개글 변경이 실패하였습니다.');
-			}
-        },
-        error: function () {
-            alert(error);
-        },
-    });
 }
