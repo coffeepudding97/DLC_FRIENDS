@@ -5,7 +5,7 @@ $(document).ready(function(){
 	
 	$.ajax({
 		"method":"POST",
-		"url":"http://localhost:8080/GetGameTitles"
+		"url":"GetGameTitles"
 	}).done(list => {
 		list.forEach(gametitle => {		
 			if(gametitle.gameTitle === name){
@@ -23,7 +23,7 @@ $(document).ready(function(){
 	
 	$.ajax({
 		"method":"POST",
-		"url":`http://localhost:8080/GetFavorateGame?userId=${userId}`
+		"url":`GetFavorateGame?userId=${userId}`
 	}).done(list => {
 		
 		list.forEach(game => {

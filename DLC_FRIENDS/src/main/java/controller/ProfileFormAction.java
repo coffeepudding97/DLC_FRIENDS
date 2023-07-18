@@ -67,7 +67,7 @@ public class ProfileFormAction extends HttpServlet {
 
 		if (log != null) {
 			ProfileDao profileDao = ProfileDao.getInstance();
-			Profile profile = profileDao.getUserProfile2(log);
+			Profile profile = profileDao.getUserProfile(log);
 			System.out.println(profile);
 
 			if (profile == null) {
