@@ -11,7 +11,7 @@ $(document).ready(function(){
 function getSessionLog(callback){
 	$.ajax({
 		"method":"POST",
-		"url":"http://localhost:8080/GetSession"
+		"url":"GetSession"
 	}).done(log => {
 		callback(log);
 	})

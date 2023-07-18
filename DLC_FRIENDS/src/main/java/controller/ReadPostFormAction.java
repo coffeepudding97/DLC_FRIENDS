@@ -88,7 +88,7 @@ public class ReadPostFormAction extends HttpServlet {
 			PartyRequestDto partyDto = null;
 			
 			userIds = party.getUserIds();
-			profileDtos = profileDao.getProfileDtosByUserIds2(userIds, postNo);
+			profileDtos = profileDao.getProfileDtosByUserIds(userIds, postNo);
 			System.out.println(profileDtos);
 			partyDto = new PartyRequestDto(postNo, userIds);
 			

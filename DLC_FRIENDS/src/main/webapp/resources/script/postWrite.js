@@ -4,7 +4,7 @@ $(document).ready(function(){
 	getSessionLog(function(log){
 		$.ajax({
 			"method":"POST",
-			"url":`http://localhost:8080/GetFavorateGame?userId=${log}`
+			"url":`GetFavorateGame?userId=${log}`
 		}).done(list => {
 			
 			list.forEach(game => {
@@ -32,7 +32,7 @@ $(document).ready(function(){
 	
 	$.ajax({
 		"method":"POST",
-		"url":"http://localhost:8080/GetGameTitles"
+		"url":"GetGameTitles"
 	}).done(list => {
 		list.forEach(gametitle => {
 			$('#gametitle').append(`
