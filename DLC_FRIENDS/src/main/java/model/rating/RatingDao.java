@@ -144,15 +144,16 @@ public class RatingDao {
 	}
 	
 
-	public ArrayList<Rating> getTenRatings() {
+	public ArrayList<Rating> getTenRatings(int page) {
 		ArrayList<Rating> list = new ArrayList<Rating>();
 		this.conn = DBManager.getConnection();
 		
 		if(this.conn!=null) {
-			String sql = "SELECT * FROM rating WHERE finish=true ORDER BY rating_no DESC LIMIT 10";
+			String sql = "SELECT * FROM rating WHERE finish=true ORDER BY updated_time DESC LIMIT 10 OFFSET ?";
 			
 			try {
 				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setInt(1, (page-1)*10);
 				
 				this.rs = this.pstmt.executeQuery();
 				
