@@ -210,6 +210,33 @@ public class UserDao {
 	}
 	
     
+	public String getUserIdByEmail(String email) {
+		this.conn = DBManager.getConnection();
+		String result = "일치하는 정보가 없습니다.";
+		
+		if(this.conn != null) {
+			String sql = "SELECT user_id FROM user WHERE email = ?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				
+				this.pstmt.setString(1, email);
+				
+				this.rs = this.pstmt.executeQuery();
+				
+				if(this.rs.next()) {
+					result = this.rs.getString(1);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt, rs);
+			}
+		}
+		
+		return result;
+	}
     
 	public boolean deleteUserById(String id, String password) {
 		this.conn = DBManager.getConnection();

@@ -22,6 +22,19 @@
 							src="../resources/images/main_logo_black.png"></a>
 					</div>
 					<form>
+						<div>
+							<div class="id_txt">이메일</div>
+							<div class="login-box">
+								<ion-icon name="mail-outline"></ion-icon>
+								<input type="text" name="id_email" id="id_email" maxlength="30"
+									autocapitalize="off">
+							</div>
+							<button id="search_id_btn" type="button" value="search_id"
+								class="send_code" onclick="findId()">아이디 찾기</button>
+							<div><p id="found_id"></div>
+						</div>
+					</form>
+					<form>
 						<div class="id_txt">아이디</div>
 						<div class="login-box">
 							<ion-icon name="mail-outline"></ion-icon>

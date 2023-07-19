@@ -7,6 +7,17 @@ $(document).ready(function() {
 
 var verified = false;
 
+function findId(){
+	var email = $('#id_email').val();
+	console.log(email);
+	$.ajax({
+		"method":"POST",
+		"url":`/FindId?email=${email}`,
+	}).done(json => {
+		$('#found_id').text(`${json.userId}`);
+	})
+}
+
 function sendCode() {
 	var id = $("#id").val();
 	var email = $("#email").val();
