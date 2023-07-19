@@ -46,10 +46,11 @@ public class GetWarningPostAction extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json; charset=utf-8");
 		
+		int page = Integer.parseInt(request.getParameter("page"));
 		
 		RatingDao ratingDao = RatingDao.getInstance();
 		
-		ArrayList<Rating> ratings = ratingDao.getTenRatings();
+		ArrayList<Rating> ratings = ratingDao.getTenRatings(page);
 		
 		JSONArray list = new JSONArray(ratings);
 		
