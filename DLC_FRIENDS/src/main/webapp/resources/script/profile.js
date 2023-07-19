@@ -122,7 +122,7 @@ function loadComments() {
 						`
 						<ul id="comment-ul" data-postno="${comment.postNo}">
 							<li>${comment.content}</li>
-							<li>${date}</li>
+							<li>→ ${date}</li>
 						</ul>
 						`
 					);
