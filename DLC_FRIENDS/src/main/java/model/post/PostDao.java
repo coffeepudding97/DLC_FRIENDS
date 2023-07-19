@@ -340,7 +340,7 @@ public class PostDao {
 		this.conn = DBManager.getConnection();
 		
 		if(this.conn != null) {
-			String sql = "SELECT title, game_title, created_time FROM post WHERE user_id=? ORDER BY created_time DESC LIMIT ?, ?";
+			String sql = "SELECT post_no, title, game_title, created_time FROM post WHERE user_id=? ORDER BY created_time DESC LIMIT ?, ?";
 			
 			try {
 				this.pstmt = this.conn.prepareStatement(sql);
@@ -351,11 +351,12 @@ public class PostDao {
 				this.rs = this.pstmt.executeQuery();
 				
 				while(this.rs.next()) {
-					String title = this.rs.getString(1);
-					String gameTitle = this.rs.getString(2);
-					Timestamp createdTime = this.rs.getTimestamp(3);
+					int postNo = this.rs.getInt(1);
+					String title = this.rs.getString(2);
+					String gameTitle = this.rs.getString(3);
+					Timestamp createdTime = this.rs.getTimestamp(4);
 					
-					post = new Post(title, gameTitle, createdTime);
+					post = new Post(postNo, title, gameTitle, createdTime);
 					postList.add(post);
 				}
 			} catch (Exception e) {

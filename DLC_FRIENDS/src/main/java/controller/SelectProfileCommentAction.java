@@ -41,7 +41,6 @@ public class SelectProfileCommentAction extends HttpServlet {
 		int countPosts = 5;
 		
 		ArrayList<Comment> commentList = commentDao.getCommentByIdAndIdx(id, startIdx, countPosts);
-		
 		JSONObject jObject = new JSONObject();
 
 		jObject.put("commentList", commentList);

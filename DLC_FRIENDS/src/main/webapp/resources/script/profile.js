@@ -7,6 +7,20 @@ $(document).ready(function() {
 	loadPosts();
 	loadComments();
 	
+	$('.posts').on('click', '#post-ul', function () {
+	    const postNo = $(this).data('postno');
+	    console.log(postNo);
+	    
+	    location.href = `PostRead?post_no=${postNo}`;
+	});
+	
+	$(document).on('click', '#comment-ul', function() {
+	    const cmtNo = $(this).data('postno');
+	    console.log(cmtNo);
+	    
+	    // location.href = `PostRead?post_no=${cmtPostNo}`;
+	});
+	
 });
 
 
@@ -35,10 +49,10 @@ function loadPosts() {
 					var date = dateFormat(changeToDate);
 					$('.posts').append(
 						`
-						<ul>
+						<ul id="post-ul" data-postno="${post.postNo}">
 							<li>[${post.gameTitle}]</li>
 							<li>${post.title}</li>
-							<li>${date}</li>
+							<li>→ ${date}</li>
 						</ul>
 						`
 					);
@@ -107,7 +121,8 @@ function loadComments() {
 					var date = dateFormat(changeToDate);
 					$('.comments').append(
 						`
-						<ul>
+						<ul class="comment-ul" data-postno="${comment.postNo}">
+							<li>${comment.postNo}</li>
 							<li>${comment.content}</li>
 							<li>${date}</li>
 						</ul>

@@ -56,6 +56,14 @@ public class Post {
 		this.gameTitle = gameTitle;
 		this.createdTime = createdTime;
 	}
+	
+	public Post(int postNo, String title, String gameTitle, Timestamp createdTime) {
+		super();
+		this.postNo = postNo;
+		this.title = title;
+		this.gameTitle = gameTitle;
+		this.createdTime = createdTime;
+	}
 
 	public int getPostNo() {
 		return postNo;
