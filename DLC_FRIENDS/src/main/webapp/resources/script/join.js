@@ -200,14 +200,32 @@ function signupChk(){
 function sendCode(){
 	const addr = $('#email').val();
 	$('#send_btn').prop("disabled", true);
+	
+	var data = {"addr":addr};
+	
 	$.ajax({
 		"method":"POST",
-		"url":`SendCode?addr=${addr}`
+		"url":"DuplEmail",
+		"data":JSON.stringify(data),
+		"Content-Type":"application/json"
+		//"headers":{'Content-Type':'application/json'}
 	}).done(json => {
-		$('#div_code').show();
-		console.log("인증발송 코드 : " + json.code);
-		console.log("인증발송 제한 시간 : " + json.time);
-	})
+		if(json.dupl == true){
+			$("#hint_email").text("중복된 이메일 입니다.");
+			$("#hint_email").show();
+		} else {
+			$.ajax({
+				"method":"POST",
+				"url":`SendCode?addr=${addr}`
+			}).done(json => {
+				$('#div_code').show();
+				console.log("인증발송 코드 : " + json.code);
+				console.log("인증발송 제한 시간 : " + json.time);
+			})
+		}
+	});
+	
+	
 	setTimeout(function(){
 		$('#send_btn').prop("disabled", false)
 	}, 3000);

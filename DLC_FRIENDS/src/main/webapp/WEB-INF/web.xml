@@ -107,6 +107,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>DuplCheckEmailAction</servlet-name>
+		<servlet-class>controller.DuplCheckEmailAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DuplCheckEmailAction</servlet-name>
+		<url-pattern>/DuplEmail</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>DuplCheckNicknameAction</servlet-name>
 		<servlet-class>controller.DuplCheckNicknameAction</servlet-class>
 	</servlet>

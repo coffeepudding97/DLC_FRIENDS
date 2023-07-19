@@ -97,6 +97,37 @@ public class UserDao {
 		return dupl;
 	}
 	
+	public boolean duplEmail(String addr) {
+		boolean dupl = false;
+		String email = null;
+		
+		this.conn = DBManager.getConnection();
+		
+		if(this.conn != null) {
+			String sql = "SELECT email FROM user where email = ?";
+			
+			try {
+				this.pstmt = this.conn.prepareStatement(sql);
+				this.pstmt.setString(1, addr);
+				
+				this.rs = this.pstmt.executeQuery();
+				
+				if(this.rs.next()) {
+					email = rs.getString(1);
+					System.out.println("email:" + email);
+					if(email != null)
+						dupl = true;
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(this.conn, this.pstmt);
+			}
+		}
+		return dupl;
+	}
+	
 	// 유저 생성
 	public boolean createUser(UserRequestDto userDto) {
 		User result = getUserById(userDto.getId());
