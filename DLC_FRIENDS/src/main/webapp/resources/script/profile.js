@@ -14,11 +14,11 @@ $(document).ready(function() {
 	    location.href = `PostRead?post_no=${postNo}`;
 	});
 	
-	$(document).on('click', '#comment-ul', function() {
-	    const cmtNo = $(this).data('postno');
-	    console.log(cmtNo);
+	$('.comments').on('click', '#comment-ul', function () {
+	    const postNo = $(this).data('postno');
+	    console.log(postNo);
 	    
-	    // location.href = `PostRead?post_no=${cmtPostNo}`;
+	    location.href = `PostRead?post_no=${postNo}`;
 	});
 	
 });
@@ -115,16 +115,12 @@ function loadComments() {
 				$('.comments').empty();
 				list.commentList.forEach((comment) => {
 					// timestamp -> date -> format 변환
-					console.log("cmt : " + typeof(comment.createdTime));
 					var timestamp = comment.createdTime;
 					var changeToDate = new Date(timestamp);
 					var date = dateFormat(changeToDate);
-					console.log(date);
-					console.log(comment.postNo);
 					$('.comments').append(
 						`
-						<ul class="comment-ul" data-postno="${comment.postNo}">
-							<li>${comment.postNo}</li>
+						<ul id="comment-ul" data-postno="${comment.postNo}">
 							<li>${comment.content}</li>
 							<li>${date}</li>
 						</ul>
