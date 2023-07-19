@@ -10,14 +10,11 @@
 <title>회원가입</title>
 </head>
 <body>
-	<jsp:include page="/header"></jsp:include>
 	<div id="wrap">
-	<div id="root">
 	<section id="main-section">
 	<div class="sign_container">
 	<div class="logo"><a href="/index"><img src="../resources/images/main_logo_black.png"></a></div>
         <form id="form" class="sign">
-        <h1>회원가입</h1>
             <div class="input-control">
                 <label for="id">아이디</label>
                 <input id="id" name="id" type="text" placeholder="최소 4자리 이상 16자리 이하 영소문자, 숫자" maxlength="40">
@@ -61,12 +58,15 @@
                 <small class="small hint" id="hint_birth">생년월일을 19YYMMDD 형식으로 입력해야 합니다.</small>
             </div>
             <button id="submit_btn" type="button" onclick="signupChk()">가입하기</button>
-            <button type="button" class="signup_cancel-button">취소</button>
+            <button type="button" id="cancelbutton">취소</button>
         </form>
     </div>
 	</section>
+	<script type="module"
+			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+		<script nomodule
+			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+		<%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
  	</div>
-	</div>
-	<jsp:include page="/footer"></jsp:include>
 </body>
 </html>

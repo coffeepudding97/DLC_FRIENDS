@@ -311,4 +311,11 @@ function nickDuplChk(){
 	setTimeout(function(){
 		$('#nick_dup_btn').prop("disabled", false)
 	}, 3000);
+
+}
+
+function goToIndexPage() {
+	//취소버튼 클릭 시 인덱스 페이지로 이동.
+  location.href = "/index"; // 인덱스 페이지의 URL을 여기에 입력하세요.	
+  document.getElementById("cancelbutton").addEventListener("click", goToIndexPage);
 }
