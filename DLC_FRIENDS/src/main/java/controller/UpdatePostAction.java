@@ -14,7 +14,6 @@ import model.post.PostResponseDto;
 /**
  * Servlet implementation class UpdatePostAction
  */
-@WebServlet("/UpdatePostAction")
 public class UpdatePostAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

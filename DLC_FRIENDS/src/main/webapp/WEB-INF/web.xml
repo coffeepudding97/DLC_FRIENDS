@@ -206,6 +206,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>UpdatePostAction</servlet-name>
+		<servlet-class>controller.UpdatePostAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdatePostAction</servlet-name>
+		<url-pattern>/UpdatePost</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>DeletePostFormAction</servlet-name>
 		<servlet-class>controller.DeletePostFormAction</servlet-class>
 	</servlet>
@@ -259,6 +268,11 @@
 	</servlet>
 	
 	<servlet-mapping>
+		<servlet-name>postUpdate</servlet-name>
+		<url-pattern>/postUpdate</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
 		<servlet-name>rating</servlet-name>
 		<url-pattern>/rating</url-pattern>
 	</servlet-mapping>
@@ -267,11 +281,6 @@
 		<servlet-name>rating</servlet-name>
 		<jsp-file>/views/rating.jsp</jsp-file>
 	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>postUpdate</servlet-name>
-		<url-pattern>/postUpdate</url-pattern>
-	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>CommentFormAction</servlet-name>
