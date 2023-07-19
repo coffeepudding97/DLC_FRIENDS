@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Modify</title>
 <link rel="stylesheet" href="../resources/style/memberInfoModify.css">
+<link rel="shortcut icon" href="../resources/images/favicon.ico">
 </head>
 <body>
 	<jsp:include page="/header"></jsp:include>
@@ -28,9 +29,9 @@
 							</div>
 							<!-- 이미지 -->
 							<div class="upload_img">
-								<input type="file" id="input_image" name="input_image"
-									accept="image/jpeg, image/png"> <input type="button"
-									id="uploadBtn" value="Upload Image">
+								<input type="file" id="input_image" name="input_image" accept="image/jpeg, image/png">
+								<label class="imgfile" for="input_image"><img src="../resources/images/file_add.png"><h1>파일추가</h1></label>
+								<input type="button" id="uploadBtn" value="이미지 업로드">
 							</div>
 
 
@@ -41,16 +42,18 @@
 							<!-- 태그지정 -->
 							<a href="#"><p id="gametitleToggle">선호 게임 설정</p></a>
 							<div id="gametitleList">
-								<div>
+								<div class="list_wrap">
 									<c:forEach items="${gameList}" var="games">
-										<label>${games.gameTitle } <input type="checkbox"
+										<label class="list_content">${games.gameTitle } <input type="checkbox"
 											name="selectGame" value="${games.gameTitle }" />
 										</label>
 										<br>
 									</c:forEach>
 								</div>
+								<div class=favorite_game_button>
 								<input type="button" id="game_submit" value="설정완료"
 									onclick="selectGames()">
+								</div>
 							</div>
 
 						</div>
@@ -76,17 +79,17 @@
 
 							<div class="update_password">
 								<h1>비밀번호 수정</h1>
-								<div>
+								<div class="update_password_input">
 									<input type="password" id="password" name="password"
 										placeholder="기존 비밀번호">
 								</div>
 								
 								<!-- 새로운 비밀번호 -->
-								<div>
+								<div class="update_password_input">
 									<input type="password" id="newPw" name="newPw"
 										placeholder="새 비밀번호">
 								</div>
-								<div>
+								<div class="update_password_input">
 									<input type="password" id="newPwChk" name="newPwChk"
 										placeholder="새 비밀번호 확인">
 								</div>

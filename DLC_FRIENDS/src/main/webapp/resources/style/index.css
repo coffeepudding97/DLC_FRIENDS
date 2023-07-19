@@ -32,6 +32,10 @@ a {
 	margin:0 auto;
 }
 
+#lines {
+	cursor:pointer;
+}
+
 
 /* 검색 기능 */
 .search_wrap {
@@ -65,6 +69,7 @@ a {
 	border:none;
 	background: #fff;
 	padding-top:2px;
+	cursor:pointer;
 }
 .submit_area button img {
 	width:24px;
@@ -161,6 +166,7 @@ a {
 	justify-content:center;
 	width:100%;
 	padding-left:60px;
+	cursor:pointer;
 }
 
 .view_more button {

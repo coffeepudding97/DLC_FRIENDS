@@ -6,6 +6,10 @@ body, li, ul, h1, h2, input, form, p {
 	box-sizing:border-box;
 }
 
+input {
+	 font-family: 'Pretendard-Regular';
+}
+
 #wrap {
 	background: linear-gradient(#172235, #3a536f);
 	display:flex;
@@ -14,7 +18,7 @@ body, li, ul, h1, h2, input, form, p {
 }
 
 #root {
-	max-width:900px;
+	max-width:1200px;
 	width:100%;
 	margin-top:50px;
 	margin-bottom:50px;
@@ -29,6 +33,18 @@ body, li, ul, h1, h2, input, form, p {
     background: #282830;
 }
 
+#main-section input {
+	border:1px solid #ddd;
+	background:#fff;
+	padding:10px;
+	border-radius: 10px;
+
+}
+
+.main-section-inner {
+	width:100%;
+}
+
 .main-section-inner p {
 	padding:10px;
 	padding-top:20px;
@@ -39,7 +55,7 @@ body, li, ul, h1, h2, input, form, p {
 }
 
 
-
+/* 이미지 업로드 */
 .update_img {
 	display:flex;
 	min-width:800px;
@@ -49,16 +65,50 @@ body, li, ul, h1, h2, input, form, p {
 }
 
 .upload_img {
-	display:none;
+	display:flex;
 	padding:20px;
 	background:#212127;
 	color:white;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .upload_img form {
 	display:flex;
 	flex-direction:space-between;
 	align-items:center;
+}
+
+.upload_img label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.upload_img #uploadBtn {
+	height:38px;
+	margin-left: 50px;
+}
+
+.upload_img .imgfile {
+	display:flex;
+	align-items:center;
+}
+.upload_img .imgfile h1 {
+	padding-left:10px;
+	font-size:18px;
+}
+
+#main-section .upload_img input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: none;
 }
 
 .update_nickname {
@@ -98,13 +148,44 @@ body, li, ul, h1, h2, input, form, p {
 	color:white;
 }
 
-#right_btn {
-	padding-top:10px;
+/* 선호게임 */
+
+.list_wrap {
+	display:flex;
+	flex-wrap:wrap;
+
+}
+
+.list_wrap .list_content {
+		padding:10px;
+}
+
+.favorite_game_button {
 	display:flex;
 	justify-content:flex-end;
 }
 
+
+
+
+/*개인정보 수정*/
+.update_password_input {
+	padding: 10px 0;
+}
+
+.update_password input {
+	width:50%;
+}
+
+#right_btn {
+	padding-top:10px;
+	display:flex;
+	justify-content:flex-end;
+	padding-bottom:50px;
+}
+
 #right_btn input {
+	width:150px;
 	border:1px solid #212127;
 	padding:10px;
 	background:#fff;

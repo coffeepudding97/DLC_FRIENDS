@@ -8,6 +8,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link rel="stylesheet" href="../resources/style/login.css">
 <script src="../resources/script/searchPw.js"></script>
+<link rel="shortcut icon" href="../resources/images/favicon.ico">
 <title>비밀번호 찾기</title>
 </head>
 <body>

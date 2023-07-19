@@ -91,6 +91,12 @@
 	border-radius:25px;
 	color: #39c1e9;
 	margin:2px;
+	cursor:pointer;
+}
+
+#profile_right .game_tag p:hover {
+	background:#fff;
+	color:#999;
 }
 
 #profile_right .report_tag p {
@@ -183,7 +189,7 @@
 
 .post_list button {
 	border:none;
-	
+	cursor:pointer;
 }
 
 .post_list div {
@@ -246,6 +252,7 @@
 
 .reply_list button {
 	border:none;
+	cursor:pointer;
 }
 
 #comment_page {

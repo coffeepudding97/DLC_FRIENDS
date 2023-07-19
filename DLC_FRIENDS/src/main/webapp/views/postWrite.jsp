@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>글쓰기</title>
 <link rel="stylesheet" href="../resources/style/header.css">
 <link rel="stylesheet" href="../resources/style/footer.css">
 <link rel="stylesheet" href="../resources/style/postWrite.css">
+<link rel="shortcut icon" href="../resources/images/favicon.ico">
 </head>
 <body>
 	<jsp:include page="/header"></jsp:include>

@@ -93,6 +93,7 @@ input {
 #join {
 	padding-top:10px;
 	display:flex;
+	flex-wrap:wrap;
 }
 #join .join_member button {
 	border-radius:10px;

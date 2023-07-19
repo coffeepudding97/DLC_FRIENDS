@@ -8,6 +8,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link rel="stylesheet" href="../resources/style/login.css">
 <script src="../resources/script/login.js"></script>
+<link rel="shortcut icon" href="../resources/images/favicon.ico">
 <title>로그인</title>
 </head>
 <body>

@@ -6,6 +6,12 @@ body, li, ul, h1, h2, input, form, p {
 	list-style:none;
 }
 
+
+input {
+	border-radius:5px;
+	border:none;
+}
+
 #wrap {
 	background: linear-gradient(#172235, #3a536f);
 	padding:50px;

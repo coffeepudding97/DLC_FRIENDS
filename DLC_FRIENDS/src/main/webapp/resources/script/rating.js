@@ -49,6 +49,8 @@ $(document).ready(function(){
 	})
 });
 
+$('.header_bottom a:nth-child(3)').addClass("on").siblings().removeClass("on");
+
 function formToggle(info){
 	const li = $(info).closest("li");
 	const form = $(li).find("form");

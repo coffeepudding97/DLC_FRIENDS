@@ -7,9 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>User Profile</title>
+<title>마이프로필</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="../resources/style/profile.css">
+<link rel="shortcut icon" href="../resources/images/favicon.ico">
 </head>
 <body>
 	<jsp:include page="/header"></jsp:include>

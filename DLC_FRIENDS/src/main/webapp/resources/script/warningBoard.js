@@ -1,5 +1,7 @@
 var page = 1;
 
+
+
 $(document).ready(function() {
 	$.ajax({
 		"method": "POST",
@@ -25,6 +27,8 @@ $(document).ready(function() {
 		})
 	})
 });
+
+$('.header_bottom a:nth-child(2)').addClass("on").siblings().removeClass("on");
 
 $(window).on('scroll', function() {
 	var windowHeight = $(window).height();

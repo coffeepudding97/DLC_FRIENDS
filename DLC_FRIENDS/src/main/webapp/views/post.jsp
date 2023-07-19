@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상세 글 보기</title>
 <link rel="stylesheet" href="../resources/style/post.css" />
+<link rel="shortcut icon" href="../resources/images/favicon.ico">
 </head>
 <body>
 	<c:import url="header"></c:import>

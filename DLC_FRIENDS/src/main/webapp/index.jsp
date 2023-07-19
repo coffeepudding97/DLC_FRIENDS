@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>DLC FRIENDS</title>
 <link href="resources/style/index.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="resources/images/favicon.ico">
 </head>
 <body>
 <div id="root">
