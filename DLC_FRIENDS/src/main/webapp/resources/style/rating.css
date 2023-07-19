@@ -9,6 +9,7 @@ body, li, ul, h1, h2, input, form, p {
 #wrap {
 	background: linear-gradient(#172235, #3a536f);
 	padding:50px;
+	min-height:100vh;
 }
 
 #main-section {

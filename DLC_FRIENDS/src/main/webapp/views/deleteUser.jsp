@@ -10,22 +10,25 @@
 <title>회원탈퇴</title>
 </head>
 <body>
+	<div id="wrap">
 	<div id="root">
 		<%-- <jsp:include page="../header.jsp"></jsp:include> --%>
 		<section id="main-section">
 			<div class="login_container">
-				<h1>회원탈퇴</h1>
+				<div class="logo"><a href="/index"><img src="../resources/images/main_logo_black.png"></a></div>
 				<form>
+				<h1>회원탈퇴</h1>
+				<div class="id_txt">아이디</div>
 					<div class="login-box">
 						<ion-icon name="mail-outline"></ion-icon>
 						<input type="text" name="id" id="id" maxlength="30"
 							autocapitalize="off" value="${sessionScope.log }" readonly>
 					</div>
+					<div class="pw_txt">비밀번호</div>
 					<div class="login-box">
 						<ion-icon name="lock-closed-outline"></ion-icon>
 						<input type="password" name="password" id="password"
-							maxlength="30" autocapitalize="off"> <label
-							for="password">비밀번호</label>
+							maxlength="30" autocapitalize="off">
 					</div>
 					<input type="button" id="submit_button" value="회원탈퇴하기" onclick="deleteChk()">
 				</form>
@@ -37,6 +40,7 @@
 			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 		<script src="../resources/script/deleteUser.js"></script>
 		<%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
+	</div>
 	</div>
 </body>
 </html>

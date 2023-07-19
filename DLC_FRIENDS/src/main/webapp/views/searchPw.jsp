@@ -41,11 +41,13 @@
 						</div>
 
 						<div class="input-control">
-							<div class="pw_txt">코드입력</div>
 							<div id="div_code" class="input-control">
+								<div class="pw_txt">코드입력</div>
+								<div class="pw_content">
 								<input id="code" name="code" type="number" maxlength="6">
 								<button id="verify_btn" type="button" value="verify"
 									class="verify" onclick="verify()">인증하기</button>
+								</div>
 							</div>
 						</div>
 
@@ -63,9 +65,10 @@
 								<input type="password" name="passwordChk" id="passwordChk"
 									maxlength="30" autocapitalize="off">
 							</div>
-
+							<div class="button_wrap">
 							<input type="button" id="change_pw" value="비밀번호 변경"
 								onclick="changePwd()">
+							</div>
 						</div>
 					</form>
 				</div>

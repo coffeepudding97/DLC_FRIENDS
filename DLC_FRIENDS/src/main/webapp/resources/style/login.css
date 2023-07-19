@@ -43,9 +43,16 @@ body {
     flex-direction: column;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
     width: 700px;
-    height: 550px;
+    min-height: 550px;
     background: #fff;
     padding:50px;
+}
+
+.login_container h1 {
+	margin:0 auto;
+	text-align:center;
+	font-size:26px;
+	padding:20px;
 }
 
 form {
@@ -151,10 +158,10 @@ form {
     border: 1px solid #1d2b3a;
 }
 
-#submit_button{
+#submit_button {
     width: 100%;
     height: 40px;
-    margin-top: 80px;
+    margin-top: 40px;
     background:#fff;
     border: 1px solid #1d2b3a;
     border-radius:10px;
@@ -162,7 +169,7 @@ form {
 }
 
 #submit_button:hover {
-	background:#db0442;
+	background:#d91950;
 	color:#fff;
 }
 
@@ -194,4 +201,67 @@ form {
     color: #1ea1f7;
     text-decoration: underline;
 } */
+
+
+/* 비밀번호찾기 */
+
+.login-box #send_btn {
+	width: 100%;
+    height: 40px;
+    margin-top:10px;
+    background:#fff;
+    border: 1px solid #1d2b3a;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#div_code {
+	display:flex;
+	align-items:center;
+	padding-top:20px;
+	gap:20px;
+}
+
+#div_code .pw_content {
+	display:flex;
+	gap:10px;
+}
+#div_code input {
+	width:65%;
+	padding:5px;
+}
+
+#div_code input::-webkit-outer-spin-button,
+#div_code input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#div_code .verify {
+	width: 35%;
+    height: 40px;
+    background:#fff;
+    border: 1px solid #1d2b3a;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+#pw-change .pw_txt {
+	padding-top:10px;
+}
+
+#pw-change .button_wrap {
+	display:flex;
+	justify-content:flex-end;
+	padding-top:10px;
+}
+#pw-change #change_pw {
+	width: 120px;
+    height: 40px;
+    background:#fff;
+    border: 1px solid #1d2b3a;
+    border-radius:10px;
+    cursor:pointer;
+}
+
 

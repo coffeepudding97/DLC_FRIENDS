@@ -7,13 +7,13 @@ body, ul, li, input, button, form, a, h1, h2 {
 
 #wrap {
 	background: linear-gradient(#172235, #3a536f);
+	min-height:100vh;
 }
 
 #main-section {
 	max-width:1200px;
 	margin:0 auto;
 	padding-top:50px;
-	padding-bottom:500px;
 }
 
 .board_wrap {
@@ -84,6 +84,7 @@ body, ul, li, input, button, form, a, h1, h2 {
 #ul-board li .tags {
 	width:100%;
 	padding:15px;
+	min-height:35px;
 }
 
 
