@@ -15,6 +15,7 @@
 	<div id="root">
 	<section id="main-section">
 	<div class="sign_container">
+	<div class="logo"><a href="/index"><img src="../resources/images/main_logo_black.png"></a></div>
         <form id="form" class="sign">
         <h1>회원가입</h1>
             <div class="input-control">

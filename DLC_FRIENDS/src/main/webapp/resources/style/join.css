@@ -22,12 +22,17 @@ input[type="number"]::-webkit-inner-spin-button {
     font-family: 'Poppins', sans-serif;
 }
 
+.logo img {
+	width: 200px;
+}
+
 #form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 500px;
-    padding: 20px;
+    width: 700px;
+    height: 850px;
+    padding:10px;
     background: linear-gradient(#1B262C, #0F4C75);
     box-shadow: 0 15px 25px rgba(0, 0, 0,.6);
     border-radius: 10px;
