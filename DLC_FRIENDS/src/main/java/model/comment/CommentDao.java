@@ -268,7 +268,7 @@ public class CommentDao {
 		this.conn = DBManager.getConnection();
 		
 		if(this.conn != null) {
-			String sql = "SELECT content, created_time FROM comment WHERE user_id=? ORDER BY created_time DESC LIMIT ?, ?";
+			String sql = "SELECT post_no, content, created_time FROM comment WHERE user_id=? ORDER BY created_time DESC LIMIT ?,?";
 			
 			try {
 				this.pstmt = this.conn.prepareStatement(sql);
@@ -279,10 +279,11 @@ public class CommentDao {
 				this.rs = this.pstmt.executeQuery();
 				
 				while(this.rs.next()) {
-					String content = this.rs.getString(1);
-					Timestamp createdTime = this.rs.getTimestamp(2);
+					int postNo = this.rs.getInt(1);
+					String content = this.rs.getString(2);
+					Timestamp createdTime = this.rs.getTimestamp(3);
 					
-					comment = new Comment(content, createdTime);
+					comment = new Comment(postNo, content, createdTime);
 					commentList.add(comment);
 				}
 			} catch (Exception e) {

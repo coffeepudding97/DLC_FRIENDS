@@ -1,3 +1,12 @@
+$(document).ready(function(){
+	$('#login').on('keyup', function(key){
+		if(key.keyCode==13){
+			loginChk();
+		}
+	})
+	
+});
+
 // 유효성 검사 메서드
 function loginChk() {
 	var id = $('#id').val();
@@ -19,8 +28,6 @@ function loginChk() {
 	}
 
 	// 유효성 검사 통과
-
-	
 
 	$.ajax({
 		type: 'POST',

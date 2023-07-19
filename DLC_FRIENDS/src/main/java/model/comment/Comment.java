@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class Comment {
 	private int cmtNo;
+	private int postNo;
 	private String userId;
 	private String content;
 	private Timestamp createdTime;
@@ -21,6 +22,22 @@ public class Comment {
 		super();
 		this.content = content;
 		this.createdTime = createdTime;
+	}
+	
+	
+	public Comment(int postNo, String content, Timestamp createdTime) {
+		super();
+		this.postNo = postNo;
+		this.content = content;
+		this.createdTime = createdTime;
+	}
+
+	public int getpostNo() {
+		return postNo;
+	}
+
+	public void setpostNo(int postNo) {
+		this.postNo = postNo;
 	}
 
 	public int getCmtNo() {
@@ -56,9 +73,10 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [cmtNo=" + cmtNo + ", userId=" + userId + ", content=" + content + ", createdTime="
-				+ createdTime + ", rpNo=" + rpNo + "]";
+		return "Comment [cmtNo=" + cmtNo + ", postNo=" + postNo + ", userId=" + userId + ", content=" + content
+				+ ", createdTime=" + createdTime + ", rpNo=" + rpNo + "]";
 	}
+
 	
 	
 }

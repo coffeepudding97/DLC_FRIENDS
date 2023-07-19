@@ -122,13 +122,17 @@
 								<div>
 									<h1>* 작성한 게시글</h1>
 								</div>
-								
+
 
 								<div class="posts"></div>
 								<div class="post_list">
-									<button id="post_minus_btn" onclick="post_minus_btn()"><img src="../resources/images/arrow_left.png"></button>
+									<button id="post_minus_btn" onclick="post_minus_btn()">
+										<img src="../resources/images/arrow_left.png">
+									</button>
 									<div id="post_page">1</div>
-									<button id="post_plus_btn" onclick="post_plus_btn()"><img src="../resources/images/arrow_right.png"></button>
+									<button id="post_plus_btn" onclick="post_plus_btn()">
+										<img src="../resources/images/arrow_right.png">
+									</button>
 								</div>
 							</div>
 						</div>
@@ -141,9 +145,13 @@
 								</div>
 								<div class="comments"></div>
 								<div class="reply_list">
-									<button id="comment_minus_btn" onclick="comment_minus_btn()"><img src="../resources/images/arrow_left.png"></button>
+									<button id="comment_minus_btn" onclick="comment_minus_btn()">
+										<img src="../resources/images/arrow_left.png">
+									</button>
 									<div id="comment_page">1</div>
-									<button id="comment_plus_btn" onclick="comment_plus_btn()"><img src="../resources/images/arrow_right.png"></button>
+									<button id="comment_plus_btn" onclick="comment_plus_btn()">
+										<img src="../resources/images/arrow_right.png">
+									</button>
 								</div>
 							</div>
 						</div>
