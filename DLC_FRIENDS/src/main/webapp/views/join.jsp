@@ -56,6 +56,7 @@
 				<small class="small hint" id="hint_email">이메일이 인증되지 않았습니다.</small>
 			</div>
 			<div id="div_code" class="input-control">
+				<label class="label" for="verify_btn">인증번호 입력</label>
 				<input id="code" name="code" type="number" maxlength="6">
 				<button id="verify_btn" type="button" value="verify" class="verify" onclick="verify()">인증하기</button>
 			</div>

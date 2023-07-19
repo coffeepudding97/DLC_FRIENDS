@@ -42,7 +42,7 @@
 						<%--<button onclick="">수정</button>--%>
 						<div class="post_action">
 						<c:if test="${sessionScope.log eq requestScope.post.userId }">
-							<form method="post" action="/UpdatePostAction">
+							<form method="post" action="/UpdatePost">
 								<input type="hidden" name="postNo"
 									value="${requestScope.post.postNo }"> <input
 									type="submit" value="수정">
