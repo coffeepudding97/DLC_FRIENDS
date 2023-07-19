@@ -17,7 +17,6 @@ import model.comment.CommentDao;
 /**
  * Servlet implementation class SelectProfileCommentAction
  */
-@WebServlet("/SelectProfileCommentAction")
 public class SelectProfileCommentAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
