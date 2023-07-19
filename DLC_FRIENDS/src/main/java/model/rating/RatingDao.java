@@ -149,7 +149,7 @@ public class RatingDao {
 		this.conn = DBManager.getConnection();
 		
 		if(this.conn!=null) {
-			String sql = "SELECT * FROM rating WHERE finish=true ORDER BY rating_no DESC LIMIT 10";
+			String sql = "SELECT * FROM rating WHERE finish=true ORDER BY updated_time DESC LIMIT 10";
 			
 			try {
 				this.pstmt = this.conn.prepareStatement(sql);
