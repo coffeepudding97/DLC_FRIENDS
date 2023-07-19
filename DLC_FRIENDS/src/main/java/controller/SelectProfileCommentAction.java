@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import model.comment.Comment;
@@ -17,7 +18,6 @@ import model.comment.CommentDao;
 /**
  * Servlet implementation class SelectProfileCommentAction
  */
-@WebServlet("/SelectProfileCommentAction")
 public class SelectProfileCommentAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,9 +42,10 @@ public class SelectProfileCommentAction extends HttpServlet {
 		
 		ArrayList<Comment> commentList = commentDao.getCommentByIdAndIdx(id, startIdx, countPosts);
 		JSONObject jObject = new JSONObject();
-
+		
 		jObject.put("commentList", commentList);
-
+		
+		System.out.println(jObject);
 		response.setContentType("application/x-json; charset=utf-8");
 		response.getWriter().print(jObject);
 	}

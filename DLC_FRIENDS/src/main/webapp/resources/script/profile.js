@@ -113,12 +113,14 @@ function loadComments() {
 			if (list.commentList.length !== 0) {
 				// 기존 페이지 글 제거
 				$('.comments').empty();
-
 				list.commentList.forEach((comment) => {
 					// timestamp -> date -> format 변환
+					console.log("cmt : " + typeof(comment.createdTime));
 					var timestamp = comment.createdTime;
 					var changeToDate = new Date(timestamp);
 					var date = dateFormat(changeToDate);
+					console.log(date);
+					console.log(comment.postNo);
 					$('.comments').append(
 						`
 						<ul class="comment-ul" data-postno="${comment.postNo}">

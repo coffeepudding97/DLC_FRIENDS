@@ -3,12 +3,12 @@ package model.comment;
 import java.sql.Timestamp;
 
 public class Comment {
-	private int cmtNo;
+	private int cmtNo; //
 	private int postNo;
 	private String userId;
-	private String content;
-	private Timestamp createdTime;
-	private int rpNo;
+	private String content; //
+	private Timestamp createdTime; //
+	private int rpNo; //
 	public Comment(int cmtNo, String userId, String content, Timestamp createdTime, int rpNo) {
 		super();
 		this.cmtNo = cmtNo;
@@ -32,41 +32,52 @@ public class Comment {
 		this.createdTime = createdTime;
 	}
 
-	public int getpostNo() {
-		return postNo;
-	}
-
-	public void setpostNo(int postNo) {
-		this.postNo = postNo;
-	}
+	
 
 	public int getCmtNo() {
 		return cmtNo;
 	}
+
 	public void setCmtNo(int cmtNo) {
 		this.cmtNo = cmtNo;
 	}
+
+	public int getPostNo() {
+		return postNo;
+	}
+
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	public Timestamp getCreatedTime() {
 		return createdTime;
 	}
+
 	public void setCreatedTime(Timestamp createdTime) {
 		this.createdTime = createdTime;
 	}
+
 	public int getRpNo() {
 		return rpNo;
 	}
+
 	public void setRpNo(int rpNo) {
 		this.rpNo = rpNo;
 	}
