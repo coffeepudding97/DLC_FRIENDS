@@ -22,6 +22,7 @@
 							src="../resources/images/main_logo_black.png"></a>
 					</div>
 					<form>
+						<h1>아이디찾기</h1>
 						<div>
 							<div class="id_txt">이메일</div>
 							<div class="login-box">
@@ -29,12 +30,15 @@
 								<input type="text" name="id_email" id="id_email" maxlength="30"
 									autocapitalize="off">
 							</div>
+							<div class="id_btn_box">
 							<button id="search_id_btn" type="button" value="search_id"
 								class="send_code" onclick="findId()">아이디 찾기</button>
+							</div>
 							<div><p id="found_id"></div>
 						</div>
 					</form>
 					<form>
+						<h1>비밀번호 찾기</h1>
 						<div class="id_txt">아이디</div>
 						<div class="login-box">
 							<ion-icon name="mail-outline"></ion-icon>

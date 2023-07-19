@@ -74,6 +74,12 @@
 	font-size:20px;
 	display:flex;
 }
+#profile_right {
+	width:50%;
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+}
 #profile_right .tag {
 	display:flex;
 	flex-direction:column;
@@ -108,11 +114,6 @@
 	margin:2px;
 }
 
-#profile_right {
-	width:50%;
-	display:flex;
-	flex-direction:column;
-}
 
 .profile_user {
 	display:flex;
