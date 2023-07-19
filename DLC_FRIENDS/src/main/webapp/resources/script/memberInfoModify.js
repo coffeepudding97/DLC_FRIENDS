@@ -119,7 +119,7 @@ function modifyPwAndInfo() {
 		alert('비밀번호는 8자리 이상 문자, 숫자, 특수문자 최소 1개 이상 포함해주세요. ');
 		return false;
 		// 조건에 맞으면 값 넘겨주기
-	} else if(newPassword === password){
+	} else if(newPassword === password && newPassword !== ""){
 		alert('기존 비밀번호와 새로 입력한 비밀번호가 일치합니다. 다시 입력해주세요.');
 	
 	} else if(newPassword != newPasswordChk){
