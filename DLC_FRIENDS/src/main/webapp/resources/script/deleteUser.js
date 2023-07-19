@@ -1,4 +1,9 @@
 function deleteChk(){
+	$('#submit_button').prop("disabled", true);
+	setTimeout(function(){
+		$('#submit_button').prop("disabled", false);
+	}, 1000);
+	
 	var password = $('#password').val();
 	
 	data = {
@@ -20,3 +25,4 @@ function deleteChk(){
 		}
 	})
 }
+

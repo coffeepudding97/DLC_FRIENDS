@@ -22,30 +22,43 @@ $(document).ready(function(){
 })
 
 function post_comment() {
+	$('#commentWrite').prop("disabled", true);
+	setTimeout(function(){
+		$('#commentWrite').prop("disabled", false);
+	}, 300);
 	const user_id = $('#userId').val();
 	const content = $('#comment').val();
 	const post_no = $('#postNo').val();
 	const reply_No = $('#rpNo').val();
 	// const comment_no;
 
-	$.ajax({
-		"method": "POST",
-		"url": `comment?postNo=${post_no}&userId=${user_id}&comment=${content}&rpNo=${reply_No}`,
-	}).done(result => {
-		if (result === 'true') {
-			// 댓글 영역 갱신 
-			$.ajax({
-				"method": "GET",
-				"url": `GetComments?postNo=${post_no}`
-			}).done(list => append_comment(list))
-
-		} else {
-			alert('댓글 등록 처리실패');
-		}
-	})
+	if(content == ""){
+		alert("내용을 입력해 주세요.");
+	} else {
+		$.ajax({
+			"method": "POST",
+			"url": `comment?postNo=${post_no}&userId=${user_id}&comment=${content}&rpNo=${reply_No}`,
+		}).done(result => {
+			if (result === 'true') {
+				// 댓글 영역 갱신 
+				$.ajax({
+					"method": "GET",
+					"url": `GetComments?postNo=${post_no}`
+				}).done(list => append_comment(list))
+	
+			} else {
+				alert('댓글 등록 처리실패');
+			}
+		})
+	}
+	
 }
 
 function delete_comment(button) {
+	button.prop("disabled", true);
+	setTimeout(function(){
+		button.prop("disabled", false);
+	}, 700);
 	const user_id = $('#userId').val();
 	const content = $('#comment').val();
 	const post_no = $('#postNo').val();
@@ -126,6 +139,10 @@ function append_comment(list) {
 
 
 function profileClick(button){
+	$(button).prop("disabled", true);
+	setTimeout(function(){
+		$(button).prop("disabled", false);
+	}, 10000);
 	const postNo = $('#postNo').val();
 	const userId = $('#userId').val();
 	const btn = $(button);
@@ -170,6 +187,10 @@ function profileClick(button){
 }
 
 function blankClick(button){
+	$(button).prop("disabled", true);
+	setTimeout(function(){
+		$(button).prop("disabled", false);
+	}, 10000);
 	const postNo = $('#postNo').val();
 	const userId = $('#userId').val();
 	let log = true;
@@ -241,6 +262,10 @@ function resetRpNo(){
 }
 
 function delPost(){
+	$('#del_post_btn').prop("disabled", true);
+	setTimeout(function(){
+		$('#del_post_btn').prop("disabled", false);
+	}, 1000);
 	const postNo = $('#postNo').val();
 	
 	$.ajax({

@@ -15,7 +15,7 @@
 	<div id="root">
 		<section id="main-section">
 			<div id="wrap">
-				<form method="post" action="/WritePost">
+				<form onsubmit="return checkWrite()" method="post" action="/WritePost">
 					<div class="write-wrap">
 						<div id="div-title">
 							<input type="text" id="title" name="title" placeholder="제목"
@@ -48,7 +48,7 @@
 							<input type="text" id="content" name="content" placeholder="내용">
 						</div>
 						<div id="div-submit">
-							<input type="submit" value="작성">
+							<input id="submit_btn" type="submit" value="작성">
 						</div>
 					</div>
 				</form>

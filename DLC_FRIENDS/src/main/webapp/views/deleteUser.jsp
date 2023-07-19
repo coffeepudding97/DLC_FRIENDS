@@ -27,7 +27,7 @@
 							maxlength="30" autocapitalize="off"> <label
 							for="password">비밀번호</label>
 					</div>
-					<input type="button" id="login_button" value="회원탈퇴하기" onclick="deleteChk()">
+					<input type="button" id="submit_button" value="회원탈퇴하기" onclick="deleteChk()">
 				</form>
 			</div>
 		</section>
