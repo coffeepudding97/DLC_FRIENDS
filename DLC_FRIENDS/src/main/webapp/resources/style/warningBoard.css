@@ -109,7 +109,30 @@ body, ul, li, input, button, form, a, h1, h2 {
 	display: none;
 }
 
+/* 더보기 버튼 */
+.view_more {
+	display:flex;
+	justify-content:center;
+	width:100%;
+	padding-top:20px;
+}
 
+.view_more button {
+	width:38px;
+	height:38px;
+	margin:0;
+	padding:0;
+	background-color:#31313c;
+	border:none;
+	border-radius:50%;
+	cursor:pointer;
+}
+
+.view_more img {
+	width:36px;
+	height:36px;
+
+}
 
 
 
@@ -126,6 +149,9 @@ body, ul, li, input, button, form, a, h1, h2 {
 	#main-section {
 	padding:15px;
 	padding-bottom:50px;
+	}
+	#wrap {
+	 min-height:auto;
 	}
 }
 
