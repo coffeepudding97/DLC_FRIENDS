@@ -14,6 +14,7 @@ function findId(){
 		"method":"POST",
 		"url":`/FindId?email=${email}`,
 	}).done(json => {
+		$('#id_comment').text("고객님의 정보와 일치하는 아이디 입니다");
 		$('#found_id').text(`${json.userId}`);
 	})
 }
