@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta property="og:title" content="DLC_FRIENDS">
+<meta property="og:description" content="게임 친구 매칭 웹 플랫폼 DLC 프렌즈">
+<meta property="og:image" content="../resources/images/meta_img.jpg">
 <link rel="stylesheet" href="../resources/style/join.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="../resources/script/join.js" ></script>

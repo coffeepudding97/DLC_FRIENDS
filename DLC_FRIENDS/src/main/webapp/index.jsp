@@ -10,6 +10,9 @@
 <link href="resources/style/index.css" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="resources/images/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="DLC_FRIENDS">
+	<meta property="og:description" content="게임 친구 매칭 웹 플랫폼 DLC 프렌즈">
+	<meta property="og:image" content="resources/images/meta_img.jpg">
 </head>
 <body>
 <div id="root">

@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="DLC_FRIENDS">
+<meta property="og:description" content="게임 친구 매칭 웹 플랫폼 DLC 프렌즈">
+<meta property="og:image" content="../resources/images/meta_img.jpg">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link rel="stylesheet" href="../resources/style/login.css">
 <link rel="shortcut icon" href="../resources/images/favicon.ico">

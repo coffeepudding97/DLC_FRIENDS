@@ -6,6 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta property="og:title" content="DLC_FRIENDS">
+<meta property="og:description" content="게임 친구 매칭 웹 플랫폼 DLC 프렌즈">
+<meta property="og:image" content="../resources/images/meta_img.jpg">
 <title>글 수정</title>
 <link rel="stylesheet" href="../resources/style/header.css">
 <link rel="stylesheet" href="../resources/style/footer.css">
