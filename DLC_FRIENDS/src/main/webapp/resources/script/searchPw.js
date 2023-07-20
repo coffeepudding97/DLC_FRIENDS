@@ -8,8 +8,11 @@ $(document).ready(function() {
 var verified = false;
 
 function findId(){
+	$('search_id_btn').prop("disabled", true);
+	setTimeout(function(){
+		$('search_id_btn').prop("disabled", false);
+	}, 300);
 	var email = $('#id_email').val();
-	console.log(email);
 	$.ajax({
 		"method":"POST",
 		"url":`/FindId?email=${email}`,
@@ -20,6 +23,7 @@ function findId(){
 }
 
 function sendCode() {
+	$('#send_btn').prop("disabled", true);
 	var id = $("#id").val();
 	var email = $("#email").val();
 	
@@ -29,7 +33,6 @@ function sendCode() {
 		return false;
 	}
 	var addr = email;
-	$('#send_btn').prop("disabled", true);
 	
 	$.ajax({
 		"method": "POST",
@@ -52,6 +55,10 @@ function sendCode() {
 }
 
 function verify() {
+	$('#verify_btn').prop("disabled", true);
+	setTimeout(function(){
+		$('#verify_btn').prop("disabled", false);
+	}, 1000);
 	$('#hint_email').hide();
 	
 	$.ajax({
@@ -88,6 +95,10 @@ function verify() {
 }
 
 function changePwd(){
+	$('#change_pw').prop("disabled", true);
+	setTimeout(function(){
+		$('#change_pw').prop("disabled", false);
+	}, 1000);
 	var pwd = $('#password').val();
 	var pwdChk = $('#passwordChk').val();
 	var id = $('#id').val();
