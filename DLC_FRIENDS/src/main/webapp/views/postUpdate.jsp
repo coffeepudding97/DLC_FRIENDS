@@ -17,7 +17,7 @@
 	<div id="root">
 		<section id="main-section">
 			<div id="wrap">
-			<form onsubmit="return checkUpdate()" method="post" action="/UpdatePostFormAction">
+			<form onsubmit="return checkUpdate()" method="post" action="/UpdatePostForm">
 				<div class="write-wrap">
 					<input type="hidden" name="postNo" value="${requestScope.post.postNo }">
 					<div id="div-title">

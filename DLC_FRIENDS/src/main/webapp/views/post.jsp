@@ -125,7 +125,7 @@
 					<%--<span>${requestScope.post.userId }</span>--%>
 					<div class="writer_id">
 					<span>작성자 : ${sessionScope.log }</span>
-					<form id="comment_form">
+					<form id="comment_form" onsubmit="return false">
 						<input type="hidden" id="postNo" name="postNo"
 							value="${param.post_no }"> 
 						<input type="hidden" id="userId" name="userId" value="${sessionScope.log }">

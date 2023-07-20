@@ -1,23 +1,56 @@
+var verified = false;
+
+
 $(document).ready(function() {
 	$('#pw-change').hide();
 	$('.hint').hide();
 
-});
-
-$(document).ready(function() {
-	$('#search_id_btn').on('click', function(){
-		$('#found_id').show();
+	$('#id_email').on("keyup", function(key){
+		if(key.keyCode == 13){
+			findId();
+		}
 	});
+	
+	$('#id').on("keyup", function(key){
+		if(key.keyCode == 13){
+			$('#email').focus();
+		}
+	});
+	
+	$('#email').on("keyup", function(key){
+		if(key.keyCode == 13){
+			sendCode();
+		}
+	});
+	
+	$('#password').on("keyup", function(key){
+		if(key.keyCode == 13){
+			$('#passwordChk').focus();
+		}
+	});
+	
+	$('#passwordChk').on("keyup", function(key){
+		if(key.keyCode == 13){
+			changePwd();
+		}
+	});
+	
+	$('#code').on("keyup", function(key){
+		if(key.keyCode == 13){
+			verify();
+		}
+	});
+	
 });
 
-
-var verified = false;
 
 function findId(){
 	$('search_id_btn').prop("disabled", true);
 	setTimeout(function(){
 		$('search_id_btn').prop("disabled", false);
 	}, 300);
+	
+	
 	var email = $('#id_email').val();
 	$.ajax({
 		"method":"POST",
@@ -26,6 +59,9 @@ function findId(){
 		$('#id_comment').text("고객님의 정보와 일치하는 아이디 입니다");
 		$('#found_id').text(`${json.userId}`);
 	})
+	
+	
+	$('#found_id').show();
 }
 
 function sendCode() {

@@ -21,7 +21,7 @@
 						<a href="/index"><img
 							src="../resources/images/main_logo_black.png"></a>
 					</div>
-					<form>
+					<form onsubmit="return false">
 						<h1>아이디찾기</h1>
 						<div>
 							<div class="id_txt">이메일</div>
@@ -40,7 +40,7 @@
 							</div>
 						</div>
 					</form>
-					<form>
+					<form onsubmit="return false">
 						<h1>비밀번호 찾기</h1>
 						<div class="id_txt">아이디</div>
 						<div class="login-box">

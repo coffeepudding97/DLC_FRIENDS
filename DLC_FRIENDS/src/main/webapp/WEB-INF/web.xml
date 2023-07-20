@@ -224,6 +224,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>UpdatePostFormAction</servlet-name>
+		<servlet-class>controller.UpdatePostFormAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdatePostFormAction</servlet-name>
+		<url-pattern>/UpdatePostForm</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>DeletePostFormAction</servlet-name>
 		<servlet-class>controller.DeletePostFormAction</servlet-class>
 	</servlet>
