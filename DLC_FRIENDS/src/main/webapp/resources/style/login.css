@@ -294,4 +294,13 @@ form {
     cursor:pointer;
 }
 
+@media (max-width:720px) {
+ 	#main-section {
+ 	 width:auto;
+ 	}
+ 	.login_container {
+ 	width:auto;
+ 	}
+}
+
 

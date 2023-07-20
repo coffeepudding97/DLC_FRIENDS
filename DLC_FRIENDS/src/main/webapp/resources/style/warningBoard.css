@@ -29,12 +29,14 @@ body, ul, li, input, button, form, a, h1, h2 {
 
 .board_title {
 	display:flex;
+	align-items:center;
 	text-align:center;
 	background: #282830;
 }
 
 .board_title li {
 	padding:5px 15px;
+		white-space: nowrap;
 }
 .board_title li:first-child {
 	width:50%;
@@ -106,4 +108,26 @@ body, ul, li, input, button, form, a, h1, h2 {
 .tags .tag0{
 	display: none;
 }
+
+
+
+
+
+
+
+@media (max-width :900px) {
+	.board_title li:nth-child(2) {
+		display:none;
+	}
+	#ul-board li .content {
+	display:none;
+	}
+	
+	#main-section {
+	padding:15px;
+	padding-bottom:50px;
+	}
+}
+
+
 

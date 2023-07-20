@@ -9,6 +9,7 @@
 <title>DLC FRIENDS</title>
 <link href="resources/style/index.css" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="resources/images/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div id="root">

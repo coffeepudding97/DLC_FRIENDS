@@ -75,6 +75,7 @@ form div {
 
 .user_rating {
 	display:flex;
+	align-items:center;
 	padding-right:5px;
 }
 .user_rating h1 {
@@ -98,4 +99,14 @@ form div {
 	background:white;
 	color:#3a536f;
 	padding:5px;
+}
+
+@media (max-width :900px) {
+	#wrap {
+	padding:10px;
+	}
+	
+	#ul-rating h1 {
+	min-width:70px;
+	}
 }

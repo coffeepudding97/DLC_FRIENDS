@@ -4,6 +4,7 @@
 	background-color: #3a536f;
 	padding: 30px;
 	padding-bottom: 50px;
+	display:flex;
 	
 }
 
@@ -18,4 +19,8 @@
 	color:white;
 	font-size:9px;
 	text-align:center;
+}
+
+@media (max-width:479px) {
+ 	
 }

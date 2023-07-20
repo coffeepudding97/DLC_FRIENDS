@@ -39,7 +39,7 @@
 			</div>
 			<div class=header_bottom_wrap>
 				<div class=header_bottom>
-					<a href="/index" class="on">친구찾기</a> <a href="/warningBoard">신고게시판</a> <a id="rating_link" href="/rating">유저평가</a>
+					<a href="/index" class="on">친구찾기</a> <a href="/warningBoard">평가게시판</a> <a id="rating_link" href="/rating">유저평가</a>
 				</div>
 				</div>
 			</div>

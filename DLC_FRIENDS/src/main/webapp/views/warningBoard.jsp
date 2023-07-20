@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>신고게시판</title>
+<title>평가게시판</title>
 <link href="../resources/style/warningBoard.css" rel="stylesheet" type="text/css">
 <link rel="shortcut icon" href="../resources/images/favicon.ico">
 </head>
