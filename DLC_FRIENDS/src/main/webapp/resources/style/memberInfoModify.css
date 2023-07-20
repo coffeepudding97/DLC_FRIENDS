@@ -6,6 +6,10 @@ body, li, ul, h1, h2, input, form, p {
 	box-sizing:border-box;
 }
 
+body {
+	 min-width:340px;
+}
+
 input {
 	 font-family: 'Pretendard-Regular';
 }
@@ -190,6 +194,27 @@ input {
 	padding:10px;
 	background:#fff;
 }
+
+
+
+
+
+
+@media (max-width :900px) {
+	
+	.update_img {
+	min-width: auto;
+	}
+	
+	.upload_img {
+	flex-direction:column;
+	}
+}
+
+
+
+
+
 
 
 

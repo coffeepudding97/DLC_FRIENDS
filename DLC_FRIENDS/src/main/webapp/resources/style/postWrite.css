@@ -5,6 +5,10 @@ h2 {
 	width:70px;
 }
 
+body {
+	 min-width:340px;
+}
+
 button {
 	background: #fff;
 }

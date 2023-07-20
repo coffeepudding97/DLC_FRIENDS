@@ -3,6 +3,11 @@
 body, ul, li, input, button, form, a, h1, h2 {
 	margin:0;
 	padding:0;
+	
+}
+
+body {
+	 min-width:340px;
 }
 
 #wrap {

@@ -11,6 +11,7 @@
 body {
 	margin:0;
 	font-family: 'Pretendard-Regular';
+	min-width:340px;
 }
 
 ul, li, form, input {
