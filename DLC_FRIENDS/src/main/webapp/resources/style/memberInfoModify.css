@@ -38,7 +38,7 @@ input {
 }
 
 #main-section input {
-	border:1px solid #ddd;
+	border:0;
 	background:#fff;
 	padding:10px;
 	border-radius: 10px;
@@ -94,7 +94,18 @@ input {
 
 .upload_img #uploadBtn {
 	height:38px;
-	margin-left: 50px;
+	margin-top:15px;
+	cursor:pointer;
+	border-radius: 10px;
+	color:#000000;
+	border:0;
+	
+}
+
+.upload_img #uploadBtn:hover{
+	background: #db0442;
+    color: white;
+	
 }
 
 .upload_img .imgfile {
@@ -169,6 +180,31 @@ input {
 	justify-content:flex-end;
 }
 
+#game_submit {
+	border-radius: 10px;
+    color: #000000;
+    border: 0;
+    cursor:pointer;
+    font-family: 'Pretendard-Regular';
+}
+
+#game_submit:hover{
+	background:#db0442;
+	color:white;
+}
+
+#submit-btn {
+	border-radius: 10px;
+    color: #000000;
+    border: 0;
+    cursor:pointer;
+    font-family: 'Pretendard-Regular';
+}
+
+#submit-btn:hover{
+	background:#db0442;
+	color:white;
+}
 
 
 
