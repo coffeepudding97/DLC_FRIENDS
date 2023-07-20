@@ -143,6 +143,7 @@ button {
 	width:150px;
 	padding:10px 0;
 	border-radius:10px;
+	cursor:pointer;
 }
 #div-submit input:hover {
 		background:#db0442;
