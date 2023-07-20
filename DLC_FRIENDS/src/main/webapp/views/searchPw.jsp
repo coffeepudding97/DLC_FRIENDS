@@ -34,7 +34,10 @@
 							<button id="search_id_btn" type="button" value="search_id"
 								class="send_code" onclick="findId()">아이디 찾기</button>
 							</div>
-							<div><p id="found_id"></div>
+							<div>
+								<p id="id_comment"></p>
+								<h3 id="found_id"></h3>
+							</div>
 						</div>
 					</form>
 					<form>

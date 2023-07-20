@@ -390,7 +390,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>searchPw</servlet-name>
-		<url-pattern>/searchPw</url-pattern>
+		<url-pattern>/finduser</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -542,8 +542,4 @@
 		<servlet-name>join</servlet-name>
 		<url-pattern>/join</url-pattern>
 	</servlet-mapping>
-	
-	
-
-
 </web-app>
