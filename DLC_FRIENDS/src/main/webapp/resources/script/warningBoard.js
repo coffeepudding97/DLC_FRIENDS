@@ -30,15 +30,15 @@ $(document).ready(function() {
 
 $('.header_bottom a:nth-child(2)').addClass("on").siblings().removeClass("on");
 
-$(window).on('scroll', function() {
+/*$(window).on('scroll', function() {
 	var windowHeight = $(window).height();
 	var documentHeight = $(document).height();
 	var scrollTop = $(window).scrollTop();
-
-	if (scrollTop + windowHeight >= documentHeight) {
+	console.log(scrollTop);
+	if (scrollTop + windowHeight >= documentHeight - 1) {
 		getMore();
 	}
-});
+});*/
 
 function getMore() {
 	$.ajax({
