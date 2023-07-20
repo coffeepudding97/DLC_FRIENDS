@@ -149,7 +149,7 @@ function profileClick(button){
 	$(button).prop("disabled", true);
 	setTimeout(function(){
 		$(button).prop("disabled", false);
-	}, 10000);
+	}, 1000);
 	const postNo = $('#postNo').val();
 	const userId = $('#userId').val();
 	const btn = $(button);
@@ -197,7 +197,7 @@ function blankClick(button){
 	$(button).prop("disabled", true);
 	setTimeout(function(){
 		$(button).prop("disabled", false);
-	}, 10000);
+	}, 1000);
 	const postNo = $('#postNo').val();
 	const userId = $('#userId').val();
 	let log = true;
