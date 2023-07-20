@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../resources/style/login.css">
 <script src="../resources/script/searchPw.js"></script>
 <link rel="shortcut icon" href="../resources/images/favicon.ico">
-<title>비밀번호 찾기</title>
+<title>아이디 비밀번호 찾기</title>
 </head>
 <body>
 	<div id="wrap">
@@ -34,7 +34,7 @@
 							<button id="search_id_btn" type="button" value="search_id"
 								class="send_code" onclick="findId()">아이디 찾기</button>
 							</div>
-							<div>
+							<div class="id_result">
 								<p id="id_comment"></p>
 								<h3 id="found_id"></h3>
 							</div>

@@ -4,6 +4,12 @@ $(document).ready(function() {
 
 });
 
+$(document).ready(function() {
+	$('#search_id_btn').on('click', function(){
+		$('#found_id').show();
+	});
+});
+
 
 var verified = false;
 

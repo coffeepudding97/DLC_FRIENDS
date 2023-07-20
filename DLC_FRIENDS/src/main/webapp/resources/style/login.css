@@ -203,6 +203,23 @@ form {
 } */
 
 
+/* 아이디 찾기 */
+.id_result {
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+}
+
+.id_result #found_id {
+	display:none;
+	margin-top: 10px;
+    border: 1px solid black;
+    border-radius:5px;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+}
+
 /* 비밀번호찾기 */
 .id_btn_box {
 	padding-top:10px;
