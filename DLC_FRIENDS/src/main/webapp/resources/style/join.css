@@ -180,3 +180,13 @@ form {
 	color:#fff;
 }
 
+
+@media (max-width :900px) {
+	.sign_container {
+	width:auto;}
+	
+}
+
+
+
+
