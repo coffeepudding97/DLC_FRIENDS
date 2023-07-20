@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta property="og:title" content="DLC_FRIENDS">
+<meta property="og:description" content="게임 친구 매칭 웹 플랫폼 DLC 프렌즈">
+<meta property="og:image" content="../resources/images/meta_img.jpg">
 <title>유저 평가</title>
 <link rel="stylesheet" href="../resources/style/rating.css" />
 <link rel="shortcut icon" href="../resources/images/favicon.ico">

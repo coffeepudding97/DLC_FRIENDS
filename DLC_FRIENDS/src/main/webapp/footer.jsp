@@ -11,9 +11,23 @@
 <body>
 <footer id="footer">
 <div class="txt">
-<h1>DLC_FRIENDS is hosted by Green Analytics, Inc. DLC_FRIENDS isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
+<h1>DLC Friends is a group project of Green Academy and is a game friend matching platform created by four members of the team. Please contact us through the link below.
 </h1>
-<h1>DLC_FRIENDS, Inc. © 2023</h1>
+<div class="address">
+<div id="line_wrap" class="homin">
+<h1>김호민</h1><h1>email : hominin@naver.com</h1> <a href="https://github.com/coffeepudding97">git:https://github.com/coffeepudding97</a>
+</div>
+<div id="line_wrap" class="yunjeong">
+<h1>이윤정</h1><h1>email : dldbswjd889@naver.com</h1> <a href="https://github.com/yunJeong3">git:https://github.com/yunJeong3</a>
+</div>
+<div id="line_wrap" class="gyujae">
+<h1>이규재</h1><h1>email :  dlrbwo2022@gmail.com</h1>  <a href="https://github.com/gitjae">git:https://github.com/gitjae</a>
+</div>
+<div id="line_wrap" class="sangjin">
+<h1>이상진</h1><h1>email : sangjini9810@gmail.com</h1> <a href="https://github.com/sangjjini">git:https://github.com/sangjjini</a>
+</div>
+</div>
+
 </div>
 </footer>
 </body>

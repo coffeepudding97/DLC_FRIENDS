@@ -5,12 +5,15 @@
 	padding: 30px;
 	padding-bottom: 50px;
 	display:flex;
+	justify-content: center;
 	
 }
 
 #footer .txt {
-	width:1200px;
-	margin:0 auto;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:5px;
 }
 
 #footer h1 {
@@ -21,6 +24,23 @@
 	text-align:center;
 }
 
-@media (max-width:479px) {
- 	
+.address {
+	display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 10px;
+}
+
+#footer a {
+	font-size:9px;
+	color:white;
+	font-family:'Pretendard-Regular';
+	font-weight: 400;
+}
+
+#footer #line_wrap {
+	display:flex;
+	gap:10px;
+	align-items: center;
+	width:350px;
 }
