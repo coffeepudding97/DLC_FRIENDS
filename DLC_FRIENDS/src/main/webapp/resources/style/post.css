@@ -23,7 +23,13 @@ button {
     background-color: #3a536f;
     color:#fff;
     font-family: 'Pretendard-Regular';
+    cursor:pointer;
 }
+
+input[type="button"], input[type="submit"]  {
+	cursor:pointer;
+}
+
 
 #wrap {
 		background: linear-gradient(#172235, #3a536f);

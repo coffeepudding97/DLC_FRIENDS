@@ -8,7 +8,7 @@ $(document).ready(function(){
 		}).done(list => {
 			
 			list.forEach(game => {
-				$('#favorite_game').append(`
+				$('.favorite_game_list').append(`
 					<labal onclick="setGameTitle(this)" id="${game.gametitle}" class="played_game" value="${game.gametitle}">${game.gametitle}</label>
 				`)
 			})

@@ -29,6 +29,8 @@
 						</div>
 							<div id="favorite_game">
 							<h2>선호게임</h2>
+							<div class="favorite_game_list">
+							</div>
 							</div>
 						<div id="div-meeting">
 							<div class="member_cnt">

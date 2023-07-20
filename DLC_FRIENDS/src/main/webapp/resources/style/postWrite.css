@@ -2,6 +2,7 @@
 h2 {
 	color:white;
 	font-size:16px;
+	width:70px;
 }
 
 button {
@@ -55,12 +56,26 @@ button {
 	align-items: center;
 	justify-content:flex-start;
 }
+
+#favorite_game .favorite_game_list {
+	display:flex;
+	padding-left:5px;
+	flex-wrap:wrap;
+}
+
+
 #favorite_game .played_game {
 	padding: 0 10px;
 	margin: 5px;
 	border:1px solid #fff;
 	color:white;
 	border-radius:15px;
+	cursor:pointer;
+}
+
+#favorite_game .played_game:hover {
+	border:1px solid #d91950;
+	color:#d91950;
 }
 
 #div-meeting {
