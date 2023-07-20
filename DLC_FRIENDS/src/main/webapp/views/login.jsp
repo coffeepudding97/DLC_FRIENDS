@@ -24,7 +24,7 @@
 					<form id="login">
 						<div class="id_txt">아이디</div>
 						<div class="login-box">
-							<ion-icon name="mail-outline"></ion-icon>
+							<ion-icon name="person-outline"></ion-icon>
 							<input type="text" name="id" id="id" maxlength="30"
 								autocapitalize="off">
 						</div>
