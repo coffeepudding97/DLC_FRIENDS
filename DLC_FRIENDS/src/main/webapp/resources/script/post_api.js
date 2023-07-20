@@ -1,5 +1,12 @@
 $(document).ready(function(){
 	const postNo = $('#postNo').val();
+	
+	$('#comment').on("keyup", function(key){
+		if(key.keyCode == 13){
+			post_comment();
+		}
+	});
+	
 	getSessionLog(function(log){
 		if(log == "null"){
 			$('#commentWrite').removeAttr("onclick");
@@ -37,7 +44,7 @@ function post_comment() {
 	} else {
 		$.ajax({
 			"method": "POST",
-			"url": `comment?postNo=${post_no}&userId=${user_id}&comment=${content}&rpNo=${reply_No}`,
+			"url": `comment?postNo=${post_no}&userId=${user_id}&comment=${encodeURIComponent(content)}&rpNo=${reply_No}`,
 		}).done(result => {
 			if (result === 'true') {
 				// 댓글 영역 갱신 
@@ -55,9 +62,9 @@ function post_comment() {
 }
 
 function delete_comment(button) {
-	button.prop("disabled", true);
+	$(button).prop("disabled", true);
 	setTimeout(function(){
-		button.prop("disabled", false);
+		$(button).prop("disabled", false);
 	}, 700);
 	const user_id = $('#userId').val();
 	const content = $('#comment').val();
