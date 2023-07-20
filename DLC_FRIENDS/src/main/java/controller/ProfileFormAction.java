@@ -116,7 +116,7 @@ public class ProfileFormAction extends HttpServlet {
 				request.setAttribute("selectGameList", selectGameList);
 				request.setAttribute("partyMemList", partyMemList);
 				// 유저평점이 2점 미만이면 신고태그가 프로필화면에 표시
-				if(totalScore < 5) {
+				if(totalScore < 2) {
 					request.setAttribute("rateList", rateList);
 				}
 
