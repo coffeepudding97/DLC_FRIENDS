@@ -14,7 +14,7 @@ $(document).ready(function(){
 						<div><h1>같이한 게임</h1><p name="title">${rating.gametitle}</p></div>
 						<div><h1>닉네임</h1><p name="userId">${rating.rated}</p></div>
 					</div>
-					<form>
+					<form onsubmit="return false">
 						<div class="user_rating">
 							<h1>유저 평가</h1>
 							1<input type="radio" name="score" value="1">
@@ -37,7 +37,7 @@ $(document).ready(function(){
 						</div>
 						<div class="memo">
 							<h1>메모</h1>
-							<input id="content" name="content" type="textarea">
+							<input class="content" id="content" name="content" type="textarea">
 						</div>
 						<div class="submit_wrap">
 						<input type="button" class="submit" value="제출" onclick="rating(this)">
@@ -45,6 +45,13 @@ $(document).ready(function(){
 					</form>
 				</li>
 			`);
+		})
+		$('.content').on("keyup", function(key){
+			if(key.keyCode == 13){
+				form = $(this).closest('form');
+				btn = $(form).find('input[class="submit"]');
+				rating(btn);
+			}
 		})
 	})
 });
