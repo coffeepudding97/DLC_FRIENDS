@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -169,23 +170,47 @@ public class PostDao {
 	
 	public boolean deletePostByPostNo(int postNo) {
 		this.conn = DBManager.getConnection();
-		PartyDao partyDao = PartyDao.getInstance();
-		CommentDao commentDao = CommentDao.getInstance();
+		//PartyDao partyDao = PartyDao.getInstance();
+		//CommentDao commentDao = CommentDao.getInstance();
 		
-		boolean delParty = partyDao.deletePartyByPostNo(postNo);
-		boolean delCmts = commentDao.deleteCommentsByPostNo(postNo);
+		//boolean delParty = partyDao.deletePartyByPostNo(postNo);
+		//boolean delCmts = commentDao.deleteCommentsByPostNo(postNo);
 		boolean check = true;
 		
-		if(this.conn!=null && delParty && delCmts) {
+		if(this.conn!=null) {
+			String delCmtSql = "DELETE FROM comment WHERE post_no = ?";
+			String delParty = "DELETE FROM party_member WHERE post_no = ?";
+			String delRating = "DELETE FROM rating WHERE post_no = ?";
 			String sql = "DELETE FROM post WHERE post_no = ?";
 			
 			try {
+				this.conn.setAutoCommit(false);
+				
+				this.pstmt = this.conn.prepareStatement(delCmtSql);
+				this.pstmt.setInt(1, postNo);
+				this.pstmt.execute();
+				
+				this.pstmt = this.conn.prepareStatement(delParty);
+				this.pstmt.setInt(1, postNo);
+				this.pstmt.execute();
+				
+				this.pstmt = this.conn.prepareStatement(delRating);
+				this.pstmt.setInt(1, postNo);
+				this.pstmt.execute();
+				
 				this.pstmt = this.conn.prepareStatement(sql);
 				this.pstmt.setInt(1, postNo);
 				this.pstmt.execute();
 				
+				this.conn.commit();
 			} catch (Exception e) {
 				e.printStackTrace();
+				try {
+					this.conn.rollback();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				check = false;
 			} finally {
 				DBManager.close(conn, pstmt);
